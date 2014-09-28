@@ -5,7 +5,7 @@
 }
 
 
-\section{Recap of COMP121 \& COMP151}
+\section{A recap of COMP12111 and COMP15111}
 
 There material in both the {\it Fundamentals of Computer Architecture} and the
 {\it Fundamentals of Computer Engineering} courses in the first year provides a
@@ -94,12 +94,12 @@ load and store), and we can only do one memory access per clock cycle, one
 fetch-execute cycle takes two clock cycles, one for fetching, and one for
 execution.
 
-\subsubsection{Fetching instructions}
+\subsubesction{Fetching instructions}
 
 Fetching is an operation that is the same for all instructions. First memory
-addressed by the PC is read and stored into the Instruction Register (IR). This
+addressed by the PC is read and stored into the Instruciton Register (IR). This
 is a 16 bit internal register that isn't visible to programmers. Once this has
-occurred, the PC is incremented. This means that the RAM must be able to send a
+occurred, the PC is incrememnted. This means that the RAM must be able to send a
 word directly to the instruction register, so a datapath must be in place to
 allow this.
 
@@ -127,17 +127,17 @@ calculation should be sent to the accumulator. To do this, we need datapaths
 from the accumulator to the ALU, the RAM to the ALU and finally from the ALU to
 the accumulator.
 
-\paragraph{Control Signals} whenever two separate components within the system
+\paragraph{Control Signals} whenever two seperate components within the system
 interact. For example, every time the CPU loads a word from the RAM, a control
 signal must be sent to say `load', and every time the {\tt ADD} command it
 executed, the ALU must be sent a control signal to say `add' as opposed to
 subtract or shift.
 
-\paragraph{Timing} Timing is very important when executing the instructions. If
-the result of a load from RAM hasn't yet returned, but the control signal to the
+\paragraph{Timing} is very important when executing the instructions. If the
+result of a load from RAM hasn't yet returned, but the control signal to the
 ALU to add is sent, then the wrong result will almost certainly occur! In order
 for everything to run smoothly, the critical path for each operation must be
-worked out, and time allowed for signals to propagate through even the longest
+worked out, and time allowed for signals to propogate through even the longest
 critical path.
 
 \subsubsection{Deriving the datapaths from the operation of instruction}

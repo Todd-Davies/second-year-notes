@@ -1,0 +1,13 @@
+\contentsline {section}{\numberline {1}Recap of COMP121 \& COMP151}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}Datapath and Control}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}The MU0 Instruction Set Architecture}{3}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Maintaining Processor State}{3}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}The Fetch Execute Cycle}{4}{subsection.1.4}
+\contentsline {subsubsection}{\numberline {1.4.1}Fetching instructions}{4}{subsubsection.1.4.1}
+\contentsline {subsubsection}{\numberline {1.4.2}Executing instructions}{4}{subsubsection.1.4.2}
+\contentsline {paragraph}{{\tt JMP}}{4}{section*.5}
+\contentsline {paragraph}{{\tt STA}}{4}{section*.6}
+\contentsline {paragraph}{{\tt ADD}}{4}{section*.7}
+\contentsline {paragraph}{Control Signals}{4}{section*.8}
+\contentsline {paragraph}{Timing}{5}{section*.9}
+\contentsline {subsubsection}{\numberline {1.4.3}Deriving the datapaths from the operation of instruction}{5}{subsubsection.1.4.3}
