@@ -1,0 +1,62 @@
+% Set the author and title of the compiled pdf
+\hypersetup{
+	pdftitle = {\Title},
+	pdfauthor = {\Author}
+}
+
+\section{Machine Learning}
+
+Machine Learning is the creation of self-configuring data structures that allow
+a computer to do things that would be classed as `intelligent' if a human did
+it.
+
+Machine learning has been around in it's infancy since the 40's, where reasoning
+and logic were first studied by Claude Shannon and Kurt Godel. Steady progress
+was made with lots of funding through until the 70's, where people then realised
+AI was very hard, causing funding to dry up, and the term `AI Winter' to be
+coined.
+
+In the 80's people started to look at biologically inspired algorithms such as
+neural networks and genetic algorithms, and there is more investment. This leads
+to the field of AI diverging into many other fields such as Computer Vision,
+NLP, Machine Learning etc. In the 00's, ML begins to overlap with statistics,
+and the first {\it useful} applications emerge.
+
+\section{Nearest Neighbour Classifier}
+
+The Nearest Neighbour (NN) classifier is a simple implementation of a machine
+learning algorithm. We can give it a set of training data with each point
+labelled by a class, and then give it another datapoint, and that datapoint will
+be classified according to the data.
+
+The premise is that you plot all the points of the training data on a graph, and
+when you want to classify another datapoint, you simply plot it on the existing
+graph, and classify it by the classes of it's nearest neighbour(s).
+
+% NN graph
+
+One nice aspect of the NN classifier is that you can use it with as many
+features as you like with little extra effort. A standard implementation of the
+NN classifier might plot graphs in two dimensions, and thus will only be able to
+classify data with two features. However, if you want to include more (or less)
+features, you need to adjust the number of dimensions on your graph to match the
+number of features you're including. Then when you find the nearest neighbours
+on the graph, you find them in $n$-dimensional space rather than 2-dimensional
+space, where $n$ is the number of dimensions on the graph.
+
+\subsection{Finding the distance between two $n$-dimensional points}
+
+In order to calculate which points in the training dataset are the nearest
+neighbours to the new data point, we can calculate the {\it Euclidean Distance}
+between the two points. In $n$ dimensions, this how:
+
+\[
+  d(p,q) = \sqrt{(p_1 - q_1)^2 + (p_2 - q_2)^2 + \dots + (p_{n-1} - q_{n-1})^2 + (p_n - q_n)^2}
+\]
+
+This is actually a very simple computation. If you're given two arrays (containing the coordinates of your points) of equal lengths, then you can do:
+
+\begin{lstlisting}[label=scala_nn, caption=Scala Nearest Neighbour]
+  val delta: Set[Double] = for {(a,b) <- coords1 zip coords2} yield math.pow(a-b, 2)
+  val distance: Double = math.sqrt(delta.sum)
+\end{lstlisting}

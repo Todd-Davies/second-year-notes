@@ -1,0 +1,26 @@
+% Tell me about my LaTeX bad practices
+\usepackage[l2tabu, orthodox]{nag}
+% For line brakes in tables
+\usepackage{tabularx}
+% For the split environment
+\usepackage{amsmath}
+% For tabs in verbatim
+\usepackage{moreverb}
+% Means you don't have to put \\ to start a new line.
+\usepackage[parfill]{parskip}
+% Make LaTeX pretty with better kerning etc
+\usepackage{microtype}
+
+% Set up listings
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage[T1]{fontenc}
+\usepackage[variablett]{lmodern}
+\input{scala_listing.tex}
+\definecolor{OliveGreen}{RGB}{60,128,49}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+\lstset{language=Scala,captionpos=b,tabsize=1,frame=lines,keywordstyle=\color{blue},commentstyle=\color{OliveGreen},stringstyle=\color{red},numbers=left,numberstyle=\tiny,numbersep=1pt,breaklines=true,showstringspaces=false,basicstyle=\footnotesize,emph={label}}
