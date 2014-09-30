@@ -84,4 +84,18 @@ similar to that in Listing~\ref{scala_nn}}
 \subsection{Multiple nearest neighbours}
 
 It's possible that more accurate classifications of points could be obtained by
-taking into account multiple close neighbours rather than one nearest one.
+taking into account multiple close neighbours rather than one nearest one. In
+order to do this, you need to find the number of occurances of a specific class
+in the top $K$ nearest neighbours:
+
+%TODO: Check this compiles
+
+\begin{lstlisting}[label=nearestNeighbour, caption=Scala Nearest Neighbour]
+def kNearestNeighbour(k: Int, input: Point, existing: Set[Point]): Class = {
+  val topK: List[Class] = existing.toList.sorted(
+      (p: Point) => p.euclideanDistance(input)
+    ).take(k).map(_.class)
+  topK.groupBy(identity).maxBy(_._2.size)._1
+}
+\end{lstlisting}
+
