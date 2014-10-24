@@ -58,9 +58,44 @@ This is actually a very simple computation. If you're given two arrays
 (containing the coordinates of your points) of equal lengths, then you can do
 something similar to Listing~\ref{scala_nn}.
 
-\begin{lstlisting}[label=scala_nn, caption=Scala Nearest Neighbour]
-val c1: List[Int] = List(4,6,2,..)
-val c2: List[Int] = List(8,4,9,..)
-val delta: Set[Double] = for {(a,b) <- c1 zip c2} yield math.pow(a-b, 2)
-val distance: Double = math.sqrt(delta.sum)
+\begin{lstlisting}[label=scala_nn, caption=Scala Euclidean Distance]
+def euclideanDistance(c1: List[Double], c2: List[Double]): Double = {
+  val delta: Set[Double] = for {(a,b) <- c1 zip c2} yield math.pow(a-b, 2)
+  Double = math.sqrt(delta.sum)
+}
 \end{lstlisting}
+
+\subsection{Computing the nearest neighbour}
+
+Computing the nearest neighbor to a point is simply as easy as finding the point
+in the training data that has the smallest euclidean distance to it, as shown in
+Listing~\ref{nearestNeighbour}.
+
+\begin{lstlisting}[label=nearestNeighbour, caption=Scala Nearest Neighbour]
+def nearestNeighbour(input: Point, existing: Set[Point]): Point = {
+  existing.min((p: Point) => p.euclideanDistance(input))
+}
+\end{lstlisting}
+
+\marginpar{Assume that there is a custom implementation of {\tt Point} that
+exposes the method to find the euclidean distance between it and another point,
+similar to that in Listing~\ref{scala_nn}}
+
+\subsection{Multiple nearest neighbours}
+
+It's possible that more accurate classifications of points could be obtained by
+taking into account multiple close neighbours rather than one nearest one. In
+order to do this, you need to find the number of occurances of a specific class
+in the top $K$ nearest neighbours:
+
+%TODO: Check this compiles
+
+\begin{lstlisting}[label=nearestNeighbour, caption=Scala Nearest Neighbour]
+def kNearestNeighbour(k: Int, input: Point, existing: Set[Point]): Class = {
+  val topK: List[Class] = existing.toList.sorted(
+      (p: Point) => p.euclideanDistance(input)
+    ).take(k).map(_.class)
+  topK.groupBy(identity).maxBy(_._2.size)._1
+}
+\end{lstlisting}
+
