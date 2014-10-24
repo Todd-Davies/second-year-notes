@@ -1,0 +1,39 @@
+\begin{table}[!ht]
+  \centering
+    \begin{tabular}{|l|l|l|}\hline
+    En\_IR  & 1 &(enable write to IR)\\ \hline
+    En\_PC  & 0 &(enable write to PC)\\ \hline
+    En\_ACC & X &(enable write to ACC)\\ \hline
+    \hline
+    byp & X &(ALU action: bypass)\\ \hline
+    add & X &(ALU action: add)\\ \hline
+    sub & X &(ALU action: subtract)\\ \hline
+    \hline
+    Ren & 1 &(RAM action: Read)\\ \hline
+    Wen & 0 &(RAM action: Write)\\ \hline
+    addr\_Mux& 1  &(RAM address = PC, otherwise IR.S)\\ \hline
+  \end{tabular}
+  \caption{The control signals in the MU0 fetch phase}
+  \label{lab:1:fetch}
+\end{table}
+
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{|l|l|l|l|l|l|l|l|}\hline
+      & lda & sta & add & sub & stp & jump  & no jump\\ \hline
+    \hline
+    En\_IR   & 0  & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+    En\_PC   & 0  & 0 & 0 & 0 & 0 & 1 & 0 \\ \hline
+    En\_ACC  & 1  & 0 & 1 & 1 & 0 & 0 & 0 \\ \hline
+    \hline
+    byp      & 1  & X & 0 & 0 & X & X & X \\ \hline
+    add      & 0  & X & 1 & 0 & X & X & X \\ \hline
+    sub      & 0  & X & 0 & 1 & X & X & X \\ \hline
+    \hline
+    Ren      & 1  & 0 & 1 & 1 & 0 & 1 & 0 \\ \hline
+    Wen      & 0  & 1 & 0 & 0 & 0 & 0 & 0 \\ \hline
+    addr\_Mux& 0  & 0 & 0 & 0 & X & 0 & 1 \\ \hline
+  \end{tabular}
+  \caption{The control signals in the MU0 execute phase}
+  \label{lab:1:execute}
+\end{table}

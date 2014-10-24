@@ -6,3 +6,7 @@
 \BOOKMARK [3][-]{subsubsection.1.4.1}{Fetching instructions}{subsection.1.4}% 6
 \BOOKMARK [3][-]{subsubsection.1.4.2}{Executing instructions}{subsection.1.4}% 7
 \BOOKMARK [3][-]{subsubsection.1.4.3}{Deriving the datapaths from the operation of instruction}{subsection.1.4}% 8
+\BOOKMARK [2][-]{subsection.1.5}{Control Signals}{section.1}% 9
+\BOOKMARK [1][-]{section.2}{What does an Operating System do?}{}% 10
+\BOOKMARK [2][-]{subsection.2.1}{Processes}{section.2}% 11
+\BOOKMARK [2][-]{subsection.2.2}{Address Space}{section.2}% 12

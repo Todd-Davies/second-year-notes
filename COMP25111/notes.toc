@@ -11,3 +11,7 @@
 \contentsline {paragraph}{Control Signals}{4}{section*.8}
 \contentsline {paragraph}{Timing}{5}{section*.9}
 \contentsline {subsubsection}{\numberline {1.4.3}Deriving the datapaths from the operation of instruction}{5}{subsubsection.1.4.3}
+\contentsline {subsection}{\numberline {1.5}Control Signals}{5}{subsection.1.5}
+\contentsline {section}{\numberline {2}What does an Operating System do?}{5}{section.2}
+\contentsline {subsection}{\numberline {2.1}Processes}{6}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Address Space}{6}{subsection.2.2}
