@@ -1,0 +1,55 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{shapes}
+\begin{document}
+  \begin{tikzpicture}
+    \coordinate (ra) at (0.5,0);
+    \coordinate (rb) at (1,0.8);
+    \coordinate (rc) at (1.2,0);
+    \coordinate (rd) at (3,0.6);
+    \coordinate (re) at (1,-1);
+    \coordinate (rN) at (0.6,0.2);
+
+    \coordinate (la) at (-3.5 + 0.5,0);
+    \coordinate (lb) at (-3.5 + 1,0.8);
+    \coordinate (lc) at (-3.5 + 1.2,0);
+    \coordinate (ld) at (-3.5 + 3,0.6);
+    \coordinate (le) at (-3.5 + 1,-1);
+    \coordinate (lN) at (-3.5 + 0.6,0.2);
+
+    \filldraw (lN) rectangle ++(3pt,3pt);
+    \filldraw (rN) rectangle ++(3pt,3pt);
+
+    \draw (ra) rectangle ++(2pt, 2pt);
+    \draw (rb) rectangle ++(2pt, 2pt);
+    \draw (rc) circle (2pt);
+    \draw (rd) circle (2pt);
+    \draw (re) circle (2pt);
+    \fill (.5pt, .5pt) ++ (ra) rectangle ++(1pt, 1pt);
+    \fill (.5pt, .5pt) ++ (rb) rectangle ++(1pt, 1pt);
+    \fill (rc) circle (1.5pt);
+    \fill (rd) circle (1.5pt);
+    \fill (re) circle (1.5pt);
+
+    \draw (la) rectangle ++(2pt, 2pt);
+    \draw (lb) rectangle ++(2pt, 2pt);
+    \draw (lc) circle (2pt);
+    \draw (ld) circle (2pt);
+    \draw (le) circle (2pt);
+    \fill (.5pt, .5pt) ++ (la) rectangle ++(1pt, 1pt);
+    \fill (.5pt, .5pt) ++ (lb) rectangle ++(1pt, 1pt);
+    \fill (lc) circle (1.5pt);
+    %\fill (ld) circle (1.5pt);
+    %\fill (le) circle (1.5pt);
+
+    \coordinate (s0) at (0,1);
+    \coordinate (s1) at (0,-1);
+
+    \draw (s0) -- (s1);
+
+    \node at (-2, -1) {\tiny K = 3};
+    \node at (2, -1) {\tiny K = 5};
+
+  \end{tikzpicture}
+\end{document}

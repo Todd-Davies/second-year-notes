@@ -1,3 +1,6 @@
 \BOOKMARK [1][-]{section.1}{Machine Learning}{}% 1
 \BOOKMARK [1][-]{section.2}{Nearest Neighbour Classifier}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Finding the distance between two n-dimensional points}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Computing the nearest neighbour}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Multiple nearest neighbours \(K-NN\)}{section.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Overfitting}{subsection.2.3}% 6

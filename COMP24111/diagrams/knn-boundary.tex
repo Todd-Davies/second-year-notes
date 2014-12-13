@@ -1,0 +1,24 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{shapes}
+\begin{document}
+  \begin{tikzpicture}
+    \coordinate (ra) at (0.5,0);
+    \coordinate (rb) at (1,0.8);
+    \coordinate (rc) at (1.2,0);
+    \coordinate (rd) at (1.5,0.6);
+    \coordinate (re) at (1,-1);
+
+    \coordinate (c1) at (1.4,1);
+    \coordinate (c2) at (0, -0.7);
+    \draw[dotted] (c1) to[out=-100, in=40] (c2);
+
+    \fill (.5pt, .5pt) ++ (ra) rectangle ++(1pt, 1pt);
+    \fill (.5pt, .5pt) ++ (rb) rectangle ++(1pt, 1pt);
+    \fill (rc) circle (1.5pt);
+    \fill (rd) circle (1.5pt);
+    \fill (re) circle (1.5pt);
+
+  \end{tikzpicture}
+\end{document}
