@@ -1,0 +1,7 @@
+\contentsline {section}{\numberline {1}Algorithmic complexity and performance}{3}{section.1}
+\contentsline {section}{\numberline {2}Algorithmic correctness}{3}{section.2}
+\contentsline {section}{\numberline {3}Data structures}{3}{section.3}
+\contentsline {section}{\numberline {4}Basic algorithms}{3}{section.4}
+\contentsline {subsection}{\numberline {4.1}Sorting}{3}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Searching}{3}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Tree and graph traversal}{3}{subsection.4.3}

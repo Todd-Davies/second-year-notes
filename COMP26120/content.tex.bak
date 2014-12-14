@@ -29,17 +29,10 @@
   \label{tabel:complexity}
 \end{table}
 
-%TODO Expand upon the below couple of paras:
-
 Growth rates that are either exponential or factorial in nature (or are perhaps
-even worse than this) are said to be intractable \marginpar{Tractable
-(\textit{Adjective})\\Easy to deal with.}, while algorithms with other
-computational complexities are said to be tractable.
-
-In order to simplify the big-oh complexity of an algorithm you just isolate the
-fastest growing term in the equation (i.e. whatever term comes furthest down in
-Table~\ref{table:complexity}). You then remove all the constants from the
-equation.
+even worse than this) are said to be intractable
+\marginpar{Tractable\\\textit{Ajdective\\Easy to deal with.}, while algorithms
+with other computational complexities are said to be tractable.
 
 \section{Algorithmic correctness}
 
