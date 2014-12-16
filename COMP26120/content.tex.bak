@@ -6,8 +6,31 @@
 
 \section{Algorithmic complexity and performance}
 
-\newcommand{\specialcell}[2][c]{%
-  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+Algorithmic complexity and the big-oh notation allows us to characterise the
+time and space requirements of an algorithm when it is given varying input data.
+The big-oh notation allows us to get a good approximation of the upper and lower
+bounds of an algorithm's complexity.
+
+We can work out such an approximation by analysing (and generalising) the number
+of logical operations an algorithm might do, rather than inspecting it's
+performance in an implementation. This allows us to compare the merits of
+different algorithms irrespective of their implementation.
+
+The big-oh notation is shown below:
+
+\[
+  O(growth rate)
+\]
+
+The growth rate represents the rate at which the complexity of the algorithm
+will change with the size of the input.
+
+Growth rates that are either exponential or factorial in nature (or are perhaps
+even worse than this) are said to be intractable \marginpar{Tractable
+(\textit{Adjective})\\Easy to deal with.}, while algorithms with other
+computational complexities are said to be tractable.
+
+\newcommand\multibrace[3]{\rdelim\}{#1}{3mm}[\pbox{#2}{#3}]}
 
 \begin{table}[h!]
   \centering
@@ -16,23 +39,131 @@
     O(1)              & None\\
     O(log n)          & Logarithmic\\
     O(n^k)            & Polynomial\\
-    O(n)              & Linear & \rdelim\}{3}{3mm}[\pbox{4.6cm}{
+    O(n)              & Linear & \multibrace{3}{4.6cm}{
                                   All of these are special cases of polynomials,
                                   $n^1, n^2$ and $n^3$ respectively
-                                }] \\
+                                } \\
     O(n^2)            & Quadratic\\
     O(n^3)            & Cubic\\
     O(k^n)            & Exponential\\
     O(n!)             & Factorial\\
   \end{tabularx}
   \caption{A number of common complexities and their equivalent growth rates}
-  \label{tabel:complexity}
+  \label{table:complexity}
 \end{table}
 
-Growth rates that are either exponential or factorial in nature (or are perhaps
-even worse than this) are said to be intractable
-\marginpar{Tractable\\\textit{Ajdective\\Easy to deal with.}, while algorithms
-with other computational complexities are said to be tractable.
+\subsection{Simplifying Big-Oh expressions}
+
+In order to simplify the big-oh complexity of an algorithm you just isolate the
+fastest growing term in the equation (i.e. whatever term comes furthest down in
+Table~\ref{table:complexity}). You then remove all the constants from the
+equation.
+
+%TODO: Big Oh Example! Ohh no!
+
+\subsection{Analysing algorithmic complexity}
+
+There are two ways of finding the complexity of an algorithm, to inspect the
+psudo code for it, or by implementing the algorithm and experimentally
+determining the change in it's runtime with different input sizes.
+
+\marginpar{Remember to check that your psudo code correctly implements the
+algorithm before you try this.}
+
+In order to analyse the psudo code to work out the complexity, you must look at
+how many primitive operations it will use for different sizes of input.
+Primitive operations are defined as memory accesses, arithmetic operations,
+comparisons and the like.
+
+As a general rule, loops, recursion and other constructs for repeatedly
+performing operations will the best indicator as to the complexity of
+algorithms.
+
+If an algorithm is reducing the data it has to work with every so often, then it
+may have a logarithmic runtime. For example, the algorithm utilises a binary
+chop (such as binary search), then the runtime probably has a $log_2$ inside.
+See section~\ref{subsubsec:logs} for a bit more on logs.
+
+In order to determine complexity experimentally, you must implement the
+algorithm in a programming language of your choice, then run the program for
+different input sizes and measure the runtime and the memory used. Plot the data
+on a graph and extrapolate as needed. From the curve of the graph, it is
+possible to predict the complexity of the algorithm.
+
+\subsubsection{A refresher on logs}
+\label{subsubsec:logs}
+
+A logarithm of a number is the exponent to which another number (the base) must
+be raised to produce that number:
+
+\begin{gather*}
+  \forall b,x,y \in \mathbb{Z}\\
+  y = b^x \Leftrightarrow x = log_b(y)
+\end{gather*}
+
+Henceforth, $2^4 = 16$ and $log_2(16) = 4$.
+
+\subsubsection{Finding the maximum input size}
+
+If we know the complexity and running space/time of an algorithm for a specific
+implementation and input, we might want to know the input size we could run the
+algorithm with for the specific machine in a specific time, or within a specific
+space limit.
+
+The way you do this is by solving the big-oh equation for $t$ instead of $n$.
+For example, if the algorithm takes $30$ seconds to process $1000$ kilobytes of
+data, how long will it take if we double the processing speed, given that the
+algorithm runs in $O(n^3)$ time?
+
+%TODO: Work out if this is BS or not?
+
+\begin{gather*}
+  t = n^3\\
+  \sqrt[\leftroot{-0}\uproot{3}3]{t} = n\\
+  \text{When we double $n$ and $t$:}\\
+  2n = \sqrt[\leftroot{-0}\uproot{3}3]{2t}\\
+  2n = 1.25992104989t\\
+  30 / 1.25992104989 \approx 24\\
+\end{gather*}
+
+\subsection{The master theorem}
+
+% Page 268-270
+
+The master method is a way of solving divide and conquer recurrence equations
+without having to explicitly use induction. It is used when an algorithm's
+complexity is of the form:
+
+\[
+  T(n) = 
+  \begin{cases}
+    c               & \text{if $n \le d$}\\
+    aT(n/b) + f(n)  & \text{if $n \geq d$}
+  \end{cases}
+\]
+
+Where $f(n)$ is a function that is positive when $n \geq d$ and:
+
+\begin{tabular}{>{$}l<{$}}
+  d \geq 1\\
+  a > 0\\
+  b > 1\\
+  c > 0\\
+  d \in \mathbb{Z}\\
+  a,b,c \in \mathbb{R}
+\end{tabular}
+
+Such a recurrance relation occurs whenever an algorithm uses a divide and
+conquer approach. Such an algorithm will split the problem into $a$ subproblems,
+each of size $n/b$ before recursively solving them and merging the result back
+together. In this case, $f(n)$ is the time it takes to split the problem into
+subproblems and merge them back together after the solving is done.
+
+The master theorem is defined by three cases:
+
+\begin{enumerate}
+  \item If there is a small constant $\epsilon > 0$ such that $f(n)$ is $O(n^{log_{b}{a-e}})$, then $T(n)$ is $\Theta(n^{log_ba})
+\end{enumerate}
 
 \section{Algorithmic correctness}
 

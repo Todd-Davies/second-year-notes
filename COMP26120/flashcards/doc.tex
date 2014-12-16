@@ -1,0 +1,32 @@
+\documentclass[frontgrid]{flacards}
+\usepackage{color}
+
+\definecolor{light-gray}{gray}{0.75}
+
+\newcommand{\frontcard}[1]{\textcolor{light-gray}{\colorbox{light-gray}{$#1$}}}
+\newcommand{\backcard}[1]{#1} 
+
+\newcommand{\flashcard}[1]{% create new command for cards with blanks
+    \card{% call the original \card command with twice the same argument (#1)
+        \let\blank\frontcard% but let \blank behave like \frontcard the first time
+        #1
+    }{%
+        \let\blank\backcard% and like \backcard the second time
+        #1
+    }%
+}
+
+\begin{document}
+
+\pagesetup{2}{4} 
+
+%TODO: Add ones on the math review in the complexity section of the algorithms
+%      text book (~page 25)
+
+\card{
+  Summation identity...
+}{
+  What it means... 
+}
+
+\end{document} 

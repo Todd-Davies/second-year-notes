@@ -1,7 +1,12 @@
 \BOOKMARK [1][-]{section.1}{Algorithmic complexity and performance}{}% 1
-\BOOKMARK [1][-]{section.2}{Algorithmic correctness}{}% 2
-\BOOKMARK [1][-]{section.3}{Data structures}{}% 3
-\BOOKMARK [1][-]{section.4}{Basic algorithms}{}% 4
-\BOOKMARK [2][-]{subsection.4.1}{Sorting}{section.4}% 5
-\BOOKMARK [2][-]{subsection.4.2}{Searching}{section.4}% 6
-\BOOKMARK [2][-]{subsection.4.3}{Tree and graph traversal}{section.4}% 7
+\BOOKMARK [2][-]{subsection.1.1}{Simplifying Big-Oh expressions}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Analysing algorithmic complexity}{section.1}% 3
+\BOOKMARK [3][-]{subsubsection.1.2.1}{A refresher on logs}{subsection.1.2}% 4
+\BOOKMARK [3][-]{subsubsection.1.2.2}{Finding the maximum input size}{subsection.1.2}% 5
+\BOOKMARK [2][-]{subsection.1.3}{The master theorem}{section.1}% 6
+\BOOKMARK [1][-]{section.2}{Algorithmic correctness}{}% 7
+\BOOKMARK [1][-]{section.3}{Data structures}{}% 8
+\BOOKMARK [1][-]{section.4}{Basic algorithms}{}% 9
+\BOOKMARK [2][-]{subsection.4.1}{Sorting}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.2}{Searching}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.3}{Tree and graph traversal}{section.4}% 12
