@@ -13,8 +13,8 @@ it.
 Machine learning has been around in it's infancy since the 40's, where reasoning
 and logic were first studied by Claude Shannon and Kurt Godel. Steady progress
 was made with lots of funding through until the 70's, where people then realised
-AI was very hard, causing funding to dry up, and the term `AI Winter' to be
-coined.
+Artificial Intelligence was very hard, causing funding to dry up, and the term
+`AI Winter' to be coined.
 
 In the 80's people started to look at biologically inspired algorithms such as
 neural networks and genetic algorithms, and there is more investment. This leads
@@ -65,9 +65,14 @@ def euclideanDistance(c1: List[Double], c2: List[Double]): Double = {
 }
 \end{lstlisting}
 
+The reason why using KNN on n-dimensions is that you can classify different
+types of data. A 2d KNN classifier could classify on two variables, such as
+weight and height, while a 256d classifier could classify a 16x16 monochrome
+image where each pixel is represented by a dimension.
+
 \subsection{Computing the nearest neighbour}
 
-Computing the nearest neighbor to a point is simply as easy as finding the point
+Computing the nearest neighbour to a point is simply as easy as finding the point
 in the training data that has the smallest euclidean distance to it, as shown in
 Listing~\ref{nearestNeighbour}.
 
@@ -81,11 +86,11 @@ def nearestNeighbour(input: Point, existing: Set[Point]): Point = {
 exposes the method to find the euclidean distance between it and another point,
 similar to that in Listing~\ref{scala_nn}}
 
-\subsection{Multiple nearest neighbours}
+\subsection{Multiple nearest neighbours (K-NN)}
 
 It's possible that more accurate classifications of points could be obtained by
 taking into account multiple close neighbours rather than one nearest one. In
-order to do this, you need to find the number of occurances of a specific class
+order to do this, you need to find the number of occurrences of a specific class
 in the top $K$ nearest neighbours:
 
 %TODO: Check this compiles
@@ -99,3 +104,43 @@ def kNearestNeighbour(k: Int, input: Point, existing: Set[Point]): Class = {
 }
 \end{lstlisting}
 
+One must be careful when choosing a value of $K$ for the classifier. As $K$
+increases proportional to the size of the dataset, then the number of incorrect
+classifications will increase.
+
+Figure~\ref{fig:knn-large} shows two identical datasets that a KNN
+classification is being applied to. When $K = 3$, the correct classification of
+a square is made, and when $K = 5$, the wrong classification is made, simply
+because there are more circles than squares in the dataset.
+
+\begin{figure}[!h]
+  \includestandalone[width=\textwidth]{diagrams/knn-large}
+  \caption{How K affects classification accuracy. The item being classified is
+  the filled square and nearest neighbours are filled, and other elements are
+  left unfilled. When K=3, it would be classified as square, when K=5, it'd be
+  classified as a circle.}
+  \label{fig:knn-large}
+\end{figure}
+
+With a nearest neighbour classifier, there is always one or more
+\textit{boundaries} that defines which class a new item will be placed in, as
+shown in figure~\ref{fig:knn-boundary}. Be aware that the \textbf{Decision
+Boundary} isn't always contigious or a straight line.
+
+\begin{figure}[!h]
+  \centering
+  \includestandalone[width=0.4\textwidth]{diagrams/knn-boundary}
+  \caption{The dotted line represents the decision boundary for a KNN
+  classifier}
+  \label{fig:knn-boundary}
+\end{figure}
+
+\subsubsection{Overfitting}
+
+Overfitting is a problem with all ML algorithms, and occurs when an algorithm is
+trained on a small proportion of the dataset, that isn't representitive of the
+whole data. It can also be when the algorithm is trained in such a way that it
+describes the noise or random error in the training set.
+
+Avoiding overfitting is hard, but generally it involves choosing the right
+algorithm, the right parameters and the right training data.
