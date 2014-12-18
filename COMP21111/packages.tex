@@ -4,9 +4,14 @@
 \usepackage{tabularx}
 % For the split environment
 \usepackage{amsmath}
+% For the equals definition
+\usepackage{mathtools}
 % For tabs in verbatim
 \usepackage{moreverb}
 % Means you don't have to put \\ to start a new line.
 \usepackage[parfill]{parskip}
 % Make LaTeX pretty with better kerning etc
 \usepackage{microtype}
+
+% For the equals with 'def' above
+\newcommand\definedas{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily def}}}{=}}}
