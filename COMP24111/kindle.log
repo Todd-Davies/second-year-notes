@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  20 DEC 2014 17:29
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  20 DEC 2014 19:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1061,6 +1061,12 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 183--183
 [][][][][][][] 
  []
 
+(./diagrams/generic-ML-algorithm.tex)
+File: diagrams/generic-ML-algorithm.tex Graphic file (type tex)
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 )
 
 Package nag Warning: 3 complaints in total.
@@ -1071,7 +1077,12 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.52 \end{document}
-                    [10]
+                    [10]pdfTeX warning (ext4): destination with the same identi
+fier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.52 \end{document}
+                    [11]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 52.
  (./kindle.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 52.
@@ -1085,10 +1096,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 52.
  ) 
 Here is how much of TeX's memory you used:
- 21472 strings out of 493304
- 373128 string characters out of 6139870
- 521315 words of memory out of 5000000
- 24378 multiletter control sequences out of 15000+600000
+ 21531 strings out of 493304
+ 374327 string characters out of 6139870
+ 521375 words of memory out of 5000000
+ 24433 multiletter control sequences out of 15000+600000
  64845 words of font info for 89 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  59i,12n,96p,925b,1835s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1103,10 +1114,10 @@ ts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb>
 /public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/sh
 are/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public
 /lm/lmvtt10.pfb>
-Output written on kindle.pdf (10 pages, 204290 bytes).
+Output written on kindle.pdf (11 pages, 205184 bytes).
 PDF statistics:
- 182 PDF objects out of 1000 (max. 8388607)
- 157 compressed objects within 2 object streams
- 41 named destinations out of 1000 (max. 500000)
+ 186 PDF objects out of 1000 (max. 8388607)
+ 160 compressed objects within 2 object streams
+ 42 named destinations out of 1000 (max. 500000)
  21061 words of extra memory for PDF output out of 24883 (max. 10000000)
 
