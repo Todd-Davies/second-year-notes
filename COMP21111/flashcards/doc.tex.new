@@ -84,16 +84,4 @@
   $F$.
 }
 
-\card{
-  When is a formula satisfiable?
-}{
-  If there is some interpretation that satisfies the formula.
-}
-
-\card{
-  If a formula is true for every interpretation, then it is...
-}{
-  Valid (aka a taugology).
-}
-
 \end{document} 

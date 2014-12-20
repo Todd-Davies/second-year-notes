@@ -1,7 +1,7 @@
 % Set the author and title of the compiled pdf
 \hypersetup{
-	pdftitle = {\Title},
-	pdfauthor = {\Author}
+  pdftitle = {\Title},
+  pdfauthor = {\Author}
 }
 
 \section{Setting the stage}
@@ -92,13 +92,163 @@ A Directed Acylcic Graph is a directed graph that has no cycles. If a dag has a
 node $n$ such that every other node in the dag is reachable by $n$, then the dag
 is \textit{rooted at $n$}.
 
-\subsection{Directed acylcic graphs}
-
-
 
 \section{Propositional logic}
 
+Thankfully, we covered propositional logic in some detail in the COMP11120
+course in the first year. However, this module builds upon what was learnt in
+the first year, and so there is more to learn!
+
+This course introduces the idea of an \textit{interpretation}. An interpretation
+of a propositional formula is the values that are assigned to each variable in
+the formula. Assigning values to variables should be a familiar concept,
+however, calling it an interpretation brings the idea closer to the real world
+since the formula can be interpreted to mean something in a specific context.
+Interpretations are also referred to as truth assignments, and boolean values
+are referred to as truth values.
+
+In this course, we sometimes need to assign a truth value to an expression that
+contains a conjunction or disjunction and nothing more. If this is the case,
+then for every interpretation, conjunctions evaluate to true, and disjunctions
+evaluate to false.
+
+There is a notation to generalise the fact that an interpretation may be a model
+of many different formulas. If $S$ is a set of formulas for which an
+interpretation $I$ is a model, then:
+
+\[
+  I \models S
+\]
+
+If two formulas can be modelled by exactly the same interpretations, then they
+are said to be \textit{equivalent}, the symbol for which is $\equiv$.
+
+For a summary of the above couple of paragraphs, look at the properties in
+Table~\ref{table:PL-laws}.
+
+\marginpar{`iff' means `if and only if'}
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{l}
+    \multicolumn{1}{c}{\textbf{Property}}\\ \hline
+    $A$ can only be valid if $\neg A$ is unsatisfiable.\\
+    $A$ can only be satisfiable iff $\neg A$ is not valid.\\
+    $A$ is valid iff $A \equiv \top$.\\
+    $A \equiv B$ iff $A \Leftrightarrow B$.
+  \end{tabular}
+  \label{table:PL-laws}
+  \caption{Some of the fundamental properties of PL}
+\end{table}
+
+\subsection{Subformulae}
+
+A subformula is essentially a formula within a formula. Every formula is
+composed of one or more subformulae and every formula is it's own subformula.
+
+Imagine that a formula is composed of layers, with each layer being composed of
+an operator (such as a number of conjunctions, or an implication). The immediate
+subformulae of a formula is the components that the outermost layer uses. It's a
+hard thing to describe using an informal language such as English, so here are
+some more concrete examples:
+
+\begin{itemize}
+  \item $A_1 \dots A_n$ are immediate subformulae of
+        $A_1 \vee \dots \vee A_n$, and $A_1 \wedge \dots \wedge A_n$.
+  \item The formula $A$ is an immediate subformula of $\neg A$.
+  \item $A_1\text{~and~}A_2$ are immediate subformulae of $A_1 \Rightarrow A_2$
+        and $A_1 \Leftrightarrow A_2$.
+  \item Every formula is a subformula of itself.
+  \item If $A_1$ is an immediate subformula of $A_2$, and $A_2$ is an immediate
+  subformula of $A_3$, then $A_1$ is a \textbf{subformula} of $A_3$.
+\end{itemize}
+
+The above table and previous discussions of equivalence mean that if we replace a
+subformula $A$ in a formula $X$ by another subformula $B$ that is equivalent to
+$A$ ($A \equiv B$), to give $Y$, then $X \equiv Y$.
+
 \section{Evaluating formulae}
+
+Evaluating formulae can be viewed as a decision problem. If a formula under a
+specific interpretation is true, then the answer is \textit{yes}, otherwise it's
+\textit{no}.
+
+It is possible to evaluate formulae relatively efficiently by evaluating each
+immediate subformula in turn. For example, if we wanted to evaluate the
+expression $a \Rightarrow b$, we would evaluate $b$ first, since if $b \equiv
+\top$, then the whole expression would evaluate to $\top$. Only in the case
+where $b \equiv \bot$, would we need to evaluate $a$.
+
+This method of evaluating formulae can be done cleanly using a table such as the
+one in Table~\ref{table:evaluate}.
+
+\begin{table}
+  \centering
+  \begin{tabular}{l >{$}c<{$} l}
+      & Subformula & Value\\ \hline
+    1 & (p \implies q) \wedge (p \wedge q \implies r) \implies (p \implies r) & 1\\
+    2 & \phantom{(p \implies q) \wedge (p \wedge q \implies r) \implies }(p \implies r) & 1\\
+    3 & (p \implies q) \wedge (p \wedge q \implies r) \implies \phantom{(p \implies r)} & 0\\
+    4 & \phantom{(p \implies q) \wedge} (p \wedge q \implies r) \phantom{\implies (p \implies r)} & 1\\
+    5 & (p \implies q) \phantom{\wedge (p \wedge q \implies r) \implies (p \implies r)} & 0\\
+    6 & \phantom{(p \implies q) \wedge (}p \wedge q \phantom{\implies r) \implies (p \implies r)} & 0\\
+    7 & \phantom{(}p\phantom{\implies q) \wedge (}p\phantom{\wedge q \implies r) \implies (}p\phantom{ \implies r)}& 1\\
+    8 & \phantom{(p \implies }q\phantom{) \wedge (p \wedge }q\phantom{ \implies r) \implies (p \implies r)} & 0\\
+    9 & \phantom{(p \implies q) \wedge (p \wedge q \implies }r\phantom{
+    ) \implies (p \implies }r\phantom{)} & 1\\
+  \end{tabular}
+  \label{table:evaluate}
+\end{table}
+
+\subsection{Rewrite rules}
+
+It is possible to evaluate a formula simply by rewriting the subformulae inside
+of it. In order to do this, replace each atom in the formula by it's truth value
+in the interpretation:
+
+For $A = (x \vee y) \implies z$, and $I = \{x \rightarrow 0, y \rightarrow 1, z
+\rightarrow 0\}$:
+
+\[
+  (x \vee y) \implies z
+\]
+\[
+  (\bot \vee \top) \implies \bot
+\]
+
+Then we can use the PL rewrite rules to iterate towards a final truth value:
+
+\begin{align}
+  (\bot \vee \top) \implies &\bot \equiv \top \implies \bot\\
+  \top \implies &\bot \equiv \bot\\
+  &\boldsymbol{\bot}
+\end{align}
+
+It would be very easy to write an algorithm to evaluate formulae using the
+rewrite rules. Assuming a formula could be represented as a sensible
+datastructure such as a tree, the algorithm needs to do the following steps:
+
+\begin{enumerate}
+  \item Traverse the formula and replace all atoms by their values in the
+        current interpretation.
+  \item While the formula is not $\top$ or $\bot$, re-write the formula using
+        the re-write rules
+  \item Return either $\top$ or $\bot$
+\end{enumerate}
+
+\subsection{Circuits}
+
+% Is isomorphic the right word here?
+
+There exists a certain isomorphism between PL and digital circuitry. It is
+often possible to reduce a problem of digital logic (one that involves the use
+of AND, OR, XOR and other gates) into one that can be represented by a PL
+formula.
+
+Though this may seem both trivial and frivolous at first, there exist many good
+reasons for such an exercise. For example, it would be possible to check if two
+circuits did the same thing using techniques from PL, or you could use re-write
+rules to make one circuit into another equivalent, yet more compact circuit.
 
 \section{Satisfiability}
 

@@ -6,17 +6,19 @@
 \BOOKMARK [2][-]{subsection.1.4}{Orders}{section.1}% 6
 \BOOKMARK [2][-]{subsection.1.5}{Directed graphs}{section.1}% 7
 \BOOKMARK [3][-]{subsubsection.1.5.1}{Directed Acyclic Graphs \(DAG's\)}{subsection.1.5}% 8
-\BOOKMARK [2][-]{subsection.1.6}{Directed acylcic graphs}{section.1}% 9
-\BOOKMARK [1][-]{section.2}{Propositional logic}{}% 10
+\BOOKMARK [1][-]{section.2}{Propositional logic}{}% 9
+\BOOKMARK [2][-]{subsection.2.1}{Subformulae}{section.2}% 10
 \BOOKMARK [1][-]{section.3}{Evaluating formulae}{}% 11
-\BOOKMARK [1][-]{section.4}{Satisfiability}{}% 12
-\BOOKMARK [1][-]{section.5}{CNF}{}% 13
-\BOOKMARK [1][-]{section.6}{Definitional Clausal Form Translation}{}% 14
-\BOOKMARK [1][-]{section.7}{DPLL}{}% 15
-\BOOKMARK [1][-]{section.8}{Encoding problems in SAT}{}% 16
-\BOOKMARK [1][-]{section.9}{Randomly generated clause sets}{}% 17
-\BOOKMARK [1][-]{section.10}{Randomised algorithms for satisfiability checking}{}% 18
-\BOOKMARK [1][-]{section.11}{Signed Formulae}{}% 19
-\BOOKMARK [2][-]{subsection.11.1}{Finding a model of a specifiable formula}{section.11}% 20
-\BOOKMARK [2][-]{subsection.11.2}{Tabelau}{section.11}% 21
-\BOOKMARK [3][-]{subsubsection.11.2.1}{Branch expansions}{subsection.11.2}% 22
+\BOOKMARK [2][-]{subsection.3.1}{Rewrite rules}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.2}{Circuits}{section.3}% 13
+\BOOKMARK [1][-]{section.4}{Satisfiability}{}% 14
+\BOOKMARK [1][-]{section.5}{CNF}{}% 15
+\BOOKMARK [1][-]{section.6}{Definitional Clausal Form Translation}{}% 16
+\BOOKMARK [1][-]{section.7}{DPLL}{}% 17
+\BOOKMARK [1][-]{section.8}{Encoding problems in SAT}{}% 18
+\BOOKMARK [1][-]{section.9}{Randomly generated clause sets}{}% 19
+\BOOKMARK [1][-]{section.10}{Randomised algorithms for satisfiability checking}{}% 20
+\BOOKMARK [1][-]{section.11}{Signed Formulae}{}% 21
+\BOOKMARK [2][-]{subsection.11.1}{Finding a model of a specifiable formula}{section.11}% 22
+\BOOKMARK [2][-]{subsection.11.2}{Tabelau}{section.11}% 23
+\BOOKMARK [3][-]{subsubsection.11.2.1}{Branch expansions}{subsection.11.2}% 24
