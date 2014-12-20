@@ -149,9 +149,11 @@ algorithm, the right parameters and the right training data.
 
 The nearest neighbour algorithm requires a minimal amount of logic in the
 training stage, since it's really only the value of $K$ that needs to be
-considered. However, most other ML algorithms require some kind of learning
-phrase before they can become useful. The simplest of these is probably the
-linear classifier.
+considered. In fact, for a simple knn classifier, you don't even need to train
+it, since you could just pick an arbitrary value for $K$, and then all the work
+of the algorithm would be done at the `Model' stage? However, most other ML
+algorithms require some kind of learning phrase before they can become useful.
+The simplest of these is probably the linear classifier.
 
 A simple linear classifier is one that looks at only one parameter, and can
 classify into two classes. Essentially it says:
@@ -194,3 +196,13 @@ value until we get a one that produces no errors.
   \caption{A generic ML algorithm always has the above structure.}
   \label{fig:generic-ML-algorithm}
 \end{figure}
+
+\section{Perceptron}
+
+% TODO: Make a perceptron diagram when you're bored
+
+\section{Decision trees}
+
+% (Linear classifier == Decision stump) because it's like a decision tree with one level
+
+
