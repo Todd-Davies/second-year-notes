@@ -124,7 +124,7 @@ because there are more circles than squares in the dataset.
 
 With a nearest neighbour classifier, there is always one or more
 \textit{boundaries} that defines which class a new item will be placed in, as
-shown in figure~\ref{fig:knn-boundary}. Be aware that the \textbf{Decision
+shown in Figure~\ref{fig:knn-boundary}. Be aware that the \textbf{Decision
 Boundary} isn't always contiguous or a straight line.
 
 \begin{figure}[!h]
@@ -135,7 +135,7 @@ Boundary} isn't always contiguous or a straight line.
   \label{fig:knn-boundary}
 \end{figure}
 
-\subsubsection{Overfitting}
+\subsection{Overfitting}
 
 Overfitting is a problem with all ML algorithms, and occurs when an algorithm is
 trained on a small proportion of the dataset, that isn't Representative of the
@@ -144,3 +144,48 @@ describes the noise or random error in the training set.
 
 Avoiding overfitting is hard, but generally it involves choosing the right
 algorithm, the right parameters and the right training data.
+
+\section{Linear Classifier}
+
+The nearest neighbour algorithm requires a minimal amount of logic in the
+training stage, since it's really only the value of $K$ that needs to be
+considered. However, most other ML algorithms require some kind of learning
+phrase before they can become useful. The simplest of these is probably the
+linear classifier.
+
+A simple linear classifier is one that looks at only one parameter, and can
+classify into two classes. Essentially it says:
+
+\begin{lstlisting}[label=linearClassifier, caption=A simple linear classifier]
+if(parameter > threshold) class1 else class2
+\end{lstlisting}
+
+This classifier would work well for some limited use cases; maybe if we were
+classifying boxers into different weight categories. However, we need to decide
+on a threshold value in order for the classifier to work. In the case of boxing
+this is easy, since there are known weight categories, however, in some other
+cases, we might have to discover the threshold value from the data.
+
+If there are two classes in the data which are linearly separable (i.e. there is
+one or more threshold(s) that will accurately tell them apart), then an
+algorithm to tell them apart is easy to write so long as you know the correct
+threshold value. In order to find the right threshold value, you need a learning
+algorithm such as this:
+
+\begin{lstlisting}[label=linearClassifierLearningAlgorithm, caption=Linear classifier learning algorithm]
+var errors: Int = 0
+var threshold: Int = 0;
+do {
+  // classify will use a linear classifier to classify the data with a specific
+  // threshold, and return the number of errors.
+  errors = classify(data, correctLabels, threshold++)
+} while(errors > 0);
+\end{lstlisting}
+
+In all learning algorithms, an error function is needed to evaluate whether the
+changes to the parameters for the classifier on each iteration have had a
+positive or negative effect on the accuracy of classification. The error
+function in this case is \texttt{while(errors > 0)}, since we are assuming that
+the data is linearly separable, we can just keep incrementing the threshold
+value until we get a one that produces no errors.
+

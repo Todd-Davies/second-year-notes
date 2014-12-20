@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.12)  13 DEC 2014 19:20
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  20 DEC 2014 17:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -992,18 +992,28 @@ File: diagrams/knn-boundary.tex Graphic file (type tex)
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[4])
+[4]
+Overfull \hbox (6.0pt too wide) in paragraph at lines 161--161
+[][][][][][][] 
+ []
+
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 183--183
+[][][][][][][] 
+ []
+
+[5])
 
 Package nag Warning: 3 complaints in total.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 62.
-[5]
+[6]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 62.
  (./notes.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 62.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 62.
 Package rerunfilecheck Info: File `notes.out' has not changed.
-(rerunfilecheck)             Checksum: B619A0A583FBA9ACCBB3B7417D01B5EC;451.
+(rerunfilecheck)             Checksum: F9B04080FE4544475D57C306D31CDDC0;493.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -1011,11 +1021,11 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 62.
  ) 
 Here is how much of TeX's memory you used:
- 20476 strings out of 493304
- 352996 string characters out of 6139871
- 509676 words of memory out of 5000000
- 23416 multiletter control sequences out of 15000+600000
- 66367 words of font info for 79 fonts, out of 8000000 for 9000
+ 20518 strings out of 493304
+ 353519 string characters out of 6139870
+ 509787 words of memory out of 5000000
+ 23442 multiletter control sequences out of 15000+600000
+ 69515 words of font info for 82 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  59i,12n,96p,439b,1145s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
@@ -1032,10 +1042,10 @@ lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/
 fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10
 .pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/
 type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmvtt10.pfb>
-Output written on notes.pdf (5 pages, 275928 bytes).
+Output written on notes.pdf (6 pages, 281575 bytes).
 PDF statistics:
- 174 PDF objects out of 1000 (max. 8388607)
- 148 compressed objects within 2 object streams
- 34 named destinations out of 1000 (max. 500000)
- 20029 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 197 PDF objects out of 1000 (max. 8388607)
+ 170 compressed objects within 2 object streams
+ 46 named destinations out of 1000 (max. 500000)
+ 20549 words of extra memory for PDF output out of 20736 (max. 10000000)
 

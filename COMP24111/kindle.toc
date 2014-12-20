@@ -3,4 +3,5 @@
 \contentsline {subsection}{\numberline {2.1}Finding the distance between two $n$-dimensional points}{}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Computing the nearest neighbour}{}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Multiple nearest neighbours (K-NN)}{}{subsection.2.3}
-\contentsline {subsubsection}{\numberline {2.3.1}Overfitting}{}{subsubsection.2.3.1}
+\contentsline {subsection}{\numberline {2.4}Overfitting}{}{subsection.2.4}
+\contentsline {section}{\numberline {3}Linear Classifier}{}{section.3}
