@@ -5,7 +5,7 @@
 }
 
 
-\section{Recap of COMP121 \& COMP151}
+\section{Recap of COMP12111 \& COMP15111}
 
 There material in both the {\it Fundamentals of Computer Architecture} and the
 {\it Fundamentals of Computer Engineering} courses in the first year provides a
@@ -194,7 +194,9 @@ Linux system, use {\tt htop} or {\tt ps aux} to see what processes are running.}
 
 \subsection{Address Space}
 
-% TODO: Define address space
+\textit{Address space} (aka memory space) is a term used to speak about a
+section of memory. This could be the whole memory available to the system, the
+memory that a specific program has access to etc.
 
 When a program starts, it assumes that it does so from memory address {\tt 0}.
 On a single process system this is okay, however this presents a problem on
@@ -208,4 +210,78 @@ at a different place in memory.
 In both cases, a technique called {\it Relocation} is used to make every running
 program able to safely assume that it has sole use of memory.
 
-% Cont from Lecture 4 22/44
+In order to facilitate relocation, operating systems abstract away the
+implementation of the hardware, and instead provide a virtual machine for each
+program. This enables programs to behave as though they have the whole system
+to themselves, and it also lets the operating system easily stop programs
+interfering with each other (such as providing disjoint memory spaces for each
+program).
+
+\subsection{Modes of operation}
+
+It is often necessary to prevent some programs from executing some operations,
+such as manipulating memory, or allocating CPU time. In order to achieve this,
+operating systems nearly always implement different `modes' of operation that
+processes can run under. The two most common modes are \textit{user} and
+\textit{system}.
+
+All the processes owned by the operating system will run under system mode,
+which is very permissive and lets programs perform operations with the
+potential for misuse. Programs that the user might run are usually executing
+under user mode. User mode is less permissive, and restricts certain
+operations, yet the restricted operations aren't usually required for normal
+programs.
+
+\subsubsection{System calls}
+
+If there was an eventuality where a program needed to perform privileged
+operation that wasn't permitted under it's current mode, then it can use a
+system call to achieve the same result. The premise is that the operating
+system will provide a `gatekeeper' function that will perform the requested
+operation, but only after the parameters have undergone checks to ensure that
+the application isn't behaving badly. The execution of the user program will
+(of course) pause while the system call is running.
+
+Lots of functions in languages that you already know might just be wrappers
+around system calls, albeit often with slightly more functionality. The course
+notes make a good example; \texttt{fread} in C uses the \texttt{UNIX} system
+call \texttt{read}.
+
+\section{Engineering an Operating System}
+
+Like a lot of things in Computer Science, operating systems can often be
+conceptualised as being built up of several layers. As you inspect further and
+further into the OS, looking deeper into each layer as you go, the level of
+abstraction decreases.
+
+The outermost layer could be seen to be the UI, which is obviously a very
+abstracted way of thinking about a computer. The kernel is probably the lowest
+layer, since the details of how the hardware is managed is, also fairly
+obviously, a very low level of abstraction.
+
+Different operating systems can contain a different number of layers of
+abstraction so that they are best suited to their purpose. Some operating
+systems will contain little more than a microkernel, which will have the bare
+minimum of logic required to keep a computer running.
+
+Some components of an operating system are monolithic, most notably the Linux
+kernel. A monolithic component is easier to design (especially for a kernel)
+since there is less inter-process communication to worry about, and trap falls
+like race conditions can be more easily avoided when everything is running on
+a single thread.
+
+\marginpar{
+  \begin{sloppypar}
+    See this StackOverflow answer for an explanation (and follow the
+    link to the Linus V Tanenbaum showdown on the topic):
+    \texttt{http://stackoverflow.com/questions}
+    \texttt{/1806585/why-is-linux-called}
+    \texttt{-a-monolithic-kernel}
+  \end{sloppypar}
+}
+
+I feel obliged to point out that monolithic, in this instance, refers to the
+fact that the program is running under \textit{one} process that is in system
+mode. It doesn't mean that the code is all in one big file, or even in one big
+project, since many monolithic projects employ some degree of modularity in
+the development process at least.

@@ -49,7 +49,7 @@ schema. A schema dictates how the database is formatted; what tables there are,
 and what datatypes their columns take. An instance of a database is the content
 (data) inside of the database at a particular point in time. There is a certain
 isomorphism between relational databases and imperative programming languages; a
-schema would be akin to the declaration of variables (i.e. their names and
+schema would be akin to the decleration of variables (i.e. their names and
 types), while the instance would be their values at a particular point in the
 program's execution.
 
@@ -62,5 +62,5 @@ and three languages to interface with a user/application. These are:
   \item Data Query Language - used to access data in the database.
 \end{itemize}
 
-Often DBMS languages will be both a DML and a DQL, and sometimes a DDL too! One
+Often DBMS languages will be both a DML and a DQL, and somtimes a DDL too! One
 such example is SQL, does all of the above!

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  19 DEC 2014 23:30
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  22 DEC 2014 17:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -525,7 +525,7 @@ LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <16> not available
 (Font)              size <17.28> substituted on input line 24.
 
 Preview: Tightpage -32891 -32891 32891 32891
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./instruction.aux)
+[1{/home/td/.texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./instruction.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.28pt have occurred.

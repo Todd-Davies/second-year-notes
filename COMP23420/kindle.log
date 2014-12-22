@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Arch Linux) (preloaded format=pdflatex 2014.12.21)  21 DEC 2014 23:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Arch Linux) (preloaded format=pdflatex 2014.12.21)  22 DEC 2014 09:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -459,6 +459,11 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \TX@cols=\count117
 \TX@ftn=\toks30
 )
+(/usr/share/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip46
+
+For additional information on amsmath, use the `?' option.
 (/usr/share/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01
 
@@ -467,18 +472,6 @@ File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks31
 \ex@=\dimen161
 ))
-(/usr/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty
-Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\symAMSa=\mathgroup4
-\symAMSb=\mathgroup5
-LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)
-(/usr/share/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2013/01/14 v2.14 AMS math features
-\@mathmargin=\skip46
-
-For additional information on amsmath, use the `?' option.
 (/usr/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen162
@@ -524,61 +517,38 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
 )
-(/usr/share/texmf-dist/tex/latex/multirow/multirow.sty
-\bigstrutjot=\dimen170
-)
-(/usr/share/texmf-dist/tex/latex/multirow/bigdelim.sty)
-(/usr/share/texmf-dist/tex/latex/pbox/pbox.sty
-Package: pbox 2011/12/07 v1.2 Dynamic parboxes
-
-(/usr/share/texmf-dist/tex/latex/tools/calc.sty
-Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count130
-\calc@Bcount=\count131
-\calc@Adimen=\dimen171
-\calc@Bdimen=\dimen172
-\calc@Askip=\skip49
-\calc@Bskip=\skip50
-LaTeX Info: Redefining \setlength on input line 75.
-LaTeX Info: Redefining \addtolength on input line 76.
-\calc@Ccount=\count132
-\calc@Cskip=\skip51
-)
-(/usr/share/texmf-dist/tex/latex/base/ifthen.sty
-Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
-)
-\pb@xlen=\skip52
-)
 (/usr/share/texmf-dist/tex/latex/moreverb/moreverb.sty
 Package: moreverb 2008/06/03 v2.3a `more' verbatim facilities
-\tab@position=\count133
-\tab@size=\count134
-\listing@line=\count135
+\tab@position=\count130
+\tab@size=\count131
+\listing@line=\count132
 )
 (/usr/share/texmf-dist/tex/latex/parskip/parskip.sty
 Package: parskip 2001/04/09 non-zero parskip adjustments
-))
+)
 (/usr/share/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2013/05/23 v2.5a Micro-typographical refinements (RS)
 \MT@toks=\toks36
-\MT@count=\count136
+\MT@count=\count133
 LaTeX Info: Redefining \textls on input line 766.
-\MT@outer@kern=\dimen173
+\MT@outer@kern=\dimen170
 LaTeX Info: Redefining \textmicrotypecontext on input line 1285.
-\MT@listname@count=\count137
+\MT@listname@count=\count134
 
 (/usr/share/texmf-dist/tex/latex/microtype/microtype-pdftex.def
 File: microtype-pdftex.def 2013/05/23 v2.5a Definitions specific to pdftex (RS)
 
 LaTeX Info: Redefining \lsstyle on input line 915.
 LaTeX Info: Redefining \lslig on input line 915.
-\MT@outer@space=\skip53
+\MT@outer@space=\skip49
 )
 Package microtype Info: Loading configuration file microtype.cfg.
 
 (/usr/share/texmf-dist/tex/latex/microtype/microtype.cfg
 File: microtype.cfg 2013/05/23 v2.5a microtype main configuration file (RS)
-)) (./kindle.aux)
+))
+\mybox=\box43
+) (./kindle.aux)
 \openout1 = `kindle.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
@@ -595,7 +565,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
 LaTeX Font Info:    ... okay on input line 31.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
 LaTeX Font Info:    ... okay on input line 31.
-\AtBeginShipoutBox=\box43
+\AtBeginShipoutBox=\box44
 Package hyperref Info: Link coloring OFF on input line 31.
 
 (/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -604,7 +574,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count138
+\c@section@level=\count135
 )
 LaTeX Info: Redefining \ref on input line 31.
 LaTeX Info: Redefining \pageref on input line 31.
@@ -616,16 +586,16 @@ LaTeX Info: Redefining \nameref on input line 31.
  ABD: EveryShipout initializing macros
 (/usr/share/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count139
-\scratchdimen=\dimen174
-\scratchbox=\box44
-\nofMPsegments=\count140
-\nofMParguments=\count141
+\scratchcounter=\count136
+\scratchdimen=\dimen171
+\scratchbox=\box45
+\nofMPsegments=\count137
+\nofMParguments=\count138
 \everyMPshowfont=\toks37
-\MPscratchCnt=\count142
-\MPscratchDim=\dimen175
-\MPnumerator=\count143
-\makeMPintoPDFobject=\count144
+\MPscratchCnt=\count139
+\MPscratchDim=\dimen172
+\MPnumerator=\count140
+\makeMPintoPDFobject=\count141
 \everyMPtoPDFconversion=\toks38
 ) (/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -712,43 +682,15 @@ line 31.
 Package nag Info: Command \topcaption not defined, skipping amendment on input 
 line 31.
  (./meta.tex)
-LaTeX Font Info:    Try loading font information for U+msa on input line 40.
+(./course_info.tex [1
 
-(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-(/usr/share/texmf-dist/tex/latex/microtype/mt-msa.cfg
-File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 40.
-
-(/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-(/usr/share/texmf-dist/tex/latex/microtype/mt-msb.cfg
-File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-) (./course_info.tex
-[1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 29.
-
-(/usr/share/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <14.4> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 29.
-)pdfTeX warning (ext4): destination with the same identifier (name{page.}) has 
-been already used, duplicate ignored
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}])pdfTeX warning (ext4): des
+tination with the same identifier (name{page.}) has been already used, duplicat
+e ignored
 <to be read again> 
                    \relax 
 l.43 \newpage
-              [2]pdfTeX warning (ext4): destination with the same identifier (n
-ame{page.}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.43 \newpage
-              [3] (./kindle.toc)
+              [2] (./kindle.toc)
 \tf@toc=\write6
 \openout6 = `kindle.toc'.
 
@@ -757,116 +699,78 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.47 \newpage
-              [4] (./content.tex
+              [3] (./content.tex
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 33.
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\\' on input line 5.
-
-
-Overfull \hbox (30.0pt too wide) in paragraph at lines 30--30
-[] 
+(/usr/share/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <14.4> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 33.
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.34   \item I
+              naccurate estimate of project complexity/resources needed
+[4]
+Overfull \hbox (12.93819pt too wide) in paragraph at lines 34--35
+[]\OT1/cmr/m/n/14.4 (-20) Inaccurate es-ti-mate of project com-plex-ity/resourc
+es needed 
  []
 
+<images/generic-software-dev-process.jpg, id=43, 929.4725pt x 452.69125pt>
+File: images/generic-software-dev-process.jpg Graphic file (type jpg)
 
-Overfull \vbox (12.79997pt too high) detected at line 50
- []
-
-
-Overfull \hbox (136.34705pt too wide) in paragraph at lines 50--50
-[]|$[]$|  
- []
-
-
-Overfull \vbox (12.79997pt too high) detected at line 50
- []
+<use images/generic-software-dev-process.jpg>
+Package pdftex.def Info: images/generic-software-dev-process.jpg used on input 
+line 47.
+(pdftex.def)             Requested size: 364.1953pt x 177.37778pt.
 
 
-Underfull \hbox (badness 10000) in alignment at lines 50--50
-[][][] 
- []
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Package nag Warning: \label in float, but not after \caption on input line 48.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.61 
-      [5]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 71--71
-[] 
- []
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.77 
-      [6]pdfTeX warning (ext4): destination with the same identifier (name{page
-.}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.102 \end{gather*}
-                    [7]pdfTeX warning (ext4): destination with the same identif
-ier (name{page.}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.131 ...the course textbook for more information}
-                                                   [8]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 131--131
-[] 
- []
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.165   \item I
-               f there is a small constant $\epsilon > 0$ such that $f(n)$ is
-[9]pdfTeX warning (ext4): destination with the same identifier (name{page.}) ha
-s been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.200 
-       [10])pdfTeX warning (ext4): destination with the same identifier (name{p
-age.}) has been already used, duplicate ignored
+l.57 
+      [5 <./images/generic-software-dev-process.jpg>])pdfTeX warning (ext4): de
+stination with the same identifier (name{page.}) has been already used, duplica
+te ignored
 <to be read again> 
                    \relax 
 l.52 \end{document}
-                    [11]
-No complaints by nag.
+                    [6]
+
+Package nag Warning: 1 complaints in total.
+
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 52.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 52.
 (./kindle.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 52.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 52.
 Package rerunfilecheck Info: File `kindle.out' has not changed.
-(rerunfilecheck)             Checksum: B43D924AD01B3EF525523292FE745520;1270.
+(rerunfilecheck)             Checksum: 6D515AF741F9709C312877E70939859C;195.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 52.
  ) 
 Here is how much of TeX's memory you used:
- 17117 strings out of 493108
- 304656 string characters out of 6140724
- 423623 words of memory out of 5000000
- 20166 multiletter control sequences out of 15000+600000
- 13782 words of font info for 83 fonts, out of 8000000 for 9000
+ 16778 strings out of 493108
+ 299470 string characters out of 6140724
+ 417841 words of memory out of 5000000
+ 19893 multiletter control sequences out of 15000+600000
+ 10792 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 54i,23n,57p,925b,432s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 54i,6n,57p,925b,386s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
-/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on kindle.pdf (11 pages, 140193 bytes).
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+ti12.pfb>
+Output written on kindle.pdf (6 pages, 108992 bytes).
 PDF statistics:
- 202 PDF objects out of 1000 (max. 8388607)
- 175 compressed objects within 2 object streams
- 27 named destinations out of 1000 (max. 500000)
- 13981 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 75 PDF objects out of 1000 (max. 8388607)
+ 60 compressed objects within 1 object stream
+ 9 named destinations out of 1000 (max. 500000)
+ 13354 words of extra memory for PDF output out of 14400 (max. 10000000)
 

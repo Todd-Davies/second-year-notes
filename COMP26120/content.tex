@@ -183,6 +183,35 @@ The master theorem is defined by three cases:
 
 \subsection{Sorting}
 
+A sorting algorithm takes as an input, an array of keys, where there is a
+\textit{total order} on the keys (each key can be compared to another), and
+produces as an output, the array where the keys are ordered according to their
+order.
+
+A total order is a relation that is transitive ($a \leq b \wedge b \leq c \implies a
+\leq c$), anti-symmetric ($a \leq b \wedge b \leq a \implies a = b$), and
+unsuprisingly, total ($a \leq b \wedge b \leq a$).
+
+If the ordering on the elements of the array isn't a total order then bad
+things can happen when you try and use an algorithm to sort the data. For
+example, if you were to try and sort an array of rocks, papers and scissors
+according to the rules of the traditional game, then you wouldn't have a
+transitive relation, and a sorting algorithm would probably loop infinately.
+
+\subsubsection{Define sorting}
+
+\subsubsection{Quicksort}
+
+\subsubsection{Merge sort}
+
+\subsubsection{Radix sort and Bucket sort}
+
+\subsubsection{Heap sort}
+
+\subsubsection{The lower bound of sorting}
+
+
+
 \subsection{Searching}
 
 \subsection{Tree and graph traversal}

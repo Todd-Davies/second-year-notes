@@ -1,4 +1,4 @@
-\BOOKMARK [1][-]{section.1}{Recap of COMP121 \046 COMP151}{}% 1
+\BOOKMARK [1][-]{section.1}{Recap of COMP12111 \046 COMP15111}{}% 1
 \BOOKMARK [2][-]{subsection.1.1}{Datapath and Control}{section.1}% 2
 \BOOKMARK [2][-]{subsection.1.2}{The MU0 Instruction Set Architecture}{section.1}% 3
 \BOOKMARK [2][-]{subsection.1.3}{Maintaining Processor State}{section.1}% 4
@@ -10,3 +10,6 @@
 \BOOKMARK [1][-]{section.2}{What does an Operating System do?}{}% 10
 \BOOKMARK [2][-]{subsection.2.1}{Processes}{section.2}% 11
 \BOOKMARK [2][-]{subsection.2.2}{Address Space}{section.2}% 12
+\BOOKMARK [2][-]{subsection.2.3}{Modes of operation}{section.2}% 13
+\BOOKMARK [3][-]{subsubsection.2.3.1}{System calls}{subsection.2.3}% 14
+\BOOKMARK [1][-]{section.3}{Engineering an Operating System}{}% 15

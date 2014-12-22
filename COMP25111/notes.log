@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  19 DEC 2014 23:30
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  22 DEC 2014 17:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -280,27 +280,6 @@ Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
 (/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty
 Package: parskip 2001/04/09 non-zero parskip adjustments
 )
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
-Package: microtype 2013/05/23 v2.5a Micro-typographical refinements (RS)
-\MT@toks=\toks25
-\MT@count=\count118
-LaTeX Info: Redefining \textls on input line 766.
-\MT@outer@kern=\dimen131
-LaTeX Info: Redefining \textmicrotypecontext on input line 1285.
-\MT@listname@count=\count119
-
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def
-File: microtype-pdftex.def 2013/05/23 v2.5a Definitions specific to pdftex (RS)
-
-LaTeX Info: Redefining \lsstyle on input line 915.
-LaTeX Info: Redefining \lslig on input line 915.
-\MT@outer@space=\skip58
-)
-Package microtype Info: Loading configuration file microtype.cfg.
-
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg
-File: microtype.cfg 2013/05/23 v2.5a microtype main configuration file (RS)
-))
 (/usr/share/texlive/texmf-dist/tex/latex/siunitx/siunitx.sty
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3names.sty
@@ -311,7 +290,7 @@ Package: l3names 2014/01/04 v4640 L3 Namespace for primitives
 )
 (/usr/share/texlive/texmf-dist/tex/latex/etex-pkg/etex.sty
 Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
-\et@xins=\count120
+\et@xins=\count118
 )
 Package: expl3 2014/01/07 v4646 L3 Experimental code bundle wrapper
 
@@ -329,18 +308,18 @@ Package: l3seq 2013/12/14 v4623 L3 Sequences and stacks
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3int.sty
 Package: l3int 2013/08/02 v4583 L3 Integers
-\c_max_int=\count121
-\l_tmpa_int=\count122
-\l_tmpb_int=\count123
-\g_tmpa_int=\count124
-\g_tmpb_int=\count125
+\c_max_int=\count119
+\l_tmpa_int=\count120
+\l_tmpb_int=\count121
+\g_tmpa_int=\count122
+\g_tmpb_int=\count123
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3quark.sty
 Package: l3quark 2013/12/14 v4623 L3 Quarks
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3prg.sty
 Package: l3prg 2014/01/04 v4642 L3 Control structures
-\g__prg_map_int=\count126
+\g__prg_map_int=\count124
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3clist.sty
 Package: l3clist 2013/07/28 v4581 L3 Comma separated lists
@@ -356,26 +335,26 @@ Package: l3msg 2013/07/28 v4581 L3 Messages
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3file.sty
 Package: l3file 2013/10/13 v4596 L3 File and I/O operations
-\l_iow_line_count_int=\count127
-\l__iow_target_count_int=\count128
-\l__iow_current_line_int=\count129
-\l__iow_current_word_int=\count130
-\l__iow_current_indentation_int=\count131
+\l_iow_line_count_int=\count125
+\l__iow_target_count_int=\count126
+\l__iow_current_line_int=\count127
+\l__iow_current_word_int=\count128
+\l__iow_current_indentation_int=\count129
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3skip.sty
 Package: l3skip 2013/07/28 v4581 L3 Dimensions and skips
-\c_zero_dim=\dimen132
-\c_max_dim=\dimen133
-\l_tmpa_dim=\dimen134
-\l_tmpb_dim=\dimen135
-\g_tmpa_dim=\dimen136
-\g_tmpb_dim=\dimen137
-\c_zero_skip=\skip59
-\c_max_skip=\skip60
-\l_tmpa_skip=\skip61
-\l_tmpb_skip=\skip62
-\g_tmpa_skip=\skip63
-\g_tmpb_skip=\skip64
+\c_zero_dim=\dimen131
+\c_max_dim=\dimen132
+\l_tmpa_dim=\dimen133
+\l_tmpb_dim=\dimen134
+\g_tmpa_dim=\dimen135
+\g_tmpb_dim=\dimen136
+\c_zero_skip=\skip58
+\c_max_skip=\skip59
+\l_tmpa_skip=\skip60
+\l_tmpb_skip=\skip61
+\g_tmpa_skip=\skip62
+\g_tmpb_skip=\skip63
 \c_zero_muskip=\muskip12
 \c_max_muskip=\muskip13
 \l_tmpa_muskip=\muskip14
@@ -385,20 +364,20 @@ Package: l3skip 2013/07/28 v4581 L3 Dimensions and skips
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3keys.sty
 Package: l3keys 2013/12/08 v4614 L3 Experimental key-value interfaces
-\g__keyval_level_int=\count132
-\l_keys_choice_int=\count133
+\g__keyval_level_int=\count130
+\l_keys_choice_int=\count131
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3fp.sty
 Package: l3fp 2014/01/04 v4642 L3 Floating points
-\c__fp_leading_shift_int=\count134
-\c__fp_middle_shift_int=\count135
-\c__fp_trailing_shift_int=\count136
-\c__fp_big_leading_shift_int=\count137
-\c__fp_big_middle_shift_int=\count138
-\c__fp_big_trailing_shift_int=\count139
-\c__fp_Bigg_leading_shift_int=\count140
-\c__fp_Bigg_middle_shift_int=\count141
-\c__fp_Bigg_trailing_shift_int=\count142
+\c__fp_leading_shift_int=\count132
+\c__fp_middle_shift_int=\count133
+\c__fp_trailing_shift_int=\count134
+\c__fp_big_leading_shift_int=\count135
+\c__fp_big_middle_shift_int=\count136
+\c__fp_big_trailing_shift_int=\count137
+\c__fp_Bigg_leading_shift_int=\count138
+\c__fp_Bigg_middle_shift_int=\count139
+\c__fp_Bigg_trailing_shift_int=\count140
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3box.sty
 Package: l3box 2013/07/28 v4581 L3 Experimental boxes
@@ -411,13 +390,13 @@ Package: l3box 2013/07/28 v4581 L3 Experimental boxes
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3coffins.sty
 Package: l3coffins 2013/12/14 v4624 L3 Coffin code layer
 \l__coffin_internal_box=\box33
-\l__coffin_internal_dim=\dimen138
-\l__coffin_offset_x_dim=\dimen139
-\l__coffin_offset_y_dim=\dimen140
-\l__coffin_x_dim=\dimen141
-\l__coffin_y_dim=\dimen142
-\l__coffin_x_prime_dim=\dimen143
-\l__coffin_y_prime_dim=\dimen144
+\l__coffin_internal_dim=\dimen137
+\l__coffin_offset_x_dim=\dimen138
+\l__coffin_offset_y_dim=\dimen139
+\l__coffin_x_dim=\dimen140
+\l__coffin_y_dim=\dimen141
+\l__coffin_x_prime_dim=\dimen142
+\l__coffin_y_prime_dim=\dimen143
 \c_empty_coffin=\box34
 \l__coffin_aligned_coffin=\box35
 \l__coffin_aligned_internal_coffin=\box36
@@ -426,44 +405,44 @@ Package: l3coffins 2013/12/14 v4624 L3 Coffin code layer
 \l__coffin_display_coffin=\box39
 \l__coffin_display_coord_coffin=\box40
 \l__coffin_display_pole_coffin=\box41
-\l__coffin_display_offset_dim=\dimen145
-\l__coffin_display_x_dim=\dimen146
-\l__coffin_display_y_dim=\dimen147
+\l__coffin_display_offset_dim=\dimen144
+\l__coffin_display_x_dim=\dimen145
+\l__coffin_display_y_dim=\dimen146
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3color.sty
 Package: l3color 2012/08/29 v4156 L3 Experimental color support
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3luatex.sty
 Package: l3luatex 2013/07/28 v4581 L3 Experimental LuaTeX-specific functions
-\g__cctab_allocate_int=\count143
-\g__cctab_stack_int=\count144
+\g__cctab_allocate_int=\count141
+\g__cctab_stack_int=\count142
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3candidates.sty
 Package: l3candidates 2014/01/06 v4643 L3 Experimental additions to l3kernel
-\l__box_top_dim=\dimen148
-\l__box_bottom_dim=\dimen149
-\l__box_left_dim=\dimen150
-\l__box_right_dim=\dimen151
-\l__box_top_new_dim=\dimen152
-\l__box_bottom_new_dim=\dimen153
-\l__box_left_new_dim=\dimen154
-\l__box_right_new_dim=\dimen155
+\l__box_top_dim=\dimen147
+\l__box_bottom_dim=\dimen148
+\l__box_left_dim=\dimen149
+\l__box_right_dim=\dimen150
+\l__box_top_new_dim=\dimen151
+\l__box_bottom_new_dim=\dimen152
+\l__box_left_new_dim=\dimen153
+\l__box_right_new_dim=\dimen154
 \l__box_internal_box=\box42
-\l__coffin_bounding_shift_dim=\dimen156
-\l__coffin_left_corner_dim=\dimen157
-\l__coffin_right_corner_dim=\dimen158
-\l__coffin_bottom_corner_dim=\dimen159
-\l__coffin_top_corner_dim=\dimen160
-\l__coffin_scaled_total_height_dim=\dimen161
-\l__coffin_scaled_width_dim=\dimen162
+\l__coffin_bounding_shift_dim=\dimen155
+\l__coffin_left_corner_dim=\dimen156
+\l__coffin_right_corner_dim=\dimen157
+\l__coffin_bottom_corner_dim=\dimen158
+\l__coffin_top_corner_dim=\dimen159
+\l__coffin_scaled_total_height_dim=\dimen160
+\l__coffin_scaled_width_dim=\dimen161
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 Package: xparse 2013/12/31 v4634 L3 Experimental document command parser
-\l__xparse_current_arg_int=\count145
-\l__xparse_m_args_int=\count146
-\l__xparse_mandatory_args_int=\count147
-\l__xparse_processor_int=\count148
-\l__xparse_v_nesting_int=\count149
+\l__xparse_current_arg_int=\count143
+\l__xparse_m_args_int=\count144
+\l__xparse_mandatory_args_int=\count145
+\l__xparse_processor_int=\count146
+\l__xparse_v_nesting_int=\count147
 )
 Package: siunitx 2013/07/31 v2.5s A comprehensive (SI) units package
 
@@ -472,48 +451,48 @@ Package: l3keys2e 2013/12/31 v4634 LaTeX2e option processing using LaTeX3 keys
 )
 Variant \tl_if_blank:VTF already defined; not changing it on line 50
 \l__siunitx_tmp_box=\box43
-\l__siunitx_tmp_dim=\dimen163
-\l__siunitx_tmp_int=\count150
+\l__siunitx_tmp_dim=\dimen162
+\l__siunitx_tmp_int=\count148
 Variant \prop_get:NVNT already defined; not changing it on line 371
 Variant \prop_get:NVNF already defined; not changing it on line 372
 Variant \prop_get:NVNTF already defined; not changing it on line 373
-\l__siunitx_number_mantissa_length_int=\count151
-\l__siunitx_number_uncert_length_int=\count152
-\l__siunitx_round_int=\count153
-\l__siunitx_process_decimal_int=\count154
-\l__siunitx_process_uncertainty_int=\count155
-\l__siunitx_process_fixed_int=\count156
-\l__siunitx_process_integer_min_int=\count157
-\l__siunitx_process_precision_int=\count158
-\l__siunitx_group_min_int=\count159
+\l__siunitx_number_mantissa_length_int=\count149
+\l__siunitx_number_uncert_length_int=\count150
+\l__siunitx_round_int=\count151
+\l__siunitx_process_decimal_int=\count152
+\l__siunitx_process_uncertainty_int=\count153
+\l__siunitx_process_fixed_int=\count154
+\l__siunitx_process_integer_min_int=\count155
+\l__siunitx_process_precision_int=\count156
+\l__siunitx_group_min_int=\count157
 \l__siunitx_angle_marker_box=\box44
 \l__siunitx_angle_unit_box=\box45
-\l__siunitx_angle_marker_dim=\dimen164
-\l__siunitx_angle_unit_dim=\dimen165
-\l__siunitx_unit_int=\count160
-\l__siunitx_unit_denominator_int=\count161
-\l__siunitx_unit_numerator_int=\count162
-\l__siunitx_unit_prefix_int=\count163
-\l__siunitx_unit_prefix_base_int=\count164
-\l__siunitx_unit_prefix_gram_int=\count165
-\l__siunitx_number_product_int=\count166
-\c__siunitx_one_fill_skip=\skip65
-\l__siunitx_table_unit_align_skip=\skip66
-\l__siunitx_table_exponent_dim=\dimen166
-\l__siunitx_table_integer_dim=\dimen167
-\l__siunitx_table_mantissa_dim=\dimen168
-\l__siunitx_table_marker_dim=\dimen169
-\l__siunitx_table_result_dim=\dimen170
-\l__siunitx_table_uncert_dim=\dimen171
-\l__siunitx_table_fill_pre_dim=\dimen172
-\l__siunitx_table_fill_post_dim=\dimen173
-\l__siunitx_table_fill_mid_dim=\dimen174
+\l__siunitx_angle_marker_dim=\dimen163
+\l__siunitx_angle_unit_dim=\dimen164
+\l__siunitx_unit_int=\count158
+\l__siunitx_unit_denominator_int=\count159
+\l__siunitx_unit_numerator_int=\count160
+\l__siunitx_unit_prefix_int=\count161
+\l__siunitx_unit_prefix_base_int=\count162
+\l__siunitx_unit_prefix_gram_int=\count163
+\l__siunitx_number_product_int=\count164
+\c__siunitx_one_fill_skip=\skip64
+\l__siunitx_table_unit_align_skip=\skip65
+\l__siunitx_table_exponent_dim=\dimen165
+\l__siunitx_table_integer_dim=\dimen166
+\l__siunitx_table_mantissa_dim=\dimen167
+\l__siunitx_table_marker_dim=\dimen168
+\l__siunitx_table_result_dim=\dimen169
+\l__siunitx_table_uncert_dim=\dimen170
+\l__siunitx_table_fill_pre_dim=\dimen171
+\l__siunitx_table_fill_post_dim=\dimen172
+\l__siunitx_table_fill_mid_dim=\dimen173
 \l__siunitx_table_pre_box=\box46
 \l__siunitx_table_post_box=\box47
 \l__siunitx_table_mantissa_box=\box48
 \l__siunitx_table_result_box=\box49
-\l__siunitx_table_number_align_skip=\skip67
-\l__siunitx_table_text_align_skip=\skip68
+\l__siunitx_table_number_align_skip=\skip66
+\l__siunitx_table_text_align_skip=\skip67
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
@@ -651,7 +630,25 @@ Variant \prop_get:NVNTF already defined; not changing it on line 373
 Package: translator 2010/06/12 ver 1.10
 
 (/usr/share/texmf/tex/latex/beamer/base/translator/translator-language-mappings
-.tex)))) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+.tex))) (/usr/share/texlive/texmf-dist/tex/latex/breakurl/breakurl.sty
+Package: breakurl 2013/04/10 v1.40 Breakable hyperref URLs
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2012/10/14 v2.6b package option processing (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+\XKV@toks=\toks25
+\XKV@tempa@toks=\toks26
+\XKV@depth=\count165
+File: xkeyval.tex 2012/10/14 v2.6b key=value parser (HA)
+))
+
+Package breakurl Warning: You are using breakurl while processing via pdflatex.
+
+(breakurl)                \burl will be just a synonym of \url.
+(breakurl)                 on input line 48.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
@@ -667,12 +664,32 @@ Package graphics Info: Driver file: pdftex.def on input line 91.
 
 (/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-\Gread@gobject=\count167
+\Gread@gobject=\count166
 ))
-\Gin@req@height=\dimen175
-\Gin@req@width=\dimen176
-) (./meta.tex)
-(./notes.aux)
+\Gin@req@height=\dimen174
+\Gin@req@width=\dimen175
+))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2013/05/23 v2.5a Micro-typographical refinements (RS)
+\MT@toks=\toks27
+\MT@count=\count167
+LaTeX Info: Redefining \textls on input line 766.
+\MT@outer@kern=\dimen176
+LaTeX Info: Redefining \textmicrotypecontext on input line 1285.
+\MT@listname@count=\count168
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+File: microtype-pdftex.def 2013/05/23 v2.5a Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 915.
+LaTeX Info: Redefining \lslig on input line 915.
+\MT@outer@space=\skip68
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2013/05/23 v2.5a microtype main configuration file (RS)
+)) (./meta.tex) (./notes.aux)
 \openout1 = `notes.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
@@ -732,7 +749,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count168
+\c@section@level=\count169
 )
 LaTeX Info: Redefining \ref on input line 35.
 LaTeX Info: Redefining \pageref on input line 35.
@@ -752,21 +769,7 @@ Package nag Info: Command \RaggedLeft not defined, skipping amendment on input
 line 35.
 Package nag Info: Command \RaggedRight not defined, skipping amendment on input
  line 35.
-LaTeX Info: Redefining \microtypecontext on input line 35.
-Package microtype Info: Generating PDF output.
-Package microtype Info: Character protrusion enabled (level 2).
-Package microtype Info: Using default protrusion set `alltext'.
-Package microtype Info: Automatic font expansion enabled (level 2),
-(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
-Package microtype Info: Using default expansion set `basictext'.
-Package microtype Info: No adjustment of tracking.
-Package microtype Info: No adjustment of interword spacing.
-Package microtype Info: No adjustment of character kerning.
 
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg
-File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
-(RS)
-)
 (/usr/share/texmf/tex/latex/beamer/base/translator/dicts/translator-basic-dicti
 onary/translator-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
@@ -778,17 +781,17 @@ File: siunitx-abbreviations.cfg 2013/07/31 v2.5s siunitx: Abbreviated units
 File: siunitx-binary.cfg 2013/07/31 v2.5s siunitx: Binary units
 ) (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count169
+\scratchcounter=\count170
 \scratchdimen=\dimen177
 \scratchbox=\box51
-\nofMPsegments=\count170
-\nofMParguments=\count171
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count172
+\nofMPsegments=\count171
+\nofMParguments=\count172
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count173
 \MPscratchDim=\dimen178
-\MPnumerator=\count173
-\makeMPintoPDFobject=\count174
-\everyMPtoPDFconversion=\toks27
+\MPnumerator=\count174
+\makeMPintoPDFobject=\count175
+\everyMPtoPDFconversion=\toks29
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -804,6 +807,21 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+LaTeX Info: Redefining \microtypecontext on input line 35.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `basictext'.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+)
 Package nag Info: Command \caption@xlabel not defined, skipping amendment on in
 put line 35.
 Package nag Info: Command \captionabove not defined, skipping amendment on inpu
@@ -814,12 +832,12 @@ Package nag Info: Command \hc@caption not defined, skipping amendment on input
 line 35.
 Package nag Info: Command \topcaption not defined, skipping amendment on input 
 line 35.
-\c__siunitx_mathsf_int=\count175
+\c__siunitx_mathsf_int=\count176
 Package microtype Info: Loading generic settings for font family
 (microtype)             `cmss' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-\c__siunitx_mathtt_int=\count176
+\c__siunitx_mathtt_int=\count177
 Package microtype Info: Loading generic settings for font family
 (microtype)             `cmtt' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
@@ -865,12 +883,12 @@ Overfull \hbox (30.0pt too wide) in paragraph at lines 25--52
 [1
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./notes.toc)
+{/home/td/.texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./notes.toc)
 \tf@toc=\write4
 \openout4 = `notes.toc'.
 
- [2]
-(./content.tex
+
+[2] (./content.tex
 
 Package nag Warning: Command \it is an old LaTeX 2.09 command. 
 (nag)                Use \itshape or \textit instead on input line 10.
@@ -879,7 +897,7 @@ Package nag Warning: Command \it is an old LaTeX 2.09 command.
 Package nag Warning: Command \it is an old LaTeX 2.09 command. 
 (nag)                Use \itshape or \textit instead on input line 11.
 
-<diagrams/instruction.pdf, id=83, 456.64803pt x 115.21443pt>
+<diagrams/instruction.pdf, id=98, 456.64803pt x 115.21443pt>
 File: diagrams/instruction.pdf Graphic file (type pdf)
 
 <use diagrams/instruction.pdf>
@@ -949,34 +967,39 @@ Package nag Warning: Command \tt is an old LaTeX 2.09 command.
 
 
 Package nag Warning: Command \tt is an old LaTeX 2.09 command. 
-(nag)                Use \ttfamily or \texttt instead on input line 199.
+(nag)                Use \ttfamily or \texttt instead on input line 201.
 
 
 Package nag Warning: Command \it is an old LaTeX 2.09 command. 
-(nag)                Use \itshape or \textit instead on input line 208.
+(nag)                Use \itshape or \textit instead on input line 210.
+
+[6]
+Overfull \hbox (12.62804pt too wide) in paragraph at lines 281--281
+\OT1/cmtt/m/n/7 http://stackoverflow.com/questions 
+ []
 
 )
 
 Package nag Warning: 16 complaints in total.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 62.
-[6]
+[7]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 62.
  (./notes.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 62.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 62.
 Package rerunfilecheck Info: File `notes.out' has not changed.
-(rerunfilecheck)             Checksum: AFCD560E0820AB2961A65A45ACA46E18;897.
+(rerunfilecheck)             Checksum: FCED93280B3FA047AD76C4BB1DDEADA1;1108.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 62.
  ) 
 Here is how much of TeX's memory you used:
- 16281 strings out of 493304
- 314499 string characters out of 6139870
- 408234 words of memory out of 5000000
- 19413 multiletter control sequences out of 15000+600000
- 14422 words of font info for 85 fonts, out of 8000000 for 9000
+ 16519 strings out of 493304
+ 317947 string characters out of 6139870
+ 414540 words of memory out of 5000000
+ 19624 multiletter control sequences out of 15000+600000
+ 14728 words of font info for 91 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 41i,8n,43p,10439b,784s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,8n,51p,10453b,784s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
@@ -989,10 +1012,10 @@ msfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.p
 fb>
-Output written on notes.pdf (6 pages, 155882 bytes).
+Output written on notes.pdf (7 pages, 167279 bytes).
 PDF statistics:
- 170 PDF objects out of 1000 (max. 8388607)
- 147 compressed objects within 2 object streams
- 32 named destinations out of 1000 (max. 500000)
- 23142 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 191 PDF objects out of 1000 (max. 8388607)
+ 167 compressed objects within 2 object streams
+ 36 named destinations out of 1000 (max. 500000)
+ 23166 words of extra memory for PDF output out of 24883 (max. 10000000)
 
