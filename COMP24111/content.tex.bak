@@ -149,36 +149,38 @@ algorithm, the right parameters and the right training data.
 
 The nearest neighbour algorithm requires a minimal amount of logic in the
 training stage, since it's really only the value of $K$ that needs to be
-considered. However, most other ML algorithms require some kind of learning
-phrase before they can become useful. The simplest of these is probably the
-linear classifier.
+considered. In fact, for a simple knn classifier, you don't even need to train
+it, since you could just pick an arbitrary value for $K$, and then all the work
+of the algorithm would be done at the `Model' stage? However, most other ML
+algorithms require some kind of learning phrase before they can become useful.
+The simplest of these is probably the linear classifier.
 
 A simple linear classifier is one that looks at only one parameter, and can
-classify into two classes. Essensially it says:
+classify into two classes. Essentially it says:
 
 \begin{lstlisting}[label=linearClassifier, caption=A simple linear classifier]
 if(parameter > threshold) class1 else class2
 \end{lstlisting}
 
 This classifier would work well for some limited use cases; maybe if we were
-classifying boxers into different weight catagories. However, we need to decide
+classifying boxers into different weight categories. However, we need to decide
 on a threshold value in order for the classifier to work. In the case of boxing
 this is easy, since there are known weight categories, however, in some other
 cases, we might have to discover the threshold value from the data.
 
-If there are two classes in the data which are linearly seperable (i.e. there is
+If there are two classes in the data which are linearly separable (i.e. there is
 one or more threshold(s) that will accurately tell them apart), then an
 algorithm to tell them apart is easy to write so long as you know the correct
 threshold value. In order to find the right threshold value, you need a learning
 algorithm such as this:
 
-\begin{lstlisting}[label=linearClassifierLearningAlgorithm, caption=Linear Classifier Learning Algorithm]
+\begin{lstlisting}[label=linearClassifierLearningAlgorithm, caption=Linear classifier learning algorithm]
 var errors: Int = 0
 var threshold: Int = 0;
 do {
   // classify will use a linear classifier to classify the data with a specific
   // threshold, and return the number of errors.
-  errors = classify(data, correctLabels , threshold++)
+  errors = classify(data, correctLabels, threshold++)
 } while(errors > 0);
 \end{lstlisting}
 
@@ -186,6 +188,123 @@ In all learning algorithms, an error function is needed to evaluate whether the
 changes to the parameters for the classifier on each iteration have had a
 positive or negative effect on the accuracy of classification. The error
 function in this case is \texttt{while(errors > 0)}, since we are assuming that
-the data is linearly seperable, we can just keep incrementing the threshold
+the data is linearly separable, we can just keep incrementing the threshold
 value until we get a one that produces no errors.
+
+\begin{figure}[!h]
+  \includestandalone[width=\textwidth]{diagrams/generic-ML-algorithm}
+  \caption{A generic ML algorithm always has the above structure.}
+  \label{fig:generic-ML-algorithm}
+\end{figure}
+
+\section{Perceptron}
+
+A peceptron is an ML algorithm that mimics a single neuron in a brain. Despite
+emulating only one neuron, a peceptron can accurately classify a wide variety of
+data.
+
+The algorithm has $d$ inputs ($i_0, \dots, i_d$), and $d$ weights ($w_0, \dots,
+w_d$), where each input has a specific weight associated with it. It also has
+another parameter $t$, which is the classification threshold. The algorithm can
+be expressed easily in mathematical notation:
+
+\[
+  classify(I) = 
+  \begin{cases}
+    1 & \text{if } t \leq \sum\limits^d_{j=0}i_jw_j\\
+    0 & \text{otherwise}
+  \end{cases}
+\]
+
+For the less mathematically inclined, here's the MATLAB code that does the same
+thing:
+
+\begin{lstlisting}[language=matlab, label=perceptron,
+                   caption=A perceptron implementation in MATLAB]
+  function output = perceptron(threshold, inputs, weights)
+
+  % Compute the activiation level
+  activation_level = sum(inputs.*weights);
+
+  if activation_level > threshold
+    output = 1;
+  else
+    output = 0;
+\end{lstlisting}
+
+Therefore:
+
+\begin{verbatim}
+  $ inputs = [0.1, 0.4, 0.2]
+  $ weights = [0.9, 0.1, 0.7]
+  $ threshold = 0.14
+  $ perceptron(threshold, inputs, weights)
+    > 1
+  $ threshold = 0.32
+  $ inputs = [0.1, 0.6, 0.1]
+  $ perceptron(threshold, inputs, weights)
+    > 0
+\end{verbatim}
+
+Training a perceptron is a matter of adjusting the weights and the threshold to
+get the best classification accuracy on the training data. We need a rule that
+we can apply over and over again to the parameters to refine them towards better
+values:
+
+\[
+  weight = weight \times \text{\it learning\_rate} \times (actual - output) \times input
+\]
+
+Henceforth, we can create a learning algorithm for the perceptron. Lines 5 and 6
+of Listing~\ref{peceptronTraining} are the implementation of the perceptron
+learning rule, everything else is the logic to loop over all the weights a
+certain number of times.
+
+\begin{lstlisting}[language=java, label=perceptronTraining,
+                   caption=A perceptron learning algorithm in Java]
+  for(int i = 0; i < iterations; i++) {
+    for(int example = 0; example < trainingSet.length; example++) {
+      int output = perceptron(threshold, trainingSet[example], weights);
+      for(int weight = 0; weight < weights.length; weight++) {
+        int scaleFactor = learningRate * (trainingLabels[example] - output);
+        weights[weight] = weights[weight] * trainingSet[example][weight] * learningRate;
+      }
+    }
+  }
+\end{lstlisting}
+
+Note how computationally intensive the training algorithm is. The time
+complexity is $O(i \cdot t \cdot w)$ where $i$ is the number of training
+iterations to do, $t$ is the number of training examples, and $w$ is the number
+of weights/inputs/dimensions to classify with.
+
+Even though training is expensive, classification is relatively cheap, with a
+linear runtime.
+
+There is a theorem, called the \textbf{Perceptron Convergence Theorem}, that
+states ``if the data is linearly separable, then application of the perceptron
+learning rule will find a decision boundary within a finite number of
+iterations''.
+
+\subsection{Multilayer Perceptrons (MLP)}
+
+A a multilayer perceptron is basically a graph structure, where every node is a
+perceptron, and edges are connections from the output of one perceptron to the
+input of another. In order to make this work, a different type of perceptron is
+often used. Instead of having a threshold value that is compared to the sum of
+the weighted inputs, the sum is run through a sigmoid funciton before being
+output.
+
+With a network of perceptrons, the decision boundary can now be curved and
+doesn't have to be linear (as it is with only one perceptron). This means more
+complex problems can be attempted.
+
+In order to train a neural network, a technique called \textit{backpropogation}
+is used. However, this is beyond the scope of this course.
+
+
+\section{Decision trees}
+
+% (Linear classifier == Decision stump) because it's like a decision tree with one level
+
 

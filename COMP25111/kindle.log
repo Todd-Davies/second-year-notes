@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  22 DEC 2014 17:15
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  26 DEC 2014 12:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1265,7 +1265,12 @@ Overfull \hbox (30.0pt too wide) in paragraph at lines 281--281
 [] 
  []
 
-)
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.296 
+       [14])
 
 Package nag Warning: 16 complaints in total.
 
@@ -1275,18 +1280,25 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.52 \end{document}
-                    [14]
+                    [15]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 52.
  (./kindle.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 52.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 52.
-Package rerunfilecheck Info: File `kindle.out' has not changed.
-(rerunfilecheck)             Checksum: FCED93280B3FA047AD76C4BB1DDEADA1;1108.
+
+
+Package rerunfilecheck Warning: File `kindle.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `kindle.out':
+(rerunfilecheck)             Before: FCED93280B3FA047AD76C4BB1DDEADA1;1108
+(rerunfilecheck)             After:  8AA26E4EB700CFAEB468DC862E5383F5;1176.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 52.
  ) 
 Here is how much of TeX's memory you used:
- 23891 strings out of 493304
- 462171 string characters out of 6139870
+ 23892 strings out of 493304
+ 462185 string characters out of 6139870
  545485 words of memory out of 5000000
  26817 multiletter control sequences out of 15000+600000
  14618 words of font info for 96 fonts, out of 8000000 for 9000
@@ -1301,10 +1313,10 @@ fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmtt12.pfb>
-Output written on kindle.pdf (14 pages, 127672 bytes).
+Output written on kindle.pdf (15 pages, 128670 bytes).
 PDF statistics:
- 198 PDF objects out of 1000 (max. 8388607)
- 170 compressed objects within 2 object streams
- 30 named destinations out of 1000 (max. 500000)
+ 203 PDF objects out of 1000 (max. 8388607)
+ 174 compressed objects within 2 object streams
+ 31 named destinations out of 1000 (max. 500000)
  24714 words of extra memory for PDF output out of 24883 (max. 10000000)
 

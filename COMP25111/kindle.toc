@@ -18,3 +18,4 @@
 \contentsline {subsection}{\numberline {2.3}Modes of operation}{}{subsection.2.3}
 \contentsline {subsubsection}{\numberline {2.3.1}System calls}{}{subsubsection.2.3.1}
 \contentsline {section}{\numberline {3}Engineering an Operating System}{}{section.3}
+\contentsline {subsection}{\numberline {3.1}Managing processes}{}{subsection.3.1}

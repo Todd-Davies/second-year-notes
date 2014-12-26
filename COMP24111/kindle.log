@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  20 DEC 2014 19:27
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  24 DEC 2014 15:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -916,7 +916,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 40.
  (./course_info.tex [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}])
+{/home/td/.texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
 Overfull \hbox (30.0pt too wide) in paragraph at lines 29--43
 [] 
  []
@@ -1047,7 +1047,7 @@ e.}) has been already used, duplicate ignored
                    \relax 
 l.144 
        [8]
-Overfull \hbox (6.0pt too wide) in paragraph at lines 161--161
+Overfull \hbox (6.0pt too wide) in paragraph at lines 163--163
 [][][][][][][] 
  []
 
@@ -1055,9 +1055,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.168 
+l.170 
        [9]
-Overfull \hbox (6.0pt too wide) in paragraph at lines 183--183
+Overfull \hbox (6.0pt too wide) in paragraph at lines 185--185
 [][][][][][][] 
  []
 
@@ -1067,9 +1067,68 @@ File: diagrams/generic-ML-algorithm.tex Graphic file (type tex)
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-)
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.205 
+       [10]
+Overfull \hbox (27.74648pt too wide) in paragraph at lines 206--210
+[]\T1/lmr/m/n/14.4 (-20) The al-go-rithm has $\OML/lmm/m/it/14.4 d$ \T1/lmr/m/n
+/14.4 (-20) in-puts ($\OML/lmm/m/it/14.4 i[]; [] ; i[]$\T1/lmr/m/n/14.4 (-20) )
+, and $\OML/lmm/m/it/14.4 d$ \T1/lmr/m/n/14.4 (-20) weights ($\OML/lmm/m/it/14.
+4 w[]; [] ; w[]$\T1/lmr/m/n/14.4 (-20) ),
+ []
 
-Package nag Warning: 3 complaints in total.
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.221 
+       [11] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2013/08/26 1.5b listings language file
+)
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 227.
+
+
+(/usr/share/texmf/tex/latex/lm/omslmr.fd
+File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 227.
+
+Overfull \hbox (6.0pt too wide) in paragraph at lines 233--233
+[][][][][][][] 
+ []
+
+
+Package nag Warning: Command \it is an old LaTeX 2.09 command. 
+(nag)                Use \itshape or \textit instead on input line 255.
+
+
+LaTeX Warning: Reference `peceptronTraining' on page  undefined on input line 2
+59.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.262 
+       [12] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2013/08/26 1.5b listings language file
+)
+Overfull \hbox (6.0pt too wide) in paragraph at lines 274--274
+[][][][][][][] 
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.297 
+       [13])
+
+Package nag Warning: 4 complaints in total.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 52.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
@@ -1077,18 +1136,22 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.52 \end{document}
-                    [10]pdfTeX warning (ext4): destination with the same identi
-fier (name{page.}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.52 \end{document}
-                    [11]
+                    [14]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 52.
  (./kindle.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 52.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 52.
-Package rerunfilecheck Info: File `kindle.out' has not changed.
-(rerunfilecheck)             Checksum: F9B04080FE4544475D57C306D31CDDC0;493.
+
+
+Package rerunfilecheck Warning: File `kindle.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `kindle.out':
+(rerunfilecheck)             Before: 65A230C017EF252CAD80888987A28EE5;587
+(rerunfilecheck)             After:  EC0231CB3DCF5933B3AB8B3B9CA2710E;667.
+
+LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -1096,11 +1159,11 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 52.
  ) 
 Here is how much of TeX's memory you used:
- 21531 strings out of 493304
- 374327 string characters out of 6139870
- 521375 words of memory out of 5000000
- 24433 multiletter control sequences out of 15000+600000
- 64845 words of font info for 89 fonts, out of 8000000 for 9000
+ 22234 strings out of 493304
+ 382772 string characters out of 6139870
+ 554258 words of memory out of 5000000
+ 25089 multiletter control sequences out of 15000+600000
+ 77030 words of font info for 98 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  59i,12n,96p,925b,1835s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
@@ -1114,10 +1177,10 @@ ts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb>
 /public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/sh
 are/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public
 /lm/lmvtt10.pfb>
-Output written on kindle.pdf (11 pages, 205184 bytes).
+Output written on kindle.pdf (14 pages, 224898 bytes).
 PDF statistics:
- 186 PDF objects out of 1000 (max. 8388607)
- 160 compressed objects within 2 object streams
- 42 named destinations out of 1000 (max. 500000)
- 21061 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 232 PDF objects out of 1000 (max. 8388607)
+ 202 compressed objects within 3 object streams
+ 65 named destinations out of 1000 (max. 500000)
+ 24149 words of extra memory for PDF output out of 24883 (max. 10000000)
 

@@ -5,3 +5,6 @@
 \contentsline {subsection}{\numberline {2.3}Multiple nearest neighbours (K-NN)}{}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Overfitting}{}{subsection.2.4}
 \contentsline {section}{\numberline {3}Linear Classifier}{}{section.3}
+\contentsline {section}{\numberline {4}Perceptron}{}{section.4}
+\contentsline {subsection}{\numberline {4.1}Multilayer Perceptrons (MLP)}{}{subsection.4.1}
+\contentsline {section}{\numberline {5}Decision trees}{}{section.5}
