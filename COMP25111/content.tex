@@ -295,4 +295,25 @@ the computer to be used by multiple users at once, even here, users would all
 share one CPU and one PC though.
 
 Now, processes execute within their own virtual CPU, while the real CPU switches
-back and forth giving time to each task.
+back and forth giving time to each task. This is good, since the order with
+which the CPU gives it's time to processes can be used to effectively make some
+processes run faster than others.
+
+We have already learnt that a process is made up of a thread and some address
+space, \marginpar{(Processes also have register values and external interfaces
+too, but they're not as important)} but we've not been over how a process is
+created. In order to do this, an existing process must create new child process.
+
+Processes can be killed by themselves (with a variety of different exit codes),
+by other processes (using something like the \texttt{kill}) command, or in some
+systems, by the parent process terminating.
+
+The lifecycle of a process, and the states it occupies can be represented in a
+state machine like diagram, as shown in Figure~\ref{fig:proc-lifecycle}.
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=\textwidth]{diagrams/process-lifecycle.pdf}
+  \caption{The lifecycle of a process}
+  \label{fig:proc-lifecycle}
+\end{figure}
