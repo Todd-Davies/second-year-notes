@@ -317,3 +317,44 @@ state machine like diagram, as shown in Figure~\ref{fig:proc-lifecycle}.
   \caption{The lifecycle of a process}
   \label{fig:proc-lifecycle}
 \end{figure}
+
+\subsubsection{Scheduling}
+
+One particurlaly troublesome section of the lifecycle of a process is going from
+the \textit{ready} state to the \textit{running} state (and vice versa). In
+order to do this, a process to be resumed must be chosen from a pool of
+processes waiting for CPU time, and the registers, IO operations etc must be
+loaded and made ready.
+
+In order to do this, a PCB (Process Control Block) table is maintained, which
+contains all the nececarry information for each process to be paused and
+resumed. This includes (among other things):
+
+\begin{itemize}
+  \item Process ID
+  \item Parent ID
+  \item Saved registers
+  \item Memory, IO management information
+  \item CPU scheduling info
+\end{itemize}
+
+On some operating systems, timeslices are given to processes, where on others,
+they are assigned to threads. Henceforth, processes can often be made more
+efficient by using threads in order to maximise the use of their timeslice
+(switching to non-blocked threads whenever there is a block).
+
+\subsubsection{Context switching}
+
+A context switch occurs whenever the CPU pauses execution for one process and
+resumes it for another. It's sometimes and expensive operation, and depending on
+the processor, can take anywhere from one micro-second to one nano-second.
+
+\marginpar{It is important to remember that there are plenty of things that do
+need to be included in the context switch when two threads of the same process
+are swapping, including registers (including the PC), and the stack.}
+
+It is important to realise that not all context switches are equal even on the
+same machine. If the processor is switching between two threads of the same
+process, it won't have to switch in most of the information about memory, since
+the threads will use the same memory space. Because of this, the memory cache
+might also be more efficient due to locality of reference.

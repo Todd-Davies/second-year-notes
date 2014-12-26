@@ -19,3 +19,5 @@
 \contentsline {subsubsection}{\numberline {2.3.1}System calls}{}{subsubsection.2.3.1}
 \contentsline {section}{\numberline {3}Engineering an Operating System}{}{section.3}
 \contentsline {subsection}{\numberline {3.1}Managing processes}{}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Scheduling}{}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Context switching}{}{subsubsection.3.1.2}
