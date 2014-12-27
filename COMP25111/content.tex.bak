@@ -1,7 +1,7 @@
 % Set the author and title of the compiled pdf
 \hypersetup{
-	pdftitle = {\Title},
-	pdfauthor = {\Author}
+  pdftitle = {\Title},
+  pdfauthor = {\Author}
 }
 
 
@@ -195,7 +195,7 @@ Linux system, use {\tt htop} or {\tt ps aux} to see what processes are running.}
 \subsection{Address Space}
 
 \textit{Address space} (aka memory space) is a term used to speak about a
-section of memory. This could be the whole memory avalible to the system, the
+section of memory. This could be the whole memory available to the system, the
 memory that a specific program has access to etc.
 
 When a program starts, it assumes that it does so from memory address {\tt 0}.
@@ -214,12 +214,12 @@ In order to facilitate relocation, operating systems abstract away the
 implementation of the hardware, and instead provide a virtual machine for each
 program. This enables programs to behave as though they have the whole system
 to themselves, and it also lets the operating system easily stop programs
-interfereing with eachother (such as providing disjoint memory spaces for each
+interfering with each other (such as providing disjoint memory spaces for each
 program).
 
 \subsection{Modes of operation}
 
-It is often nececarry to prevent some programs from executing some operations,
+It is often necessary to prevent some programs from executing some operations,
 such as manipulating memory, or allocating CPU time. In order to achieve this,
 operating systems nearly always implement different `modes' of operation that
 processes can run under. The two most common modes are \textit{user} and
@@ -234,8 +234,8 @@ programs.
 
 \subsubsection{System calls}
 
-If there was an eventuality where a program needed to perform privaliged
-operation that wasnn't permitted under it's current mode, then it can use a
+If there was an eventuality where a program needed to perform privileged
+operation that wasn't permitted under it's current mode, then it can use a
 system call to achieve the same result. The premise is that the operating
 system will provide a `gatekeeper' function that will perform the requested
 operation, but only after the parameters have undergone checks to ensure that
@@ -265,8 +265,8 @@ systems will contain little more than a microkernel, which will have the bare
 minimum of logic required to keep a computer running.
 
 Some components of an operating system are monolithic, most notably the Linux
-kernel. A monolithic compoment is easier to design (especially for a kernel)
-since there is less inter-process communication to worry about, and trapfalls
+kernel. A monolithic component is easier to design (especially for a kernel)
+since there is less inter-process communication to worry about, and trap falls
 like race conditions can be more easily avoided when everything is running on
 a single thread.
 
@@ -285,3 +285,109 @@ fact that the program is running under \textit{one} process that is in system
 mode. It doesn't mean that the code is all in one big file, or even in one big
 project, since many monolithic projects employ some degree of modularity in
 the development process at least.
+
+\subsection{Managing processes}
+
+When operating systems were first developed, they usually ran one process at a
+time. This was obviously limiting for the users, since only one person could do
+stuff at a time. In light of this, timesharing was developed, which is a way for
+the computer to be used by multiple users at once, even here, users would all
+share one CPU and one PC though.
+
+Now, processes execute within their own virtual CPU, while the real CPU switches
+back and forth giving time to each task. This is good, since the order with
+which the CPU gives it's time to processes can be used to effectively make some
+processes run faster than others.
+
+We have already learnt that a process is made up of a thread and some address
+space, \marginpar{(Processes also have register values and external interfaces
+too, but they're not as important)} but we've not been over how a process is
+created. In order to do this, an existing process must create new child process.
+
+Processes can be killed by themselves (with a variety of different exit codes),
+by other processes (using something like the \texttt{kill}) command, or in some
+systems, by the parent process terminating.
+
+The lifecycle of a process, and the states it occupies can be represented in a
+state machine like diagram, as shown in Figure~\ref{fig:proc-lifecycle}.
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=\textwidth]{diagrams/process-lifecycle.pdf}
+  \caption{The lifecycle of a process}
+  \label{fig:proc-lifecycle}
+\end{figure}
+
+\subsubsection{Scheduling}
+
+One particularly troublesome section of the lifecycle of a process is going from
+the \textit{ready} state to the \textit{running} state (and vice versa). In
+order to do this, a process to be resumed must be chosen from a pool of
+processes waiting for CPU time, and the registers, IO operations etc must be
+loaded and made ready.
+
+In order to do this, a PCB (Process Control Block) table is maintained, which
+contains all the necessary information for each process to be paused and
+resumed. This includes (among other things):
+
+\begin{itemize}
+  \item Process ID
+  \item Parent ID
+  \item Saved registers
+  \item Memory, IO management information
+  \item CPU scheduling info
+\end{itemize}
+
+On some operating systems, timeslices are given to processes, where on others,
+they are assigned to threads. Henceforth, processes can often be made more
+efficient by using threads in order to maximise the use of their timeslice
+(switching to non-blocked threads whenever there is a block).
+
+In order to handle the complicated tasks of scheduling, operating systems have a
+dedicated component as part of the process manager to do this. It's main job is
+decide which process should run next on what core of the CPU, while minimising
+the average wait and turnaround times for processes to execute.
+
+Processes alternate between CPU (expensive computation) and IO (blocked on IO)
+bursts. Processes that have long CPU bursts are said to be CPU bound, while
+processes that use lots of IO are said to be IO bound. Processes can change
+their characteristics while running (if a web browser is using lots of cached
+content, it might be IO bound, but if it's rendinging 4K video with JavaScript,
+it's probably CPU bound).
+
+Here are some scheduling algorithms:
+
+\begin{description}
+  \item \textbf{First Come First Serve (FCFS)}\\
+
+    This is when processes get all of the CPU time until they are finished, or
+    they block. It's easy to implement, since all you need is a queue of
+    processes:
+
+    \begin{figure}[ht!]
+      \centering
+      \includegraphics[width=90mm]{diagrams/fcfs.pdf}
+      \caption{What an FCFS implementation might behave like}
+      \label{fcfs}
+    \end{figure}
+  
+  \item 
+
+\end{description}
+
+\subsubsection{Context switching}
+
+A context switch occurs whenever the CPU pauses execution for one process and
+resumes it for another. It's sometimes and expensive operation, and depending on
+the processor, can take anywhere from one micro-second to one nano-second.
+
+\marginpar{It is important to remember that there are plenty of things that do
+need to be included in the context switch when two threads of the same process
+are swapping, including registers (including the PC), and the stack.}
+
+It is important to realise that not all context switches are equal even on the
+same machine. If the processor is switching between two threads of the same
+process, it won't have to switch in most of the information about memory, since
+the threads will use the same memory space. Because of this, the memory cache
+might also be more efficient due to locality of reference.
+

@@ -1,0 +1,82 @@
+% So the image fits the page
+\documentclass{article}
+\usepackage[paperwidth=\maxdimen,paperheight=\maxdimen]{geometry}
+% Nice colors
+\usepackage[usenames,dvipsnames]{xcolor}
+
+% Include tikz
+\usepackage{tikz}
+% For making the page fit the image (without standalone)
+\usepackage[tightpage,active]{preview}
+\PreviewEnvironment{tikzpicture}
+\usetikzlibrary{shapes, patterns}
+% Define some lovely colours
+\definecolor{light-gray}{gray}{0.95}
+\definecolor{light-green}{HTML}{90FF8C}
+\definecolor{light-yellow}{HTML}{FFFF8C}
+\definecolor{light-blue}{HTML}{8CE4FF}
+
+\begin{document}
+
+%A - 4 CPU, 3 IO, 4 CPU
+%B - 1 CPU, 4 IO, 1 CPU
+%C - 2 CPU, 2 IO, 1 CPU
+%D - 3 CPU
+%E - 1 CPU, 1 IO, 1 CPU
+
+\begin{center}
+    \begin{tikzpicture}
+        % Process A
+        \node[font=\fontsize{16}{18}\sffamily] at (-2, 1) {Process A};
+        \draw [fill=light-blue]   (0, 0)  rectangle (2 ,2);
+        \draw [fill=light-gray]   (2, 0)  rectangle (3 ,2);
+        \draw [fill=light-blue]   (3, 0)  rectangle (5 ,2);
+        \draw [fill=light-yellow] (5, 0)  rectangle (8 ,2);
+        \draw [fill=light-blue]   (8, 0)  rectangle (10 ,2);
+        \draw [fill=light-blue]   (10, 0)  rectangle (12 ,2);
+        \draw [fill=light-green]  (12, 0)  rectangle (18 ,2);
+
+        % Process B
+        \node[font=\fontsize{16}{18}\sffamily] at (-2, -1) {Process B};
+        \draw [fill=light-gray]   (0, -2)  rectangle (2 , 0);
+        \draw [fill=light-blue]   (2, -2)  rectangle (3 , 0);
+        \draw [fill=light-yellow] (3, -2)  rectangle (7, 0);
+        \draw [fill=light-blue]   (7, -2)  rectangle (8 , 0);
+        \draw [fill=light-green]  (8, -2)  rectangle (18, 0);
+
+        % Process C
+        \node[font=\fontsize{16}{18}\sffamily] at (-2, -3) {Process C};
+        \draw [fill=light-gray]   (0, -4)  rectangle (5 , -2);
+        \draw [fill=light-blue]   (5, -4)  rectangle (7 , -2);
+        \draw [fill=light-yellow] (7, -4)  rectangle (9 , -2);
+        \draw [fill=light-gray]   (9, -4)  rectangle (12 , -2);
+        \draw [fill=light-blue]   (12, -4)  rectangle (13 , -2);
+        \draw [fill=light-green]  (13, -4)  rectangle (18 , -2);
+
+        % Process D
+        \node[font=\fontsize{16}{18}\sffamily] at (-2, -5) {Process D};
+        \draw [fill=light-gray] (0, -6)  rectangle (13, -4);
+        \draw [fill=light-blue] (13, -6) rectangle (15,  -4);
+        \draw [fill=light-gray] (15, -6) rectangle (16,  -4);
+        \draw [fill=light-blue] (16, -6) rectangle (17,  -4);
+        \draw [fill=light-green] (17, -6) rectangle (18,  -4);
+
+        % Process E
+        \node[font=\fontsize{16}{18}\sffamily] at (-2, -7) {Process E};
+        \draw [fill=light-gray]  (0, -8)  rectangle (15 , -6);
+        \draw [fill=light-blue]  (15, -8)  rectangle (16, -6);
+        \draw [fill=light-yellow](16, -8)  rectangle (17 , -6);
+        \draw [fill=light-blue]  (17, -8)  rectangle (18 , -6);
+
+        \draw [fill=light-gray]   (1, -11)   rectangle (5,  -9);
+        \draw [fill=light-blue]   (5, -11)   rectangle (9,  -9);
+        \draw [fill=light-yellow] (9, -11)   rectangle (13, -9);
+        \draw [fill=light-green]  (13,-11)   rectangle (17, -9);
+        \node[font=\fontsize{12}{14}\sffamily] at (2,  -10)  {Idle};
+        \node[font=\fontsize{12}{14}\sffamily] at (6,  -10)  {Running};
+        \node[font=\fontsize{12}{14}\sffamily] at (10, -10) {IO};
+        \node[font=\fontsize{12}{14}\sffamily] at (14, -10) {Finished};
+    \end{tikzpicture}
+\end{center}
+
+\end{document}

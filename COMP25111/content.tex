@@ -1,7 +1,7 @@
 % Set the author and title of the compiled pdf
 \hypersetup{
-	pdftitle = {\Title},
-	pdfauthor = {\Author}
+  pdftitle = {\Title},
+  pdfauthor = {\Author}
 }
 
 
@@ -320,14 +320,14 @@ state machine like diagram, as shown in Figure~\ref{fig:proc-lifecycle}.
 
 \subsubsection{Scheduling}
 
-One particurlaly troublesome section of the lifecycle of a process is going from
+One particularly troublesome section of the lifecycle of a process is going from
 the \textit{ready} state to the \textit{running} state (and vice versa). In
 order to do this, a process to be resumed must be chosen from a pool of
 processes waiting for CPU time, and the registers, IO operations etc must be
 loaded and made ready.
 
 In order to do this, a PCB (Process Control Block) table is maintained, which
-contains all the nececarry information for each process to be paused and
+contains all the necessary information for each process to be paused and
 resumed. This includes (among other things):
 
 \begin{itemize}
@@ -342,6 +342,134 @@ On some operating systems, timeslices are given to processes, where on others,
 they are assigned to threads. Henceforth, processes can often be made more
 efficient by using threads in order to maximise the use of their timeslice
 (switching to non-blocked threads whenever there is a block).
+
+In order to handle the complicated tasks of scheduling, operating systems have a
+dedicated component as part of the process manager to do this. It's main job is
+decide which process should run next on what core of the CPU, while minimising
+the average wait and turnaround times for processes to execute.
+
+Processes alternate between CPU (expensive computation) and IO (blocked on IO)
+bursts. Processes that have long CPU bursts are said to be CPU bound, while
+processes that use lots of IO are said to be IO bound. Processes can change
+their characteristics while running (if a web browser is using lots of cached
+content, it might be IO bound, but if it's rendering 4K video with JavaScript,
+it's probably CPU bound).
+
+Here are some scheduling algorithms:
+
+\begin{description}
+  \item \textbf{First Come First Serve (FCFS)}\\
+    This is when processes get all of the CPU time until they are finished, or
+    they block. It's easy to implement, since all you need is a queue of
+    processes:
+
+    \begin{figure}[ht!]
+      \centering
+      \includegraphics[width=90mm]{diagrams/fcfs.pdf}
+      \caption{What an FCFS implementation might behave like}
+      \label{fcfs}
+    \end{figure}
+
+    FCFS is a \textbf{non-preemptive} algorithm, since processes are allowed to
+    run until they finish with the CPU and start doing IO stuff, or exit.
+
+    \marginpar{`Time slice' is also known as `Time Quantum' and it's length is
+    very important. Smaller time slices are affected greater by the time it
+    takes to perform a context switch. The best solution is to try and decrease
+    the cost of context switching and increase the time slice length a little
+    (though not too much, otherwise you end up with psudo-FCFS)}
+
+  \item \textbf{Round Robin}\\
+    The round robin algorithm is a \textbf{preemptive} algorithm. Each process
+    is given a time slice when it starts processing on the CPU, and if it hasn't
+    finished by the end of it's time slice, then the CPU is given to another
+    process. It's still a very simple algorithm, and it's much more efficient
+    than FCFS.
+
+    \begin{figure}[ht!]
+      \centering
+      \includegraphics[width=90mm]{diagrams/roundrobin.pdf}
+      \caption{What a Round Robin implementation might behave like}
+      \label{roundrobin}
+    \end{figure}
+
+  \item \textbf{Shortest job first}\\
+    We could just run whichever process will have the shortest CPU burst first.
+    The problem with this one, is it can be hard to tell how long processes will
+    use the CPU for. If we can pull this off though, the average turnaround time
+    and wait time are very low. This would be a \textbf{non-preemptive}
+    approach, since when a process starts to run, it is left running until it
+    finishes it's CPU burst.
+
+    You can also \textbf{make SJF preemptive}. In order to do this, when a new
+    process is added to the queue, if it has a lower CPU burst than the
+    remaining time on the currently running process, then context switch and run
+    the new one first. This is called \textbf{STRF} (Shortest Time Remaining
+    First).
+
+    One problem with SJF, is that if a process has a very long CPU burst, then
+    it may be starved of CPU time by the scheduler, since other processes, with
+    a smaller initial burst will be allowed in first.
+
+  \item \textbf{Priority Queue}\\
+    We could have multiple queues, each with a different priority. Processes in
+    higher priority queues could have longer time slices, or could finish all
+    their CPU bursts before allowing other processes to start with theirs. We
+    could still end up starving low priority processes using (particularly) the
+    latter method, however, if we had the option to \textit{dynamically move
+    processes between queues}, then we could solve this problem too.
+
+    \marginpar{Can you work out the actual amount of CPU/IO/idle that the
+    processes have? It's in the \LaTeX~source if you want to find out!}
+
+    \begin{figure}[ht!]
+      \centering
+      \includegraphics[width=90mm]{diagrams/priority.pdf}
+      \caption{If process A and B were in the high priority queue, process C was
+      in normal priority, while D and E were in low priority, the scheduler may
+      behave like this.}
+      \label{priority}
+    \end{figure}
+
+    Dynamically changing which queue processes are in sounds hard, but it's not
+    too bad. Every time a process uses up all of it's timeslice, then move it
+    down a queue, every time it finishes it's CPU burst before it's timeslice
+    expires, move it up a queue. In this manner, IO bound applications will tend
+    to execute faster, and there will be less idle time. \marginpar{This isn't
+    really a good thing, since your IO programs (such as a backup utility), may
+    not be the ones you want to run the fastest.}
+
+    In earlier versions of Linux\footnote{
+      If you're ahead of schedule with your revision, take a look at:
+      \begin{itemize}
+        \item \url{http://en.wikipedia.org/wiki/O(n)_scheduler}
+        \item \url{http://en.wikipedia.org/wiki/O(1)_scheduler}
+        \item \url{http://en.wikipedia.org/wiki/Completely_Fair_Scheduler}
+      \end{itemize}
+    }, there were three queues, but each used a
+    different strategy; the highest priority queue was FIFO, the next queue used
+    a round robin technique and the lowest priority queue used a method where
+    the timeslice differs based on the process priority.
+
+    The low priority queue is most interesting; each process has a quantum
+    associated with it, which is reduced by one for each clock tick it has on
+    the CPU. The timeslice it gets the process priority plus the remaining
+    quantum divided by two. When all of the processes in the queue run out of
+    quantums, then the quantum of all the processes in the queue is recomputed.
+
+    Unfortunately, the old Linux way of scheduling didn't scale well, since it
+    had an $O(n)$ runtime, so when you started up a lot of processes, the
+    algorithm's performance would degrade. Now, Linux only uses algorithms with
+    a $O(1)$ runtime, so that the number of processes doesn't impact on the CPU
+    speed.
+
+\end{description}
+
+The above algorithms are targeted at desktop PC's, and `normal' operating
+systems, but for applications that are a little different, such as real time
+systems, then different algorithms are used (maybe one that picks the process
+with a short deadline for computation, or the smallest deadline - completion
+time).
 
 \subsubsection{Context switching}
 
@@ -358,3 +486,4 @@ same machine. If the processor is switching between two threads of the same
 process, it won't have to switch in most of the information about memory, since
 the threads will use the same memory space. Because of this, the memory cache
 might also be more efficient due to locality of reference.
+

@@ -20,4 +20,4 @@
 \contentsline {section}{\numberline {3}Engineering an Operating System}{7}{section.3}
 \contentsline {subsection}{\numberline {3.1}Managing processes}{7}{subsection.3.1}
 \contentsline {subsubsection}{\numberline {3.1.1}Scheduling}{8}{subsubsection.3.1.1}
-\contentsline {subsubsection}{\numberline {3.1.2}Context switching}{8}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.2}Context switching}{10}{subsubsection.3.1.2}

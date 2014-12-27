@@ -1,0 +1,52 @@
+% So the image fits the page
+\documentclass{article}
+\usepackage[paperwidth=\maxdimen,paperheight=\maxdimen]{geometry}
+% Nice colors
+\usepackage[usenames,dvipsnames]{xcolor}
+
+% Include tikz
+\usepackage{tikz}
+% For making the page fit the image (without standalone)
+\usepackage[tightpage,active]{preview}
+\PreviewEnvironment{tikzpicture}
+\usetikzlibrary{shapes, patterns}
+% Define some lovely colours
+\definecolor{light-gray}{gray}{0.95}
+\definecolor{light-green}{HTML}{90FF8C}
+\definecolor{light-yellow}{HTML}{FFFF8C}
+\definecolor{light-blue}{HTML}{8CE4FF}
+
+\begin{document}
+
+\begin{center}
+    \begin{tikzpicture}
+        % Process A
+        \node[font=\fontsize{16}{18}\sffamily] at (-2, 1) {Process A};
+        \draw [fill=light-blue] (0, 0)  rectangle (4 ,2);
+        \draw [fill=light-yellow] (4, 0)  rectangle (7 ,2);
+        \draw [fill=light-gray] (7, 0)  rectangle (10,2);
+        \draw [fill=light-blue] (10,0)  rectangle (12,2);
+        % Process B
+        \node[font=\fontsize{16}{18}\sffamily] at (-2, -1) {Process B};
+        \draw [fill=light-gray] (0, -2)  rectangle (4 , 0);
+        \draw [fill=light-blue] (4, -2)  rectangle (5 , 0);
+        \draw [fill=light-green] (5, -2)  rectangle (12, 0);
+        % Process C
+        \node[font=\fontsize{16}{18}\sffamily] at (-2, -3) {Process C};
+        \draw [fill=light-gray] (0, -4)  rectangle (5 , -2);
+        \draw [fill=light-blue] (5, -4)  rectangle (7 , -2);
+        \draw [fill=light-yellow] (7, -4)  rectangle (9 , -2);
+        \draw [fill=light-gray] (9, -4)  rectangle (12, -2);
+
+        \draw [fill=light-gray]   (0, -7)  rectangle (3, -5);
+        \draw [fill=light-blue]   (3, -7)  rectangle (6, -5);
+        \draw [fill=light-yellow] (6, -7)  rectangle (9, -5);
+        \draw [fill=light-green]  (9, -7)  rectangle (12, -5);
+        \node[font=\fontsize{12}{14}\sffamily] at (1, -6) {Idle};
+        \node[font=\fontsize{12}{14}\sffamily] at (4, -6) {Running};
+        \node[font=\fontsize{12}{14}\sffamily] at (7, -6) {IO};
+        \node[font=\fontsize{12}{14}\sffamily] at (10, -6) {Finished};
+    \end{tikzpicture}
+\end{center}
+
+\end{document}
