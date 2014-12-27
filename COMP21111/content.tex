@@ -238,7 +238,7 @@ datastructure such as a tree, the algorithm needs to do the following steps:
 
 \subsection{Circuits}
 
-% Is isomorphic the right word here?
+% TODO: Is isomorphic the right word here?
 
 There exists a certain isomorphism between PL and digital circuitry. It is
 often possible to reduce a problem of digital logic (one that involves the use
@@ -251,6 +251,72 @@ circuits did the same thing using techniques from PL, or you could use re-write
 rules to make one circuit into another equivalent, yet more compact circuit.
 
 \section{Satisfiability}
+
+Checking if a PL formula is satisfiable (there is at least one interpretation
+where the formula is true) is a famous decision problem.
+
+The satisfiability problem is NP-Complete (so we can check the solution quickly,
+but we cannot arrive at the solution in polynomial time).
+
+One simple way of checking the satisfiability of a formula is to enumerate all
+the possible interpretations, and put them in a truth table. As usual, you split
+the formula into it's subformulae, but unlike a conventional truth table, you
+have a column for each interpretation (so enumerate the possible combinations of
+all the atomic formulae).
+
+Using truth tables as a method of satisfiability checking is not very
+efficient. Because there is a requirement to enumerate all of the
+interpretations, you need to do as many operations as there are $2^{\#atoms}$.
+
+When you think about it, there will be certain situations, where we don't have
+to enumerate all of the different interpretations. For instance if we assume
+that $I(r) = \top$, then we know that $I(p \vee r) = \top$ and $I(x \implies (p
+\vee r)) = \top$. In this example, we could eliminate lots of possible
+interpretations since we know some of them to be valid without even trying them.
+
+If we were to take this principle into account when evaluating formulae for
+satisfiability, how many enumerations we would need to do would depend on which
+variables we enumerated first. Good SAT checkers will choose wisely in this
+regard.
+
+\subsection{Signed Formulae}
+
+In order to progress, we need to understand the notion of signed formulae.
+
+A signed formula, $A = b$ is one where the formula $A$ is equal to $b$ in a
+specific interpretation $I$. It follows that:
+
+\begin{itemize}
+  \item For any $A$ and any $I$ either $A = 1$ or $A = 0$ in $I$.
+  \item The formula $A$ is satisfiable iff $A = 1$
+\end{itemize}
+
+\subsection{Splitting}
+
+Splitting is another way of checking satisfiability of formulae. The idea is
+that we consider truth values for variables in the formula, and simplify the
+formula based on those considerations. Formally:
+
+\textit{For every propositional formula $A$, and every atom $p$, denote
+$A^{\top}_p$ and $A^{\bot}_p$ as the formulas with $p$ replaced with $\top$ and
+$\bot$ respectively.}
+
+The splitting algorithm tells us if each interpretation of a formula is
+satisfiable or unsatisfiable. If all the interpretations are $\top$, then the
+formula must be valid, if they are all $\bot$, then it must be unsatisfiable.
+
+Figure~\ref{fig:andrei-split}, (the same example used in Andrei's notes) shows
+the splitting algorithm in action. I think its easiest to learn splitting
+through diagrams such as this, and thus I won't write any more about how it
+works.
+
+\begin{figure}[!h]
+  \includegraphics[width=\textwidth]{diagrams/andrei-splitting}
+  \caption{Splitting the formula $\neg((p \implies q) \wedge (p \wedge q \implies r) \implies (p \implies r))$}
+  \label{fig:andrei-split}
+\end{figure}
+
+\subsection{Polarity of subformulae}
 
 \section{CNF}
 

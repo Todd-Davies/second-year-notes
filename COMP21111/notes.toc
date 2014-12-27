@@ -12,13 +12,15 @@
 \contentsline {subsection}{\numberline {3.1}Rewrite rules}{5}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Circuits}{6}{subsection.3.2}
 \contentsline {section}{\numberline {4}Satisfiability}{6}{section.4}
-\contentsline {section}{\numberline {5}CNF}{6}{section.5}
-\contentsline {section}{\numberline {6}Definitional Clausal Form Translation}{6}{section.6}
-\contentsline {section}{\numberline {7}DPLL}{6}{section.7}
-\contentsline {section}{\numberline {8}Encoding problems in SAT}{6}{section.8}
-\contentsline {section}{\numberline {9}Randomly generated clause sets}{6}{section.9}
-\contentsline {section}{\numberline {10}Randomised algorithms for satisfiability checking}{6}{section.10}
-\contentsline {section}{\numberline {11}Signed Formulae}{6}{section.11}
-\contentsline {subsection}{\numberline {11.1}Finding a model of a specifiable formula}{7}{subsection.11.1}
-\contentsline {subsection}{\numberline {11.2}Tabelau}{7}{subsection.11.2}
-\contentsline {subsubsection}{\numberline {11.2.1}Branch expansions}{7}{subsubsection.11.2.1}
+\contentsline {subsection}{\numberline {4.1}Signed Formulae}{6}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Splitting}{7}{subsection.4.2}
+\contentsline {section}{\numberline {5}CNF}{8}{section.5}
+\contentsline {section}{\numberline {6}Definitional Clausal Form Translation}{8}{section.6}
+\contentsline {section}{\numberline {7}DPLL}{8}{section.7}
+\contentsline {section}{\numberline {8}Encoding problems in SAT}{8}{section.8}
+\contentsline {section}{\numberline {9}Randomly generated clause sets}{8}{section.9}
+\contentsline {section}{\numberline {10}Randomised algorithms for satisfiability checking}{8}{section.10}
+\contentsline {section}{\numberline {11}Signed Formulae}{8}{section.11}
+\contentsline {subsection}{\numberline {11.1}Finding a model of a specifiable formula}{8}{subsection.11.1}
+\contentsline {subsection}{\numberline {11.2}Tabelau}{8}{subsection.11.2}
+\contentsline {subsubsection}{\numberline {11.2.1}Branch expansions}{8}{subsubsection.11.2.1}
