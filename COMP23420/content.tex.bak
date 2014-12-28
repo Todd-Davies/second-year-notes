@@ -153,7 +153,7 @@ what goes on. Both primarily capture functional requirements.
 Actors perform use cases on a system, and have use cases performed on them. They
 are an entity (e.g. a human, database, AI algorithm etc) that directly uses or
 is used by the system, and activity diagrams should reflect what happens in the
-business process that will be realised by the new system.
+buisness process that wil be realised by the new system.
 
 Activities (which, as said above, are composed of actions) map to use cases in
 the system, and therefore describe functional requirements. For each use case,
@@ -184,7 +184,7 @@ Use cases contain the following information:
 
 Craig Larman describes three types of use case; casual, brief and full. Casual
 use cases are basically prose, and can be hard to parse and understand. Brief
-use cases are usually a bulleted, list of short sentences, which is what we're
+use cases are usually a bulleted, list of short sentances, which is what we're
 to use in this course. Full use cases are the works, with lots of detail,
 diagrams, references etc.
 
