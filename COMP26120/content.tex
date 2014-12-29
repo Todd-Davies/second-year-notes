@@ -1,8 +1,10 @@
 % Set the author and title of the compiled pdf
 \hypersetup{
-	pdftitle = {\Title},
-	pdfauthor = {\Author}
+  pdftitle = {\Title},
+  pdfauthor = {\Author}
 }
+
+\input{listingstyle.tex}
 
 \section{Algorithmic complexity and performance}
 
@@ -190,28 +192,119 @@ order.
 
 A total order is a relation that is transitive ($a \leq b \wedge b \leq c \implies a
 \leq c$), anti-symmetric ($a \leq b \wedge b \leq a \implies a = b$), and
-unsuprisingly, total ($a \leq b \wedge b \leq a$).
+unsurprisingly, total ($a \leq b \wedge b \leq a$).
 
 If the ordering on the elements of the array isn't a total order then bad
 things can happen when you try and use an algorithm to sort the data. For
 example, if you were to try and sort an array of rocks, papers and scissors
 according to the rules of the traditional game, then you wouldn't have a
-transitive relation, and a sorting algorithm would probably loop infinately.
+transitive relation, and a sorting algorithm would probably loop infinitely.
 
-\subsubsection{Define sorting}
+\subsection{The complexity of sorting}
 
-\subsubsection{Quicksort}
+The most common sorting algorithms are $O(n^2)$ time (this includes $O(n
+\log{n})$ algorithms too). Even though a polynomial sort time is good, sometimes
+we have billions of items to sort, and henceforth, a very long running time. In
+this situation, $n \log{n}$ sorts are much more preferable to $n^2$ sorts.
 
-\subsubsection{Merge sort}
+Since we often don't know in advance exactly what data any sorting function will
+be given in advance, its important to know both the upper and lower bounds on
+the complexity of the sorting algorithm we're using.
 
-\subsubsection{Radix sort and Bucket sort}
+\begin{description}
+  \item The \textbf{upper bound} is the worst case time complexity of the
+  sort. For example the worst case complexity of Merge Sort is $O(n \log{n})$.
 
-\subsubsection{Heap sort}
+  \item The \textbf{lower bound} complexity is always at least $O(n)$ for
+  sorting algorithms, since every item needs to be looked at once (if only to
+  check that the list is already sorted). Bucket, radix and bubble sort all
+  achieve this for certain inputs. No comparison based sort can ever achieve
+  a lower bound with less than $O(log_2(n!))$ comparisons.
+\end{description}
 
-\subsubsection{The lower bound of sorting}
+\subsubsection{Worst case for comparison sorts}
 
+If we were to draw a decision tree for each possible path of a comparison sort,
+then we would get one with a depth of $log_2(n!)$, that produced all $n!$
+permutations of the input. An asymptotically optimal comparison sort must travel
+down this tree in its quest to find the answer. MergeSort and HeapSort are
+optimal, while QuickSort is optimal for most inputs.
+
+\subsection{Sorting algorithms in detail}
+\begin{description}
+\item \textbf{QuickSort} \\
+  QuickSort is a \textbf{divide and conquer} algorithm, that uses a
+  \textbf{comparison based} method to sort items. QuickSort can be implemented
+  as an \textbf{in-place} sort, \textbf{stable}, though it is usually done so
+  with recursion which gives it a space complexity of at least $O(log(n))$. This
+  is a small inconvenience really though.
+
+  First the list is partitioned into two halves. To do this, a random pivot is
+  chosen from the list, and of the two new lists, one has the items less than
+  the pivot, and the other has the items greater or equal to it.
+
+  QuickSort is then applied to each sublist, so make them sorted, and then the
+  start of the right list is joined to the end of the left list.
+
+  See Listing~\ref{quicksort} for an example implementation.
+
+\item \textbf{MergeSort} \\
+  MergeSort is another \textbf{divide and conquer} algorithm that also uses a
+  \textbf{comparison based} approach. MergeSort can \textbf{not be implemented
+  in place}, but it is \textbf{stable}.
+
+  It is similar to quicksort, except it's worst case run time is $O(n\log{n})$.
+  First the list is split down the middle, and the two halves are sorted using
+  merge sort recursively. Then, the two lists are merged back into one sorted
+  list in $O(n)$ time. See Listing~\ref{mergesort} for an implementation.
+
+\item \textbf{BucketSort} \\
+  BucketSort is a \textbf{stable}, \textbf{distribution based} sorting
+  algorithm. You place elements into `buckets' that describe a class of objects
+  (you could order people by the first letter of their first name for example).
+  When you've done that, you can either sort each bucket (using a different
+  algorithm), then you simply return each bucket in order.
+
+  BucketSort has a complexity of $O(n + k)$ where $k$ is the number of buckets
+  you have. In the person name example, the number of buckets would be $26$,
+  which, depending on the size of $n$ could be a very large, or very small
+  factor.
+
+\item \textbf{RadixSort}\\
+  A RadixSort is basically bucket sort with multiple iterations. When you have
+  sorted the first digit/word etc, you apply the same sort to each bucket in
+  turn, until all of the buckets have size 1. RadixSort has a time complexity of
+  $O(n)$
+
+  RadixSort can be done \textbf{in-place}, and in a \textbf{stable} manner:
+  \begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`_=8}]
+    050, 731, 806, 014, 235
+    05\textbf{0}, 73\textbf{1}, 01\textbf{4}, 23\textbf{5}, 80\textbf{6}
+    8\textbf{0}6, 0\textbf{1}4, 7\textbf{3}1, 2\textbf{3}5, 0\textbf{5}0
+    \textbf{0}14, \textbf{0}50, \textbf{2}35, \textbf{7}31, \textbf{8}06
+  \end{Verbatim}
+
+\item \textbf{HeapSort} \\
+  HeapSort is very simple, it iterates through the unsorted list, adding each
+  element to a heap as it goes. When it has finished adding all the elements, it
+  simply iterates through the heap and returns the order of iteration. Since
+  adding an element to a (binary) heap is an $O(log(n))$ operation, and you need
+  to do it $n$ times, the runtime of HeapSort is $O(n\log{n})$.
+
+  HeapSort can be implemented \textbf{in place} since the heap can be stored
+  inside the input array (since a heap can be represented as an array). HeapSort
+  isn't stable though, since the heap can be re-ordered while it's being created
+  (if you're not sure on this, maybe it's time for a trip to wikipedia to learn
+  about heaps).
+
+\end{description}
 
 
 \subsection{Searching}
 
 \subsection{Tree and graph traversal}
+
+\section{Code listings}
+
+\lstinputlisting[caption={QuickSort}, label=quicksort]{code/QuickSort.java}
+\lstinputlisting[caption={MergeSort}, label=mergesort]{code/MergeSort.java}

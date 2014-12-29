@@ -1,7 +1,7 @@
 % Set the author and title of the compiled pdf
 \hypersetup{
-	pdftitle = {\Title},
-	pdfauthor = {\Author}
+  pdftitle = {\Title},
+  pdfauthor = {\Author}
 }
 
 \section{Algorithmic complexity and performance}
@@ -128,7 +128,7 @@ algorithm runs in $O(n^3)$ time?
 
 \subsection{The master theorem}
 
-% Page 268-270
+\marginpar{See pages 268-270 in the course textbook for more information}
 
 The master method is a way of solving divide and conquer recurrence equations
 without having to explicitly use induction. It is used when an algorithm's
@@ -153,7 +153,7 @@ Where $f(n)$ is a function that is positive when $n \geq d$ and:
   a,b,c \in \mathbb{R}
 \end{tabular}
 
-Such a recurrance relation occurs whenever an algorithm uses a divide and
+Such a recurrence relation occurs whenever an algorithm uses a divide and
 conquer approach. Such an algorithm will split the problem into $a$ subproblems,
 each of size $n/b$ before recursively solving them and merging the result back
 together. In this case, $f(n)$ is the time it takes to split the problem into
@@ -162,7 +162,17 @@ subproblems and merge them back together after the solving is done.
 The master theorem is defined by three cases:
 
 \begin{enumerate}
-  \item If there is a small constant $\epsilon > 0$ such that $f(n)$ is $O(n^{log_{b}{a-e}})$, then $T(n)$ is $\Theta(n^{log_ba})
+  \item If there is a small constant $\epsilon > 0$ such that $f(n)$ is
+        $O(n^{log_{b}{a-\epsilon}})$, then $T(n)$ is $\Theta(n^{log_ba})$
+
+        An example could be when the recurrence relation is
+        \[
+          T(n) = 4T(n/2) + n
+        \]
+        since $n^{log_{b}{a}} = n^{log_{2}{4}} = n^2$, therefore $T(n) =
+        \Theta(n^{log_24}) = \Theta(n^2)$.
+  \item % TODO:
+        Work out what's going on...
 \end{enumerate}
 
 \section{Algorithmic correctness}
@@ -173,6 +183,78 @@ The master theorem is defined by three cases:
 
 \subsection{Sorting}
 
+A sorting algorithm takes as an input, an array of keys, where there is a
+\textit{total order} on the keys (each key can be compared to another), and
+produces as an output, the array where the keys are ordered according to their
+order.
+
+A total order is a relation that is transitive ($a \leq b \wedge b \leq c \implies a
+\leq c$), anti-symmetric ($a \leq b \wedge b \leq a \implies a = b$), and
+unsuprisingly, total ($a \leq b \wedge b \leq a$).
+
+If the ordering on the elements of the array isn't a total order then bad
+things can happen when you try and use an algorithm to sort the data. For
+example, if you were to try and sort an array of rocks, papers and scissors
+according to the rules of the traditional game, then you wouldn't have a
+transitive relation, and a sorting algorithm would probably loop infinately.
+
+\subsection{The complexity of sorting}
+
+The most common sorting algorithms are $O(n^2)$ time (this includes $O(n
+\log{n})$ algorithms too). Even though a polynomial sort time is good, sometimes
+we have billions of items to sort, and henceforth, a very long running time. In
+this situation, $n \log{n}$ sorts are much more preferable to $n^2$ sorts.
+
+Since we often don't know in advance exactly what data any sorting function will
+be given in advance, its important to know both the upper and lower bounds on
+the complexity of the sorting algorithm we're using.
+
+\begin{description}
+  \item The \textbf{upper bound} is the worst case time complexity of the
+  sort. For example the worst case complexity of Merge Sort is $O(n \log{n})$.
+
+  \item The \textbf{lower bound} complexity is always at least $O(n)$ for
+  sorting algorithms, since every item needs to be looked at once (if only to
+  check that the list is already sorted). Bucket, radix and bubble sort all
+  achieve this for certain inputs. No comparison based sort can ever achieve
+  a lower bound with less than $O(log_2(n!))$ comparisons.
+\end{description}
+
+\subsubsection{Worst case for comparison sorts}
+
+If we were to draw a decision tree for each possible path of a comparison sort,
+then we would get one with a depth of $log_2(n!)$, that produced all $n!$
+permutations of the input. An asymptotically optimal comparison sort must travel
+down this tree in its quest to find the answer. Mergesort and heapsort are
+optimal, while Quicksort is optimal for most inputs.
+
+\subsection{Sorting algorithms in detail}
+\begin{description}
+\item \textbf{Quicksort} \\
+  Quicksort is a \textbf{divide and conquer} algorithm, that uses a
+  \textbf{comparison based} method to sort items.
+
+  First the list is partitioned into two halves. To do this, a random pivot is
+  chosen from the list, and of the two new lists, one has the items less than
+  the pivot, and the other has the items greater or equal to it.
+
+  Quicksort is then applied to each sublist, so make them sorted, and then the
+  start of the right list is joined to the end of the left list.
+
+  See Listing~\ref{quicksort} for an example implementation.
+
+\item \textbf{Merge sort} \\
+\item \textbf{Radix sort and Bucket sort} \\
+\item \textbf{Heap sort} \\
+\end{description}
+
+
 \subsection{Searching}
 
 \subsection{Tree and graph traversal}
+
+\section{Code listings}
+
+\begin{lstlisting}
+  \lstinputlisting[language=Java]{code/QuickSort.java}
+\end{lstlisting}
