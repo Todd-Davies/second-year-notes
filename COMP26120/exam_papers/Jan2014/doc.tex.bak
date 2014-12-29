@@ -1,0 +1,59 @@
+\documentclass{article}
+
+% Tell me about my LaTeX bad practices
+\usepackage[l2tabu, orthodox]{nag}
+% For nice headers
+\usepackage{fancyhdr}
+% For line brakes in tables
+\usepackage{tabularx}
+% For the split environment
+\usepackage{amsmath}
+% For tabs in verbatim
+\usepackage{moreverb}
+% Means you don't have to put \\ to start a new line.
+\usepackage[parfill]{parskip}
+% For code listings
+\usepackage{listings}
+% For code listing colours
+\usepackage{color}
+% For images
+\usepackage[pdftex]{graphicx}
+% Make LaTeX pretty with better kerning etc
+\usepackage{microtype}
+
+\input{listingstyle.tex}
+
+\pagestyle{fancyplain}
+
+\author{Todd Davies}
+\title{COMP26120 - January 2014 - Answers}
+\date{\today}
+
+\begin{document}
+
+\rhead{COMP26120 - January 2014 - Answers}
+\lhead{\today}
+
+\maketitle
+
+\section{Question 1}
+
+\subsection{Part a}
+
+\lstinputlisting[language=Java, firstline=2, lastline=12, caption={
+	Add all of the pairs of integers together in the list. Do this by looping
+	through the list, and looping from 0$\rightarrow$currentIndex on each
+	iteration.
+}]{code/part1a.java}
+
+Since as we're iterating through the list, we are describing an arithetic series
+(we do one additions, then two, then three etc), we can use the formula
+$\frac{n(1+n)}{2}$ to find how many operations we're doing. This, in the Big-Oh
+notation, equates to $O(n^2)$ since constant terms are eliminated. In most
+cases, the result will be found significantly faster though.
+
+\subsection{Part b}
+
+
+
+\end{document}

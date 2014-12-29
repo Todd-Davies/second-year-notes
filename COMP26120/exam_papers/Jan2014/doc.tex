@@ -1,0 +1,88 @@
+\documentclass{article}
+
+% Tell me about my LaTeX bad practices
+\usepackage[l2tabu, orthodox]{nag}
+% Make the margins wider
+\usepackage[margin=1in]{geometry}
+% For nice headers
+\usepackage{fancyhdr}
+% For line brakes in tables
+\usepackage{tabularx}
+% For the split environment
+\usepackage{amsmath}
+% For tabs in verbatim
+\usepackage{moreverb}
+% Means you don't have to put \\ to start a new line.
+\usepackage[parfill]{parskip}
+% For code listings
+\usepackage{listings}
+% For code listing colours
+\usepackage{color}
+% For images
+\usepackage[pdftex]{graphicx}
+% Make LaTeX pretty with better kerning etc
+\usepackage{microtype}
+
+\input{listingstyle.tex}
+
+\pagestyle{fancyplain}
+
+\author{Todd Davies}
+\title{COMP26120 - January 2014 - Answers}
+\date{\today}
+
+\begin{document}
+
+\rhead{COMP26120 - January 2014 - Answers}
+\lhead{\today}
+
+\maketitle
+
+\begin{center}
+	\small Please don't assume these answers are right. This is me attempting a
+	past paper for revision purposes; I could have got it all wrong ;)
+\end{center}
+
+\section{Question 1}
+
+\subsection{Part a}
+
+\lstinputlisting[language=Java, firstline=2, lastline=12, caption={
+	Add all of the pairs of integers together in the list. Do this by looping
+	through the list, and looping from 0$\rightarrow$i on each
+	iteration.
+}]{code/part1a.java}
+
+Since as we're iterating through the list, we are describing an arithmetic series
+(we do one additions, then two, then three etc), we can use the formula
+$\frac{n(1+n)}{2}$ to find how many operations we're doing. This, in the Big-Oh
+notation, equates to $O(n^2)$ since constant terms are eliminated. In most
+cases, the result will be found significantly faster though.
+
+\newpage
+
+\subsection{Part b}
+
+\lstinputlisting[language=Java, firstline=2, lastline=11, caption={
+	Add the first list to a BitSet (a very compact array of bits), then iterate
+	through the second list and add items that are in the bit set to the output
+	array.
+}]{code/part2a.java}
+
+The worst case runtime of this algorithm is $O(n + m)$ since it iterates through
+both arrays once, and the loops aren't nested.
+
+\newpage
+
+\subsection{Part c}
+
+\lstinputlisting[language=Java, firstline=5, lastline=15, caption={
+	Create a new array containing the first half, and a new array containing the
+	second half, then replace them insert them into the original array.
+}]{code/part3a.java}
+
+The worst case runtime of this function is $O(n)$, since it only iterates
+through the array once. The space complexity is $O(2n)$, since I couldn't figure
+out how to do an in-place circular shift.
+
+\end{document}
