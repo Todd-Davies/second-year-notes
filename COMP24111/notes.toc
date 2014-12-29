@@ -8,3 +8,6 @@
 \contentsline {section}{\numberline {4}Perceptron}{6}{section.4}
 \contentsline {subsection}{\numberline {4.1}Multilayer Perceptrons (MLP)}{7}{subsection.4.1}
 \contentsline {section}{\numberline {5}Decision trees}{8}{section.5}
+\contentsline {subsection}{\numberline {5.1}Building a decision tree}{8}{subsection.5.1}
+\contentsline {subsubsection}{\numberline {5.1.1}Entropy}{8}{subsubsection.5.1.1}
+\contentsline {subsection}{\numberline {5.2}Overfitting decision trees}{10}{subsection.5.2}

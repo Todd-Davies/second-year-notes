@@ -8,3 +8,6 @@
 \BOOKMARK [1][-]{section.4}{Perceptron}{}% 8
 \BOOKMARK [2][-]{subsection.4.1}{Multilayer Perceptrons \(MLP\)}{section.4}% 9
 \BOOKMARK [1][-]{section.5}{Decision trees}{}% 10
+\BOOKMARK [2][-]{subsection.5.1}{Building a decision tree}{section.5}% 11
+\BOOKMARK [3][-]{subsubsection.5.1.1}{Entropy}{subsection.5.1}% 12
+\BOOKMARK [2][-]{subsection.5.2}{Overfitting decision trees}{section.5}% 13
