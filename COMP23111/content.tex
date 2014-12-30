@@ -64,3 +64,184 @@ and three languages to interface with a user/application. These are:
 
 Often DBMS languages will be both a DML and a DQL, and sometimes a DDL too! One
 such example is SQL, does all of the above!
+
+\section{Relational Algebra and SQL}
+
+Relational algebra is designed for modelling data stored in relational databases
+(i.e. tables) and defining queries on it. It can perform unary operations (such
+as growing, shrinking and selecting from tables), or binary operations (union,
+intersection, difference, product, join).
+
+\subsection{Selection $\sigma$}
+
+The $\sigma$ operator can select rows that meet a certain criteria from the
+table.
+
+\begin{center}
+  \begin{tabular}{lll}
+    \multicolumn{3}{c}{\textbf{Alcohol-Selection}}\\
+    {Type} & {Strength} & {Colour}\\ \hline
+    Wine          & 11                & Red\\
+    Beer          & 4.2               & Yellow\\
+    Wine          & 12.8              & White\\
+    Port          & 18                & Carmine\\
+    Ale           & 11                & Red\\
+  \end{tabular}
+\end{center}
+
+If we run $\text{\it Fine-Wines}:=\sigma_{Type=Wine}(\text{\it Alcohol-
+Selection})$, we'll end up with:
+
+\begin{center}
+  \begin{tabular}{lll}
+    \multicolumn{3}{c}{\textbf{Fine-Wines}}\\
+    {Type} & {Strength} & {Colour}\\ \hline
+    Wine          & 11                & Red\\
+    Wine          & 12.8              & White\\
+  \end{tabular}
+\end{center}
+
+\subsection{Projection $\pi$}
+
+The $\pi$ operator can select rows instead of columns. If we do $\text{\it
+Anonymous-Drinks} := \pi_{Strength, Colour}(\text{\it Alcohol-Selection})$:
+
+\begin{center}
+  \begin{tabular}{ll}
+    \multicolumn{2}{c}{\textbf{Anonymous-Drinks}}\\
+    {Strength} & {Colour}\\ \hline
+    11         & Red\\
+    4.2        & Yellow\\
+    12.8       & White\\
+    18         & Carmine\\
+  \end{tabular}
+\end{center}
+
+Notice that both the 11\% Ale and the 11\% Red Wine have the same strength and
+colour values. Consequently, the projection operator combines those rows into
+one so the same result isn't displayed twice.
+
+Projection can also be used to do simple arithmetic, $\text{\it Test} :=
+\pi_{Strength + Strength->DStrength, Colour}(\text{\it Anonymous-Drinks})$:
+
+\begin{center}
+  \begin{tabular}{ll}
+    \multicolumn{2}{c}{\textbf{Test}}\\
+    {DStrength} & {Colour}\\ \hline
+    22         & Red\\
+    8.4        & Yellow\\
+    25.6       & White\\
+    36         & Carmine\\
+  \end{tabular}
+\end{center}
+
+\subsection{Product $\times$}
+
+\begin{center}
+  \begin{tabular}{lll}
+    \multicolumn{3}{c}{\textbf{Shops}}\\
+    {Name}           & {Dodginess} & {Price}\\ \hline
+    Ali's            & High        & Medium \\
+    Tesco            & Low         & Medium \\
+    New Zeland Wines & X.High      & Low    \\
+  \end{tabular}
+\end{center}
+
+We could do a cross product with the Shops and the Alcohol-Selection tables
+$\text{\it Grog-Shops} := \text{\it Shops} \times \text{\it Alcohol-Selection}$:
+
+\begin{center}
+  \begin{tabular}{llllll}
+    \multicolumn{6}{c}{\textbf{Grog-Shops}}\\
+    {Name}           & {Dodginess} & {Price} & {Type} & {Strength} & {Colour}\\ \hline
+    Ali's            & High        & Medium  & Wine          & 11                & Red\\
+    Ali's            & High        & Medium  & Beer          & 4.2               & Yellow\\
+    Ali's            & High        & Medium  & Wine          & 12.8              & White\\
+    Ali's            & High        & Medium  & Port          & 18                & Carmine\\
+    Ali's            & High        & Medium  & Ale           & 11                & Red\\
+    Tesco            & Low         & Medium  & Wine          & 11                & Red\\
+    Tesco            & Low         & Medium  & Beer          & 4.2               & Yellow\\
+    Tesco            & Low         & Medium  & Wine          & 12.8              & White\\
+    Tesco            & Low         & Medium  & Port          & 18                & Carmine\\
+    Tesco            & Low         & Medium  & Ale           & 11                & Red\\ 
+    New Zeland Wines & X.High      & Low     & Wine          & 11                & Red\\
+    New Zeland Wines & X.High      & Low     & Beer          & 4.2               & Yellow\\
+    New Zeland Wines & X.High      & Low     & Wine          & 12.8              & White\\
+    New Zeland Wines & X.High      & Low     & Port          & 18                & Carmine\\
+    New Zeland Wines & X.High      & Low     & Ale           & 11                & Red\\
+  \end{tabular}
+\end{center}
+
+\subsection{Renaming $\rho$}
+
+The notation for renaming columns is pretty simple; $\text{\it Drinks} :=
+\rho_{Name, Strength, Hue}(\text{\it Alcohol-Selection})$
+
+\begin{center}
+  \begin{tabular}{lll}
+    \multicolumn{3}{c}{\textbf{Drinks}}\\
+    {Name} & {Strength} & {Hue}\\ \hline
+    Wine          & 11                & Red\\
+    Beer          & 4.2               & Yellow\\
+    Wine          & 12.8              & White\\
+    Port          & 18                & Carmine\\
+    Ale           & 11                & Red\\
+  \end{tabular}
+\end{center}
+
+\subsection{Join $\Join$}
+
+If we had:
+
+\begin{center}
+  \begin{tabular}{lll}
+    \multicolumn{2}{c}{\textbf{People}}\\
+    {Name} & {Drinks}\\ \hline
+    Alice  & Wine\\ 
+    Bob    & Beer\\ 
+  \end{tabular}
+\end{center}
+
+We could join it with the Grog-Shops table, using $\text{\it Fave-Shops} :=
+People \Join_{People.Drinks=Grog-Shops.Type}(\text{\it Grog-Shops})$
+
+\begin{center}
+  \begin{tabular}{lllllll}
+    \multicolumn{7}{c}{\textbf{Fave-Shops}}\\
+    {Person.Name} & {Grog-Shops.Name}& {Dodginess} & {Price} & {Type} & {Strength} & {Colour}\\ \hline
+    Alice         &  Ali's            & High        & Medium  & Wine          & 11                & Red\\
+    Bob           &  Ali's            & High        & Medium  & Beer          & 4.2               & Yellow\\
+    Alice         &  Ali's            & High        & Medium  & Wine          & 12.8              & White\\
+    Alice         &  Tesco            & Low         & Medium  & Wine          & 11                & Red\\
+    Bob           &  Tesco            & Low         & Medium  & Beer          & 4.2               & Yellow\\
+    Alice         &  Tesco            & Low         & Medium  & Wine          & 12.8              & White\\
+    Alice         &  New Zeland Wines & X.High      & Low     & Wine          & 11                & Red\\
+    Bob           &  New Zeland Wines & X.High      & Low     & Beer          & 4.2               & Yellow\\
+    Alice         &  New Zeland Wines & X.High      & Low     & Wine          & 12.8              & White\\
+  \end{tabular}
+\end{center}
+
+If two tables have a column of the same name, then they can be joined naturally
+without specifying which columns to join explicitly.
+
+\subsection{Distinct $\delta$}
+
+The $\delta$ operator will ensure that no rows are duplicated.
+
+\subsection{Chaining operators}
+
+Just like in normal algebra, you can chain operators:
+
+$\delta(\pi_{Strength, Colour}(\text{\it Alcohol-Selection}))$
+
+Gives:
+
+\begin{center}
+  \begin{tabular}{lll}
+    {Strength} & {Colour}\\ \hline
+    11                & Red\\
+    4.2               & Yellow\\
+    12.8              & White\\
+    18                & Carmine\\
+  \end{tabular}
+\end{center}

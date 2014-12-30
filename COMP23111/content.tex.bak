@@ -49,7 +49,7 @@ schema. A schema dictates how the database is formatted; what tables there are,
 and what datatypes their columns take. An instance of a database is the content
 (data) inside of the database at a particular point in time. There is a certain
 isomorphism between relational databases and imperative programming languages; a
-schema would be akin to the decleration of variables (i.e. their names and
+schema would be akin to the declaration of variables (i.e. their names and
 types), while the instance would be their values at a particular point in the
 program's execution.
 
@@ -62,5 +62,98 @@ and three languages to interface with a user/application. These are:
   \item Data Query Language - used to access data in the database.
 \end{itemize}
 
-Often DBMS languages will be both a DML and a DQL, and somtimes a DDL too! One
+Often DBMS languages will be both a DML and a DQL, and sometimes a DDL too! One
 such example is SQL, does all of the above!
+
+\section{Relational Algebra and SQL}
+
+Relational algebra is designed for modelling data stored in relational databases
+(i.e. tables) and defining queries on it. It can perform unary operations (such
+as growing, shrinking and selecting from tables), or binary operations (union,
+intersection, difference, product, join).
+
+\subsection{Selection $\sigma$}
+
+The $\sigma$ operator can select rows that meet a certain criteria from the
+table.
+
+\begin{center}
+  \begin{tabular}{lll}
+    \multicolumn{3}{c}{\textbf{Alcohol-Selection}}\\
+    {Type} & {Strength} & {Colour}\\ \hline
+    Wine          & 11                & Red\\
+    Beer          & 4.2               & Yellow\\
+    Wine          & 12.8              & White\\
+    Port          & 18                & Carmine\\
+    Ale           & 11                & Red\\
+  \end{tabular}
+\end{center}
+
+If we run $\text{\it Fine-Wines}:=\sigma_{Type=Wine}(\text{\it Alcohol-
+Selection})$, we'll end up with:
+
+\begin{center}
+  \begin{tabular}{lll}
+    \multicolumn{3}{c}{\textbf{Fine-Wines}}\\
+    {Type} & {Strength} & {Colour}\\ \hline
+    Wine          & 11                & Red\\
+    Wine          & 12.8              & White\\
+  \end{tabular}
+\end{center}
+
+\subsection{Projection $\pi$}
+
+The $\pi$ operator can select rows instead of columns. If we do $\text{\it
+Anonymous-Drinks} := \pi_{Strength, Colour}(\text{\it Alcohol-Selection})$:
+
+\begin{center}
+  \begin{tabular}{ll}
+    \multicolumn{2}{c}{\textbf{Anonymous-Drinks}}\\
+    {Strength} & {Colour}\\ \hline
+    11         & Red\\
+    4.2        & Yellow\\
+    12.8       & White\\
+    18         & Carmine\\
+  \end{tabular}
+\end{center}
+
+Notice that both the 11\% Ale and the 11\% Red Wine have the same strength and
+colour values. Concequently, the projection operator combines those rows into
+one so the same result isn't displayed twice.
+
+\subsection{Product $\times$}
+
+\begin{center}
+  \begin{tabular}{lll}
+    \multicolumn{3}{c}{\textbf{Shops}}\\
+    {Name}           & {Dodginess} & {Price}\\ \hline
+    Ali's            & High        & Medium \\
+    Tesco            & Low         & Medium \\
+    New Zeland Wines & X.High      & Low    \\
+  \end{tabular}
+\end{center}
+
+We could do a cross product with the Shops and the Alcohol-Selection tables
+$\text{\it Grog-Shops} := \text{\it Shops} \times \text{\it Alcohol-Selection}$:
+
+\begin{center}
+  \begin{tabular}{llllll}
+    \multicolumn{6}{c}{\textbf{Grog-Shops}}\\
+    {Name}           & {Dodginess} & {Price} & {Type} & {Strength} & {Colour}\\ \hline
+    Ali's            & High        & Medium  & Wine          & 11                & Red\\
+    Ali's            & High        & Medium  & Beer          & 4.2               & Yellow\\
+    Ali's            & High        & Medium  & Wine          & 12.8              & White\\
+    Ali's            & High        & Medium  & Port          & 18                & Carmine\\
+    Ali's            & High        & Medium  & Ale           & 11                & Red\\
+    Tesco            & Low         & Medium  & Wine          & 11                & Red\\
+    Tesco            & Low         & Medium  & Beer          & 4.2               & Yellow\\
+    Tesco            & Low         & Medium  & Wine          & 12.8              & White\\
+    Tesco            & Low         & Medium  & Port          & 18                & Carmine\\
+    Tesco            & Low         & Medium  & Ale           & 11                & Red\\ 
+    New Zeland Wines & X.High      & Low     & Wine          & 11                & Red\\
+    New Zeland Wines & X.High      & Low     & Beer          & 4.2               & Yellow\\
+    New Zeland Wines & X.High      & Low     & Wine          & 12.8              & White\\
+    New Zeland Wines & X.High      & Low     & Port          & 18                & Carmine\\
+    New Zeland Wines & X.High      & Low     & Ale           & 11                & Red\\
+  \end{tabular}
+\end{center}

@@ -1,1 +1,9 @@
 \contentsline {section}{\numberline {1}An introduction to Database Management Systems}{3}{section.1}
+\contentsline {section}{\numberline {2}Relational Algebra and SQL}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Selection $\sigma $}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Projection $\pi $}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Product $\times $}{4}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Renaming $\rho $}{5}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Join $\theta $}{5}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}Distinct $\delta $}{6}{subsection.2.6}
+\contentsline {subsection}{\numberline {2.7}Chaining operators}{6}{subsection.2.7}
