@@ -16,3 +16,8 @@
 \BOOKMARK [2][-]{subsection.3.1}{Managing processes}{section.3}% 16
 \BOOKMARK [3][-]{subsubsection.3.1.1}{Scheduling}{subsection.3.1}% 17
 \BOOKMARK [3][-]{subsubsection.3.1.2}{Context switching}{subsection.3.1}% 18
+\BOOKMARK [1][-]{section.4}{Synchronisation}{}% 19
+\BOOKMARK [2][-]{subsection.4.1}{Semaphores}{section.4}% 20
+\BOOKMARK [2][-]{subsection.4.2}{Deadlock}{section.4}% 21
+\BOOKMARK [1][-]{section.5}{Java Threads}{}% 22
+\BOOKMARK [2][-]{subsection.5.1}{The synchronized keyword}{section.5}% 23

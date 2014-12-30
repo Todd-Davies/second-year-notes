@@ -16,3 +16,16 @@
 \usepackage{graphicx}
 % Make LaTeX pretty with better kerning etc
 \usepackage{microtype}
+
+% Set up listings
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage[T1]{fontenc}
+\usepackage[variablett]{lmodern}
+\definecolor{OliveGreen}{RGB}{60,128,49}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+\lstset{language=Java,captionpos=b,tabsize=1,frame=lines,keywordstyle=\color{blue},commentstyle=\color{OliveGreen},stringstyle=\color{red},numbers=left,numberstyle=\tiny,numbersep=1pt,breaklines=true,showstringspaces=false,basicstyle=\footnotesize,emph={label}}

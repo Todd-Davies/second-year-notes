@@ -487,3 +487,208 @@ process, it won't have to switch in most of the information about memory, since
 the threads will use the same memory space. Because of this, the memory cache
 might also be more efficient due to locality of reference.
 
+\section{Synchronisation}
+
+When two threads or processes haves access to the same data, there is a danger
+that they could interfere with each other by using the data as a medium. This
+issue is especially acute when there are two threads in the same process, since
+they occupy the same memory space.
+
+\textbf{Race conditions} can often occur as a result of shared access to data,
+and when synchronisation isn't (properly) used to regulate execution. A race
+condition is when one or more processes/threads execute in parallel, but the
+outcome depends on which finishes (or gets to a critical section \marginpar{A
+critical section is a block of code that uses data that is shared between
+threads, consequently, only one thread should be `in' the critical section at
+once.}) first. Since a thread is not guaranteed to always run at the same speed
+(due to clock frequencies changing, hardware being busy etc), race conditions
+are unpredictable, and are often hard to debug.
+
+Data inconsistency can occur when threads are executing in parallel, but they
+have different values for what should be the same data. This can occur when two
+or more threads try and update (or read from) a variable at once. Although
+reading and writing to a variable is often written as one instruction in most
+reasonably high level programming languages, further down the software stack, it
+could comprise of many CPU instructions If these were to interleave, then strange
+things could happen.
+
+For example, if I had one thread adding 10 to an integer (initialised to 0), and
+another adding 6 this could happen:
+
+\begin{lstlisting}
+  Thread A: Read variable 
+  Thread B: Read variable 
+  Thread A: Add 10        
+  Thread B: Add 6         
+  Thread A: Write variable
+  Thread B: Write variable
+\end{lstlisting}
+
+Now the value of the variable will be 6, since Thread A's write has been
+overwritten by Thread B.
+
+The solution to this, is to have only one thread in a critical section at once
+(writing to the variable would be considered a critical section in this
+instance). This idea is called \textbf{Mutual Exclusion}, since only one thread
+can be active at a time. It is often achieved in the form of a mutex lock, which
+a thread will occupy when it enters a critical section, and release when it
+exits.
+
+\subsection{Semaphores}
+
+The famous computer scientist Dijkstra formulated a lightweight way to ensure
+that only a specific number of processes would enter the critical section at any
+one time, using only one integer variable.
+
+If a process wanted to enter it's critical section, it would wait until the
+Semaphore variable (\texttt{S}) was greater than zero. When it was, then the
+process would decrement \texttt{S} and then enter it's critical section. When it
+leaves it's critical section, it will increment \texttt{S} to indicate that the
+`space' is free. See Listing~\ref{lst:semaphore} for an implementation.
+
+\marginpar{There are numerous errors in Listing~\ref{lst:semaphore} (although
+it's fine as an example), it wouldn't work very well in production, can you
+spot them?}
+
+\begin{lstlisting}[language=Java, label=lst:semaphore, caption={A Java
+                   implementation of a Semaphore}]
+  public abstract class Semaphore {
+    private int S = 0;
+
+    public Semaphore(int numThreads) {
+      S = numThreads;
+    }
+
+    // P = Procure the critical section
+    public synchronised void P() {
+      while(S <= 0);
+      S--;
+    }
+
+    // V = Vacate the critical section
+    public synchronised void V() {
+      S++;
+    }
+  }
+\end{lstlisting}
+
+Using an integer instead of a boolean is good, since it allows for a
+configurable number of processes to be working concurrently in the critical
+section, not just one. However, for most applications, only one thread can be in
+the critical section at once for the aforementioned reasons.
+
+Although it's easy to implement a semaphore that uses a while loop to wait until
+another process is ready, this is very wasteful of CPU time (it's also known as
+a busy-wait). A better way to do it is to halt execution of the thread
+altogether until another semaphore space is ready. An example of this is given
+in Listing~\ref{lst:semaphore-clever}.
+
+\begin{lstlisting}[language=Java, label=lst:semaphore-clever, caption={A Java
+                   implementation of a Semaphore that doesn't use busy loops}]
+  public abstract class Semaphore {
+    private int S = 0;
+
+    public Semaphore(int numThreads) {
+      S = numThreads;
+    }
+
+    // P = Procure the critical section
+    public synchronised void P() {
+      while(S <= 0) {
+        try { wait(); }
+        catch(InterruptedException e) { e.printStackTrace(); }
+      }
+      S--;
+    }
+
+    // V = Vacate the critical section
+    public synchronised void V() {
+      S++;
+      if(S > 0) notifyAll();
+    }
+  }
+\end{lstlisting}
+
+\subsection{Deadlock}
+
+Deadlock is when more than one process is waiting for something that can only be
+provided by a process that is also in deadlock. It's a complicated thing for an
+operating system to even detect, never mind solve.
+
+\section{Java Threads}
+
+For some reason, the University decides to teach us about Java threads in an
+Operating Systems course, not in the Java course. Hmmm\dots.
+
+The most basic way to run code concurrently in Java is probably to make a
+subclass of \texttt{java.lang.Thread}, and call \texttt{start()}, or make your
+class implement the \texttt{Runnable} interface.
+
+\begin{lstlisting}[language=Java,caption=Extending the Thread class]
+  class BitcoinMiner extends Thread {
+    public void run() {
+      // Mine many bitcoins...
+    }
+  }
+
+  ...
+
+  BitcoinMiner miner = new BitcoinMiner(...);
+  miner.start();
+\end{lstlisting}
+
+\begin{lstlisting}[language=Java,caption=Using the runnable interface,
+                   label=lst:doge]
+  class DogecoinMiner implements Runnable {
+    public void run() {
+      // very mine..
+      // such fun
+    }
+  }
+
+  ...
+
+  new Thread(new DogecoinMiner()).start();
+\end{lstlisting}
+
+Threads provide three notable methods:
+
+\begin{description}
+  \item \texttt{sleep(millis)}\\
+    Sleeps the thread for an amount of milliseconds. Basically, it says
+    \textit{I'm done with my timeslice, and please don't give me another one for
+    at least n milliseconds.}
+  \item \texttt{wait()}\\
+    Stop executing the thread until somebody calls \texttt{notify()}.
+    \textit{I'm done with my timeslice. Don't give me another timeslice until
+    someone calls notify().}
+  \item \texttt{notify()}\\
+    Wakes up one thread that is sleeping.
+  \item \texttt{notifyAll()}\\
+    Wakes up \textit{all} the threads that are sleeping.
+\end{description}
+
+\subsection{The \texttt{synchronized} keyword}
+
+In Java, every object comes with it's very own mutually exclusive lock. When the
+object is locked, threads other than the one that locked the object cannot use
+it until the object is unlocked by that thread, and therefore only one thread
+can hold the lock at any one time.
+
+Methods can also be made to come with a built in lock, in order to do so, you
+must declare them as \texttt{synchronized}. The lock must be obtained before the
+method will start (even though it may have been called).
+
+Locks are automatically obtained and relinquished (kind of), so synchronization
+is important to get right when you're writing your methods and objects, but less
+so when you're using them.
+
+You can, in fact, synchronize any block of code, by wrapping it in a
+\texttt{synchronized(expression){...}} block. The expression is an object whose
+lock will be held while the block of code between the curly brackets is
+executed.
+
+You can see in Listing~\ref{lst:semaphore-clever}, I've used a \texttt{while}
+loop to make the thread wait. This is because we might not always obtain the
+lock on the first go. Likewise, I also used \texttt{notifyAll()} in case a
+thread doesn't wake up properly or doesn't receive the wakeup.

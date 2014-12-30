@@ -5,11 +5,11 @@
 \contentsline {subsection}{\numberline {1.4}The Fetch Execute Cycle}{4}{subsection.1.4}
 \contentsline {subsubsection}{\numberline {1.4.1}Fetching instructions}{4}{subsubsection.1.4.1}
 \contentsline {subsubsection}{\numberline {1.4.2}Executing instructions}{4}{subsubsection.1.4.2}
-\contentsline {paragraph}{{\tt JMP}}{4}{section*.5}
-\contentsline {paragraph}{{\tt STA}}{4}{section*.6}
-\contentsline {paragraph}{{\tt ADD}}{4}{section*.7}
-\contentsline {paragraph}{Control Signals}{4}{section*.8}
-\contentsline {paragraph}{Timing}{5}{section*.9}
+\contentsline {paragraph}{{\tt JMP}}{4}{section*.7}
+\contentsline {paragraph}{{\tt STA}}{4}{section*.8}
+\contentsline {paragraph}{{\tt ADD}}{4}{section*.9}
+\contentsline {paragraph}{Control Signals}{4}{section*.10}
+\contentsline {paragraph}{Timing}{5}{section*.11}
 \contentsline {subsubsection}{\numberline {1.4.3}Deriving the datapaths from the operation of instruction}{5}{subsubsection.1.4.3}
 \contentsline {subsection}{\numberline {1.5}Control Signals}{5}{subsection.1.5}
 \contentsline {section}{\numberline {2}What does an Operating System do?}{5}{section.2}
@@ -21,3 +21,8 @@
 \contentsline {subsection}{\numberline {3.1}Managing processes}{7}{subsection.3.1}
 \contentsline {subsubsection}{\numberline {3.1.1}Scheduling}{8}{subsubsection.3.1.1}
 \contentsline {subsubsection}{\numberline {3.1.2}Context switching}{10}{subsubsection.3.1.2}
+\contentsline {section}{\numberline {4}Synchronisation}{11}{section.4}
+\contentsline {subsection}{\numberline {4.1}Semaphores}{11}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Deadlock}{12}{subsection.4.2}
+\contentsline {section}{\numberline {5}Java Threads}{12}{section.5}
+\contentsline {subsection}{\numberline {5.1}The \texttt {synchronized} keyword}{13}{subsection.5.1}
