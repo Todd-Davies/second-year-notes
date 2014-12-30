@@ -456,3 +456,72 @@ tree.
   tree.}
   \label{fig:overfitting}
 \end{figure}
+
+\section{Learning experiments in Machine Learning}
+
+The way we train our ML algorithms, is to get all the data that we have access
+to and split it in half. Then, we can train on the first half and test our
+parameters on the second half. Often we don't split the data into equal halves,
+but make the training set smaller than the testing set.
+
+When we test our algorithm on the datasets, we usually get a height `testing
+error' than `training error'. This is because we have trained our ML algorithm
+on the training data, so it will usually be better at classifying it.
+
+\subsection{Cross validation}
+
+To make better use of our data, we could split our \textbf{training data} into
+$n$ chunks, train on $n-1$ chunks and test on the one that has been left out,
+before rotating the chunks so that a different one is for testing. Then, see
+which parameters were best in our training rounds, and use them on the training
+data.
+
+The aim is to make sure that all the data has an equal chance of appearing in
+the training or the testing set.
+
+\subsection{Dealing with misclassifications}
+
+If we had one class that was very rare, and another that was almost ubiquitous,
+then it would be hard to train our algorithm, since we would always get low
+error rates by always classifying as the most common class.
+
+The solution to this is to measure the accuracy on each class separately, and
+try to get a distributed, but low error rate over all the classes.
+
+We can create a confusion matrix to analyse our errors:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{lc|c|c}
+		& \multicolumn{3}{c}{Prediction} \\
+		& & Class 1 & Class 2 \\ \cline{2-4}
+		\multirow{2}{*}{Actual value} & Class 1 & Correct1 & False-Positive1\\ \cline{2-4}
+		& Class 2 & False-Positive2 & Correct2\\
+	\end{tabular}
+\end{table}
+
+If Class 2 was the rare one, then we could calculate our \textit{sensitivity}
+(the chances of correctly classifying it when given it) by doing:
+
+\[
+	\frac{Correct2}{Correct2 + False-Positive2}
+\]
+
+We could calculate our \textit{specificity}, which is the chance of correctly
+classifying a member of Class 2 (the common one) by doing:
+
+\[
+	\frac{Correct1}{Correct1 + False-Positive1}
+\]
+
+Confusion Matrices are also useful if falsely classifying one class is worse
+than falsely classifying another, since you can work out the cost of false
+classifications:
+
+\[
+	cost = (\#False-Positive-1 \times cost1) + (\#False-Positive-2 \times cost2)
+\]
+
+This is called ROC (Receiver Operator Characteristics). It was developed in
+world war two (hence the weird name) to help analyse radar classifications of
+bombers.

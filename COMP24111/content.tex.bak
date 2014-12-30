@@ -292,7 +292,7 @@ A a multilayer perceptron is basically a graph structure, where every node is a
 perceptron, and edges are connections from the output of one perceptron to the
 input of another. In order to make this work, a different type of perceptron is
 often used. Instead of having a threshold value that is compared to the sum of
-the weighted inputs, the sum is run through a sigmoid funciton before being
+the weighted inputs, the sum is run through a sigmoid function before being
 output.
 
 With a network of perceptrons, the decision boundary can now be curved and
@@ -307,4 +307,221 @@ is used. However, this is beyond the scope of this course.
 
 % (Linear classifier == Decision stump) because it's like a decision tree with one level
 
+A decision tree is a tree of questions, where the answers to each question will
+either lead to another question, or a classification/answer. They are good at
+handling categorical data, and worse at handling continuous data, since they
+require a specific answer to progress to the next level of the tree.
 
+\subsection{Building a decision tree}
+
+An algorithm to build a decision tree is relatively easy to come up with.
+Listing~\ref{createDecisionTree} shows an example algorithm (adapted from the
+course notes).
+
+\begin{lstlisting}[language=java, label=createDecisionTree,
+                   caption=An algorithm (the ID3 algorithm) to produce a
+                  decision tree in Java]
+  Tree learnTree(data) {
+    if(isAllSameLabel(data) != null) {
+      return new Leaf(isAllSameLabel(data));
+    } else {
+      Tree out = new Tree();
+      Feature importantFeature = extractImportantFeature(data);
+      for(Value v : importantFeature.values) {
+        out.addBranch(v, learnTree(importantFeature.rowsWithValue(data, v)));
+      }
+      return out;
+    }
+  }
+\end{lstlisting}
+
+This is kind of understandable, but there are some quirks. How do we extract an
+important feature?
+
+\subsubsection{Entropy}
+
+Entropy is the amount of information contained in a variable, given the symbol
+$H$.
+
+\[
+  H(x) = -\sum\limits_ip(x_i)log_2p(x_i)
+\] 
+
+We measure entropy in bits, since we're using log of base 2.
+
+When we're choosing an important feature, we want to reduce the entropy in the
+system, so that we gain the maximum amount of information. The best feature to
+choose is the one where the $H(T) - H(T | F)$ is largest, as defined by:
+
+\marginpar{$F$ is a feature, such as windy, or bottle size...}
+
+\begin{align*}
+  H(T) &= \text{The entropy before the split}\\
+  H(T | F_1) &= \text{The entropy of the data on the first branch}\\
+  H(T | F_n) &= \text{The entropy of the data on the n'th branch}\\
+  H(T | F) &= \text{The weighted average of the entropy on all the branches}\\
+\end{align*}
+
+If we had the following table:
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{l l l}
+    \textbf{Colour} & \textbf{Bottle Size} & \textbf{Class}\\
+    Red     & Big   & Wine\\
+    Red     & Big   & Beer\\
+    Yellow  & Small & Cider\\
+    White   & Big   & Wine\\
+    Yellow  & Small & Beer\\
+  \end{tabular}
+\end{table}
+
+We can compute $H(T)$:
+
+\begin{align*}
+  H(T) &= -\sum\limits_ip(x_i)log_2p(x_i)\\
+       &= -(\frac{1}{5}log_2\frac{1}{5} + \frac{2}{5}log_2\frac{2}{5} + \frac{2}{5}log_2\frac{2}{5})\\
+       &= 1.52193
+\end{align*}
+
+If we choose the size to be our next question:
+
+\begin{align*}
+  H(T | S = Small) &= -\left(\frac{1}{2}log_2\frac{1}{2} + \frac{1}{2}log_2\frac{1}{2}\right)\\
+                   &= 1\\
+  H(T | S = Big)   &= -\left(\frac{1}{3}log_2\frac{1}{3} + \frac{2}{3}log_2\frac{2}{3}\right)\\
+                   &= 0.91830\\
+  H(T | S)         &= \frac{2}{5}H(T | S = Small) + \frac{3}{5}H(T | S = Big)\\
+                   &= 0.95098
+\end{align*}
+
+If we chose colour:
+
+\begin{align*}
+  H(T | C = Red)   &= -\left(\frac{1}{2}log_2\frac{1}{2} + \frac{1}{2}log_2\frac{1}{2}\right)\\
+                   &= 1\\
+  H(T | C = Yellow)&= -\left(\frac{1}{2}log_2\frac{1}{2} + \frac{1}{2}log_2\frac{1}{2}\right)\\
+                   &= 1\\
+  H(T | C = White) &= -\left(\frac{1}{1}log_2\frac{1}{1}\right)\\
+                   &= 0\\
+  H(T | C)         &= \frac{2}{5}H(T | C = Red) + \frac{2}{5}H(T | C = Yellow) + \frac{1}{5}H(T | C = White)\\
+                   &= 0.8
+\end{align*}
+
+What should we choose then? Well:
+
+\begin{align*}
+  H(T) - H(T | C) &= 1.52193 - 0.8 &= 0.72193\\
+  H(T) - H(T | S) &= 1.52193 - 0.95098 &= 0.57095\\
+\end{align*}
+
+Therefore we should choose colour to be our first question, since it has the
+maximum value of $H(T) - H(T|F)$
+
+\subsection{Overfitting decision trees}
+
+It is important to ensure that decision trees are not overfitted. The most
+extreme case of overfitting, is when you have $n$ rules, and $n$ pieces of data
+in your dataset (i.e. you have a rule for every piece of data).
+
+In order to stop overfitting, we can either stop generating the tree after a
+certain depth (which also keeps it small and efficient), or we can prune the
+tree after we've built it to make it smaller.
+
+Figure~\ref{fig:overfitting} shows when it's best to start pruning the decision
+tree.
+
+\begin{figure}[!h]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[ 
+      xlabel=Depth of Tree,
+      ylabel=Error Rate,
+      yticklabels={,,},
+      xticklabels={,,},
+      after end axis/.append code={
+        \draw [thick] (200,0) -- (200,500);
+      }
+    ] 
+      % Revision procrastination = coming up with functions to describe the
+      % curves properly!
+      \addplot[mark=none, color=red][domain=2:6] {0.2*(x-3)^2 + 5}; 
+      \addplot[mark=none, color=blue, dashed][domain=2:6] {-0.1 * x^2 + 5}; 
+    \end{axis}
+  \end{tikzpicture}
+  \caption{The vertical line shows the cutoff point, where the error rate for
+  testing with the validation data (red, unbroken) begins to rise, while the
+  error rate for the training data (blue, dashed), which we're generating the
+  decision tree from, is still improving. It is here that we should prune the
+  tree.}
+  \label{fig:overfitting}
+\end{figure}
+
+\section{Learning experiments in Machine Learning}
+
+The way we train our ML algorithms, is to get all the data that we have access
+to and split it in half. Then, we can train on the first half and test our
+parameters on the second half. Often we don't split the data into equal halves,
+but make the training set smaller than the testing set.
+
+When we test our algorithm on the datasets, we usually get a height `testing
+error' than `training error'. This is because we have trained our ML algorithm
+on the training data, so it will usually be better at classifying it.
+
+\subsection{Cross validation}
+
+To make better use of our data, we could split our \textbf{training data} into
+$n$ chunks, train on $n-1$ chunks and test on the one that has been left out,
+before rotating the chunks so that a different one is for testing. Then, see
+which parameters were best in our training rounds, and use them on the training
+data.
+
+The aim is to make sure that all the data has an equal chance of appearing in
+the training or the testing set.
+
+\subsection{Dealing with misclassifications}
+
+If we had one class that was very rare, and another that was almost ubiquitous,
+then it would be hard to train our algorithm, since we would always get low
+error rates by always classifying as the most common class.
+
+The solution to this is to measure the accuracy on each class separately, and
+try to get a distributed, but low error rate over all the classes.
+
+We can create a confusion matrix to analyse our errors:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{lc|c|c}
+		& \multicolumn{3}{c}{Prediction} \\
+		& & Class 1 & Class 2 \\ \cline{2-4}
+		\multirow{2}{*}{Actual value} & Class 1 & Correct1 & False-Positive1\\ \cline{2-4}
+		& Class 2 & False-Positive2 & Correct2\\
+	\end{tabular}
+\end{table}
+
+If Class 2 was the rare one, then we could calculate our \textit{sensitivity}
+(the chances of correctly classifying it when given it) by doing:
+
+\[
+	\frac{Correct2}{Correct2 + False-Positive2}
+\]
+
+We could calculate our \textit{specificity}, which is the chance of correctly
+classifying a member of Class 2 (the common one) by doing:
+
+\[
+	\frac{Correct1}{Correct1 + False-Positive1}
+\]
+
+Confusion Matricese are also useful if falsely classifying one class is worse
+than falsely classifying another, since you can work out the cost of false
+classifications:
+
+\[
+	cost = (\#False-Positive-1 \times cost1) + (\#False-Positive-2 \times cost2)
+\]
+
+This is called ROC (Reciever Operator Characteristics). It was developed in
+world war two (hence the weird name) to help analyse radar classifications of
+bombers.
