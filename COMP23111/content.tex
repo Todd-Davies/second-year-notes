@@ -248,4 +248,170 @@ Gives:
 
 \section{SQL Syntax}
 
-% Yay, this'll be fun!
+\subsection{Selecting rows}
+
+The SQL command to select rows from a table is:
+
+\begin{verbatim}
+	SELECT <column-name>
+	FROM <table-name>;
+\end{verbatim}
+
+If you only want distinct values from a column, use \texttt{DISTINCT}:
+
+\begin{verbatim}
+	SELECT DISTINCT <column-name>
+	FROM <table-name>;
+\end{verbatim}
+
+If you want all of the columns, use \texttt{*}:
+
+\begin{verbatim}
+	SELECT *
+	FROM <table-name>;
+\end{verbatim}
+
+You can also do derivations:
+
+\begin{verbatim}
+	SELECT salary/2
+	FROM <table-name>;
+\end{verbatim}
+
+In order to specify which rows you want from the table, or you want to join two
+tables together, use the \texttt{WHERE} clause:
+
+\begin{verbatim}
+	SELECT *
+	WHERE <condition>
+	FROM <table-name>;
+\end{verbatim}
+
+\begin{verbatim}
+	SELECT *
+	WHERE table1.columnx = table2.columny
+	FROM table1, table2;
+\end{verbatim}
+
+Use \texttt{AND} to chain multiple conditions in a \texttt{WHERE} clause:
+
+\begin{verbatim}
+	SELECT *
+	WHERE x > 100
+	AND table1.x = table2.y
+	FROM <table-name>;
+\end{verbatim}
+
+\subsubsection{Where conditions}
+
+You can use the standard $=, <, >$ signs for comparisons between columns,
+but SQL also lets you use \texttt{LIKE}, \texttt{BETWEEN} and \texttt{IS NULL}:
+
+\begin{verbatim}
+	SELECT *
+	FROM <table-name>
+	WHERE name LIKE '%BOB%';
+\end{verbatim}
+
+\begin{verbatim}
+	SELECT *
+	FROM <table-name>
+	WHERE salary BETWEEN 10000 AND 12000;
+\end{verbatim}
+
+\begin{verbatim}
+	SELECT *
+	FROM <table-name>
+	WHERE previous-convictions IS NULL;
+\end{verbatim}
+
+You can also compare tuples:
+
+\begin{verbatim}
+	SELECT *
+	FROM t1, t2
+	WHERE (t1.parent, t1.age) = ('Janet', t2.age);
+\end{verbatim}
+
+\subsection{Set operations}
+
+The three main set operations are \texttt{UNION, EXCEPT} and \texttt{INTERSECT},
+their meaning is rather self evident given their names. An example usage may be:
+
+\begin{verbatim}
+	(SELECT *
+	 FROM <table-name>)
+	UNION ALL
+	(SELECT *
+	 FROM <table-name>);
+\end{verbatim}
+
+\subsection{Joins}
+
+We've already looked at the most common join:
+
+\begin{verbatim}
+	SELECT *
+	WHERE table1.columnx = table2.columny
+	FROM table1, table2;
+\end{verbatim}
+
+But you can also do it manually:
+
+\begin{verbatim}
+	SELECT *
+	FROM table1 JOIN table2
+	USING (<column-name>);
+\end{verbatim}
+
+Or with a \texttt{NATURAL JOIN}, which is automatic, but can only be applied
+when columns have identical names:
+
+\begin{verbatim}
+	SELECT *
+	FROM table1 NATURAL JOIN table2
+\end{verbatim}
+
+\subsection{Renaming columns}
+
+You can use the \texttt{FROM} clause to rename tables:
+
+\begin{verbatim}
+	SELECT *
+	FROM table1 as a, table2 as b
+	where a.col > b.col;
+\end{verbatim}
+
+\subsection{Ordering and other operations}
+
+\texttt{GROUP BY} can be used to sort rows by a column value:
+
+\begin{verbatim}
+	SELECT *
+	FROM <table-name>
+	GROUP BY height;
+\end{verbatim}
+
+Other operators such as \texttt{AVG} and \texttt{COUNT} can also be used:
+
+\begin{verbatim}
+	SELECT AVG(salary)
+	FROM <table-name>;	
+\end{verbatim}
+
+\begin{verbatim}
+	SELECT COUNT(DISTINCT salary)
+	FROM <table-name>;	
+\end{verbatim}
+
+\begin{verbatim}
+	SELECT COUNT(*)
+	FROM <table-name>;	
+\end{verbatim}
+
+\begin{verbatim}
+	SELECT dept_name, AVG(salary)
+	FROM staff
+	GROUP BY dept_name
+	HAVING AVG(salary) > 30000;	
+\end{verbatim}
