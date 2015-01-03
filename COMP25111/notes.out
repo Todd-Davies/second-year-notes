@@ -21,3 +21,11 @@
 \BOOKMARK [2][-]{subsection.4.2}{Deadlock}{section.4}% 21
 \BOOKMARK [1][-]{section.5}{Java Threads}{}% 22
 \BOOKMARK [2][-]{subsection.5.1}{The synchronized keyword}{section.5}% 23
+\BOOKMARK [1][-]{section.6}{Memory Management}{}% 24
+\BOOKMARK [2][-]{subsection.6.1}{Uniprogramming}{section.6}% 25
+\BOOKMARK [2][-]{subsection.6.2}{Multiprogramming}{section.6}% 26
+\BOOKMARK [3][-]{subsubsection.6.2.1}{Swapping}{subsection.6.2}% 27
+\BOOKMARK [2][-]{subsection.6.3}{Virtual Memory}{section.6}% 28
+\BOOKMARK [3][-]{subsubsection.6.3.1}{Paged memory}{subsection.6.3}% 29
+\BOOKMARK [3][-]{subsubsection.6.3.2}{Page replacement algorithms}{subsection.6.3}% 30
+\BOOKMARK [3][-]{subsubsection.6.3.3}{Swapping pages}{subsection.6.3}% 31

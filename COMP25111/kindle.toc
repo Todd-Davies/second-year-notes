@@ -5,11 +5,11 @@
 \contentsline {subsection}{\numberline {1.4}The Fetch Execute Cycle}{}{subsection.1.4}
 \contentsline {subsubsection}{\numberline {1.4.1}Fetching instructions}{}{subsubsection.1.4.1}
 \contentsline {subsubsection}{\numberline {1.4.2}Executing instructions}{}{subsubsection.1.4.2}
-\contentsline {paragraph}{{\tt JMP}}{}{section*.5}
-\contentsline {paragraph}{{\tt STA}}{}{section*.6}
-\contentsline {paragraph}{{\tt ADD}}{}{section*.7}
-\contentsline {paragraph}{Control Signals}{}{section*.8}
-\contentsline {paragraph}{Timing}{}{section*.9}
+\contentsline {paragraph}{{\tt JMP}}{}{section*.7}
+\contentsline {paragraph}{{\tt STA}}{}{section*.8}
+\contentsline {paragraph}{{\tt ADD}}{}{section*.9}
+\contentsline {paragraph}{Control Signals}{}{section*.10}
+\contentsline {paragraph}{Timing}{}{section*.11}
 \contentsline {subsubsection}{\numberline {1.4.3}Deriving the datapaths from the operation of instruction}{}{subsubsection.1.4.3}
 \contentsline {subsection}{\numberline {1.5}Control Signals}{}{subsection.1.5}
 \contentsline {section}{\numberline {2}What does an Operating System do?}{}{section.2}
@@ -21,3 +21,14 @@
 \contentsline {subsection}{\numberline {3.1}Managing processes}{}{subsection.3.1}
 \contentsline {subsubsection}{\numberline {3.1.1}Scheduling}{}{subsubsection.3.1.1}
 \contentsline {subsubsection}{\numberline {3.1.2}Context switching}{}{subsubsection.3.1.2}
+\contentsline {section}{\numberline {4}Synchronisation}{}{section.4}
+\contentsline {subsection}{\numberline {4.1}Semaphores}{}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Deadlock}{}{subsection.4.2}
+\contentsline {section}{\numberline {5}Java Threads}{}{section.5}
+\contentsline {subsection}{\numberline {5.1}The \texttt {synchronized} keyword}{}{subsection.5.1}
+\contentsline {section}{\numberline {6}Memory Management}{}{section.6}
+\contentsline {subsection}{\numberline {6.1}Uniprogramming}{}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Multiprogramming}{}{subsection.6.2}
+\contentsline {subsubsection}{\numberline {6.2.1}Swapping}{}{subsubsection.6.2.1}
+\contentsline {subsection}{\numberline {6.3}Virtual Memory}{}{subsection.6.3}
+\contentsline {subsubsection}{\numberline {6.3.1}Paged memory}{}{subsubsection.6.3.1}

@@ -692,3 +692,199 @@ You can see in Listing~\ref{lst:semaphore-clever}, I've used a \texttt{while}
 loop to make the thread wait. This is because we might not always obtain the
 lock on the first go. Likewise, I also used \texttt{notifyAll()} in case a
 thread doesn't wake up properly or doesn't receive the wakeup.
+
+\section{Memory Management}
+
+Random Access Memory (RAM) is one of the most important resources for a
+computer, and making efficient and safe use of it is important for a well
+running Operating System.
+
+\subsection{Uniprogramming}
+
+In a Von Neumann architecture RAM is used to store both programs and data. If an
+older OS wanted to run a program, it would load the program into RAM, move the
+PC to the start of the program in RAM and start executing. This method of
+executing programs is called \textbf{Uniprogramming}. It seems rather simple,
+but it has the following drawbacks:
+
+\begin{itemize}
+	\item We don't know in advance what the base address (the start address) of
+	the program will be. This could be problematic if the program has hardcoded
+	addresses in it.
+	\item If the memory (synonymous with RAM) is too small, then we can't
+	execute the program.
+\end{itemize}
+
+\subsection{Multiprogramming}
+
+Multiprogramming breaks the main memory down into fixed partitions (also called
+\textit{frames}) that can each hold (sections) of a program. This allows
+multiple programs to be loaded (and executed) at once.
+
+\begin{center}
+	\begin{drawstack}
+		\cell{OS}	         \cellptr{\texttt{0xFFFF}}
+		\cell{Program x}     \cellptr{\texttt{0xC000}}
+		\cell{Program z}     \cellptr{\texttt{0x8000}}
+		\cell{Program y}     \cellptr{\texttt{0x4000}}
+		\cell{Program x Data}\cellptr{\texttt{0x0000}}
+	\end{drawstack}
+\end{center}
+
+The method of assigning programs frames allows programs to be swapped in and out
+of memory based on when they are needed. This strategy of partitioning the main
+memory has it's drawbacks though; if a program can write to any part of the RAM,
+then malicious or badly made programs could overwrite parts of other programs,
+which could change what the program does, or change the data it's using.
+
+We still haven't solved the problem that some programs may have hardcoded memory
+addresses in them. The solution to this is to have a `loader' which changes all
+the memory addresses in the program to accommodate the fact that the program
+isn't really running from \texttt{0x0000}. It does this by adding $n$ to the
+memory addresses, where $n$ is the `real' base address of the program.
+
+\marginpar{Why don't we need to worry about malicious programs editing data in
+frames with lower memory addresses?}
+
+In order to stop programs from accessing memory outside their frame, a limit can
+be implemented when the loader edits the memory addresses, which ensures that
+the program cannot see or mutate data outside it's frame. The limit is
+initialised to be the length in bytes of the program.
+
+\marginpar{The MMU (Memory Management Unit) is a piece of hardware that sits
+in between the processor and the main memory.}
+
+All of the address translation goes on in the \textbf{MMU}, which is convenient,
+since we can easily implement logic such as this in fast hardware, as shown in
+Figure~\ref{mmu-translate}.
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=\textwidth]{images/mmu-loader.jpg}
+  \caption{How the MMU could translate addresses for execution. This diagram is
+  taken from the course notes, \textcopyright Richard Neville 2009}
+  \label{mmu-translate}
+\end{figure}
+
+Since programs that use hardcoded addresses in memory aren't \textit{actually}
+using those addresses, they are referred to as `\textbf{virtual addresses}'.
+When a virtual address has been translated into the actual address and put into
+memory, it is called a `\textbf{physical address}'.
+
+\subsubsection{Swapping}
+
+I've alluded to the fact that a computer could have more programs running than
+are currently in memory, but this section makes it explicit. When there isn't
+enough main memory to hold all of the running programs, some of them can be
+transferred onto disk for a short time until they need to be executed again.
+
+There are strategies for keeping the `right' programs in memory, and to mitigate
+the delays that the IO brings. Variable sized partitions are also used to make
+sure that as little space in the RAM is wasted as possible.
+
+The memory can still get very fragmented though; programs allocate memory
+dynamically, and so the required size of frames could be unknown\dots
+
+\subsection{Virtual Memory}
+
+Virtual memory is there in order to allow the processor to address a larger
+range of address spaces (than there is in the physical memory), and to support
+the operating system in managing processes.
+
+The MMU uses a \texttt{page table} (which is maintained by the operating system)
+that is used to translate between physical and logical addresses. The
+translation must be \textit{very} fast since every read and write to the memory
+will go through it.
+
+There are two techniques used to implement virtual memory; \textit{paged}
+virtual memory and \textit{segmented} virtual memory. Paged memory is split into
+fixed sized chunks called, you guessed it, pages. Segmented memory is split into
+chunks of a variable size. As you may have been able to tell from exploits into
+programs like Windows Task Manager, paging is the most commonly used method of
+implementing virtual memory.
+
+\subsubsection{Paged memory}
+
+The number of pages used in the system is given by the formula:
+
+\[
+	\#pages = \frac{\text{Address Space (bits)}}{\text{Page size (bits)}}
+\]
+
+If you want to find how many page frames (each one is the same size as a page)
+there are in the physical memory, then just substitute the Address Space in the
+above equation for the size of the physical memory.
+
+When using paged memory, the processor gives two numbers when it wants to access
+a memory cell, the page number, and the offset. These numbers are usually
+contiguously melded together into one long number, where the first $log_2(n)$
+bits (where $n$ is the number of pages in the virtual memory, given by $2^x$,
+where $x$ is the number of bits in a machine word) is the page number, and the
+rest of the bits is the offset. This is depicted in Figure~\ref{memory-address}.
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=90mm]{diagrams/memory-address.pdf}
+  \caption{The format of an address to paged memory}
+  \label{memory-address}
+\end{figure}
+
+When the MMU gets a paged address, it follows these steps:
+
+\begin{enumerate}
+	\item Look up the page number in the page table, see if the page is in the
+		physical memory or not.
+	\item If the page is in memory, generate a physical address (
+		$(\text{page-size} \times \text{page-number}) + \text{offset}$), and
+		request that from the RAM.
+	\item If it's not, then abort the memory access, and the operating system
+		will load the page into memory (this is a \textbf{page fault}).
+\end{enumerate}
+
+\marginpar{
+	A \textbf{Page Fault} is when a page is on the backing store, but is needed
+	by a process. If this happens:
+
+	\begin{enumerate}
+		\item The current processes is halted.
+		\item The OS will load the page into physical memory.
+		\item While the page is loading, other processes will have CPU time.
+		\item Once the page has been loaded into RAM, the memory reference will
+			be retried.
+	\end{enumerate}
+}
+
+The page table contains one row for each page. The columns will include:
+
+\begin{description}
+	\item \textbf{Resident flag}\\
+		If the page currently in virtual memory?
+	\item \textbf{Used flag}\\
+		Has the page been used?
+	\item \textbf{Dirty flag}\\
+		Has the page been written to while it's been in physical memory (so it
+		needs to be copied back in full when it's put back onto the disk).
+	\item \textbf{Physical address}\\
+		The base address of the page in RAM.
+	\item \textbf{Disk address}\\
+		The base address of the page on backing store.
+\end{description}
+
+\subsubsection{Page replacement algorithms}
+
+After a while (or not a while if you've not got much RAM), all of the page
+frames will be occupied in memory. This means we need to swap one page for
+another in the main memory next time we have a page fault. We need an algorithm
+to determine which page to swap. The LRU (Last Recently Used) and FIFO (First In
+First Out) algorithms are good for this.
+
+\subsubsection{Swapping pages}
+
+If we do want to swap a page in physical memory, we first need to decide if we
+are to write it back to the disk. This is done by inspecting the dirty bit in
+the page table, and is called a \textbf{write-back}. An alternative strategy is
+\textbf{write-through}, where you write to RAM and disk every time, (so you
+don't need to copy the whole page on every swap), however, this is silly, since
+you spend ages waiting for disk IO.
+
+
