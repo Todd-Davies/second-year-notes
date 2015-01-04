@@ -248,173 +248,177 @@ Gives:
 
 \section{SQL Syntax}
 
-\subsection{Selecting rows}
+\begin{mymulticols}
 
-The SQL command to select rows from a table is:
+  \subsection{Selecting rows}
 
-\begin{verbatim}
-	SELECT <column-name>
-	FROM <table-name>;
-\end{verbatim}
+  The SQL command to select rows from a table is:
 
-If you only want distinct values from a column, use \texttt{DISTINCT}:
+  \begin{alltt}
+  	SELECT <column-name>\\
+  	FROM <table-name>;
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT DISTINCT <column-name>
-	FROM <table-name>;
-\end{verbatim}
+  If you only want distinct values from a column, use \texttt{DISTINCT}:
 
-If you want all of the columns, use \texttt{*}:
+  \begin{alltt}
+  	SELECT DISTINCT <column-name>\\
+  	FROM <table-name>;
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT *
-	FROM <table-name>;
-\end{verbatim}
+  If you want all of the columns, use \texttt{*}:
 
-You can also do derivations:
+  \begin{alltt}
+  	SELECT *\\
+  	FROM <table-name>;
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT salary/2
-	FROM <table-name>;
-\end{verbatim}
+  You can also do derivations:
 
-In order to specify which rows you want from the table, or you want to join two
-tables together, use the \texttt{WHERE} clause:
+  \begin{alltt}
+  	SELECT salary/2\\
+  	FROM <table-name>;
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT *
-	WHERE <condition>
-	FROM <table-name>;
-\end{verbatim}
+  In order to specify which rows you want from the table, or you want to join two
+  tables together, use the \texttt{WHERE} clause:
 
-\begin{verbatim}
-	SELECT *
-	WHERE table1.columnx = table2.columny
-	FROM table1, table2;
-\end{verbatim}
+  \begin{alltt}
+  	SELECT *\\
+  	WHERE <condition>\\
+  	FROM <table-name>;
+  \end{alltt}
 
-Use \texttt{AND} to chain multiple conditions in a \texttt{WHERE} clause:
+  \begin{alltt}
+  	SELECT *\\
+  	WHERE table1.columnx = table2.columny\\
+  	FROM table1, table2;
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT *
-	WHERE x > 100
-	AND table1.x = table2.y
-	FROM <table-name>;
-\end{verbatim}
+  Use \texttt{AND} to chain multiple conditions in a \texttt{WHERE} clause:
 
-\subsubsection{Where conditions}
+  \begin{alltt}
+  	SELECT *\\
+  	WHERE x > 100\\
+  	AND table1.x = table2.y\\
+  	FROM <table-name>;
+  \end{alltt}
 
-You can use the standard $=, <, >$ signs for comparisons between columns,
-but SQL also lets you use \texttt{LIKE}, \texttt{BETWEEN} and \texttt{IS NULL}:
+  \subsubsection{Where conditions}
 
-\begin{verbatim}
-	SELECT *
-	FROM <table-name>
-	WHERE name LIKE '%BOB%';
-\end{verbatim}
+  You can use the standard $=, <, >$ signs for comparisons between columns,
+  but SQL also lets you use \texttt{LIKE}, \texttt{BETWEEN} and \texttt{IS NULL}:
 
-\begin{verbatim}
-	SELECT *
-	FROM <table-name>
-	WHERE salary BETWEEN 10000 AND 12000;
-\end{verbatim}
+  \begin{alltt}
+  	SELECT *\\
+  	FROM <table-name>\\
+  	WHERE name LIKE '%BOB%';
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT *
-	FROM <table-name>
-	WHERE previous-convictions IS NULL;
-\end{verbatim}
+  \begin{alltt}
+  	SELECT *\\
+  	FROM <table-name>\\
+  	WHERE salary BETWEEN 10000 AND 12000;
+  \end{alltt}
 
-You can also compare tuples:
+  \begin{alltt}
+  	SELECT *\\
+  	FROM <table-name>\\
+  	WHERE previous-convictions IS NULL;
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT *
-	FROM t1, t2
-	WHERE (t1.parent, t1.age) = ('Janet', t2.age);
-\end{verbatim}
+  You can also compare tuples:
 
-\subsection{Set operations}
+  \begin{alltt}
+  	SELECT *\\
+  	FROM t1, t2\\
+  	WHERE (t1.parent, t1.age) = ('Janet', t2.age);
+  \end{alltt}
 
-The three main set operations are \texttt{UNION, EXCEPT} and \texttt{INTERSECT},
-their meaning is rather self evident given their names. An example usage may be:
+  \subsection{Set operations}
 
-\begin{verbatim}
-	(SELECT *
-	 FROM <table-name>)
-	UNION ALL
-	(SELECT *
-	 FROM <table-name>);
-\end{verbatim}
+  The three main set operations are \texttt{UNION, EXCEPT} and \texttt{INTERSECT},
+  their meaning is rather self evident given their names. An example usage may be:
 
-\subsection{Joins}
+  \begin{alltt}
+  	(SELECT *\\
+  	 FROM <table-name>)\\
+  	UNION ALL\\
+  	(SELECT *\\
+  	 FROM <table-name>);
+  \end{alltt}
 
-We've already looked at the most common join:
+  \subsection{Joins}
 
-\begin{verbatim}
-	SELECT *
-	WHERE table1.columnx = table2.columny
-	FROM table1, table2;
-\end{verbatim}
+  We've already looked at the most common join:
 
-But you can also do it manually:
+  \begin{alltt}
+  	SELECT *\\
+  	WHERE table1.columnx = table2.columny\\
+  	FROM table1, table2;
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT *
-	FROM table1 JOIN table2
-	USING (<column-name>);
-\end{verbatim}
+  But you can also do it manually:
 
-Or with a \texttt{NATURAL JOIN}, which is automatic, but can only be applied
-when columns have identical names:
+  \begin{alltt}
+  	SELECT *\\
+  	FROM table1 JOIN table2\\
+  	USING (<column-name>);
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT *
-	FROM table1 NATURAL JOIN table2
-\end{verbatim}
+  Or with a \texttt{NATURAL JOIN}, which is automatic, but can only be applied
+  when columns have identical names:
 
-\subsection{Renaming columns}
+  \begin{alltt}
+  	SELECT *\\
+  	FROM table1 NATURAL JOIN table2
+  \end{alltt}
 
-You can use the \texttt{FROM} clause to rename tables:
+  \subsection{Renaming columns}
 
-\begin{verbatim}
-	SELECT *
-	FROM table1 as a, table2 as b
-	where a.col > b.col;
-\end{verbatim}
+  You can use the \texttt{FROM} clause to rename tables:
 
-\subsection{Ordering and other operations}
+  \begin{alltt}
+  	SELECT *\\
+  	FROM table1 as a, table2 as b\\
+  	where a.col > b.col;
+  \end{alltt}
 
-\texttt{GROUP BY} can be used to sort rows by a column value:
+  \subsection{Ordering and other operations}
 
-\begin{verbatim}
-	SELECT *
-	FROM <table-name>
-	GROUP BY height;
-\end{verbatim}
+  \texttt{GROUP BY} can be used to sort rows by a column value:
 
-Other operators such as \texttt{AVG} and \texttt{COUNT} can also be used:
+  \begin{alltt}
+  	SELECT *\\
+  	FROM <table-name>\\
+  	GROUP BY height;
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT AVG(salary)
-	FROM <table-name>;	
-\end{verbatim}
+  Other operators such as \texttt{AVG} and \texttt{COUNT} can also be used:
 
-\begin{verbatim}
-	SELECT COUNT(DISTINCT salary)
-	FROM <table-name>;	
-\end{verbatim}
+  \begin{alltt}
+  	SELECT AVG(salary)\\
+  	FROM <table-name>;	
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT COUNT(*)
-	FROM <table-name>;	
-\end{verbatim}
+  \begin{alltt}
+  	SELECT COUNT(DISTINCT salary)\\
+  	FROM <table-name>;	
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT dept_name, AVG(salary)
-	FROM staff
-	GROUP BY dept_name
-	HAVING AVG(salary) > 30000;	
-\end{verbatim}
+  \begin{alltt}
+    SELECT COUNT(*)\\
+    FROM <table-name>;
+  \end{alltt}
+
+  \begin{alltt}
+    SELECT dept-name, AVG(salary)\\
+    FROM staff\\
+    GROUP BY dept-name\\
+    HAVING AVG(salary) > 30000;
+  \end{alltt}
+
+\end{mymulticols}
 
 \section{Designing databases}
 
@@ -430,7 +434,8 @@ manipulate our database.
 
 \subsection{Entity Relationship Modelling}
 
-There are three basic constructs in ER modelling; entity types, attribute types and relationship types.
+There are three basic constructs in ER modelling; entity types, attribute types
+and relationship types.
 
 Attribute types consist of the following:
 
@@ -479,3 +484,154 @@ types (e.g. \textbf{employees, departments and projects}), \textit{italic} words
 are attribute types (e.g. \textit{name, location, phone number}), and
 \underline{underlined} words are relationship types (e.g. employees
 \underline{belong to a} department).
+
+\subsubsection{ER Notation}
+
+\begin{mymulticols}{2}
+
+  \begin{description}
+    \item \textbf{Entity type}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[entity] {Employee};
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Weak entity type}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[weak entity] {Dependent};
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Attribute}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[entity] (emp) {Employee};
+        \node[attribute] [above=1cm of emp] {Name} edge (emp);
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Weak attribute}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[weak entity] (emp) {Dependent};
+        \node[attribute] [above=1cm of emp] {\discriminator{Name}} edge (emp);
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Derived attribute}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=1.5cm, every edge/.style={link}]
+        \node[entity] (emp) {Employee};
+        \node[attribute] [above=1cm of emp] {Date of Birth} edge (emp);
+        \node[derived attribute] [left= 1cm of emp] {Age} edge (emp);
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Multivalue}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[entity] (emp) {Employee};
+        \node[multi attribute] [above=1cm of emp] {Children} edge (emp);
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Key}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[entity] (emp) {Employee};
+        \node[attribute] [above=1cm of emp] {\key{ID}} edge (emp);
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Relationship (plus carnality ratio)}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[entity] (emp) {Employee};
+        \node[relationship] [above=1cm of emp] (rel) {Works for};
+        \node[entity] [above=1cm of rel] (dep) {Department};
+        \draw[link] (rel.90) |- node [below, auto] {1} (dep.270);
+        \draw[link] (rel.270) |- node [above, auto] {N} (emp.90);
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Identifying relationship}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[entity] (emp) {Employee};
+        \node[ident relationship] [above=1cm of emp] (rel) {Dependent of} edge (emp);
+        \node[weak entity] [above=1cm of rel] (dep) {Dependent} edge (rel);
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Recursive relationship}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[entity] (emp) {Employee};
+        \node[relationship] [below=1cm of emp] (rel) {Dependent of};
+        \draw[link] (rel.180) |- node [left, auto] {Supervisor} (emp.180);
+        \draw[link] (emp) -| node [left, auto] {Supervisee} (rel.360);
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Participation constraint}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[entity] (emp) {Project};
+        \node[relationship] [above=1cm of emp] (rel) {Controls} edge [total] (emp);
+        \node[entity] [above=1cm of rel] (dep) {Department} edge (rel);
+      \end{tikzpicture}
+    \end{center}
+  \end{description}
+\end{mymulticols}
+
+\subsubsection{Specialising entities}
+
+It's often efficient to refine entities into sub-entities if there are fields
+that are relevant for some members and not others. For example a vehicle entity
+could have car and lorry sub-entities. One way of doing this is top-down
+conceptual refinement, which is a fancy way of saying, start with an entity,
+identify it's subclasses, create sub-entities for them, and then repeat for the
+newly created sub-entities.
+
+\marginpar{I've not got time to work out how to do $\cup$ arrowheads now, please
+draw them on the diagram!}
+
+\begin{center}
+  \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+    \node[entity] (emp) {Vehicle};
+    \node[attribute] [below=1cm of emp] (rel) {d} edge (emp);
+    \node[entity] [below left=1cm of rel] (dep) {Lorry} edge (rel);
+    \node[entity] [below right=1cm of rel] (dep2) {Car} edge (rel);
+  \end{tikzpicture}
+\end{center}
+
+An alternate way to specialise is to do a bottom-up approach. Start with lots of
+sets, and define a common superset of them. Here, you're generalising rather
+than specialising.
+
+Each subentity can have it's own attributes and relationships of course:
+
+\begin{center}
+  \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+    \node[entity] (emp) {Vehicle};
+    \node[attribute] [above left=1cm of emp] {Colour} edge (emp);
+    \node[attribute] [above right=1cm of emp] {Model} edge (emp);
+    \node[attribute] [below=1cm of emp] (rel) {d} edge (emp);
+    \node[entity] [below left=1cm of rel] (dep) {Lorry} edge (rel);
+    \node[entity] [below right=1cm of rel] (dep2) {Car} edge (rel);
+    \node[attribute] [below right=1cm of dep2] {\# Doors} edge (dep2);
+    \node[attribute] [below left=1cm of dep2] {\# Seats} edge (dep2);
+    \node[relationship] [below =1cm of dep] (rel2) {Registered to} edge (dep);
+    \node[entity] [below right=1cm of rel2] {Country} edge (rel2);
+  \end{tikzpicture}
+\end{center}
+
+Entity subtypes can be user, attribute or predicate defined based on whether the
+user has defined them to be a subtype, their attributes define them to be
+subtypes or if a predicate has (e.g. if country in EU $\implies$ EU Member).
+
+In the examples, the attribute `d' is used to create a subtype. This stands for
+disjoint, since a car can't also be a lorry. There is also `o', which is used
+when an entity could belong to multiple subtypes.

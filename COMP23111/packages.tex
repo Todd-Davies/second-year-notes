@@ -8,7 +8,38 @@
 \usepackage{moreverb}
 % For funky database symbols
 \usepackage{newlfont}
+% For tikz ER diagrams
+\usepackage{tikz-er2}
+% For fancy verbatim
+\usepackage{alltt}
+% For splitting long lists into columns
+\usepackage{multicol}
+% For no multicol on the kindle
+\usepackage{environ}
+\newif\ifmulticols
+\NewEnviron{mymulticols}{
+\ifmulticols
+  \begin{multicols}{2}
+    \BODY
+  \end{multicols}
+\else
+  \BODY
+\fi}
 % Means you don't have to put \\ to start a new line.
 \usepackage[parfill]{parskip}
 % Make LaTeX pretty with better kerning etc
 \usepackage{microtype}
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{shadows}
+
+\tikzstyle{every entity} = [top color=white, bottom color=blue!30, 
+                        draw=blue!50!black!100, drop shadow]
+\tikzstyle{every weak entity} = [drop shadow={shadow xshift=.7ex, 
+                                 shadow yshift=-.7ex}]
+\tikzstyle{every attribute} = [top color=white, bottom color=yellow!20, 
+                               draw=yellow, node distance=1cm, drop shadow]
+\tikzstyle{every relationship} = [top color=white, bottom color=red!20, 
+                                  draw=red!50!black!100, drop shadow]
+\tikzstyle{every isa} = [top color=white, bottom color=green!20, 
+                         draw=green!50!black!100, drop shadow]
