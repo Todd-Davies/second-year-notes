@@ -1,0 +1,36 @@
+
+% So the image fits the page
+\documentclass{article}
+\usepackage[paperwidth=\maxdimen,paperheight=\maxdimen]{geometry}
+% Include tikz
+\usepackage{tikz}
+% For making the page fit the image (without standalone)
+\usepackage[tightpage,active]{preview}
+\PreviewEnvironment{tikzpicture}
+\usetikzlibrary{shapes, patterns}
+\usetikzlibrary{matrix}
+% Define some lovely colours
+\definecolor{light-gray}{gray}{0.95}
+
+\def\leftbracket{[}
+\def\rightbracket{]}
+
+\tikzset{my arrow/.style={
+  blue!60!black,
+  -latex
+  }
+}
+
+
+\begin{document}
+
+\begin{center}
+  \begin{tikzpicture}
+    \matrix[matrix of math nodes, row sep=4mm] (M) {
+      \leftbracket & 1 & 2 & 3 & 4 & \rightbracket \\
+    };
+    \node[font=\fontsize{10}{12}\sffamily, node distance = 2cm, right of=M] {\textsterling 4};
+  \end{tikzpicture}
+\end{center}
+
+\end{document}

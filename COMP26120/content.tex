@@ -177,9 +177,222 @@ The master theorem is defined by three cases:
         Work out what's going on...
 \end{enumerate}
 
-\section{Algorithmic correctness}
+\subsection{Amortized Analysis}
 
-\section{Data structures}
+\begin{aquote}{Rebecca Fiebrink, Amortized Analysis Explained, Princeton University}
+  Amortized analysis is a technique for analysing an algorithm's running time.
+  It is often appropriate when one is interested in understanding asymptotic
+  behaviour over sequences of operations. For example, one might be interested in
+  reasoning about the running time for an arbitrary operation to insert an item
+  into a binary search tree structure. In cases such as this, it might be
+  straightforward to come up with an upper bound by, say, finding the
+  worst possible time required for any operation, then multiplying this by the
+  number of operations in the sequence. However, many real data structures, such
+  as splay trees, have the property that it is impossible for every operation in
+  a sequence to take the worstcase time, so this approach can result in a
+  horribly pessimistic bound! With a bit of clever reasoning about properties of
+  the problem and data structures involved, amortized analysis allows a tighter
+  bound that better reflects performance.
+\end{aquote}
+
+The idea is based on the fact that some high cost operations may do lots of the
+work for later operations, which means that these later operations are low cost.
+In order to encapsulate this in our analysis, we need to come up with a
+`potential' function that captures how operations with different costs affect
+our datastructure.
+
+\subsubsection{Aggregate analysis}
+
+This is the most simple method of amortized analysis. You find a bound on the
+sequence of operations, and then divide it by the number of operations to find
+the amortized cost. This only works when all operations have the same cost, such
+as pushing and popping items with a stack. If we want to push/pop $n$ items,
+then the total cost would be $n$ (assuming is costs $1$ for each push or pop),
+so the amortized cost would be $\frac{n}{n} = 1$.
+
+\subsubsection{Banker's method}
+
+This method takes the view that each operation has a predefined cost that must
+be paid in order to execute it. You would need to insert coins into the computer
+for each operation based on it's cost. The cost does not necessarily equate to
+the complexity of the operation, in which case, any difference will be added to
+(or subtracted from) a `bank account'.
+
+This means that, operations that take a long time (say re-balancing a tree, or
+an insert into a heap that requires a lot of re-organisation), will be able to
+take money from the bank account in addition to their own fee in order to `pay'
+for their time.
+
+In this way, \textbf{the amount charged for each operation is the amortized cost
+for that operation}.
+
+The hard bit with this method is to pick appropriate costs for each operation
+and show that they are sufficient to allow payment for any sequence of valid
+operations. If $c_i$ is the actual cost of the $i$th operation, $C$ is the cost
+we charge per operation, and we do $n$ operations, then the following must hold
+for us to always have a positive bank account:
+
+\[
+  \sum\limits_{i = 1}^nC \geq \sum\limits_{i=1}^nc_i
+\]
+
+In order to reason about never falling into debt with a negative bank balance,
+it's a good idea to keep a track of which operations generated what credit, and
+store it in different `sections' of the bank account. This could mean that each
+position in a stack ends up with having a certain amount of credit associated
+with it, or each node in a tree.
+
+Lets analyse an extendable array. When it has reached it's limit, we create a
+new array of double the length and copy the current one across.
+
+If we set a cost of $3$ for every array write, then this should cover the cost
+of copying when the size limit is reached. Note, that on `normal' writes (i.e.
+where we don't have to resize the array), we will only add $3$ to the bank since
+\textsterling $1$ is taken up for the write operation. If we start with an empty
+array of size 0:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=15mm]{diagrams/banker0.pdf}
+  \label{banker0}
+\end{figure}
+
+Now, lets add 1:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=15mm]{diagrams/banker1.pdf}
+  \label{banker1}
+\end{figure}
+
+Now, in order to add 2, we'll need to resize the array, which costs
+\textsterling 1 for copying the current item over, and then add the new 2 in, so
+we'll use up \textsterling 2:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=60mm]{diagrams/banker2.pdf}
+  \label{banker2}
+\end{figure}
+
+Now, in order to add 3, we'll need to resize the array, which costs
+\textsterling 2 for copying the current ones over, and then add the new 3 in, so
+we'll use up \textsterling 3:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=60mm]{diagrams/banker3.pdf}
+  \label{banker3}
+\end{figure}
+
+Adding 4 is normal:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=15mm]{diagrams/banker4.pdf}
+  \label{banker4}
+\end{figure}
+
+But to add 5, we need another resize, costing $4 + 1 = \textsterling 5$ (we also
+get an income of \textsterling 3 too though):
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=60mm]{diagrams/banker5.pdf}
+  \label{banker5}
+\end{figure}
+
+Lets whizz forward to inserting 9. By this point, we'll have \textsterling 8.
+We need to expand \textsterling 8 doing copying, and another adding 9, but we
+get an income of \textsterling 3, so we're left with \textsterling 2 again:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=60mm]{diagrams/banker9.pdf}
+  \label{banker9}
+\end{figure}
+
+You can see here that we are able to maintain a resizable array by charging a
+flat rate of \textsterling 3 on every insert. This means we can pay for the
+insertion of $n$ elements into our array with $\textsterling 3n$, which means
+our algorithm runs in $O(n)$ amortized time.
+
+\subsubsection{Potential method}
+
+\marginpar{I think the idea of `potential' comes from potential energy in
+physics, which can be defined as ``The energy stored in a system due to it's
+configuration''.}
+
+The potential method is similar to the banker's method in that it requires
+virtual money for each operation and it keeps a bank account (of potential in
+this case) with which to finance expensive operations, however, \textbf{in the
+potential method, the amortized cost of the operation $i$ is equal to the actual
+cost plus the increase in potential due to the operation}.
+
+Mathematically, if we define $\Phi$ to be the potential function, which takes as
+an argument, the datastructure $D$ at a specific state after the $i$th
+operation, and $c_i$ to be the cost of operation $i$, then the cost of the
+operation will be:
+
+\[
+  C = c_i + \left(\Phi(D_i) - \Phi(D_{i-1}\right)
+\]
+
+We can derive the following equation (I won't try to here):
+
+\[
+  \sum\limits_{i=1}^n C = \sum\limits_{i=1}^n \left( c_i \right) + \Phi(D_n) - \Phi(D_{0})
+\]
+
+If $\Phi(D_i) \geq \Phi(D_0)$ for all $i$, then we know we will never run out of
+potential.
+
+Lets say we have a stack structure, that implements \texttt{push} to push one
+element, and \texttt{popNPush}, which pops $k$ elements, and pushes another. Our
+potential function could be: 
+
+\[
+  \Phi(D_i) = \text{\textit{The number of items in the stack after operation $i$}}
+\]
+
+This means that \texttt{push} will always have a cost of:
+
+\begin{align*}
+  C_{\text{\texttt{push}}} &= 1 + \left(\Phi(D_i) - \Phi(D_{i-1}\right)\\
+                           &= 1 + \text{\#items} + \text{\#items - 1}\\
+                           &= 1 + 1\\
+                           &= 2
+\end{align*}
+
+Lets work out the cost for \texttt{popNPush}:
+
+\begin{align*}
+  C_{\text{\texttt{popNPush(k)}}} &= (k + 1) + (n - k + 1) - n\\
+                                  &= 2 + k - k + n - n\\
+                                  &= 2
+\end{align*}
+
+We can conclude that the total amortized cost for both \texttt{push} and
+\texttt{popNPush} is $2$, so they have a amortized running time of $O(1)$.
+
+\subsubsection{Comparing the banker's and the potential methods}
+
+The banker method focuses on each operations prepayment by charging each
+operation a fixed sum according to it's type, which will offset future expensive
+operations made possible by this operation. The potential method focuses on the
+current operation, and how it affects the datastructure/system now, and the
+corresponding change in opportunity for future operations.
+
+Often, the banker method will store credit throughout the datastructure/system,
+maybe assigning each stack frame some credit, or maybe putting it in the
+branches of a tree. In contrast, the potential method takes a more holistic view
+and analyses the datastructure/system as a whole, maybe asking, how deep is the
+stack, or what is the depth of the tree.
+
+It is harder to come up with a decent cost function $\Phi$ in the potential
+method than it is to work out the cost of operations in the banker method, but
+for the potential method, you only have to do it once, whilst in the banker
+method, you have to do it for each possible operation.
 
 \section{Basic algorithms}
 
@@ -299,10 +512,13 @@ optimal, while QuickSort is optimal for most inputs.
 
 \end{description}
 
-
 \subsection{Searching}
 
-\subsection{Tree and graph traversal}
+%TODO: Quickselect
+
+%TODO: Binary search
+
+%TODO: String matching
 
 \section{Code listings}
 

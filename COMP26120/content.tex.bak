@@ -4,6 +4,8 @@
   pdfauthor = {\Author}
 }
 
+\input{listingstyle.tex}
+
 \section{Algorithmic complexity and performance}
 
 Algorithmic complexity and the big-oh notation allows us to characterise the
@@ -175,9 +177,168 @@ The master theorem is defined by three cases:
         Work out what's going on...
 \end{enumerate}
 
-\section{Algorithmic correctness}
+\subsection{Amortized Analysis}
 
-\section{Data structures}
+\begin{aquote}{Rebecca Fiebrink, Amortized Analysis Explained, Princeton University}
+  Amortized analysis is a technique for analysing an algorithm's running time.
+  It is often appropriate when one is interested in understanding asymptotic
+  behaviour over sequences of operations. For example, one might be interested in
+  reasoning about the running time for an arbitrary operation to insert an item
+  into a binary search tree structure. In cases such as this, it might be
+  straightforward to come up with an upper bound by, say, finding the
+  worst possible time required for any operation, then multiplying this by the
+  number of operations in the sequence. However, many real data structures, such
+  as splay trees, have the property that it is impossible for every operation in
+  a sequence to take the worstcase time, so this approach can result in a
+  horribly pessimistic bound! With a bit of clever reasoning about properties of
+  the problem and data structures involved, amortized analysis allows a tighter
+  bound that better reflects performance.
+\end{aquote}
+
+The idea is based on the fact that some high cost operations may do lots of the
+work for later operations, which means that these later operations are low cost.
+In order to encapsulate this in our analysis, we need to come up with a
+`potential' function that captures how operations with different costs affect
+our datastructure.
+
+\subsubsection{Aggregate analysis}
+
+This is the most simple method of amortized analysis. You find a bound on the
+sequence of operations, and then divide it by the number of operations to find
+the amortized cost. This only works when all operations have the same cost, such
+as pushing and popping items with a stack. If we want to push/pop $n$ items,
+then the total cost would be $n$ (assuming is costs $1$ for each push or pop),
+so the amortized cost would be $\frac{n}{n} = 1$.
+
+\subsubsection{Banker's method}
+
+This method takes the view that each operation has a predefined cost that must
+be paid in order to execute it. You would need to insert coins into the computer
+for each operation based on it's cost. The cost does not necessarily equate to
+the complexity of the operation, in which case, any difference will be added to
+(or subtracted from) a `bank account'.
+
+This means that, operations that take a long time (say re-balancing a tree, or
+an insert into a heap that requires a lot of re-organisation), will be able to
+take money from the bank account in addition to their own fee in order to `pay'
+for their time.
+
+In this way, \textbf{the amount charged for each operation is the amortized cost
+for that operation}.
+
+The hard bit with this method is to pick appropriate costs for each operation
+and show that they are sufficient to allow payment for any sequence of valid
+operations. If $c_i$ is the actual cost of the $i$th operation, $C$ is the cost
+we charge per operation, and we do $n$ operations, then the following must hold
+for us to always have a positive bank account:
+
+\[
+  \sum\limits_{i = 1}^nC \geq \sum\limits_{i=1}^nc_i
+\]
+
+In order to reason about never falling into debt with a negative bank balance,
+it's a good idea to keep a track of which operations generated what credit, and
+store it in different `sections' of the bank account. This could mean that each
+position in a stack ends up with having a certain amount of credit associated
+with it, or each node in a tree.
+
+Lets analyse an extendable array. When it has reached it's limit, we create a
+new array of double the length and copy the current one across.
+
+If we set a cost of $3$ for every array write, then this should cover the cost
+of copying when the size limit is reached. Note, that on `normal' writes (i.e.
+where we don't have to resize the array), we will only add $3$ to the bank since
+\textsterling $1$ is taken up for the write operation. If we start with an empty
+array of size 0:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=15mm]{diagrams/banker0.pdf}
+  \label{banker0}
+\end{figure}
+
+Now, lets add 1:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=15mm]{diagrams/banker1.pdf}
+  \label{banker1}
+\end{figure}
+
+Now, in order to add 2, we'll need to resize the array, which costs
+\textsterling 1 for copying the current item over, and then add the new 2 in, so
+we'll use up \textsterling 2:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=60mm]{diagrams/banker2.pdf}
+  \label{banker2}
+\end{figure}
+
+Now, in order to add 3, we'll need to resize the array, which costs
+\textsterling 2 for copying the current ones over, and then add the new 3 in, so
+we'll use up \textsterling 3:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=60mm]{diagrams/banker3.pdf}
+  \label{banker3}
+\end{figure}
+
+Adding 4 is normal:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=15mm]{diagrams/banker4.pdf}
+  \label{banker4}
+\end{figure}
+
+But to add 5, we need another resize, costing $4 + 1 = \textsterling 5$ (we also
+get an income of \textsterling 3 too though):
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=60mm]{diagrams/banker5.pdf}
+  \label{banker5}
+\end{figure}
+
+Lets whizz forward to inserting 9. By this point, we'll have \textsterling 8.
+We need to expand \textsterling 8 doing copying, and another adding 9, but we
+get an income of \textsterling 3, so we're left with \textsterling 2 again:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[height=60mm]{diagrams/banker9.pdf}
+  \label{banker9}
+\end{figure}
+
+You can see here that we are able to maintain a resizable array by charging a
+flat rate of \textsterling 3 on every insert. This means we can pay for the
+insertion of $n$ elements into our array with $\textsterling 3n$, which means
+our algorithm runs in $O(n)$ amortized time.
+
+\subsubsection{Potential method}
+
+The potential method is similar to the banker's method in that it requires
+virtual money for each operation and it keeps a bank account with which to
+finane expensive operations, however, \textbf{in the potential method, the
+amortized cost of the operation $i$ is equal to the actual cost plus the
+increase in potential due to the operation}.
+
+Mathematically, if we define $\phi$ to be the potential function, which takes as
+an argument, the datastructure $D$ at a specific state after the $i$th
+operation, and $c_i$ to be the cost of operation $i$, then the cost of the
+operation will be:
+
+\[
+  C = c_i + \left(\phi(D_i) - \phi(D_{i-1}\right)
+\]
+
+
+
+
+
+\section{Algorithmic correctness}
 
 \section{Basic algorithms}
 
@@ -190,13 +351,13 @@ order.
 
 A total order is a relation that is transitive ($a \leq b \wedge b \leq c \implies a
 \leq c$), anti-symmetric ($a \leq b \wedge b \leq a \implies a = b$), and
-unsuprisingly, total ($a \leq b \wedge b \leq a$).
+unsurprisingly, total ($a \leq b \wedge b \leq a$).
 
 If the ordering on the elements of the array isn't a total order then bad
 things can happen when you try and use an algorithm to sort the data. For
 example, if you were to try and sort an array of rocks, papers and scissors
 according to the rules of the traditional game, then you wouldn't have a
-transitive relation, and a sorting algorithm would probably loop infinately.
+transitive relation, and a sorting algorithm would probably loop infinitely.
 
 \subsection{The complexity of sorting}
 
@@ -225,36 +386,81 @@ the complexity of the sorting algorithm we're using.
 If we were to draw a decision tree for each possible path of a comparison sort,
 then we would get one with a depth of $log_2(n!)$, that produced all $n!$
 permutations of the input. An asymptotically optimal comparison sort must travel
-down this tree in its quest to find the answer. Mergesort and heapsort are
-optimal, while Quicksort is optimal for most inputs.
+down this tree in its quest to find the answer. MergeSort and HeapSort are
+optimal, while QuickSort is optimal for most inputs.
 
 \subsection{Sorting algorithms in detail}
 \begin{description}
-\item \textbf{Quicksort} \\
-  Quicksort is a \textbf{divide and conquer} algorithm, that uses a
-  \textbf{comparison based} method to sort items.
+\item \textbf{QuickSort} \\
+  QuickSort is a \textbf{divide and conquer} algorithm, that uses a
+  \textbf{comparison based} method to sort items. QuickSort can be implemented
+  as an \textbf{in-place} sort, \textbf{stable}, though it is usually done so
+  with recursion which gives it a space complexity of at least $O(log(n))$. This
+  is a small inconvenience really though.
 
   First the list is partitioned into two halves. To do this, a random pivot is
   chosen from the list, and of the two new lists, one has the items less than
   the pivot, and the other has the items greater or equal to it.
 
-  Quicksort is then applied to each sublist, so make them sorted, and then the
+  QuickSort is then applied to each sublist, so make them sorted, and then the
   start of the right list is joined to the end of the left list.
 
   See Listing~\ref{quicksort} for an example implementation.
 
-\item \textbf{Merge sort} \\
-\item \textbf{Radix sort and Bucket sort} \\
-\item \textbf{Heap sort} \\
-\end{description}
+\item \textbf{MergeSort} \\
+  MergeSort is another \textbf{divide and conquer} algorithm that also uses a
+  \textbf{comparison based} approach. MergeSort can \textbf{not be implemented
+  in place}, but it is \textbf{stable}.
 
+  It is similar to quicksort, except it's worst case run time is $O(n\log{n})$.
+  First the list is split down the middle, and the two halves are sorted using
+  merge sort recursively. Then, the two lists are merged back into one sorted
+  list in $O(n)$ time. See Listing~\ref{mergesort} for an implementation.
+
+\item \textbf{BucketSort} \\
+  BucketSort is a \textbf{stable}, \textbf{distribution based} sorting
+  algorithm. You place elements into `buckets' that describe a class of objects
+  (you could order people by the first letter of their first name for example).
+  When you've done that, you can either sort each bucket (using a different
+  algorithm), then you simply return each bucket in order.
+
+  BucketSort has a complexity of $O(n + k)$ where $k$ is the number of buckets
+  you have. In the person name example, the number of buckets would be $26$,
+  which, depending on the size of $n$ could be a very large, or very small
+  factor.
+
+\item \textbf{RadixSort}\\
+  A RadixSort is basically bucket sort with multiple iterations. When you have
+  sorted the first digit/word etc, you apply the same sort to each bucket in
+  turn, until all of the buckets have size 1. RadixSort has a time complexity of
+  $O(n)$
+
+  RadixSort can be done \textbf{in-place}, and in a \textbf{stable} manner:
+  \begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`_=8}]
+    050, 731, 806, 014, 235
+    05\textbf{0}, 73\textbf{1}, 01\textbf{4}, 23\textbf{5}, 80\textbf{6}
+    8\textbf{0}6, 0\textbf{1}4, 7\textbf{3}1, 2\textbf{3}5, 0\textbf{5}0
+    \textbf{0}14, \textbf{0}50, \textbf{2}35, \textbf{7}31, \textbf{8}06
+  \end{Verbatim}
+
+\item \textbf{HeapSort} \\
+  HeapSort is very simple, it iterates through the unsorted list, adding each
+  element to a heap as it goes. When it has finished adding all the elements, it
+  simply iterates through the heap and returns the order of iteration. Since
+  adding an element to a (binary) heap is an $O(log(n))$ operation, and you need
+  to do it $n$ times, the runtime of HeapSort is $O(n\log{n})$.
+
+  HeapSort can be implemented \textbf{in place} since the heap can be stored
+  inside the input array (since a heap can be represented as an array). HeapSort
+  isn't stable though, since the heap can be re-ordered while it's being created
+  (if you're not sure on this, maybe it's time for a trip to wikipedia to learn
+  about heaps).
+
+\end{description}
 
 \subsection{Searching}
 
-\subsection{Tree and graph traversal}
-
 \section{Code listings}
 
-\begin{lstlisting}
-  \lstinputlisting[language=Java]{code/QuickSort.java}
-\end{lstlisting}
+\lstinputlisting[caption={QuickSort}, label=quicksort]{code/QuickSort.java}
+\lstinputlisting[caption={MergeSort}, label=mergesort]{code/MergeSort.java}
