@@ -118,8 +118,22 @@ Anonymous-Drinks} := \pi_{Strength, Colour}(\text{\it Alcohol-Selection})$:
 \end{center}
 
 Notice that both the 11\% Ale and the 11\% Red Wine have the same strength and
-colour values. Concequently, the projection operator combines those rows into
+colour values. Consequently, the projection operator combines those rows into
 one so the same result isn't displayed twice.
+
+Projection can also be used to do simple arithmetic, $\text{\it Test} :=
+\pi_{Strength + Strength->DStrength, Colour}(\text{\it Anonymous-Drinks})$:
+
+\begin{center}
+  \begin{tabular}{ll}
+    \multicolumn{2}{c}{\textbf{Test}}\\
+    {DStrength} & {Colour}\\ \hline
+    22         & Red\\
+    8.4        & Yellow\\
+    25.6       & White\\
+    36         & Carmine\\
+  \end{tabular}
+\end{center}
 
 \subsection{Product $\times$}
 
@@ -157,3 +171,311 @@ $\text{\it Grog-Shops} := \text{\it Shops} \times \text{\it Alcohol-Selection}$:
     New Zeland Wines & X.High      & Low     & Ale           & 11                & Red\\
   \end{tabular}
 \end{center}
+
+\subsection{Renaming $\rho$}
+
+The notation for renaming columns is pretty simple; $\text{\it Drinks} :=
+\rho_{Name, Strength, Hue}(\text{\it Alcohol-Selection})$
+
+\begin{center}
+  \begin{tabular}{lll}
+    \multicolumn{3}{c}{\textbf{Drinks}}\\
+    {Name} & {Strength} & {Hue}\\ \hline
+    Wine          & 11                & Red\\
+    Beer          & 4.2               & Yellow\\
+    Wine          & 12.8              & White\\
+    Port          & 18                & Carmine\\
+    Ale           & 11                & Red\\
+  \end{tabular}
+\end{center}
+
+\subsection{Join $\Join$}
+
+If we had:
+
+\begin{center}
+  \begin{tabular}{lll}
+    \multicolumn{2}{c}{\textbf{People}}\\
+    {Name} & {Drinks}\\ \hline
+    Alice  & Wine\\ 
+    Bob    & Beer\\ 
+  \end{tabular}
+\end{center}
+
+We could join it with the Grog-Shops table, using $\text{\it Fave-Shops} :=
+People \Join_{People.Drinks=Grog-Shops.Type}(\text{\it Grog-Shops})$
+
+\begin{center}
+  \begin{tabular}{lllllll}
+    \multicolumn{7}{c}{\textbf{Fave-Shops}}\\
+    {Person.Name} & {Grog-Shops.Name}& {Dodginess} & {Price} & {Type} & {Strength} & {Colour}\\ \hline
+    Alice         &  Ali's            & High        & Medium  & Wine          & 11                & Red\\
+    Bob           &  Ali's            & High        & Medium  & Beer          & 4.2               & Yellow\\
+    Alice         &  Ali's            & High        & Medium  & Wine          & 12.8              & White\\
+    Alice         &  Tesco            & Low         & Medium  & Wine          & 11                & Red\\
+    Bob           &  Tesco            & Low         & Medium  & Beer          & 4.2               & Yellow\\
+    Alice         &  Tesco            & Low         & Medium  & Wine          & 12.8              & White\\
+    Alice         &  New Zeland Wines & X.High      & Low     & Wine          & 11                & Red\\
+    Bob           &  New Zeland Wines & X.High      & Low     & Beer          & 4.2               & Yellow\\
+    Alice         &  New Zeland Wines & X.High      & Low     & Wine          & 12.8              & White\\
+  \end{tabular}
+\end{center}
+
+If two tables have a column of the same name, then they can be joined naturally
+without specifying which columns to join explicitly.
+
+\subsection{Distinct $\delta$}
+
+The $\delta$ operator will ensure that no rows are duplicated.
+
+\subsection{Chaining operators}
+
+Just like in normal algebra, you can chain operators:
+
+$\delta(\pi_{Strength, Colour}(\text{\it Alcohol-Selection}))$
+
+Gives:
+
+\begin{center}
+  \begin{tabular}{lll}
+    {Strength} & {Colour}\\ \hline
+    11                & Red\\
+    4.2               & Yellow\\
+    12.8              & White\\
+    18                & Carmine\\
+  \end{tabular}
+\end{center}
+
+\section{SQL Syntax}
+
+\subsection{Selecting rows}
+
+The SQL command to select rows from a table is:
+
+\begin{verbatim}
+	SELECT <column-name>
+	FROM <table-name>;
+\end{verbatim}
+
+If you only want distinct values from a column, use \texttt{DISTINCT}:
+
+\begin{verbatim}
+	SELECT DISTINCT <column-name>
+	FROM <table-name>;
+\end{verbatim}
+
+If you want all of the columns, use \texttt{*}:
+
+\begin{verbatim}
+	SELECT *
+	FROM <table-name>;
+\end{verbatim}
+
+You can also do derivations:
+
+\begin{verbatim}
+	SELECT salary/2
+	FROM <table-name>;
+\end{verbatim}
+
+In order to specify which rows you want from the table, or you want to join two
+tables together, use the \texttt{WHERE} clause:
+
+\begin{verbatim}
+	SELECT *
+	WHERE <condition>
+	FROM <table-name>;
+\end{verbatim}
+
+\begin{verbatim}
+	SELECT *
+	WHERE table1.columnx = table2.columny
+	FROM table1, table2;
+\end{verbatim}
+
+Use \texttt{AND} to chain multiple conditions in a \texttt{WHERE} clause:
+
+\begin{verbatim}
+	SELECT *
+	WHERE x > 100
+	AND table1.x = table2.y
+	FROM <table-name>;
+\end{verbatim}
+
+\subsubsection{Where conditions}
+
+You can use the standard $=, <, >$ signs for comparisons between columns,
+but SQL also lets you use \texttt{LIKE}, \texttt{BETWEEN} and \texttt{IS NULL}:
+
+\begin{verbatim}
+	SELECT *
+	FROM <table-name>
+	WHERE name LIKE '%BOB%';
+\end{verbatim}
+
+\begin{verbatim}
+	SELECT *
+	FROM <table-name>
+	WHERE salary BETWEEN 10000 AND 12000;
+\end{verbatim}
+
+\begin{verbatim}
+	SELECT *
+	FROM <table-name>
+	WHERE previous-convictions IS NULL;
+\end{verbatim}
+
+You can also compare tuples:
+
+\begin{verbatim}
+	SELECT *
+	FROM t1, t2
+	WHERE (t1.parent, t1.age) = ('Janet', t2.age);
+\end{verbatim}
+
+\subsection{Set operations}
+
+The three main set operations are \texttt{UNION, EXCEPT} and \texttt{INTERSECT},
+their meaning is rather self evident given their names. An example usage may be:
+
+\begin{verbatim}
+	(SELECT *
+	 FROM <table-name>)
+	UNION ALL
+	(SELECT *
+	 FROM <table-name>);
+\end{verbatim}
+
+\subsection{Joins}
+
+We've already looked at the most common join:
+
+\begin{verbatim}
+	SELECT *
+	WHERE table1.columnx = table2.columny
+	FROM table1, table2;
+\end{verbatim}
+
+But you can also do it manually:
+
+\begin{verbatim}
+	SELECT *
+	FROM table1 JOIN table2
+	USING (<column-name>);
+\end{verbatim}
+
+Or with a \texttt{NATURAL JOIN}, which is automatic, but can only be applied
+when columns have identical names:
+
+\begin{verbatim}
+	SELECT *
+	FROM table1 NATURAL JOIN table2
+\end{verbatim}
+
+\subsection{Renaming columns}
+
+You can use the \texttt{FROM} clause to rename tables:
+
+\begin{verbatim}
+	SELECT *
+	FROM table1 as a, table2 as b
+	where a.col > b.col;
+\end{verbatim}
+
+\subsection{Ordering and other operations}
+
+\texttt{GROUP BY} can be used to sort rows by a column value:
+
+\begin{verbatim}
+	SELECT *
+	FROM <table-name>
+	GROUP BY height;
+\end{verbatim}
+
+Other operators such as \texttt{AVG} and \texttt{COUNT} can also be used:
+
+\begin{verbatim}
+	SELECT AVG(salary)
+	FROM <table-name>;	
+\end{verbatim}
+
+\begin{verbatim}
+	SELECT COUNT(DISTINCT salary)
+	FROM <table-name>;	
+\end{verbatim}
+
+\begin{verbatim}
+	SELECT COUNT(*)
+	FROM <table-name>;	
+\end{verbatim}
+
+\begin{verbatim}
+	SELECT dept_name, AVG(salary)
+	FROM staff
+	GROUP BY dept_name
+	HAVING AVG(salary) > 30000;	
+\end{verbatim}
+
+\section{Designing databases}
+
+Entity-Relationship (ER) Modelling is a simple, high-level conceptual modelling
+approach that focuses on data requirements rather than business logic. A
+conceptual model is what we aim to produce in the design phase of database
+development. It describes the format of the database, they types of entity that
+are used, the relationships between entities and constraints on the data.
+
+We can translate a conceptual model into a logical schema, which is often just a
+language such as SQL. We can use the logical schema directly to create and
+manipulate our database.
+
+\subsection{Entitiy Relationship Modelling}
+
+There are three basic constructs in ER modelling; entity types, attribute types and relationship types.
+
+Attribute types consist of the following:
+
+\begin{description}
+  \item Simple or Composite\\
+    A simple type is atomic, whereas a composite type is made of an amalgamation
+    of multiple other types.
+  \item Single or Multi valued\\
+    Types can either have single values (such as an integer), or they can have a
+    value from discrete set of allowed values (multi-valued).
+  \item Stored or Derived\\
+    Stored attriutes are ones where the value of the attribute is directly
+    stored by the database (e.g. licence start date), while Derived attributes
+    are computed from the values of other attributes (e.g. licence end date =
+    start date + 1 year).
+  \item Null valued\\
+    Can be null.
+  \item Complex-valued\\
+    Made of arbitrarily nested composite or multivalued attributes.
+\end{description}
+
+\marginpar{Remember, ER models don't have primary or foreign keys, they only
+have plain keys. Relationships are modelled explicitly in ER rather than
+implictly using keys.}
+
+Keys are important in ER modelling. Entities with a key are bound by uniquness
+constraints; each key must be unique within the entity. There can be more than
+one key in an entity type, but there can also be no key, and if this is the
+case, then the entity is said to be \textbf{weak}.
+
+\textbf{Cardinality ratio} constraints specify the ratio of one entity to
+another in a relationship. It can be $1:1, 1:n, n:1, n:m$.
+
+\textbf{Participation contraints} specify if an entity depends on another
+entity. If a participation is \textbf{total}, then every entity in the total
+entity must participate in some relationship, if the participation is
+\textbf{partial}, then some entities may not participate in any relationship.
+For example, student:program is total:partial.
+
+\textbf{Weak entities} can only be properly identified if they are related to
+some other entity type, an \textbf{owner}. An \textbf{identifying relationship}
+is one where a weak entity has a total participation constraint with it's owner.
+
+When we're writing a requirements specification, \textbf{bold} words are entity
+types (e.g. \textbf{employees, departments and projects}), \textit{italic} words
+are attribute types (e.g. \textit{name, location, phone number}), and
+\underline{underlined} words are relationschip types (e.g. employes
+\underline{belong to a} department).

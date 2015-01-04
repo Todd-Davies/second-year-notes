@@ -14,3 +14,5 @@
 \contentsline {subsection}{\numberline {3.3}Joins}{7}{subsection.3.3}
 \contentsline {subsection}{\numberline {3.4}Renaming columns}{7}{subsection.3.4}
 \contentsline {subsection}{\numberline {3.5}Ordering and other operations}{8}{subsection.3.5}
+\contentsline {section}{\numberline {4}Designing databases}{8}{section.4}
+\contentsline {subsection}{\numberline {4.1}Entity Relationship Modelling}{8}{subsection.4.1}
