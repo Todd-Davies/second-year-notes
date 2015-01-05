@@ -95,7 +95,7 @@ in the top $K$ nearest neighbours:
 
 %TODO: Check this compiles
 
-\begin{lstlisting}[label=nearestNeighbour, caption=Scala Nearest Neighbour]
+\begin{lstlisting}[label=nearestNeighbourk, caption=Scala Nearest Neighbour]
 def kNearestNeighbour(k: Int, input: Point, existing: Set[Point]): Class = {
   val topK: List[Class] = existing.toList.sorted(
       (p: Point) => p.euclideanDistance(input)
@@ -556,3 +556,257 @@ do:
 
   \item \url{http://sebastianraschka.com/PDFs/articles/naive_bayes_1.pdf}
 \end{itemize}
+
+\section{Clustering Analysis}
+
+A \textbf{cluster} is a collection of data objects or points that are similar to
+one another. Objects in other clusters will be dissimilar to objects in this
+cluster.
+
+\marginpar{\textbf{Unsupervised} learning algorithms try and find hidden
+structure in unlabelled data. Unlike supervised learning algorithms, there is no
+way to evaluate potential solutions, since the data is unlabelled.}
+
+\textbf{Cluster analysis} involves finding similarities between data and
+grouping similar data points into clusters. It's a type of \textit{unsupervised
+learning}, and is used both as a stand alone tool to gain an insight into data,
+but also as a pre-processing step for other algorithms.
+
+As a simple example, you could split a list of animals (\textit{dog, cat, shark,
+minnow, frog, worm}) into ones that have legs (\textit{dog, cat, frog}) and ones
+that don't (\textit{shark, minnow, worm}). This is a trivial example, but the
+technique is used in many fields:
+
+\begin{mymulticols}
+  \begin{itemize}
+    \item \textbf{Banking/Internet Security} (Fraud detection)
+    \item \textbf{Biology} (Classification of species)
+    \item \textbf{Climate Change} (Better understanding the climate, finding
+      atmospheric patterns)
+    \item \textbf{Finance} Uncover correlation in underlying shares
+    \item \textbf{Image Compression} (group similar pixels)
+    \item Many more\dots
+  \end{itemize}
+\end{mymulticols}
+
+\subsection{Representing data}
+
+\subsubsection{Data matrix}
+
+The easiest way to represent data is using a matrix, where the rows represent
+each data point, and the columns represent each feature. It's good at
+representing data with $n$ datapoints (rows) and $p$ dimensions (columns). Also
+known as \textit{object by feature}. Data matrices can be said to have two
+`modes' since their rows and columns can be interchanged.
+
+\subsubsection{Distance matrix}
+
+This is a triangular matrix that describes the distance between points.
+
+\begin{center}
+  \begin{tabular}{lllll}
+      & A & B & C & D\\
+    A & 0 & 4 & 6 & 3\\
+    B & 4 & 0 & 2 & 7\\
+    C & 6 & 2 & 0 & 5\\
+    D & 3 & 7 & 5 & 0
+  \end{tabular}
+\end{center}
+
+You can see that the matrix is symmetrical, so we generally only show the bottom
+left side (to save confusion and space). If you shade the cells of the matrix in
+according to their value, you can get a heat map of the data, which can reveal
+hidden patterns.
+
+You may not have considered that there may be different ways of computing the
+distance between coordinates, but we will cover three ways in this course. In
+the following list, $n$ is the number of data points, and $p$ is the number of
+features:
+
+\begin{description}
+  \item \textbf{Euclidean Distance}\\ 
+    $d(x,y) = \sqrt{|x_1 - y_1|^2 + \dots + |x_n - y_n|^2}$
+  \item \textbf{Manhattan Distance}\\
+    $d(x,y) = |x_1 - y_1| + \dots + |x_n - y_n|$\\
+    This one would find the distance you'd have to go if you could only go in
+    straight lines, and turn in $90^{\circ}$ increments (so it's the distance
+    you'd have to walk in Manhattan).
+  \item \textbf{Minkowski Distance}\\
+    $d(x,y) = \sqrt[\leftroot{-2}\uproot{2}p]{|x_1 - y_1|^p + \dots + |x_n - y_n|^p}, p > 0$
+\end{description}
+
+\subsubsection{Cosine Similarity}
+
+Cosine similarity is a measure of similarity between two vectors in $n$
+dimensional space. It measure the cosine of the angle between the vectors;
+$cos(0^{\circ}) = 1$, while any angle other than $0^{\circ}$ is less than $1$.
+It is therefore a measure of the \textit{orientation, irrespective of the
+magnitude} of the two vectors. Diametrically opposed vectors will have a
+similarity of -1.
+
+In order to calculate the cosine similarity, you use this formula:
+
+\[
+  \cos(x,y) = \frac{x \cdot y}{\|x\| \|y\|} = \frac{ \sum\limits_{i=1}^{n}{x_iy_i} }{ \sqrt{\sum\limits_{i=1}^{n}{(x_i)^2}} \times \sqrt{\sum\limits_{i=1}^{n}{(y_i)^2}} }
+\]
+
+In order to find the \textbf{distance} between two vectors using cosine
+similarity, you do:
+
+\[
+  d(x,y) = 1 - cos(x,y)
+\]  
+
+One example use of the cosine similarity, is in text mining, where if you have
+documents represented as a vectors, where each word is given a dimension that
+represents the number of times it appears in the document, cosine similarity can
+find how similar to each other, documents are.
+
+Here's an example:
+
+\begin{align*}
+  x &= (1,2,3,4,5)\\
+  y &= (0,3,4,7,9)\\
+  x \cdot y &= (1 * 0) + (2 * 3) + (3 * 4) + (4 * 7) + (5 * 9)\\
+           &= 0 + 6 + 12 + 28 + 45\\
+           &= 91\\
+  \|x\| &= \sqrt{1^2 + 2^2 + 3^2 + 4^2 + 5^2}\\
+        &= \sqrt{1 + 4 + 9 + 16 + 25}\\
+        &\approx 7.416\\
+  \|y\| &= \sqrt{0^2 + 3^2 + 4^2 + 7^2 + 9^2}\\
+        &= \sqrt{9 + 16 + 49 + 81}\\
+        &\approx 12.450\\
+  cos(x,y) &= \frac{91}{7.416 \cdot 12.450} = 0.986\\
+  d(x,y) &= 1 - 0.986 = 0.14
+\end{align*}
+
+\subsubsection{Measuring the distance of binary features}
+
+You can measure the distance between binary features by converting them all to
+$1$ and $0$ (if you've not already), and draw a \textit{contingency table} for
+them:
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{lc|cc}
+    & \multicolumn{1}{l}{} & \multicolumn{2}{c}{y} \\
+    & & 0 & 1 \\ \cline{2-4}
+    \multirow{2}{*}{x} & 1 & a & b\\
+    & 0 & c & d\\
+  \end{tabular}
+\end{table}
+
+Where:
+\begin{itemize}
+  \item $a$ is the number of features that are 1 for $x$ and $y$
+  \item $b$ is the number of features that are 0 for $x$ and 1 for $y$
+  \item $c$ is the number of features that are 1 for $x$ and 0 for $y$
+  \item $d$ is the number of features that are 0 for $x$ and $y$
+\end{itemize}
+
+To find the actual distance for a symmetric binary attribute (where both classes
+are equal (e.g. male and female)):
+
+\[
+  d(x,y) = \frac{b + c}{a + b + c + d}
+\]
+
+If the attributes are asymmetric (one is more rare than the other, say if
+the test for a disease is positive (important) or negative (less important)),
+set the rarest one to $1$ and do:
+
+\[
+  d(x,y) = \frac{b + c}{a + b + c}
+\]
+
+For example:
+
+\begin{center}
+  \begin{tabular}{l llllll}
+    Name & Dairy & Pollen & Gluten & Fish & Mushrooms & Peanuts\\ \hline
+    Bob  & 1     & 0      & 0      & 0    & 1         & 0      \\
+    Bill & 0     & 1      & 0      & 0    & 1         & 1      
+  \end{tabular}
+\end{center}
+
+To find the distance (these would be asymmetric binary attributes), you do:
+
+\[
+  d(bob, bill) = \frac{1 + 2}{1 + 2 + 1} = \frac{3}{4} = 0.75
+\]  
+
+\subsection{Distance for nominal features}
+
+If the values for dimensions are discrete, we can convert them into more binary
+dimensions. For example, if we had one colour dimension, that had $\{red, blue,
+green, black\}$ as it's values, we could convert that into four binary
+dimensions (and then condense is back into one dimension (e.g. 1000, or 0100),
+and do binary distance measuring on it.
+
+A simpler (but worse) way of finding the distance between two nominal entities
+is to do:
+
+\[
+  d(x,y) = \frac{\text{number of mis-matching features}}{\text{total number of features}}
+\]
+
+\subsection{Clustering approaches}
+
+These are the main clustering approaches:
+
+\begin{description}
+  \item \textbf{Partitioning approach}\\
+  You can partition the data with a view to evaluating all of the partitions by
+  some criteria (e.g. minimising the sum of distances). K-means and k-medoid
+  does this.
+
+  \item \textbf{Hierarchical approach}\\
+  Aim to classify the data into hierarchies (e.g. draw increasingly small circles
+  around datapoints). Agglomerative, Diana, Agnes, BIRCH are all examples of
+  this.
+
+  \item \textbf{Density approach}\\
+  Create a function that will calculate the density or connectiveness of the
+  data at a point, and use that to form clusters.
+
+  \item \textbf{Spectral approach}\\
+  Convert the data into a weighted graph, and cut the graph into sub-graphs that
+  correspond to clusters.
+
+  \item \textbf{Ensemble approach}\\
+  Combine multiple clustering techniques to generate clusters.
+\end{description}
+
+\subsubsection{K-means clustering}
+
+As previously mentioned, k-means is a partitioning clustering approach. It
+iteratively partitions the training data to produce several non-empty clusters.
+The idea is to produce optimal partitions in which the sum of the squared
+distance to the `representative object' is minimised.
+
+Since partitioning the dataset into $K$ optimal partitions is NP-Hard, the
+problem must be solved using heuristic algorithm. The end goal is to minimise
+the value of:
+
+\[
+  \sum\limits_{k=1}^K\sum\limits_{x \in S_k}d^2(x, m_k)
+\]
+
+Where $K$ is the number of partitions to find, $S_i$ is the $i$th partition (a
+set) of the data, and $m_k$ is the `Representative object' (or the mean of the
+points) in the set $S_i$.
+
+The algorithm works like so:
+
+\begin{enumerate}
+  \item Pick $K$ random seed points (from the data).
+  \item Assign each data object to the cluster with the nearest seed point
+    (measured with whatever distance metric you're using e.g. Manhattan).
+  \item Compute the mean points of the clusters (aka centroids).
+  \item Go back to Step 1), but the seed points are now the means calculated in
+    Step 3). Do this until the assigned sets don't change between iterations.
+\end{enumerate}
+
+%TODO: The task from KE's lecture 2, slide 12
+
+% Start from slide 13 of Ke chen's second lecture
