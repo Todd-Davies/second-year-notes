@@ -18,3 +18,6 @@
 \BOOKMARK [2][-]{subsection.4.1}{Entity Relationship Modelling}{section.4}% 18
 \BOOKMARK [3][-]{subsubsection.4.1.1}{ER Notation}{subsection.4.1}% 19
 \BOOKMARK [3][-]{subsubsection.4.1.2}{Specialising entities}{subsection.4.1}% 20
+\BOOKMARK [1][-]{section.5}{Converting an ER diagram into a relational language}{}% 21
+\BOOKMARK [1][-]{section.6}{Normalization}{}% 22
+\BOOKMARK [2][-]{subsection.6.1}{Functional Dependencies}{section.6}% 23

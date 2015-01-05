@@ -645,15 +645,16 @@ you write this section and send me a pull request!
 \section{Normalization}
 
 Normalizeation is the process of decomposing unsatisfactory (i.e. potentially
-improvable) relations by creating smaller relations from them. The keys and ???
-of the relation determine it's normal form.
+improvable) relations by creating smaller relations from them. The keys and
+functional dependencies of the relation determine it's normal form.
 
-\marginpar{3NF and BCNF are the targets we try and work towards.}
+\marginpar{3NF and BCNF (Boyce-Codd Normal Form) are the targets we try and
+work towards.}
 
 The normal form indicates a particular quality level of the database schema. 1NF
 is a relation in its first normal form, where every field contains only atomic
 values. 2NF, 3NF and BCNF are normal forms that are defined in terms of keys and
-??? of a relational schema.
+functional dependencies of a relational schema.
 
 The main technique that we use to try and refine schema is
 \textbf{decomposition}. This is the idea of taking a relation ABCD, and
@@ -666,3 +667,24 @@ worked at a specific office if the office location moved. If there was a
 seperate table of offices, we could simply update the office location in that
 table, and because of a relation between Employee and Office, we wouldn't have
 to update Employee at all!
+
+A key is one or more attributes in a relation where each key is unique for
+that relation. There may be more than one valid key (candidate key) for each
+entity, if this is the case, then one of them is selected to be the primary
+key, and the others are said to be secondary keys.
+
+\subsection{Functional Dependencies}
+
+Functional dependencies are a different way of solving the employee-office
+problem mentioned a few paragraphs ago. A functional dependency is basically a
+constraint between two attributes in the entity, the notation would be
+Office\_ID $\rightarrow$ Office\_Location, if we were to create an FD between
+the office ID and it's location.
+
+If an FD is in place, the determinant (the bit before the arrow) determins the
+bit after the arrow. Determinants of the same value will \textit{always} map
+onto the same value.
+
+The trouble with functional dependencies is what happens when you want to
+update the derived value, or insert a new data item that doesn't have a
+determinant.
