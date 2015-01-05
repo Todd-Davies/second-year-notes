@@ -635,3 +635,34 @@ subtypes or if a predicate has (e.g. if country in EU $\implies$ EU Member).
 In the examples, the attribute `d' is used to create a subtype. This stands for
 disjoint, since a car can't also be a lorry. There is also `o', which is used
 when an entity could belong to multiple subtypes.
+
+\section{Converting an ER diagram into a relational language}
+
+I refer you to Alvaro's sixth lecture, for this part, since it'd take too long
+to draw all the diagrams you need. If you're reading this and feeling helpful,
+you write this section and send me a pull request!
+
+\section{Normalization}
+
+Normalizeation is the process of decomposing unsatisfactory (i.e. potentially
+improvable) relations by creating smaller relations from them. The keys and ???
+of the relation determine it's normal form.
+
+\marginpar{3NF and BCNF are the targets we try and work towards.}
+
+The normal form indicates a particular quality level of the database schema. 1NF
+is a relation in its first normal form, where every field contains only atomic
+values. 2NF, 3NF and BCNF are normal forms that are defined in terms of keys and
+??? of a relational schema.
+
+The main technique that we use to try and refine schema is
+\textbf{decomposition}. This is the idea of taking a relation ABCD, and
+decomposing it into two relations; AB and BCD. Decomposition is guided by the
+functional dependencies that hold over the relation.
+
+An example would be a table of Employees. If there was a column for office id
+and another for work address, we would have to update all of the employees who
+worked at a specific office if the office location moved. If there was a
+seperate table of offices, we could simply update the office location in that
+table, and because of a relation between Employee and Office, we wouldn't have
+to update Employee at all!
