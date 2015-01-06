@@ -15,4 +15,7 @@
 \contentsline {subsubsection}{\numberline {2.2.1}Worst case for comparison sorts}{}{subsubsection.2.2.1}
 \contentsline {subsection}{\numberline {2.3}Sorting algorithms in detail}{}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Searching}{}{subsection.2.4}
+\contentsline {subsubsection}{\numberline {2.4.1}QuickSelect}{}{subsubsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.2}Binary Search}{}{subsubsection.2.4.2}
+\contentsline {subsubsection}{\numberline {2.4.3}String matching algorithms}{}{subsubsection.2.4.3}
 \contentsline {section}{\numberline {3}Code listings}{}{section.3}
