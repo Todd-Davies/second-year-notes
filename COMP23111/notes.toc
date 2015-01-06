@@ -18,3 +18,6 @@
 \contentsline {subsection}{\numberline {4.1}Entity Relationship Modelling}{7}{subsection.4.1}
 \contentsline {subsubsection}{\numberline {4.1.1}ER Notation}{8}{subsubsection.4.1.1}
 \contentsline {subsubsection}{\numberline {4.1.2}Specialising entities}{9}{subsubsection.4.1.2}
+\contentsline {section}{\numberline {5}Converting an ER diagram into a relational language}{10}{section.5}
+\contentsline {section}{\numberline {6}Normalization}{10}{section.6}
+\contentsline {subsection}{\numberline {6.1}Functional Dependencies}{11}{subsection.6.1}
