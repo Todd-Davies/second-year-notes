@@ -542,17 +542,75 @@ choice of pivot is very important. It is important to note that (just like
 QuickSort) some inputs can be crafted to exhibit worst-case performance in
 QuickSelect, which can have security implications (i.e. you could make DDOS
 attacks much worse by crafting the requests to exploit QuickSelect's running
-time). For this reason, random pivots are reccommended for both QuickSort and
+time). For this reason, random pivots are recommended for both QuickSort and
 QuickSelect.
 
-%TODO: Binary search
+\subsubsection{Binary Search}
 
-%TODO: String matching
+Binary Search is a really easy one, if you're given an \textbf{ordered} list,
+you simply look at the item at the middle index, if it's greater than the item
+you're looking for, recurse on the left half of the list, if it's less than the
+item you're looking for, recurse on the right side, and if it's the item that
+you're looking for, return the item.
 
+\marginpar{Binary Search is actually a \textit{dichotomic} divide and conquer
+algorithm, since it splits the input into two on each iteration.}
+
+Since we're halving the size of the list on each iteration (it's a binary chop
+algorithm), the worst case runtime is $O(\log n)$, and the best case is $O(1)$
+(if the desired item was in the middle of the list by default). Binary Search
+can be implemented as both \textbf{in place} and \textbf{tail recursive} (as in
+Listing~\ref{binarysearch}), so it's space complexity can be O(1)
+
+\subsubsection{String matching algorithms}
+
+Given a `needle' (a string that you want to find), and a `haystack' (the string
+you're looking inside), can we determine if the needle is inside the haystack?
+If so, what index does the needle start in the haystack?
+
+\begin{description}
+  \item The \textbf{naive approach}\\
+
+    String matching is easy to solve if you don't care about running time.
+    Simply iterate through each character in the haystack, test if the needle
+    begins with the same character, and if it does, test the second, third and
+    so on, until you reach the end of the needle. If a character doesn't match,
+    carry on iterating through the haystack. In the average case, this takes
+    $O(n + m)$ time, however, in the worst case, it takes $O(nm)$ time.
+
+  \item Using a \textbf{Deterministic Finite Automaton}\\
+
+    You could build a DFA that will test, in worst case $O(n)$ (the size of the
+    haystack) time, for the needle. For example, the following DFA will match
+    the word `hello':
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=\textwidth]{diagrams/hello-automata.pdf}
+      \label{hello-automata}
+    \end{figure}
+
+    \marginpar{Here, $\Eta$ is the alphabet that's being used, so $|\Eta|$ is
+    the size of the alphabet, $m$ is the size of the needle, and (you should
+    know this one) $\Theta$ is a tight bound on the computation, as opposed to
+    $O$, which is an upper bound.}
+
+    The trouble with DFA's is that they are expensive to create (you need a
+    method that will ensure you've built a correct DFA), hence the preprocessing
+    time for the DFA method is $\Theta(m |\Eta|)$, which when your alphabet is
+    large (like if you're using ASCII, or even Unicode(!)), could be
+    significant.
+
+\end{description}
+
+\newpage
 \section{Code listings}
 
 \marginpar{Can you see a potential security issue with this QuickSort? Take
 another look at Section~\ref{QuickSelect} if you can't spot it!}
 
 \lstinputlisting[caption={QuickSort}, label=quicksort]{code/QuickSort.java}
+\newpage
 \lstinputlisting[caption={MergeSort}, label=mergesort]{code/MergeSort.java}
+\newpage
+\lstinputlisting[caption={BinarySearch}, label=binarysearch]{code/BinarySearch.java}

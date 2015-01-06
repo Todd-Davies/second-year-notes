@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  6 JAN 2015 09:49
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  6 JAN 2015 11:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -775,7 +775,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.88 
-     ] [4] [5] <diagrams/banker0.pdf, id=142, 51.53854pt x 24.33592pt>
+     ] [4] [5] <diagrams/banker0.pdf, id=152, 51.53854pt x 24.33592pt>
 File: diagrams/banker0.pdf Graphic file (type pdf)
 
 <use diagrams/banker0.pdf>
@@ -786,7 +786,7 @@ Package pdftex.def Info: diagrams/banker0.pdf used on input line 256.
 Package nag Warning: \label in float, but not after \caption on input line 257.
 
 
-<diagrams/banker1.pdf, id=143, 57.37134pt x 24.33592pt>
+<diagrams/banker1.pdf, id=153, 57.37134pt x 24.33592pt>
 File: diagrams/banker1.pdf Graphic file (type pdf)
 
 <use diagrams/banker1.pdf>
@@ -797,7 +797,7 @@ Package pdftex.def Info: diagrams/banker1.pdf used on input line 264.
 Package nag Warning: \label in float, but not after \caption on input line 265.
 
 
-<diagrams/banker2.pdf, id=144, 91.65744pt x 80.42949pt>
+<diagrams/banker2.pdf, id=154, 91.65744pt x 80.42949pt>
 File: diagrams/banker2.pdf Graphic file (type pdf)
 
 <use diagrams/banker2.pdf>
@@ -809,7 +809,7 @@ Package nag Warning: \label in float, but not after \caption on input line 275.
 
 
 [6 <./diagrams/banker0.pdf> <./diagrams/banker1.pdf>]
-<diagrams/banker3.pdf, id=176, 103.32301pt x 80.42949pt>
+<diagrams/banker3.pdf, id=186, 103.32301pt x 80.42949pt>
 File: diagrams/banker3.pdf Graphic file (type pdf)
 
 <use diagrams/banker3.pdf>
@@ -820,7 +820,7 @@ Package pdftex.def Info: diagrams/banker3.pdf used on input line 284.
 Package nag Warning: \label in float, but not after \caption on input line 285.
 
 
-<diagrams/banker4.pdf, id=177, 103.32301pt x 24.33592pt>
+<diagrams/banker4.pdf, id=187, 103.32301pt x 24.33592pt>
 File: diagrams/banker4.pdf Graphic file (type pdf)
 
 <use diagrams/banker4.pdf>
@@ -835,7 +835,7 @@ Package nag Warning: \label in float, but not after \caption on input line 293.
 LaTeX Warning: Command \textsterling invalid in math mode on input line 296.
 
 Missing character: There is no ¿ in font cmr10!
-<diagrams/banker5.pdf, id=178, 140.88133pt x 80.42949pt>
+<diagrams/banker5.pdf, id=188, 140.88133pt x 80.42949pt>
 File: diagrams/banker5.pdf Graphic file (type pdf)
 
 <use diagrams/banker5.pdf>
@@ -847,7 +847,7 @@ Package nag Warning: \label in float, but not after \caption on input line 302.
 
 
 [7 <./diagrams/banker2.pdf> <./diagrams/banker3.pdf> <./diagrams/banker4.pdf>]
-<diagrams/banker9.pdf, id=214, 226.89168pt x 80.42949pt>
+<diagrams/banker9.pdf, id=224, 226.89168pt x 80.42949pt>
 File: diagrams/banker9.pdf Graphic file (type pdf)
 
 <use diagrams/banker9.pdf>
@@ -891,45 +891,65 @@ LaTeX Font Info:    Font shape `T1/fvm/b/n' will be
 Package nag Warning: \label in float, but not after \caption on input line 521.
 
 
-[11]
+[11] <diagrams/hello-automata.pdf, id=268, 351.85251pt x 28.01366pt>
+File: diagrams/hello-automata.pdf Graphic file (type pdf)
 
-Package nag Warning: \label in float, but not after \caption on input line 557.
+<use diagrams/hello-automata.pdf>
+Package pdftex.def Info: diagrams/hello-automata.pdf used on input line 587.
+(pdftex.def)             Requested size: 415.12572pt x 33.05194pt.
+
+
+Package nag Warning: \label in float, but not after \caption on input line 588.
+
+
+[12 <./diagrams/hello-automata.pdf>] [13]
+
+Package nag Warning: \label in float, but not after \caption on input line 617.
 
 
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 557.
+nput line 617.
 LaTeX Font Info:    Font shape `T1/fve/m/n' will be
-(Font)              scaled to size 7.19995pt on input line 557.
+(Font)              scaled to size 7.19995pt on input line 617.
 (./code/QuickSort.java
 LaTeX Font Info:    Font shape `TS1/fve/m/n' will be
 (Font)              scaled to size 7.19995pt on input line 2.
-)
+) [14]
 
-Package nag Warning: \label in float, but not after \caption on input line 558.
+Package nag Warning: \label in float, but not after \caption on input line 619.
 
 
-(./code/MergeSort.java [12]))
+(./code/MergeSort.java) [15]
 
-Package nag Warning: 10 complaints in total.
+Package nag Warning: \label in float, but not after \caption on input line 621.
+
+
+(./code/BinarySearch.java))
+
+Package nag Warning: 12 complaints in total.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 62.
-[13]
+[16]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 62.
  (./notes.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 62.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 62.
 Package rerunfilecheck Info: File `notes.out' has not changed.
-(rerunfilecheck)             Checksum: 11BB6D8D85EA217D1C44AC704AC3A225;1401.
+(rerunfilecheck)             Checksum: 5248939D51FEC98AABE757F3E4F11B68;1560.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 62.
  ) 
 Here is how much of TeX's memory you used:
- 11282 strings out of 493304
- 168196 string characters out of 6139870
- 542329 words of memory out of 5000000
- 14240 multiletter control sequences out of 15000+600000
- 67011 words of font info for 160 fonts, out of 8000000 for 9000
+ 11349 strings out of 493304
+ 169190 string characters out of 6139870
+ 537432 words of memory out of 5000000
+ 14254 multiletter control sequences out of 15000+600000
+ 67489 words of font info for 164 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 32i,23n,43p,240b,1735s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 32i,23n,43p,240b,1079s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
@@ -947,10 +967,10 @@ ts/type1/public/bera/fver8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/bera/fver8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvmb8
 a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on notes.pdf (13 pages, 182527 bytes).
+Output written on notes.pdf (16 pages, 197670 bytes).
 PDF statistics:
- 439 PDF objects out of 1000 (max. 8388607)
- 395 compressed objects within 4 object streams
- 129 named destinations out of 1000 (max. 500000)
- 31420 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 515 PDF objects out of 1000 (max. 8388607)
+ 466 compressed objects within 5 object streams
+ 172 named destinations out of 1000 (max. 500000)
+ 31441 words of extra memory for PDF output out of 35830 (max. 10000000)
 

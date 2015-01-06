@@ -16,4 +16,6 @@
 \contentsline {subsection}{\numberline {2.3}Sorting algorithms in detail}{10}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Searching}{11}{subsection.2.4}
 \contentsline {subsubsection}{\numberline {2.4.1}QuickSelect}{11}{subsubsection.2.4.1}
-\contentsline {section}{\numberline {3}Code listings}{12}{section.3}
+\contentsline {subsubsection}{\numberline {2.4.2}Binary Search}{12}{subsubsection.2.4.2}
+\contentsline {subsubsection}{\numberline {2.4.3}String matching algorithms}{12}{subsubsection.2.4.3}
+\contentsline {section}{\numberline {3}Code listings}{14}{section.3}
