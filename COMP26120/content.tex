@@ -514,13 +514,45 @@ optimal, while QuickSort is optimal for most inputs.
 
 \subsection{Searching}
 
-%TODO: Quickselect
+Searching algorithms are just as important as sorting algorithms, often partly
+because they can be implemented to run in much less time and space.
+
+\subsubsection{QuickSelect}
+\label{QuickSelect}
+
+QuickSelect is a cousin of QuickSort, designed to find the $k$th smallest
+element in an ordered list. It's worst case performance is $O(n^2)$, but it's
+average and best case is $O(n)$.
+
+QuickSelect chooses an element as a pivot, and partitions the data into two
+halves (elements less than, and elements greater or equal to the pivot).
+QuickSelect then recurses only into the side that contains the element to be
+found.
+
+QuickSelect is usually implemented \textbf{in-place}, and if this is the case,
+then a side effect of running QuickSelect will also partially sort the data.
+QuickSelect can be implemented using tail recursion, and so it can use $O(n)$
+memory space.
+
+The main factor in the runtime of QuickSelect is the choice of pivot. If we
+chose a pivot that decreased the list by the same fraction every time, then we
+would get linear performance, but if we chose one that only decreased the list
+by one every time, then we would get quadratic performance. Because of this, the
+choice of pivot is very important. It is important to note that (just like
+QuickSort) some inputs can be crafted to exhibit worst-case performance in
+QuickSelect, which can have security implications (i.e. you could make DDOS
+attacks much worse by crafting the requests to exploit QuickSelect's running
+time). For this reason, random pivots are recommended for both QuickSort and
+QuickSelect.
 
 %TODO: Binary search
 
 %TODO: String matching
 
 \section{Code listings}
+
+\marginpar{Can you see a potential security issue with this QuickSort? Take
+another look at Section~\ref{QuickSelect} if you can't spot it!}
 
 \lstinputlisting[caption={QuickSort}, label=quicksort]{code/QuickSort.java}
 \lstinputlisting[caption={MergeSort}, label=mergesort]{code/MergeSort.java}

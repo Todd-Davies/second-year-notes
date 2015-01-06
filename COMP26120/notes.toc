@@ -15,4 +15,5 @@
 \contentsline {subsubsection}{\numberline {2.2.1}Worst case for comparison sorts}{10}{subsubsection.2.2.1}
 \contentsline {subsection}{\numberline {2.3}Sorting algorithms in detail}{10}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Searching}{11}{subsection.2.4}
-\contentsline {section}{\numberline {3}Code listings}{11}{section.3}
+\contentsline {subsubsection}{\numberline {2.4.1}QuickSelect}{11}{subsubsection.2.4.1}
+\contentsline {section}{\numberline {3}Code listings}{12}{section.3}

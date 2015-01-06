@@ -319,26 +319,80 @@ our algorithm runs in $O(n)$ amortized time.
 
 \subsubsection{Potential method}
 
-The potential method is similar to the banker's method in that it requires
-virtual money for each operation and it keeps a bank account with which to
-finane expensive operations, however, \textbf{in the potential method, the
-amortized cost of the operation $i$ is equal to the actual cost plus the
-increase in potential due to the operation}.
+\marginpar{I think the idea of `potential' comes from potential energy in
+physics, which can be defined as ``The energy stored in a system due to it's
+configuration''.}
 
-Mathematically, if we define $\phi$ to be the potential function, which takes as
+The potential method is similar to the banker's method in that it requires
+virtual money for each operation and it keeps a bank account (of potential in
+this case) with which to finance expensive operations, however, \textbf{in the
+potential method, the amortized cost of the operation $i$ is equal to the actual
+cost plus the increase in potential due to the operation}.
+
+Mathematically, if we define $\Phi$ to be the potential function, which takes as
 an argument, the datastructure $D$ at a specific state after the $i$th
 operation, and $c_i$ to be the cost of operation $i$, then the cost of the
 operation will be:
 
 \[
-  C = c_i + \left(\phi(D_i) - \phi(D_{i-1}\right)
+  C = c_i + \left(\Phi(D_i) - \Phi(D_{i-1}\right)
 \]
 
+We can derive the following equation (I won't try to here):
 
+\[
+  \sum\limits_{i=1}^n C = \sum\limits_{i=1}^n \left( c_i \right) + \Phi(D_n) - \Phi(D_{0})
+\]
 
+If $\Phi(D_i) \geq \Phi(D_0)$ for all $i$, then we know we will never run out of
+potential.
 
+Lets say we have a stack structure, that implements \texttt{push} to push one
+element, and \texttt{popNPush}, which pops $k$ elements, and pushes another. Our
+potential function could be: 
 
-\section{Algorithmic correctness}
+\[
+  \Phi(D_i) = \text{\textit{The number of items in the stack after operation $i$}}
+\]
+
+This means that \texttt{push} will always have a cost of:
+
+\begin{align*}
+  C_{\text{\texttt{push}}} &= 1 + \left(\Phi(D_i) - \Phi(D_{i-1}\right)\\
+                           &= 1 + \text{\#items} + \text{\#items - 1}\\
+                           &= 1 + 1\\
+                           &= 2
+\end{align*}
+
+Lets work out the cost for \texttt{popNPush}:
+
+\begin{align*}
+  C_{\text{\texttt{popNPush(k)}}} &= (k + 1) + (n - k + 1) - n\\
+                                  &= 2 + k - k + n - n\\
+                                  &= 2
+\end{align*}
+
+We can conclude that the total amortized cost for both \texttt{push} and
+\texttt{popNPush} is $2$, so they have a amortized running time of $O(1)$.
+
+\subsubsection{Comparing the banker's and the potential methods}
+
+The banker method focuses on each operations prepayment by charging each
+operation a fixed sum according to it's type, which will offset future expensive
+operations made possible by this operation. The potential method focuses on the
+current operation, and how it affects the datastructure/system now, and the
+corresponding change in opportunity for future operations.
+
+Often, the banker method will store credit throughout the datastructure/system,
+maybe assigning each stack frame some credit, or maybe putting it in the
+branches of a tree. In contrast, the potential method takes a more holistic view
+and analyses the datastructure/system as a whole, maybe asking, how deep is the
+stack, or what is the depth of the tree.
+
+It is harder to come up with a decent cost function $\Phi$ in the potential
+method than it is to work out the cost of operations in the banker method, but
+for the potential method, you only have to do it once, whilst in the banker
+method, you have to do it for each possible operation.
 
 \section{Basic algorithms}
 
@@ -460,7 +514,45 @@ optimal, while QuickSort is optimal for most inputs.
 
 \subsection{Searching}
 
+Searching algorithms are just as important as sorting algorithms, often partly
+because they can be implemented to run in much less time and space.
+
+\subsubsection{QuickSelect}
+\label{QuickSelect}
+
+QuickSelect is a cousin of QuickSort, designed to find the $k$th smallest
+element in an ordered list. It's worst case performance is $O(n^2)$, but it's
+average and best case is $O(n)$.
+
+QuickSelect chooses an element as a pivot, and partitions the data into two
+halves (elements less than, and elements greater or equal to the pivot).
+QuickSelect then recurses only into the side that contains the element to be
+found.
+
+QuickSelect is usually implemented \textbf{in-place}, and if this is the case,
+then a side effect of running QuickSelect will also partially sort the data.
+QuickSelect can be implemented using tail recursion, and so it can use $O(n)$
+memory space.
+
+The main factor in the runtime of QuickSelect is the choice of pivot. If we
+chose a pivot that decreased the list by the same fraction every time, then we
+would get linear performance, but if we chose one that only decreased the list
+by one every time, then we would get quadratic performance. Because of this, the
+choice of pivot is very important. It is important to note that (just like
+QuickSort) some inputs can be crafted to exhibit worst-case performance in
+QuickSelect, which can have security implications (i.e. you could make DDOS
+attacks much worse by crafting the requests to exploit QuickSelect's running
+time). For this reason, random pivots are reccommended for both QuickSort and
+QuickSelect.
+
+%TODO: Binary search
+
+%TODO: String matching
+
 \section{Code listings}
+
+\marginpar{Can you see a potential security issue with this QuickSort? Take
+another look at Section~\ref{QuickSelect} if you can't spot it!}
 
 \lstinputlisting[caption={QuickSort}, label=quicksort]{code/QuickSort.java}
 \lstinputlisting[caption={MergeSort}, label=mergesort]{code/MergeSort.java}
