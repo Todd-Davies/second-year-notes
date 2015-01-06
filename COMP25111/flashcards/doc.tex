@@ -1,6 +1,6 @@
 \documentclass[frontgrid]{flacards}
 \usepackage{color}
-
+\usepackage{tabularx}
 \definecolor{light-gray}{gray}{0.75}
 
 \newcommand{\frontcard}[1]{\textcolor{light-gray}{\colorbox{light-gray}{$#1$}}}
@@ -20,6 +20,168 @@
 
 \pagesetup{2}{4} 
 
-\flashcard{I am \blank{18}}
+\card{
+	What happens when `LDA s' is run?
+}{
+	ACC = [s]
+}
+
+\card{
+	What happens when `STA s' is run?
+}{
+	[s] = ACC
+}
+
+\card{
+	What happens when `ADD s' is run?
+}{
+	ACC += [s]
+}
+
+\card{
+	What happens when `SUB s' is run?
+}{
+	ACC -= [s]
+}
+
+\card{
+	What happens when `JMP s' is run?
+}{
+	PC = s
+}
+
+\card{
+	What happens when `JGE s' is run?
+}{
+	if ACC >= 0 then PC = s
+}
+
+\card{
+	What happens when `JNE s' is run?
+}{
+	if ACC != 0 then PC = s
+}
+
+\card{
+	What three steps occur during the fetch phase?
+}{
+	\begin{tabularx}{0.32\textwidth}{l X}
+		1. & Use PC as address to read memory\\
+		2. & Save result of read in CPU\\
+		3. & Increment PC
+	\end{tabularx}
+}
+
+\card{
+	What control signals do all registers need?
+}{
+	An enable signal
+}
+
+\card{
+	What control signal does a multiplexer need?
+}{
+	A signal to select an input
+}
+
+\card{
+	What control signals does the memory need?
+}{
+	Ren (read enable) and Wen (write enable)
+}
+
+\card{
+	Which 3 signals control the ALU?
+}{
+	add, sub \& byp
+}
+
+\card{
+	What is a process?
+}{
+	A program in execution, the thread + address space.
+}
+
+\card{
+	What is the address space?
+}{
+	All memory locations the process can use.
+}
+
+\card{
+	What is a thread?
+}{
+	A sequence of instructions that are obeyed.
+}
+
+\card{
+	What is multi-threading?
+}{
+	This is where we have multiple threads within the same process
+}
+
+\card{
+	How do we make programs think they have sole use of memory?
+}{
+	Use \textbf{relocation}, where we swap a program out of memory and later swap it back in.
+}
+
+\card{
+	What are the three different approaches to engineering an OS?
+}{
+	Monolithic, layered and micro-kernels.
+}
+
+\card{
+	What are the three process states?
+}{
+	Running, ready, blocked
+}
+
+\card{
+	In the diagram, what is happening at each stage?
+}{
+	\begin{tabularx}{0.32\textwidth}{l X}
+		1. & Process need to wait for I/O or event.\\
+		2. & Process forcibly preempted - \textbf{interrupt / relinquish CPU / time-slice expired}.\\
+		3. & Scheduler selects process to run.\\
+		4. & I/O or event occurs.\\
+	\end{tabularx}
+}
+
+\card{
+	What is a PCB table?
+}{
+	Process control block, it contains all of the information needed about processes.
+}
+
+\card{
+	In scheduling, what do the following mean?
+	\begin{tabularx}{0.32\textwidth}{l X}
+		1. & CPU burst\\
+		2. & I/O burst\\
+		3. & CPU bound\\
+		4. & I/O bound\\
+	\end{tabularx}
+}{
+	\begin{tabularx}{0.32\textwidth}{l x}
+		1. & Process executing on CPU\\
+		2. & Process blocked, waiting for I/O\\
+		3. & Long CPU bursts\\
+		4. & Short CPU bursts\\
+	\end{tabularx}
+}
+
+\card{
+	What is a processes turnaround time?
+}{
+	The time from a process being submitted to it getting completed.
+}
+
+\card{
+	What is a processes waiting time?
+}{
+	The time that the process waits to run.
+}
 
 \end{document} 
