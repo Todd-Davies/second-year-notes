@@ -21,3 +21,9 @@
 \BOOKMARK [1][-]{section.5}{Converting an ER diagram into a relational language}{}% 21
 \BOOKMARK [1][-]{section.6}{Normalization}{}% 22
 \BOOKMARK [2][-]{subsection.6.1}{Functional Dependencies}{section.6}% 23
+\BOOKMARK [1][-]{section.7}{`Advanced SQL'}{}% 24
+\BOOKMARK [2][-]{subsection.7.1}{Procedural Language/SQL}{section.7}% 25
+\BOOKMARK [3][-]{subsubsection.7.1.1}{Anonymous Block}{subsection.7.1}% 26
+\BOOKMARK [3][-]{subsubsection.7.1.2}{Cursors}{subsection.7.1}% 27
+\BOOKMARK [3][-]{subsubsection.7.1.3}{Subprograms; Procedures and Functions}{subsection.7.1}% 28
+\BOOKMARK [3][-]{subsubsection.7.1.4}{Triggers}{subsection.7.1}% 29

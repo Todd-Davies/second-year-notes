@@ -664,7 +664,7 @@ functional dependencies that hold over the relation.
 An example would be a table of Employees. If there was a column for office id
 and another for work address, we would have to update all of the employees who
 worked at a specific office if the office location moved. If there was a
-seperate table of offices, we could simply update the office location in that
+separate table of offices, we could simply update the office location in that
 table, and because of a relation between Employee and Office, we wouldn't have
 to update Employee at all!
 
@@ -681,10 +681,174 @@ constraint between two attributes in the entity, the notation would be
 Office\_ID $\rightarrow$ Office\_Location, if we were to create an FD between
 the office ID and it's location.
 
-If an FD is in place, the determinant (the bit before the arrow) determins the
+If an FD is in place, the determinant (the bit before the arrow) determines the
 bit after the arrow. Determinants of the same value will \textit{always} map
 onto the same value.
 
 The trouble with functional dependencies is what happens when you want to
 update the derived value, or insert a new data item that doesn't have a
 determinant.
+
+\section{`Advanced SQL'}
+
+When it was conceived, SQL was not Turing complete. In order to get encapsulate
+more logic, programmers would use database API's, or embed SQL commands into
+another programming language that was Turing complete, where a compiler will
+resolve them into code in the host language. This was called
+\textit{Programmatic SQL}, but it was hard to do well, since SQL is a
+declarative language, and most host languages wouldn't be (they'd be imperative,
+object oriented or even functional), so the programming styles (and other, more
+fundamental stuff like type systems) would clash.
+
+Another solution is to extend SQL to make it Turing complete. Oracle did this to
+create Procedural Language/SQL, which is what we have the privilege of using on
+the course.
+
+\subsection{Procedural Language/SQL}
+
+\subsubsection{Anonymous Block}
+
+This is an unnamed block of PL/SQL. This one will print out the number of
+students in the student table, and log any errors if it can't.
+
+\begin{verbatim}
+  DECLARE
+    amount NUMBER := 0;
+    error_code NUMBER;
+    error_message VARCHAR2(255);
+
+  BEGIN
+    SELECT COUNT(*) INTO amount
+    FROM STUDENT;
+
+    DBMS_OUTPUT.PUT_LINE(amount);
+
+  EXCEPTION
+    error_code := SQLCODE
+    error_message = SQLERRM
+    INSERT INTO errors VALUES(error_code, error_message);
+
+  END;
+\end{verbatim}
+
+\subsubsection{Cursors}
+
+If we run an SQL command that could return an arbitrary number of rows, we need
+to use a cursor. This allows us to access one row at a time and iterate over
+them.\marginpar{Anybody familiar with Android development will probably have
+come across cursors.} It must be declared and opened before use, and closed
+after it is finished with. Cursors can be used to update content in tables as
+well as just viewing them.
+
+\begin{verbatim}
+  CURSOR getStudentsDoingCourse(myCourseName Student.courseName%TYPE) IS
+    SELECT *
+    FROM Students
+    WHERE Students.courseName = myCourseName
+    ORDER BY Student.id;
+\end{verbatim}
+
+\subsubsection{Subprograms; Procedures and Functions}
+
+Subprograms are named blocks that can be called with parameters. They aid in
+abstraction and increase the reusability and maintainability of the code.
+
+Functions always return a single value, whereas procedures don't return any
+value. In order to return a value, functions use the \texttt{RETURN} keyword.
+
+Here is an example procedure:
+
+\begin{verbatim}
+  CREATE OR REPLACE PROCEDURE getAverageGrade(sID IN Students.ID%TYPE) AS
+    var_name Students.name%TYPE;
+    var_grade NUMBER;
+    var_count NUMBER;
+    var_temp NUMBER;
+
+    CURSOR getStudentGrades(sId StudentGrades.ID%TYPE) IS
+      SELECT *
+      FROM StudentGrades
+      WHERE StudentGrades.ID = sID;
+
+    CURSOR getStudentName(sId Students.ID%TYPE) IS
+      SELECT name
+      FROM Students
+      WHERE Students.ID = sID;
+
+    var_error_code NUMBER;
+    var_error_message VARCHAR(255);
+
+    BEGIN
+
+      OPEN getStudentGrades(sID);
+
+      LOOP
+        FETCH getStudentGrades INTO var_temp;
+        EXIT WHEN getStudentGrades%NOTFOUND;
+
+        var_grade := var_grade + var_temp;
+        var_count := var_count + 1;
+      END LOOP;
+
+      IF getStudentGrades%ISOPEN
+        THEN CLOSE getStudentGrades;
+      END IF;
+
+      var_grade := var_grade / var_count;
+      
+      OPEN getStudentName(sID);
+      FETCH getStudentName INTO var_name;
+
+      DBMS_OUTPUT.PUT_LINE(var_name || ': ' || var_grade || '%');
+
+      IF getStudentName%ISOPEN
+        THEN CLOSE getStudentName;
+      END IF;
+
+    EXCEPTION
+      WHEN OTHERS
+      THEN
+        var_error_code := SQLCODE;
+        var_error_message := SUBSTR(SQLERRM, 1, 255);
+        DBMS_OUTPUT.PUT_LINE(var_error_code || ': ' || var_error_message);
+
+        IF getStudentName%ISOPEN
+          THEN CLOSE getStudentName;
+        END IF;
+
+        IF getStudentGrades%ISOPEN
+          THEN CLOSE getStudentGrades;
+        END IF;
+    END;
+\end{verbatim}
+
+To execute a procedure, do \texttt{EXECUTE getAverageGrade(8955942)}. 
+
+\subsubsection{Triggers}
+
+Triggers are constructs that react to certain conditions. They obey an \textbf
+{event-condition-action (ECA)} model.
+
+Triggers can be fired by insertions, deletions or updating rows in a table when
+tables are created, altered or dropped, as well as when error messages are
+generated. Triggers can fire before, after or instead of the triggering event,
+and the \texttt{action} is a block that is executed if the trigger fires.
+
+Row level triggers execute the action that for each row that has changed in a
+table, while statement level triggers only execute once per fire event.
+Triggers can be made to cascade, if the effects of one cause another to fire. It
+is possible that this could result in non-termination.
+
+\begin{verbatim}
+  CREATE TRIGGER name
+    (BEFORE | AFTER | INSTEAD OF)
+    (INSERT | DELETE | UPDATE [OF columns])
+  ON tableName
+    // (refer to the old/new values of an update)
+    [REFERENCING (OLD | NEW) AS (oldName | newName)]
+    // Row-level or Statement-level?
+    [FOR EACH (ROW | STATEMENT)]
+    [WHEN condition]
+    triggerAction (e.g. call procedure)
+  ;
+\end{verbatim}

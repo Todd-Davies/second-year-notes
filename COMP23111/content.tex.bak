@@ -248,173 +248,177 @@ Gives:
 
 \section{SQL Syntax}
 
-\subsection{Selecting rows}
+\begin{mymulticols}
 
-The SQL command to select rows from a table is:
+  \subsection{Selecting rows}
 
-\begin{verbatim}
-	SELECT <column-name>
-	FROM <table-name>;
-\end{verbatim}
+  The SQL command to select rows from a table is:
 
-If you only want distinct values from a column, use \texttt{DISTINCT}:
+  \begin{alltt}
+  	SELECT <column-name>\\
+  	FROM <table-name>;
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT DISTINCT <column-name>
-	FROM <table-name>;
-\end{verbatim}
+  If you only want distinct values from a column, use \texttt{DISTINCT}:
 
-If you want all of the columns, use \texttt{*}:
+  \begin{alltt}
+  	SELECT DISTINCT <column-name>\\
+  	FROM <table-name>;
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT *
-	FROM <table-name>;
-\end{verbatim}
+  If you want all of the columns, use \texttt{*}:
 
-You can also do derivations:
+  \begin{alltt}
+  	SELECT *\\
+  	FROM <table-name>;
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT salary/2
-	FROM <table-name>;
-\end{verbatim}
+  You can also do derivations:
 
-In order to specify which rows you want from the table, or you want to join two
-tables together, use the \texttt{WHERE} clause:
+  \begin{alltt}
+  	SELECT salary/2\\
+  	FROM <table-name>;
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT *
-	WHERE <condition>
-	FROM <table-name>;
-\end{verbatim}
+  In order to specify which rows you want from the table, or you want to join two
+  tables together, use the \texttt{WHERE} clause:
 
-\begin{verbatim}
-	SELECT *
-	WHERE table1.columnx = table2.columny
-	FROM table1, table2;
-\end{verbatim}
+  \begin{alltt}
+  	SELECT *\\
+  	WHERE <condition>\\
+  	FROM <table-name>;
+  \end{alltt}
 
-Use \texttt{AND} to chain multiple conditions in a \texttt{WHERE} clause:
+  \begin{alltt}
+  	SELECT *\\
+  	WHERE table1.columnx = table2.columny\\
+  	FROM table1, table2;
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT *
-	WHERE x > 100
-	AND table1.x = table2.y
-	FROM <table-name>;
-\end{verbatim}
+  Use \texttt{AND} to chain multiple conditions in a \texttt{WHERE} clause:
 
-\subsubsection{Where conditions}
+  \begin{alltt}
+  	SELECT *\\
+  	WHERE x > 100\\
+  	AND table1.x = table2.y\\
+  	FROM <table-name>;
+  \end{alltt}
 
-You can use the standard $=, <, >$ signs for comparisons between columns,
-but SQL also lets you use \texttt{LIKE}, \texttt{BETWEEN} and \texttt{IS NULL}:
+  \subsubsection{Where conditions}
 
-\begin{verbatim}
-	SELECT *
-	FROM <table-name>
-	WHERE name LIKE '%BOB%';
-\end{verbatim}
+  You can use the standard $=, <, >$ signs for comparisons between columns,
+  but SQL also lets you use \texttt{LIKE}, \texttt{BETWEEN} and \texttt{IS NULL}:
 
-\begin{verbatim}
-	SELECT *
-	FROM <table-name>
-	WHERE salary BETWEEN 10000 AND 12000;
-\end{verbatim}
+  \begin{alltt}
+  	SELECT *\\
+  	FROM <table-name>\\
+  	WHERE name LIKE '%BOB%';
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT *
-	FROM <table-name>
-	WHERE previous-convictions IS NULL;
-\end{verbatim}
+  \begin{alltt}
+  	SELECT *\\
+  	FROM <table-name>\\
+  	WHERE salary BETWEEN 10000 AND 12000;
+  \end{alltt}
 
-You can also compare tuples:
+  \begin{alltt}
+  	SELECT *\\
+  	FROM <table-name>\\
+  	WHERE previous-convictions IS NULL;
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT *
-	FROM t1, t2
-	WHERE (t1.parent, t1.age) = ('Janet', t2.age);
-\end{verbatim}
+  You can also compare tuples:
 
-\subsection{Set operations}
+  \begin{alltt}
+  	SELECT *\\
+  	FROM t1, t2\\
+  	WHERE (t1.parent, t1.age) = ('Janet', t2.age);
+  \end{alltt}
 
-The three main set operations are \texttt{UNION, EXCEPT} and \texttt{INTERSECT},
-their meaning is rather self evident given their names. An example usage may be:
+  \subsection{Set operations}
 
-\begin{verbatim}
-	(SELECT *
-	 FROM <table-name>)
-	UNION ALL
-	(SELECT *
-	 FROM <table-name>);
-\end{verbatim}
+  The three main set operations are \texttt{UNION, EXCEPT} and \texttt{INTERSECT},
+  their meaning is rather self evident given their names. An example usage may be:
 
-\subsection{Joins}
+  \begin{alltt}
+  	(SELECT *\\
+  	 FROM <table-name>)\\
+  	UNION ALL\\
+  	(SELECT *\\
+  	 FROM <table-name>);
+  \end{alltt}
 
-We've already looked at the most common join:
+  \subsection{Joins}
 
-\begin{verbatim}
-	SELECT *
-	WHERE table1.columnx = table2.columny
-	FROM table1, table2;
-\end{verbatim}
+  We've already looked at the most common join:
 
-But you can also do it manually:
+  \begin{alltt}
+  	SELECT *\\
+  	WHERE table1.columnx = table2.columny\\
+  	FROM table1, table2;
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT *
-	FROM table1 JOIN table2
-	USING (<column-name>);
-\end{verbatim}
+  But you can also do it manually:
 
-Or with a \texttt{NATURAL JOIN}, which is automatic, but can only be applied
-when columns have identical names:
+  \begin{alltt}
+  	SELECT *\\
+  	FROM table1 JOIN table2\\
+  	USING (<column-name>);
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT *
-	FROM table1 NATURAL JOIN table2
-\end{verbatim}
+  Or with a \texttt{NATURAL JOIN}, which is automatic, but can only be applied
+  when columns have identical names:
 
-\subsection{Renaming columns}
+  \begin{alltt}
+  	SELECT *\\
+  	FROM table1 NATURAL JOIN table2
+  \end{alltt}
 
-You can use the \texttt{FROM} clause to rename tables:
+  \subsection{Renaming columns}
 
-\begin{verbatim}
-	SELECT *
-	FROM table1 as a, table2 as b
-	where a.col > b.col;
-\end{verbatim}
+  You can use the \texttt{FROM} clause to rename tables:
 
-\subsection{Ordering and other operations}
+  \begin{alltt}
+  	SELECT *\\
+  	FROM table1 as a, table2 as b\\
+  	where a.col > b.col;
+  \end{alltt}
 
-\texttt{GROUP BY} can be used to sort rows by a column value:
+  \subsection{Ordering and other operations}
 
-\begin{verbatim}
-	SELECT *
-	FROM <table-name>
-	GROUP BY height;
-\end{verbatim}
+  \texttt{GROUP BY} can be used to sort rows by a column value:
 
-Other operators such as \texttt{AVG} and \texttt{COUNT} can also be used:
+  \begin{alltt}
+  	SELECT *\\
+  	FROM <table-name>\\
+  	GROUP BY height;
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT AVG(salary)
-	FROM <table-name>;	
-\end{verbatim}
+  Other operators such as \texttt{AVG} and \texttt{COUNT} can also be used:
 
-\begin{verbatim}
-	SELECT COUNT(DISTINCT salary)
-	FROM <table-name>;	
-\end{verbatim}
+  \begin{alltt}
+  	SELECT AVG(salary)\\
+  	FROM <table-name>;	
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT COUNT(*)
-	FROM <table-name>;	
-\end{verbatim}
+  \begin{alltt}
+  	SELECT COUNT(DISTINCT salary)\\
+  	FROM <table-name>;	
+  \end{alltt}
 
-\begin{verbatim}
-	SELECT dept_name, AVG(salary)
-	FROM staff
-	GROUP BY dept_name
-	HAVING AVG(salary) > 30000;	
-\end{verbatim}
+  \begin{alltt}
+    SELECT COUNT(*)\\
+    FROM <table-name>;
+  \end{alltt}
+
+  \begin{alltt}
+    SELECT dept-name, AVG(salary)\\
+    FROM staff\\
+    GROUP BY dept-name\\
+    HAVING AVG(salary) > 30000;
+  \end{alltt}
+
+\end{mymulticols}
 
 \section{Designing databases}
 
@@ -428,9 +432,10 @@ We can translate a conceptual model into a logical schema, which is often just a
 language such as SQL. We can use the logical schema directly to create and
 manipulate our database.
 
-\subsection{Entitiy Relationship Modelling}
+\subsection{Entity Relationship Modelling}
 
-There are three basic constructs in ER modelling; entity types, attribute types and relationship types.
+There are three basic constructs in ER modelling; entity types, attribute types
+and relationship types.
 
 Attribute types consist of the following:
 
@@ -442,7 +447,7 @@ Attribute types consist of the following:
     Types can either have single values (such as an integer), or they can have a
     value from discrete set of allowed values (multi-valued).
   \item Stored or Derived\\
-    Stored attriutes are ones where the value of the attribute is directly
+    Stored attributes are ones where the value of the attribute is directly
     stored by the database (e.g. licence start date), while Derived attributes
     are computed from the values of other attributes (e.g. licence end date =
     start date + 1 year).
@@ -454,17 +459,17 @@ Attribute types consist of the following:
 
 \marginpar{Remember, ER models don't have primary or foreign keys, they only
 have plain keys. Relationships are modelled explicitly in ER rather than
-implictly using keys.}
+implicitly using keys.}
 
-Keys are important in ER modelling. Entities with a key are bound by uniquness
+Keys are important in ER modelling. Entities with a key are bound by uniqueness
 constraints; each key must be unique within the entity. There can be more than
 one key in an entity type, but there can also be no key, and if this is the
 case, then the entity is said to be \textbf{weak}.
 
-\textbf{Cardinality ratio} constraints specify the ratio of one entity to
+\textbf{Carnality ratio} constraints specify the ratio of one entity to
 another in a relationship. It can be $1:1, 1:n, n:1, n:m$.
 
-\textbf{Participation contraints} specify if an entity depends on another
+\textbf{Participation constraints} specify if an entity depends on another
 entity. If a participation is \textbf{total}, then every entity in the total
 entity must participate in some relationship, if the participation is
 \textbf{partial}, then some entities may not participate in any relationship.
@@ -477,5 +482,373 @@ is one where a weak entity has a total participation constraint with it's owner.
 When we're writing a requirements specification, \textbf{bold} words are entity
 types (e.g. \textbf{employees, departments and projects}), \textit{italic} words
 are attribute types (e.g. \textit{name, location, phone number}), and
-\underline{underlined} words are relationschip types (e.g. employes
+\underline{underlined} words are relationship types (e.g. employees
 \underline{belong to a} department).
+
+\subsubsection{ER Notation}
+
+\begin{mymulticols}
+
+  \begin{description}
+    \item \textbf{Entity type}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[entity] {Employee};
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Weak entity type}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[weak entity] {Dependent};
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Attribute}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[entity] (emp) {Employee};
+        \node[attribute] [above=1cm of emp] {Name} edge (emp);
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Weak attribute}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[weak entity] (emp) {Dependent};
+        \node[attribute] [above=1cm of emp] {\discriminator{Name}} edge (emp);
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Derived attribute}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=1.5cm, every edge/.style={link}]
+        \node[entity] (emp) {Employee};
+        \node[attribute] [above=1cm of emp] {Date of Birth} edge (emp);
+        \node[derived attribute] [left= 1cm of emp] {Age} edge (emp);
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Multivalue}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[entity] (emp) {Employee};
+        \node[multi attribute] [above=1cm of emp] {Children} edge (emp);
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Key}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[entity] (emp) {Employee};
+        \node[attribute] [above=1cm of emp] {\key{ID}} edge (emp);
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Relationship (plus carnality ratio)}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[entity] (emp) {Employee};
+        \node[relationship] [above=1cm of emp] (rel) {Works for};
+        \node[entity] [above=1cm of rel] (dep) {Department};
+        \draw[link] (rel.90) |- node [below, auto] {1} (dep.270);
+        \draw[link] (rel.270) |- node [above, auto] {N} (emp.90);
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Identifying relationship}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[entity] (emp) {Employee};
+        \node[ident relationship] [above=1cm of emp] (rel) {Dependent of} edge (emp);
+        \node[weak entity] [above=1cm of rel] (dep) {Dependent} edge (rel);
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Recursive relationship}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[entity] (emp) {Employee};
+        \node[relationship] [below=1cm of emp] (rel) {Dependent of};
+        \draw[link] (rel.180) |- node [left, auto] {Supervisor} (emp.180);
+        \draw[link] (emp) -| node [left, auto] {Supervisee} (rel.360);
+      \end{tikzpicture}
+    \end{center}
+
+    \item \textbf{Participation constraint}\\
+    \begin{center}
+      \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+        \node[entity] (emp) {Project};
+        \node[relationship] [above=1cm of emp] (rel) {Controls} edge [total] (emp);
+        \node[entity] [above=1cm of rel] (dep) {Department} edge (rel);
+      \end{tikzpicture}
+    \end{center}
+  \end{description}
+\end{mymulticols}
+
+\subsubsection{Specialising entities}
+
+It's often efficient to refine entities into sub-entities if there are fields
+that are relevant for some members and not others. For example a vehicle entity
+could have car and lorry sub-entities. One way of doing this is top-down
+conceptual refinement, which is a fancy way of saying, start with an entity,
+identify it's subclasses, create sub-entities for them, and then repeat for the
+newly created sub-entities.
+
+\marginpar{I've not got time to work out how to do $\cup$ arrowheads now, please
+draw them on the diagram!}
+
+\begin{center}
+  \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+    \node[entity] (emp) {Vehicle};
+    \node[attribute] [below=1cm of emp] (rel) {d} edge (emp);
+    \node[entity] [below left=1cm of rel] (dep) {Lorry} edge (rel);
+    \node[entity] [below right=1cm of rel] (dep2) {Car} edge (rel);
+  \end{tikzpicture}
+\end{center}
+
+An alternate way to specialise is to do a bottom-up approach. Start with lots of
+sets, and define a common superset of them. Here, you're generalising rather
+than specialising.
+
+Each subentity can have it's own attributes and relationships of course:
+
+\begin{center}
+  \begin{tikzpicture}[node distance=2.5cm, every edge/.style={link}]
+    \node[entity] (emp) {Vehicle};
+    \node[attribute] [above left=1cm of emp] {Colour} edge (emp);
+    \node[attribute] [above right=1cm of emp] {Model} edge (emp);
+    \node[attribute] [below=1cm of emp] (rel) {d} edge (emp);
+    \node[entity] [below left=1cm of rel] (dep) {Lorry} edge (rel);
+    \node[entity] [below right=1cm of rel] (dep2) {Car} edge (rel);
+    \node[attribute] [below right=1cm of dep2] {\# Doors} edge (dep2);
+    \node[attribute] [below left=1cm of dep2] {\# Seats} edge (dep2);
+    \node[relationship] [below =1cm of dep] (rel2) {Registered to} edge (dep);
+    \node[entity] [below right=1cm of rel2] {Country} edge (rel2);
+  \end{tikzpicture}
+\end{center}
+
+Entity subtypes can be user, attribute or predicate defined based on whether the
+user has defined them to be a subtype, their attributes define them to be
+subtypes or if a predicate has (e.g. if country in EU $\implies$ EU Member).
+
+In the examples, the attribute `d' is used to create a subtype. This stands for
+disjoint, since a car can't also be a lorry. There is also `o', which is used
+when an entity could belong to multiple subtypes.
+
+\section{Converting an ER diagram into a relational language}
+
+I refer you to Alvaro's sixth lecture, for this part, since it'd take too long
+to draw all the diagrams you need. If you're reading this and feeling helpful,
+you write this section and send me a pull request!
+
+\section{Normalization}
+
+Normalizeation is the process of decomposing unsatisfactory (i.e. potentially
+improvable) relations by creating smaller relations from them. The keys and
+functional dependencies of the relation determine it's normal form.
+
+\marginpar{3NF and BCNF (Boyce-Codd Normal Form) are the targets we try and
+work towards.}
+
+The normal form indicates a particular quality level of the database schema. 1NF
+is a relation in its first normal form, where every field contains only atomic
+values. 2NF, 3NF and BCNF are normal forms that are defined in terms of keys and
+functional dependencies of a relational schema.
+
+The main technique that we use to try and refine schema is
+\textbf{decomposition}. This is the idea of taking a relation ABCD, and
+decomposing it into two relations; AB and BCD. Decomposition is guided by the
+functional dependencies that hold over the relation.
+
+An example would be a table of Employees. If there was a column for office id
+and another for work address, we would have to update all of the employees who
+worked at a specific office if the office location moved. If there was a
+separate table of offices, we could simply update the office location in that
+table, and because of a relation between Employee and Office, we wouldn't have
+to update Employee at all!
+
+A key is one or more attributes in a relation where each key is unique for
+that relation. There may be more than one valid key (candidate key) for each
+entity, if this is the case, then one of them is selected to be the primary
+key, and the others are said to be secondary keys.
+
+\subsection{Functional Dependencies}
+
+Functional dependencies are a different way of solving the employee-office
+problem mentioned a few paragraphs ago. A functional dependency is basically a
+constraint between two attributes in the entity, the notation would be
+Office\_ID $\rightarrow$ Office\_Location, if we were to create an FD between
+the office ID and it's location.
+
+If an FD is in place, the determinant (the bit before the arrow) determines the
+bit after the arrow. Determinants of the same value will \textit{always} map
+onto the same value.
+
+The trouble with functional dependencies is what happens when you want to
+update the derived value, or insert a new data item that doesn't have a
+determinant.
+
+\section{`Advanced SQL'}
+
+When it was conceived, SQL was not Turing complete. In order to get encapsulate
+more logic, programmers would use database API's, or embed SQL commands into
+another programming language that was Turing complete, where a compiler will
+resolve them into code in the host language. This was called
+\textit{Programmatic SQL}, but it was hard to do well, since SQL is a
+declarative language, and most host languages wouldn't be (they'd be imperative,
+object oriented or even functional), so the programming styles (and other, more
+fundamental stuff like type systems) would clash.
+
+Another solution is to extend SQL to make it Turing complete. Oracle did this to
+create Procedural Language/SQL, which is what we have the privilege of using on
+the course.
+
+\subsection{Procedural Language/SQL}
+
+\subsubsection{Anonymous Block}
+
+This is an unnamed block of PL/SQL. This one will print out the number of
+students in the student table, and log any errors if it can't.
+
+\begin{verbatim}
+  DECLARE
+    amount NUMBER := 0;
+    error_code NUMBER;
+    error_message VARCHAR2(255);
+
+  BEGIN
+    SELECT COUNT(*) INTO amount
+    FROM STUDENT;
+
+    DBMS_OUTPUT.PUT_LINE(amount);
+
+  EXCEPTION
+    error_code := SQLCODE
+    error_message = SQLERRM
+    INSERT INTO errors VALUES(error_code, error_message);
+
+  END;
+\end{verbatim}
+
+\subsubsection{Cursors}
+
+If we run an SQL command that could return an arbitrary number of rows, we need
+to use a cursor. This allows us to access one row at a time and iterate over
+them.\marginpar{Anybody familiar with Android development will probably have
+come across cursors.} It must be declared and opened before use, and closed
+after it is finished with. Cursors can be used to update content in tables as
+well as just viewing them.
+
+\begin{verbatim}
+  CURSOR getStudentsDoingCourse(myCourseName Student.courseName%TYPE) IS
+    SELECT *
+    FROM Students
+    WHERE Students.courseName = myCourseName
+    ORDER BY Student.id;
+\end{verbatim}
+
+\subsubsection{Subprograms; Procedures and Functions}
+
+Subprograms are named blocks that can be called with parameters. They aid in
+abstraction and increase the reusability and maintainability of the code.
+
+Functions always return a single value, whereas procedures don't return any
+value. In order to return a value, functions use the \texttt{RETURN} keyword.
+
+Here is an example procedure:
+
+\begin{verbatim}
+  CREATE OR REPLACE PROCEDURE getAverageGrade(sID IN Students.ID%TYPE) AS
+    var_name Students.name%TYPE;
+    var_grade NUMBER;
+    var_count NUMBER;
+    var_temp NUMBER;
+
+    CURSOR getStudentGrades(sId StudentGrades.ID%TYPE) IS
+      SELECT *
+      FROM StudentGrades
+      WHERE StudentGrades.ID = sID;
+
+    CURSOR getStudentName(sId Students.ID%TYPE) IS
+      SELECT name
+      FROM Students
+      WHERE Students.ID = sID;
+
+    var_error_code NUMBER;
+    var_error_message VARCHAR(255);
+
+    BEGIN
+
+      OPEN getStudentGrades(sID);
+
+      LOOP
+        FETCH getStudentGrades INTO var_temp;
+        EXIT WHEN getStudentGrades%NOTFOUND;
+
+        var_grade := var_grade + var_temp;
+        var_count := var_count + 1;
+      END LOOP;
+
+      IF getStudentGrades%ISOPEN
+        THEN CLOSE getStudentGrades;
+      END IF;
+
+      var_grade := var_grade / var_count;
+      
+      OPEN getStudentName(sID);
+      FETCH getStudentName INTO var_name;
+
+      DBMS_OUTPUT.PUT_LINE(var_name || ': ' || var_grade || '%');
+
+      IF getStudentName%ISOPEN
+        THEN CLOSE getStudentName;
+      END IF;
+
+    EXCEPTION
+      WHEN OTHERS
+      THEN
+        var_error_code := SQLCODE;
+        var_error_message := SUBSTR(SQLERRM, 1, 255);
+        DBMS_OUTPUT.PUT_LINE(var_error_code || ': ' || var_error_message);
+
+        IF getStudentName%ISOPEN
+          THEN CLOSE getStudentName;
+        END IF;
+
+        IF getStudentGrades%ISOPEN
+          THEN CLOSE getStudentGrades;
+        END IF;
+    END;
+\end{verbatim}
+
+To execute a procedure, do \texttt{EXECUTE getAverageGrade(8955942)}. 
+
+\subsubsection{Triggers}
+
+Triggers are constructs that react to certain conditions. They obey an \textbf
+{event-condition-action (ECA)} model.
+
+Triggers can be fired by insertions, deletions or updating rows in a table when
+tables are created, altered or dropped, as well as when error messages are
+generated. Triggers can fire before, after or instead of the triggering event,
+and the \texttt{action} is a block that is executed if the trigger fires.
+
+Row level trigers execute the action that for each row that has changed in a
+table, while statement level triggers only excecute once per fire event.
+Triggers can be made to cascade, if the effects of one cause another to fire. It
+is possible that this could result in non-termination.
+
+\begin{verbatim}
+  CREATE TRIGGER name
+    (BEFORE | AFTER | INSTEAD OF)
+    (INSERT | DELETE | UPDATE [OF columns])
+  ON tableName
+    // (refer to the old/new values of an update)
+    [REFERENCING (OLD | NEW) AS (oldName | newName)]
+    // Row-level or Statement-level?
+    [FOR EACH (ROW | STATEMENT)]
+    [WHEN condition]
+    triggerAction (e.g. call procedure)
+  ;
+\end{verbatim}
