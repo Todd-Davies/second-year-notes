@@ -2,6 +2,8 @@
 
 % Tell me about my LaTeX bad practices
 \usepackage[l2tabu, orthodox]{nag}
+% Make the margins wider
+\usepackage[margin=1in]{geometry}
 % For nice headers
 \usepackage{fancyhdr}
 % For line brakes in tables
@@ -36,24 +38,125 @@
 
 \maketitle
 
+\begin{center}
+	\small Please don't assume these answers are right. This is me attempting a
+	past paper for revision purposes; I could have got it all wrong ;)
+
+  I chose to answer questions 1 \& 2.
+\end{center}
+
 \section{Question 1}
 
 \subsection{Part a}
 
 \lstinputlisting[language=Java, firstline=2, lastline=12, caption={
 	Add all of the pairs of integers together in the list. Do this by looping
-	through the list, and looping from 0$\rightarrow$currentIndex on each
+	through the list, and looping from 0$\rightarrow$i on each
 	iteration.
 }]{code/part1a.java}
 
-Since as we're iterating through the list, we are describing an arithetic series
+Since as we're iterating through the list, we are describing an arithmetic series
 (we do one additions, then two, then three etc), we can use the formula
 $\frac{n(1+n)}{2}$ to find how many operations we're doing. This, in the Big-Oh
 notation, equates to $O(n^2)$ since constant terms are eliminated. In most
 cases, the result will be found significantly faster though.
 
+\newpage
+
 \subsection{Part b}
 
+\lstinputlisting[language=Java, firstline=2, lastline=11, caption={
+	Add the first list to a BitSet (a very compact array of bits), then iterate
+	through the second list and add items that are in the bit set to the output
+	array.
+}]{code/part2a.java}
 
+The worst case runtime of this algorithm is $O(n + m)$ since it iterates through
+both arrays once, and the loops aren't nested.
+
+\newpage
+
+\subsection{Part c}
+
+\lstinputlisting[language=Java, firstline=5, lastline=15, caption={
+	Create a new array containing the first half, and a new array containing the
+	second half, then replace them insert them into the original array.
+}]{code/part3a.java}
+
+The worst case runtime of this function is $O(n)$, since it only iterates
+through the array once. The space complexity is $O(2n)$, since I couldn't figure
+out how to do an in-place circular shift.
+
+\section{Question 2}
+
+\subsection{Part a}
+
+\subsubsection{i)}
+
+Merge Sort
+
+\subsubsection{ii)}
+
+Quick Sort
+
+\subsubsection{iii)}
+
+Radix Sort
+
+\subsection{Part b}
+
+\subsubsection{i)}
+
+It never ends.
+
+\subsubsection{ii)}
+
+The average time that the smallest element will take to reach it's correct
+position is $n \cdot n$, since we need one die roll to be 0, and the other to be
+the current index of the smallest element, and there is a $\frac{1}{n}$ chance
+of both occuring, so there is a $\frac{1}{n^2}$ chance of them occuring on the
+same iteration.
+
+In order for all of the $n$ items in the list to settle into their currect
+position in the list, we need the above to happen $n$ times, so we end up with
+an average running time of $n \cdot n \cdot n = O(n^3)$.
+
+\subsection{iii)}
+
+If every roll of the dice happened to be a valid swap, and the first roll was
+swapping the smallest element with the element at position $0$, the second roll
+was swapping the next smallest element with the one at position $1$, and so on,
+then after $O(n)$ iterations, the list would be sorted.
+
+\subsection{Part c}
+
+\subsubsection{i)}
+
+\begin{itemize}
+  \item If $x > y$ and $y > z$ then $x > z$ (transistivity).
+  \item If $x > y$ and $y > x$ if and only if $x = y$ (reflexivity).
+\end{itemize}
+
+\subsubsection{ii)}
+
+The notation for lower bound is big omega ($\Omega$).
+
+Comparison based sorts must at have a runtime of at least $n \log n$, therefore
+their asymptotic running time is $\Omega(n \log n)$.
+
+\subsubsection{iii)}
+
+The reason that comaprison based sorts must be $\Omega(n \log n)$ is that they
+sorting algorithms must satisfy the transistivity condition.
+
+Comparison sorts basically just traverse a decision tree of comparisons of
+elements in the list. The tree can have at most $n!$ leaves (since that's how
+many permutations of a list of length $n$ there are). An optimally balanced
+decision tree with $n!$ leaves would be $\log_2(n!)$ levels deep. This means we
+have to do at most $\log_2(n!)$ comparisons, and by Stirling's approximation:
+
+\begin{align*}
+  \Omega(\log_2(n!)) \approx \Omega(\log_2(n!))
+\end{align*}
 
 \end{document}
