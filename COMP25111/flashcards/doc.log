@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.9.18)  6 JAN 2015 10:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.9.18)  6 JAN 2015 10:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -167,37 +167,23 @@ LaTeX Font Info:    ... okay on input line 19.
 ) [1
 
 {/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2] [3] [4]
-! Package array Error:  Illegal pream-token (x): `c' used.
-
-See the array package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.173 }
-       
-? d
-Type <return> to proceed, S to scroll future error messages,
-R to run without stopping, Q to run quietly,
-I to insert something, E to edit your file,
-1 or ... or 9 to ignore the next 1 to 9 tokens of input,
-H for help, X to quit.
-? 
-! Emergency stop.
- ...                                              
-                                                  
-l.173 }
-       
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
- 
+[2] [3] [4] [5] [6] (./doc.aux) ) 
 Here is how much of TeX's memory you used:
- 1627 strings out of 493117
- 22276 string characters out of 6135433
- 92271 words of memory out of 5000000
+ 1628 strings out of 493117
+ 22145 string characters out of 6135433
+ 94271 words of memory out of 5000000
  5124 multiletter control sequences out of 15000+600000
  4644 words of font info for 17 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  32i,22n,38p,215b,295s stack positions out of 5000i,500n,10000p,200000b,80000s
-!  ==> Fatal error occurred, no output PDF file produced!
+</usr/local/texlive/2014/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2014/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmti10.pfb>
+Output written on doc.pdf (6 pages, 47612 bytes).
+PDF statistics:
+ 35 PDF objects out of 1000 (max. 8388607)
+ 23 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+
