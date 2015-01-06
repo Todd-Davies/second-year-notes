@@ -199,7 +199,7 @@
 \card{
 	What is meant by non-pre-emptive scheduling?
 }{
-	Scheduling where a process can run for some fixed maximum time, once it has reached its maximum time, it is interrupted and set `ready' and the scheduler runs the next process.
+	Scheduling where a process can run for some fixed maximum time, once it ahs reached its maximum time, it is interrupted and set `ready' and the scheduler runs the next process.
 }
 
 \card{
