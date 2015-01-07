@@ -61,7 +61,10 @@ fastest growing term in the equation (i.e. whatever term comes furthest down in
 Table~\ref{table:complexity}). You then remove all the constants from the
 equation.
 
-%TODO: Big Oh Example! Ohh no!
+For example, given $O(2n + 1)$, this simplifies to $O(n)$ since constant terms
+are taken out. $O(n + n^2)$ simplifies to $O(n^2)$ since smaller terms are taken
+out when they are added. Note that if terms are multiplied together, they are not
+simplified e.g. $O(n \times \log n)$, stays as $O(n\log n)$.
 
 \subsection{Analysing algorithmic complexity}
 
@@ -161,21 +164,24 @@ each of size $n/b$ before recursively solving them and merging the result back
 together. In this case, $f(n)$ is the time it takes to split the problem into
 subproblems and merge them back together after the solving is done.
 
-The master theorem is defined by three cases:
+There is more after this, that I don't understand. Check out the textbook, or
+the internet...
 
-\begin{enumerate}
-  \item If there is a small constant $\epsilon > 0$ such that $f(n)$ is
-        $O(n^{log_{b}{a-\epsilon}})$, then $T(n)$ is $\Theta(n^{log_ba})$
+%The master theorem is defined by three cases:
 
-        An example could be when the recurrence relation is
-        \[
-          T(n) = 4T(n/2) + n
-        \]
-        since $n^{log_{b}{a}} = n^{log_{2}{4}} = n^2$, therefore $T(n) =
-        \Theta(n^{log_24}) = \Theta(n^2)$.
-  \item % TODO:
-        Work out what's going on...
-\end{enumerate}
+%\begin{enumerate}
+%  \item If there is a small constant $\epsilon > 0$ such that $f(n)$ is
+%        $O(n^{log_{b}{a-\epsilon}})$, then $T(n)$ is $\Theta(n^{log_ba})$
+%
+%        An example could be when the recurrence relation is
+%        \[
+%          T(n) = 4T(n/2) + n
+%        \]
+%        since $n^{log_{b}{a}} = n^{log_{2}{4}} = n^2$, therefore $T(n) =
+%        \Theta(n^{log_24}) = \Theta(n^2)$.
+%  \item % TODO:
+%        At this point I'm not sure what's going on...
+%\end{enumerate}
 
 \subsection{Amortized Analysis}
 
@@ -271,7 +277,7 @@ we'll use up \textsterling 2:
 
 \begin{figure}[H]
   \centering
-  \includegraphics[height=60mm]{diagrams/banker2.pdf}
+  \includegraphics[height=50mm]{diagrams/banker2.pdf}
   \label{banker2}
 \end{figure}
 
@@ -281,7 +287,7 @@ we'll use up \textsterling 3:
 
 \begin{figure}[H]
   \centering
-  \includegraphics[height=60mm]{diagrams/banker3.pdf}
+  \includegraphics[height=50mm]{diagrams/banker3.pdf}
   \label{banker3}
 \end{figure}
 
@@ -298,7 +304,7 @@ get an income of \textsterling 3 too though):
 
 \begin{figure}[H]
   \centering
-  \includegraphics[height=60mm]{diagrams/banker5.pdf}
+  \includegraphics[height=50mm]{diagrams/banker5.pdf}
   \label{banker5}
 \end{figure}
 
@@ -308,7 +314,7 @@ get an income of \textsterling 3, so we're left with \textsterling 2 again:
 
 \begin{figure}[H]
   \centering
-  \includegraphics[height=60mm]{diagrams/banker9.pdf}
+  \includegraphics[height=50mm]{diagrams/banker9.pdf}
   \label{banker9}
 \end{figure}
 
@@ -403,9 +409,9 @@ A sorting algorithm takes as an input, an array of keys, where there is a
 produces as an output, the array where the keys are ordered according to their
 order.
 
-A total order is a relation that is transitive ($a \leq b \wedge b \leq c \implies a
-\leq c$), anti-symmetric ($a \leq b \wedge b \leq a \implies a = b$), and
-unsurprisingly, total ($a \leq b \wedge b \leq a$).
+A total order is a relation that is transitive ($a \leq b \wedge b \leq c
+\implies a \leq c$), anti-symmetric ($a \leq b \wedge b \leq a \implies a = b$),
+and unsurprisingly, total $\neg(a \leq b \Leftrightarrow b \leq a)$.
 
 If the ordering on the elements of the array isn't a total order then bad
 things can happen when you try and use an algorithm to sort the data. For

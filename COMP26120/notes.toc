@@ -6,16 +6,16 @@
 \contentsline {subsection}{\numberline {1.3}The master theorem}{4}{subsection.1.3}
 \contentsline {subsection}{\numberline {1.4}Amortized Analysis}{5}{subsection.1.4}
 \contentsline {subsubsection}{\numberline {1.4.1}Aggregate analysis}{5}{subsubsection.1.4.1}
-\contentsline {subsubsection}{\numberline {1.4.2}Banker's method}{6}{subsubsection.1.4.2}
+\contentsline {subsubsection}{\numberline {1.4.2}Banker's method}{5}{subsubsection.1.4.2}
 \contentsline {subsubsection}{\numberline {1.4.3}Potential method}{8}{subsubsection.1.4.3}
 \contentsline {subsubsection}{\numberline {1.4.4}Comparing the banker's and the potential methods}{9}{subsubsection.1.4.4}
 \contentsline {section}{\numberline {2}Basic algorithms}{9}{section.2}
 \contentsline {subsection}{\numberline {2.1}Sorting}{9}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}The complexity of sorting}{10}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.2}The complexity of sorting}{9}{subsection.2.2}
 \contentsline {subsubsection}{\numberline {2.2.1}Worst case for comparison sorts}{10}{subsubsection.2.2.1}
 \contentsline {subsection}{\numberline {2.3}Sorting algorithms in detail}{10}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Searching}{11}{subsection.2.4}
 \contentsline {subsubsection}{\numberline {2.4.1}QuickSelect}{11}{subsubsection.2.4.1}
-\contentsline {subsubsection}{\numberline {2.4.2}Binary Search}{12}{subsubsection.2.4.2}
-\contentsline {subsubsection}{\numberline {2.4.3}String matching algorithms}{12}{subsubsection.2.4.3}
-\contentsline {section}{\numberline {3}Code listings}{14}{section.3}
+\contentsline {subsubsection}{\numberline {2.4.2}Binary Search}{11}{subsubsection.2.4.2}
+\contentsline {subsubsection}{\numberline {2.4.3}String matching algorithms}{11}{subsubsection.2.4.3}
+\contentsline {section}{\numberline {3}Code listings}{13}{section.3}

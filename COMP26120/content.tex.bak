@@ -61,7 +61,10 @@ fastest growing term in the equation (i.e. whatever term comes furthest down in
 Table~\ref{table:complexity}). You then remove all the constants from the
 equation.
 
-%TODO: Big Oh Example! Ohh no!
+For example, given $O(2n + 1)$, this simplifies to $O(n)$ since constant terms
+are taken out. $O(n + n^2)$ simplies to $O(n^2)$ since smaller terms are taken
+out when they are added. Note that if terms are multipled together, they are not
+simplified e.g. $O(n \times \logn)$, stays as $O(n\log n)$.
 
 \subsection{Analysing algorithmic complexity}
 
@@ -569,8 +572,7 @@ you're looking inside), can we determine if the needle is inside the haystack?
 If so, what index does the needle start in the haystack?
 
 \begin{description}
-  \item The \textbf{naive approach}\\
-
+  \item \textbf{Naive approach}\\
     String matching is easy to solve if you don't care about running time.
     Simply iterate through each character in the haystack, test if the needle
     begins with the same character, and if it does, test the second, third and
@@ -578,8 +580,7 @@ If so, what index does the needle start in the haystack?
     carry on iterating through the haystack. In the average case, this takes
     $O(n + m)$ time, however, in the worst case, it takes $O(nm)$ time.
 
-  \item Using a \textbf{Deterministic Finite Automaton}\\
-
+  \item \textbf{Deterministic Finite Automaton}\\
     You could build a DFA that will test, in worst case $O(n)$ (the size of the
     haystack) time, for the needle. For example, the following DFA will match
     the word `hello':
@@ -590,16 +591,23 @@ If so, what index does the needle start in the haystack?
       \label{hello-automata}
     \end{figure}
 
-    \marginpar{Here, $\Eta$ is the alphabet that's being used, so $|\Eta|$ is
-    the size of the alphabet, $m$ is the size of the needle, and (you should
+    \marginpar{Here, $\Sigma$ is the alphabet that's being used, so $|\Sigma|$
+    is the size of the alphabet, $m$ is the size of the needle, and (you should
     know this one) $\Theta$ is a tight bound on the computation, as opposed to
     $O$, which is an upper bound.}
 
     The trouble with DFA's is that they are expensive to create (you need a
-    method that will ensure you've built a correct DFA), hence the preprocessing
-    time for the DFA method is $\Theta(m |\Eta|)$, which when your alphabet is
-    large (like if you're using ASCII, or even Unicode(!)), could be
+    method that will ensure you've built a correct DFA), hence the pre-
+    processing time for the DFA method is $\Theta(m |\Sigma|)$, which when your
+    alphabet is large (like if you're using ASCII, or even Unicode(!)), could be
     significant.
+
+  \item \textbf{Knuth-Morris-Pratt}\\
+    The KMP algorithm builds a DFA that will work as above. The main difference
+    is that the KMP algorithm also includes how to build the DFA. This is a hard
+    algorithm, building a DFA isn't easy! Thankfully, Robert Sedgewick has a fab
+    lecture on it that you can watch:
+    \url{https://www.youtube.com/watch?v=iZ93Unvxwtw}
 
 \end{description}
 

@@ -45,9 +45,9 @@
   I chose to answer questions 1 \& 2.
 \end{center}
 
-\section{Question 1}
+\section*{Question 1}
 
-\subsection{Part a}
+\subsection*{Part a}
 
 \lstinputlisting[language=Java, firstline=2, lastline=12, caption={
 	Add all of the pairs of integers together in the list. Do this by looping
@@ -63,7 +63,7 @@ cases, the result will be found significantly faster though.
 
 \newpage
 
-\subsection{Part b}
+\subsection*{Part b}
 
 \lstinputlisting[language=Java, firstline=2, lastline=11, caption={
 	Add the first list to a BitSet (a very compact array of bits), then iterate
@@ -76,7 +76,7 @@ both arrays once, and the loops aren't nested.
 
 \newpage
 
-\subsection{Part c}
+\subsection*{Part c}
 
 \lstinputlisting[language=Java, firstline=5, lastline=15, caption={
 	Create a new array containing the first half, and a new array containing the
@@ -87,29 +87,29 @@ The worst case runtime of this function is $O(n)$, since it only iterates
 through the array once. The space complexity is $O(2n)$, since I couldn't figure
 out how to do an in-place circular shift.
 
-\section{Question 2}
+\section*{Question 2}
 
-\subsection{Part a}
+\subsection*{Part a}
 
-\subsubsection{i)}
+\subsubsection*{i)}
 
 Merge Sort
 
-\subsubsection{ii)}
+\subsubsection*{ii)}
 
 Quick Sort
 
-\subsubsection{iii)}
+\subsubsection*{iii)}
 
 Radix Sort
 
-\subsection{Part b}
+\subsection*{Part b}
 
-\subsubsection{i)}
+\subsubsection*{i)}
 
 It never ends.
 
-\subsubsection{ii)}
+\subsubsection*{ii)}
 
 The average time that the smallest element will take to reach it's correct
 position is $n \cdot n$, since we need one die roll to be 0, and the other to be
@@ -121,30 +121,30 @@ In order for all of the $n$ items in the list to settle into their current
 position in the list, we need the above to happen $n$ times, so we end up with
 an average running time of $n \cdot n \cdot n = O(n^3)$.
 
-\subsection{iii)}
+\subsection*{iii)}
 
 If every roll of the dice happened to be a valid swap, and the first roll was
 swapping the smallest element with the element at position $0$, the second roll
 was swapping the next smallest element with the one at position $1$, and so on,
 then after $O(n)$ iterations, the list would be sorted.
 
-\subsection{Part c}
+\subsection*{Part c}
 
-\subsubsection{i)}
+\subsubsection*{i)}
 
 \begin{itemize}
   \item If $x > y$ and $y > z$ then $x > z$ (transitivity).
-  \item If $x > y$ and $y > x$ if and only if $x = y$ (reflexively).
+  \item If $x > y$ and $y > x$ if and only if $x = y$ (anti-symmetry).
 \end{itemize}
 
-\subsubsection{ii)}
+\subsubsection*{ii)}
 
 The notation for lower bound is big omega ($\Omega$).
 
 Comparison based sorts must at have a runtime of at least $n \log n$, therefore
 their asymptotic running time is $\Omega(n \log n)$.
 
-\subsubsection{iii)}
+\subsubsection*{iii)}
 
 The reason that comparison based sorts must be $\Omega(n \log n)$ is that they
 sorting algorithms must satisfy the transitivity condition.

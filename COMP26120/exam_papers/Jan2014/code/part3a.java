@@ -15,7 +15,7 @@ public class part3a {
   }
 
   public static void main(String[] args) {
-    char[] arr = {'a','b','c','d','e','f','g','h'};
+    char[] arr = {'a','b','c','d','e','f','g'};
     System.out.println(shift(arr, 3));
   }
 }
