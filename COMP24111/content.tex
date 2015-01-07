@@ -526,6 +526,10 @@ This is called ROC (Receiver Operator Characteristics). It was developed in
 world war two (hence the weird name) to help analyse radar classifications of
 bombers.
 
+\section{Ensemble Learning Algorithms}
+
+%TODO: Fill this in!
+
 \section{Ke Chen's types of classifiers}
 
 Ke is very keen to emphasise the following:
@@ -810,3 +814,194 @@ The algorithm works like so:
 %TODO: The task from KE's lecture 2, slide 12
 
 % Start from slide 13 of Ke chen's second lecture
+
+When K-means has been applied to a dataset, the K partitions are mutually
+exclusive, and therefore partition the dataset. A \textit{Voronoi Diagram} is
+created.
+
+K-means is fairly easy to compute using the heuristic algorithm. The runtime is
+$O(tKn)$, where $t$ is the number of iterations, $K$ is the number of clusters,
+and $n$ is the number of objects. $K$ and $t$ are usually much smaller than $n$.
+
+There are a number of problems with K-means:
+
+\marginpar{K-Medoids can mitigate bullet 3, and K-modes can mitigate bullet 6.}
+
+\begin{itemize}
+  \item The initial seed points can cause `local optimum' clusters, which may
+    not be representative of the whole data.
+  \item The number of clusters $K$ needs to be specified in advance, but may be
+    unknown.
+  \item Noisy data and outliers mess up the algorithm.
+  \item If a cluster has a non-convex (i.e. concave) shape, then it won't be
+    detected.
+  \item Unable to classify categorical data (unless you modify the algorithm).
+  \item It's hard to evaluate the performance of the algorithm.
+\end{itemize}
+
+\subsubsection{Hierarchical Clustering}
+
+Hierarchical clustering partitions the data sequentially, construction
+partitions layer by layer by grouping objects together into a tree. A distance
+matrix is used to determine clusters.
+
+There are two sequential strategies used to construct a tree of clusters:
+
+\marginpar{The Agglomerative approach is a bottom up strategy, whereas the
+diversive approach is a top down strategy.}
+
+\begin{description}
+  \item  \textbf{Agglomerative}\\
+    Each data object is in it's own cluster initially, before they are merged
+    into progressively larger clusters.
+  \item \textbf{Divisive}\\
+    All objects start in a single cluster, which is then divided into smaller
+    and smaller clusters.
+\end{description}
+
+You can measure the distance between clusters in three ways:
+
+\begin{description}
+  \item \textbf{Single Link}\\
+    Use the \textit{smallest} distance between an element in one cluster and an
+    element in another.
+  \item \textbf{Complete Link}\\
+    Use the \textit{largest} distance between an element in one cluster and an
+    element in another.
+  \item \textbf{Average}\\
+    Find the average distance between the points in the two clusters and use
+    that.
+\end{description}
+
+For example, given a set of named one dimensional locations
+$\{a=1,b=3,c=7,d=8,e=9\}$, and the clusters $C_1 = \{a,b\}, C_2 = \{c,d,e\}$,
+find the distances between them:
+
+\begin{align*}
+  \text{Single Link}   &= min(d(a,c),d(a,d),d(a,e),d(b,c),d(b,d),d(b,e))\\
+                       &= min(6,7,8,4,5,6) = 4\\
+  \text{Complete Link} &= max(d(a,c),d(a,d),d(a,e),d(b,c),d(b,d),d(b,e))\\
+                       &= max(6,7,8,4,5,6) = 8\\
+  \text{Average Link}  &= \frac{(d(a,c)+d(a,d)+d(a,e)+d(b,c)+d(b,d)+d(b,e))}{6}\\
+                       &= \frac{6+7+8+4+5+6}{6} = 6
+\end{align*}
+
+One issue with hierarchical approaches is what value to choose for $K$ (when
+we've found enough clusters). One heuristic is to stop processing when the
+distance between clusters reaches a certain threshold.
+
+\subsubsection{Hierarchical - Agglomerative}
+
+The agglomerative algorithm is as follows:
+  
+\begin{itemize}
+  \item Convert the object attributes into a distance matrix, and make each
+    object a cluster (of size 1).
+  \item Merge the two closest clusters together
+  \marginpar{Since we have fewer clusters as the algorithm runs for longer,
+  updating the distance matrix will take less and less time (if you can't
+  work out why, check out slide 10 of Ke's second lecture.}
+  \item Update the distance matrix to take into account the new cluster
+  \item Repeat from step two until we've got the desired number of clusters.
+\end{itemize}
+
+You can show the creation of clusters with a dendrogram, as in
+Figure~\ref{fig:dendrogram}. The $x$ axis in a dendrogram is the datapoints, and
+the $y$ axis is the distance. The lines merge when the agglomerative algorithm
+merges two clusters, and the number under the horizontal merge line indicates the
+$i$th merge. The data that would produce such an algorithm is in
+Table~\ref{data1}.
+
+%TODO: The exercise on slide 18 of Ke's second lecture.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{llllll}
+      & a  & b & c & d & e\\ \hline
+    a & 0  & 3 & 6 & 7 & 9\\
+    b & 3  & 0 & 3 & 4 & 6\\
+    c & 6  & 3 & 0 & 1 & 3\\
+    d & 7  & 4 & 1 & 0 & 2\\
+    e & 9  & 6 & 3 & 2 & 0
+  \end{tabular}
+  \caption{A distance matrix for a hierarchical clustering algorithm.}
+  \label{data1}
+\end{table}
+
+\begin{figure}[h]
+  \includestandalone[width=\textwidth]{diagrams/dendrogram}
+  \caption{A dendrogram produced from running the agglomerative algorithm on the
+  data in Table~\ref{data1}.}
+  \label{fig:dendrogram}
+\end{figure}
+
+The agglomerative approach has some weaknesses; it's very sensitive to noise and
+outlying datapoints, and it is less (usually) efficient than k-means clustering,
+with a runtime of $O(n^2)$.
+
+\subsection{Cluster validation}
+
+Cluster validation is the art of evaluating the results of clustering algorithms
+in a quantitative and objective manner.
+
+\subsubsection{Internal Indexes}
+
+Internal indexes are used to validate the value of $K$ for our clustering
+algorithms when the `ground truth' is unavailable. \marginpar{\textbf{Ground
+Truth} is the term used to describe the training data that we can use for our
+algorithm} Because of this, common sense and prior knowledge is used to validate
+the clusters.
+
+\marginpar{Intra-cluster = within a cluster. Inter-cluster = over multiple
+clusters. In this context, a low intra-cluster, and high inter-cluster variance
+will make for more disjoint, widely spaced, yet tightly packed clusters.}
+
+We can use variance to evaluate the clusters, checking to see that the intra-
+cluster variance is minimised, and the inter-cluster variance is maximised.
+
+This analysis generates an `F-ratio index' that we can use to determine how well
+our clustering algorithms have done. In order to calculate the F-ratio index, we
+do the divide the intra-cluster variance by the inter-cluster variance:
+
+\[
+  F(m) = \frac{mSSW(m)}{SSB(m)} = \frac{m\sum\limits_{i=1}^m\sum\limits_{j=1}^{n_i}d^2(x_{ij},c_i)}{\sum\limits_{i=1}^mn_id^2(c_i,c)}
+\]
+
+While this algorithm looks like something that walked out of Euler's notebook,
+it's actually not that hard:
+
+\begin{center}
+  \begin{tabular}{ll}
+    Variable & Meaning\\
+    $m$     & The number of clusters generated by the algorithm.\\
+    $n_i$   & The number of datapoints in the $i$th cluster.\\
+    $c_i$   & The centroid for the $i$th cluster.\\
+    $x_{ij}$& The $j$th datapoint in cluster $c_i$.\\
+    $c$     & The mean centroid for the whole dataset.\\
+    $d(x,y)$& The distance function we're using.
+  \end{tabular}
+\end{center}
+
+The way to use the variance analysis, is to find the number of clusters with the
+smallest f-ratio index. To do this, run the clustering algorithm ranging from
+$K$ (the number of clusters) set as 2, up to $n$ (an arbitrary limit). Then find
+the F-ratio index for each $K$ value, and use the value with the lowest F-ratio
+index.
+
+\subsubsection{External Indexes}
+
+When the ground truth is available, but our clustering algorithm doesn't make
+use of the information (probably because it's unsupervised), we can evaluate the
+effectiveness of the clustering algorithm using external indexes. Unlike internal
+indexes, which find a good value for $K$, external indexes are used to find a
+performance evaluation for our clustering efforts.
+
+%TODO: More issues of external issues
+
+One issue of external indexes, is that if we have a different number of classes
+to the number of clusters, then we'll probably get a lower score for our
+clusters.
+
+%TODO: Work out what's going on here...
+
+We can use the Rand Index do this... I don't understand Ke's notes though... 

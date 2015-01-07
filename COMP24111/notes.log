@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  5 JAN 2015 14:43
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  7 JAN 2015 18:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1275,19 +1275,33 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 336--336
 
 [8] [9] [10]
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 555.
- [11] [12] [13] [14])
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 559.
+ [11] [12] [13] [14] [15]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+(./diagrams/dendrogram.tex)
+File: diagrams/dendrogram.tex Graphic file (type tex)
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[16]
+
+LaTeX Warning: Marginpar on page 17 moved.
+
+[17])
 
 Package nag Warning: 4 complaints in total.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 65.
-[15]
+[18]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 65.
  (./notes.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 65.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 65.
 Package rerunfilecheck Info: File `notes.out' has not changed.
-(rerunfilecheck)             Checksum: 3A331491E2F8A751BE748D80AD756E39;1905.
+(rerunfilecheck)             Checksum: EF5450AB89AE8FBF494931A6D33DFFF7;2387.
 
 
 LaTeX Warning: There were undefined references.
@@ -1295,11 +1309,11 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 65.
  ) 
 Here is how much of TeX's memory you used:
- 29522 strings out of 493304
- 617987 string characters out of 6139870
- 839021 words of memory out of 5000000
- 32138 multiletter control sequences out of 15000+600000
- 83272 words of font info for 109 fonts, out of 8000000 for 9000
+ 29614 strings out of 493304
+ 619214 string characters out of 6139870
+ 838270 words of memory out of 5000000
+ 32208 multiletter control sequences out of 15000+600000
+ 83604 words of font info for 113 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  59i,12n,96p,740b,1829s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/en
@@ -1318,10 +1332,10 @@ fb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/t
 ype1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></u
 sr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/pu
 blic/lm/lmvtt10.pfb>
-Output written on notes.pdf (15 pages, 376760 bytes).
+Output written on notes.pdf (18 pages, 391021 bytes).
 PDF statistics:
- 406 PDF objects out of 1000 (max. 8388607)
- 366 compressed objects within 4 object streams
- 117 named destinations out of 1000 (max. 500000)
- 22245 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 457 PDF objects out of 1000 (max. 8388607)
+ 412 compressed objects within 5 object streams
+ 128 named destinations out of 1000 (max. 500000)
+ 22293 words of extra memory for PDF output out of 24883 (max. 10000000)
 

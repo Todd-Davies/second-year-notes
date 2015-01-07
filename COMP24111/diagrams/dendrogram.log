@@ -2,8 +2,8 @@ This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdf
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**knn-boundary.tex
-(./knn-boundary.tex
+**dendrogram.tex
+(./dendrogram.tex
 LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 78 languages loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/standalone/standalone.cls
@@ -323,13 +323,6 @@ File: pgfmodulematrix.code.tex 2010/08/24  (rcs-revision 1.4)
 hs.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v2.10 (rcs-revision 1.2)
 )))
-(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotm
-arks.code.tex
-File: tikzlibraryplotmarks.code.tex 2008/01/09 v2.10 (rcs-revision 1.1)
-
-(/usr/share/texmf/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
-File: pgflibraryplotmarks.code.tex 2010/10/15 v2.10 (rcs-revision 1.12)
-))
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshape
 s.code.tex
 File: tikzlibraryshapes.code.tex 2008/01/09 v2.10 (rcs-revision 1.1)
@@ -397,8 +390,20 @@ File: pgflibraryshapes.multipart.code.tex 2010/01/07 v2.10 (rcs-revision 1.2)
 \pgfnodepartsevenbox=\box53
 \pgfnodepartsixbox=\box54
 \pgfnodepartfivebox=\box55
-))) (./knn-boundary.aux)
-\openout1 = `knn-boundary.aux'.
+)))
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrow
+s.code.tex
+File: tikzlibraryarrows.code.tex 2008/01/09 v2.10 (rcs-revision 1.1)
+
+(/usr/share/texmf/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
+File: pgflibraryarrows.code.tex 2008/10/27 v2.10 (rcs-revision 1.9)
+\arrowsize=\dimen148
+))
+(/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryposit
+ioning.code.tex
+File: tikzlibrarypositioning.code.tex 2008/10/06 v2.10 (rcs-revision 1.7)
+) (./dendrogram.aux)
+\openout1 = `dendrogram.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
@@ -416,13 +421,13 @@ LaTeX Font Info:    ... okay on input line 5.
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count109
-\scratchdimen=\dimen148
+\scratchdimen=\dimen149
 \scratchbox=\box56
 \nofMPsegments=\count110
 \nofMParguments=\count111
 \everyMPshowfont=\toks25
 \MPscratchCnt=\count112
-\MPscratchDim=\dimen149
+\MPscratchDim=\dimen150
 \MPnumerator=\count113
 \makeMPintoPDFobject=\count114
 \everyMPtoPDFconversion=\toks26
@@ -467,20 +472,21 @@ e
 ))
 [1
 
-] (./knn-boundary.aux) ) 
+{/home/td/.texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./dendrogram.aux) ) 
 Here is how much of TeX's memory you used:
- 12006 strings out of 493304
- 245658 string characters out of 6139870
- 317791 words of memory out of 5000000
- 15233 multiletter control sequences out of 15000+600000
+ 12214 strings out of 493304
+ 251277 string characters out of 6139870
+ 327943 words of memory out of 5000000
+ 15437 multiletter control sequences out of 15000+600000
  3640 words of font info for 14 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 56i,5n,56p,428b,466s stack positions out of 5000i,500n,10000p,200000b,80000s
-
-Output written on knn-boundary.pdf (1 page, 1418 bytes).
+ 56i,7n,56p,423b,528s stack positions out of 5000i,500n,10000p,200000b,80000s
+<
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+Output written on dendrogram.pdf (1 page, 14263 bytes).
 PDF statistics:
- 11 PDF objects out of 1000 (max. 8388607)
- 7 compressed objects within 1 object stream
+ 15 PDF objects out of 1000 (max. 8388607)
+ 10 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

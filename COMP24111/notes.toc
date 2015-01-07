@@ -14,14 +14,20 @@
 \contentsline {section}{\numberline {6}Learning experiments in Machine Learning}{10}{section.6}
 \contentsline {subsection}{\numberline {6.1}Cross validation}{10}{subsection.6.1}
 \contentsline {subsection}{\numberline {6.2}Dealing with misclassifications}{11}{subsection.6.2}
-\contentsline {section}{\numberline {7}Ke Chen's types of classifiers}{11}{section.7}
-\contentsline {section}{\numberline {8}Naive Bayes Classifier}{11}{section.8}
-\contentsline {section}{\numberline {9}Clustering Analysis}{12}{section.9}
-\contentsline {subsection}{\numberline {9.1}Representing data}{12}{subsection.9.1}
-\contentsline {subsubsection}{\numberline {9.1.1}Data matrix}{12}{subsubsection.9.1.1}
-\contentsline {subsubsection}{\numberline {9.1.2}Distance matrix}{12}{subsubsection.9.1.2}
-\contentsline {subsubsection}{\numberline {9.1.3}Cosine Similarity}{13}{subsubsection.9.1.3}
-\contentsline {subsubsection}{\numberline {9.1.4}Measuring the distance of binary features}{13}{subsubsection.9.1.4}
-\contentsline {subsection}{\numberline {9.2}Distance for nominal features}{14}{subsection.9.2}
-\contentsline {subsection}{\numberline {9.3}Clustering approaches}{14}{subsection.9.3}
-\contentsline {subsubsection}{\numberline {9.3.1}K-means clustering}{15}{subsubsection.9.3.1}
+\contentsline {section}{\numberline {7}Ensemble Learning Algorithms}{11}{section.7}
+\contentsline {section}{\numberline {8}Ke Chen's types of classifiers}{11}{section.8}
+\contentsline {section}{\numberline {9}Naive Bayes Classifier}{12}{section.9}
+\contentsline {section}{\numberline {10}Clustering Analysis}{12}{section.10}
+\contentsline {subsection}{\numberline {10.1}Representing data}{12}{subsection.10.1}
+\contentsline {subsubsection}{\numberline {10.1.1}Data matrix}{12}{subsubsection.10.1.1}
+\contentsline {subsubsection}{\numberline {10.1.2}Distance matrix}{12}{subsubsection.10.1.2}
+\contentsline {subsubsection}{\numberline {10.1.3}Cosine Similarity}{13}{subsubsection.10.1.3}
+\contentsline {subsubsection}{\numberline {10.1.4}Measuring the distance of binary features}{13}{subsubsection.10.1.4}
+\contentsline {subsection}{\numberline {10.2}Distance for nominal features}{14}{subsection.10.2}
+\contentsline {subsection}{\numberline {10.3}Clustering approaches}{14}{subsection.10.3}
+\contentsline {subsubsection}{\numberline {10.3.1}K-means clustering}{15}{subsubsection.10.3.1}
+\contentsline {subsubsection}{\numberline {10.3.2}Hierarchical Clustering}{16}{subsubsection.10.3.2}
+\contentsline {subsubsection}{\numberline {10.3.3}Hierarchical - Agglomerative}{16}{subsubsection.10.3.3}
+\contentsline {subsection}{\numberline {10.4}Cluster validation}{17}{subsection.10.4}
+\contentsline {subsubsection}{\numberline {10.4.1}Internal Indexes}{17}{subsubsection.10.4.1}
+\contentsline {subsubsection}{\numberline {10.4.2}External Indexes}{18}{subsubsection.10.4.2}
