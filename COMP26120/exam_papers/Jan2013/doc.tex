@@ -1,0 +1,83 @@
+\documentclass{article}
+
+% Tell me about my LaTeX bad practices
+\usepackage[l2tabu, orthodox]{nag}
+% Make the margins wider
+\usepackage[margin=1in]{geometry}
+% For nice headers
+\usepackage{fancyhdr}
+% For line brakes in tables
+\usepackage{tabularx}
+% For the split environment
+\usepackage{amsmath}
+% For tabs in verbatim
+\usepackage{moreverb}
+% Means you don't have to put \\ to start a new line.
+\usepackage[parfill]{parskip}
+% For code listings
+\usepackage{listings}
+% For code listing colours
+\usepackage{color}
+% For images
+\usepackage[pdftex]{graphicx}
+% Make LaTeX pretty with better kerning etc
+\usepackage{microtype}
+
+\input{listingstyle.tex}
+
+\pagestyle{fancyplain}
+
+\author{Todd Davies}
+\title{COMP26120 - January 2013 - Answers}
+\date{\today}
+
+\begin{document}
+
+\rhead{COMP26120 - January 2013 - Answers}
+\lhead{\today}
+
+\maketitle
+
+\begin{center}
+	\small Please don't assume these answers are right. This is me attempting a
+	past paper for revision purposes; I could have got it all wrong ;)
+
+  I chose to answer questions 1 \& 2.
+\end{center}
+
+\section*{Question 1}
+
+\subsection*{Part a}
+
+\lstinputlisting[language=Java, firstline=2, lastline=12, caption={
+  Iterates through the list, divides $k$ by input[i] for each iteration, and
+  uses a binary search to see if the result is in the list. The binary search
+  index increases by one on every iteration so that the square of items isn't
+  counted.
+}]{code/part1a.java}
+
+Runs in $O(n\log n)$ (we do a binary search ($O(\log n)$) $n$ times), but
+assumes that input is sorted first.
+
+\newpage
+
+\subsection*{Part b}
+
+\lstinputlisting[language=Java, firstline=4, lastline=14, caption={
+  Iterates through the list, keeps a count in a HashSet of how many times it's
+  seen each integer. If the count equals $\frac{|input|}{2}$, then it returns
+  true.
+}]{code/part1b.java}
+
+Runs in $O(n)$ time, providing the HashMap does lookups in $O(1)$ time, which
+for Java ints, it should.
+
+\newpage
+
+\subsection*{Part c}
+
+\section*{Question 2}
+
+\subsection*{Part a}
+
+\end{document}
