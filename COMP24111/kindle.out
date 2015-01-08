@@ -11,3 +11,26 @@
 \BOOKMARK [2][-]{subsection.5.1}{Building a decision tree}{section.5}% 11
 \BOOKMARK [3][-]{subsubsection.5.1.1}{Entropy}{subsection.5.1}% 12
 \BOOKMARK [2][-]{subsection.5.2}{Overfitting decision trees}{section.5}% 13
+\BOOKMARK [1][-]{section.6}{Learning experiments in Machine Learning}{}% 14
+\BOOKMARK [2][-]{subsection.6.1}{Cross validation}{section.6}% 15
+\BOOKMARK [2][-]{subsection.6.2}{Dealing with misclassifications}{section.6}% 16
+\BOOKMARK [1][-]{section.7}{Ensemble Learning Algorithms}{}% 17
+\BOOKMARK [2][-]{subsection.7.1}{Bootstrapping}{section.7}% 18
+\BOOKMARK [2][-]{subsection.7.2}{Bagging}{section.7}% 19
+\BOOKMARK [2][-]{subsection.7.3}{Boosting}{section.7}% 20
+\BOOKMARK [1][-]{section.8}{Ke Chen's types of classifiers}{}% 21
+\BOOKMARK [1][-]{section.9}{Naive Bayes Classifier}{}% 22
+\BOOKMARK [1][-]{section.10}{Clustering Analysis}{}% 23
+\BOOKMARK [2][-]{subsection.10.1}{Representing data}{section.10}% 24
+\BOOKMARK [3][-]{subsubsection.10.1.1}{Data matrix}{subsection.10.1}% 25
+\BOOKMARK [3][-]{subsubsection.10.1.2}{Distance matrix}{subsection.10.1}% 26
+\BOOKMARK [3][-]{subsubsection.10.1.3}{Cosine Similarity}{subsection.10.1}% 27
+\BOOKMARK [3][-]{subsubsection.10.1.4}{Measuring the distance of binary features}{subsection.10.1}% 28
+\BOOKMARK [2][-]{subsection.10.2}{Distance for nominal features}{section.10}% 29
+\BOOKMARK [2][-]{subsection.10.3}{Clustering approaches}{section.10}% 30
+\BOOKMARK [3][-]{subsubsection.10.3.1}{K-means clustering}{subsection.10.3}% 31
+\BOOKMARK [3][-]{subsubsection.10.3.2}{Hierarchical Clustering}{subsection.10.3}% 32
+\BOOKMARK [3][-]{subsubsection.10.3.3}{Hierarchical - Agglomerative}{subsection.10.3}% 33
+\BOOKMARK [2][-]{subsection.10.4}{Cluster validation}{section.10}% 34
+\BOOKMARK [3][-]{subsubsection.10.4.1}{Internal Indexes}{subsection.10.4}% 35
+\BOOKMARK [3][-]{subsubsection.10.4.2}{External Indexes}{subsection.10.4}% 36

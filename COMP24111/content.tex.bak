@@ -528,7 +528,58 @@ bombers.
 
 \section{Ensemble Learning Algorithms}
 
-%TODO: Fill this in!
+An Ensemble System fits multiple models (called base learners) to the training
+data, and when classifying, is uses the models as a \textit{committee} to vote
+on the testing data.
+
+In order to create a useful ensemble, the members (different models) can't be
+identical; they need to disagree. The amount of disagreement is called the
+diversity. We don't want too much disagreement, since then we won't be able to
+make a decision.
+
+The way to create diverse members is to use a slightly different training
+dataset for each model. Cross validation and feature extraction can be good for
+this.
+
+Not all models are suitable as base learners, if the model only changes by a
+small amount when the training data is changed, then it won't have much
+diversity. To ensure the ensemble is diverse, the base learner should produce
+large changes to it's model for smaller changes in the training data. A good
+base learner is therefore \textit{unstable}, an example of such an algorithm is
+the decision tree.
+
+\subsection{Bootstrapping}
+
+Bootstrapping is a way of generating multiple datasets from an origional
+dataset. You select $N$ training examples from the total $N$ with replacement.
+
+This means that on average, $36.8\%$ of points are unselected.
+
+\subsection{Bagging}
+
+BAGGING is an acroynm for Bootstrap AGGregatING. It's an ensemble method that
+generates $m$ bootstraps, and trains $m$ models on each. In order to classify
+new data, a simple majority vote is used.
+
+Bagging is a parallel algorithm; ensemble members work independently to reach a
+conclusion and then the results are collated.
+
+\subsection{Boosting}
+
+Boosting is basically bagging, except the bootstrapping part is on roids:
+
+\begin{enumerate}
+  \item Take a bootstrap of the dataset.
+  \item Train one model on the bootstrap.
+  \item Take a look at which examples the model gets wrong.
+  \item Upweight the `hard' examples and downweight the `easy' ones.
+  \item Go back to step 1, but with a weighted bootstrap until you run out of
+    models to train.
+\end{enumerate}
+
+This means that each new member of the ensemble focuses on thee ones that the
+previous member got wrong. It's a serial algorithm, since members are trained
+one after the other rather than at the same time.
 
 \section{Ke Chen's types of classifiers}
 
@@ -982,7 +1033,7 @@ it's actually not that hard:
   \end{tabular}
 \end{center}
 
-The way to use the varience analysis, is to find the number of clusters with the
+The way to use the variance analysis, is to find the number of clusters with the
 smallest f-ratio index. To do this, run the clustering algorithm ranging from
 $K$ (the number of clusters) set as 2, up to $n$ (an arbitrary limit). Then find
 the F-ratio index for each $K$ value, and use the value with the lowest F-ratio
@@ -992,7 +1043,7 @@ index.
 
 When the ground truth is available, but our clustering algorithm doesn't make
 use of the information (probably because it's unsupervised), we can evaluate the
-effectivness of the clustering algorithm using external indexes. Unlike internal
+effectiveness of the clustering algorithm using external indexes. Unlike internal
 indexes, which find a good value for $K$, external indexes are used to find a
 performance evaluation for our clustering efforts.
 
