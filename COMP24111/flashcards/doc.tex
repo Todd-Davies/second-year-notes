@@ -34,4 +34,104 @@
 	- Complexity depends on the number of dimensions
 }
 
+\card{
+    What is the most important concept in machine learning?
+}{
+    Never assume that you have all the data.
+}
+
+\card{
+    What are the three `ingredients' of a machine learning algorithm?
+}{
+    The model, the error function and the learning algorithm.
+}
+
+\card{
+    What does this equation calculate?
+    \[a = \sum\limits_{i=1}^{F}x_iw_i\]
+}{
+    The activation of the perceptron
+}
+
+\card{
+    What is the perceptron learning rule?
+}{
+    $newWeight = oldWeight + 0.1 \times (trueLabel - output) \times input$
+}
+
+\card{
+    What does this equation calculate?
+    \[a = \frac{1}{1 + exp(-\sum\limits_{i=1}^d w_i x_i)}\]
+}{
+    The activation of the perceptron for non-linearly separable data
+}
+
+\flashcard{
+    Decision trees are good at handling \blank{categorical} data but worse at handling \blank{continuous} data.
+}
+
+\card{
+    What does this equation calculate?
+    \[H(X) = -\sum\limits_i p(x_i)\log_2 p(x_i)\]
+}{
+    The entropy of a variable $X$
+}
+
+\flashcard{
+    The `information' contained in a varibale is called the \blank{entropy}.
+}
+
+\card{
+    Explain the process of cross validation.
+}{
+    \begin{tabularx}{0.32\textwidth}{l X}
+        1. & Break the data evenly into $N$ chunks\\
+        2. & Leave one chunk out\\
+        3. & Train on the remaining $N-1$ chunks\\
+        4. & Test on the chunk you leave out\\
+        5. & Repeat until all chunks have been used to test\\
+        6. & Plot the average and error bars for the $N$ chunks\\
+    \end{tabularx}
+}
+
+\card{
+    What factors should affect our decision on the best value of k?
+}{
+    \begin{tabularx}{0.32\textwidth}{l X}
+        1. & Accuracy\\
+        2. & Training time and space complexity\\
+        3. & Testing time and space complexity\\
+        4. & Interpretability\\
+    \end{tabularx}
+}
+
+\card{
+    What is the ensemble approach to machine learning?
+}{
+    Select a class of models, fit multiple models to training data (called base learners), use the models as a committee to vote on testing data.
+}
+
+\card{
+    Briefly describe bootstrapping
+}{
+    Bootstrapping is the process of generating multiple data sets from an original.
+}
+
+\card{
+    On average, what is the percentage of data points that are left unselected?
+}{
+    36.8\%
+}
+
+\card{
+    Explain bagging
+}{
+    Generate $m$ bootstraps and train a model on each one. When the testing data arrives a simple majority vote takes place.
+}
+
+\card{
+    Explain boosting
+}{
+    Get a data set, take a bootsrap and train a model on it. See which examples the model got wrong then upweight those `hard' examples and downweight the `easy' ones. Now go back to training a model, but now you have a weighted bootstrap.
+}
 \end{document} 
