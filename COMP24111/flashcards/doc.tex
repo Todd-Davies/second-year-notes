@@ -1,5 +1,6 @@
 \documentclass[frontgrid]{flacards}
 \usepackage{color}
+\usepackage{tabularx}
 
 \definecolor{light-gray}{gray}{0.75}
 
@@ -133,5 +134,78 @@
     Explain boosting
 }{
     Get a data set, take a bootsrap and train a model on it. See which examples the model got wrong then upweight those `hard' examples and downweight the `easy' ones. Now go back to training a model, but now you have a weighted bootstrap.
+}
+
+\card{
+    What type of classifier models a classification rule directly and models the probability of class memberships based on input data?
+}{
+    A discriminative classifier
+}
+
+\card{
+    What type of classifier makes a probabilistic model of data within each class?
+}{
+    A generative classifier
+}
+
+\card{
+    What type of classifier uses probabilities to classify data?
+}{
+    A probabilistic classifier
+}
+
+\card{
+    What is the formula to work out $P(c|X')$ Where $c$ is a class and $X'$ is an example?
+}{
+    \[P(c|X') = [P(x_1|c)P(x_2|c)....P(x_n|c)]P(c)\]
+    Where $x$ is a feature in the example.
+}
+
+\card{
+    What is the formula to work out a Gaussian model?
+}{
+    \[\frac{1}{\sigma \sqrt{2\pi}}exp(-\frac{(x - \mu)^2}{2 \times \sigma^2})\]
+}
+
+\card{
+    What are the two data representation methods that we talk about in clustering analysis?
+}{
+    Data matrices and distance matrices.
+}
+
+\card{
+    What is the formula to work out Minowski distance.
+}{
+    \[d(x,y) = \sqrt[p]{(x_1 - y_1)^p + (x_2 - y_2)^p...+ (x_n - y_n)^p}\]
+}
+
+\card{
+    What is the formula for Manhattan distance?
+}{
+    \[d(x,y) = (x_1 - y_1) + (x_2 - y_2) + (x_n - y_n)\]
+}
+
+\card{
+    What is the formula for Euclidean distance?
+}{
+    \[d(x,y) = \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2...+ (x_n - y_n)^2}\]  
+}
+
+\card{
+    What is the cosine measure equation
+}{
+    \[\frac{x_1y_1+...+x_ny_n}{\sqrt{x_1^2+...+x_n^2}\sqrt{y_1^2+...+y_n^2}}\]
+}
+
+\card{
+    What is the formula for the distance between symmetric binary attributes?
+}{
+    \[d(x, y) = \frac{b + c}{a + b + c + d}\]
+}
+
+\card{
+    What is the formula for the distance between asymmetric binary attributes?
+}{
+    \[d(x, y) = \frac{b + c}{a + b + c}\]
 }
 \end{document} 
