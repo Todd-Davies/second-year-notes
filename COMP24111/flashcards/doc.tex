@@ -1,5 +1,6 @@
 \documentclass[frontgrid]{flacards}
 \usepackage{color}
+\usepackage{tabularx}
 
 \definecolor{light-gray}{gray}{0.75}
 
@@ -34,4 +35,177 @@
 	- Complexity depends on the number of dimensions
 }
 
+\card{
+    What is the most important concept in machine learning?
+}{
+    Never assume that you have all the data.
+}
+
+\card{
+    What are the three `ingredients' of a machine learning algorithm?
+}{
+    The model, the error function and the learning algorithm.
+}
+
+\card{
+    What does this equation calculate?
+    \[a = \sum\limits_{i=1}^{F}x_iw_i\]
+}{
+    The activation of the perceptron
+}
+
+\card{
+    What is the perceptron learning rule?
+}{
+    $newWeight = oldWeight + 0.1 \times (trueLabel - output) \times input$
+}
+
+\card{
+    What does this equation calculate?
+    \[a = \frac{1}{1 + exp(-\sum\limits_{i=1}^d w_i x_i)}\]
+}{
+    The activation of the perceptron for non-linearly separable data
+}
+
+\flashcard{
+    Decision trees are good at handling \blank{categorical} data but worse at handling \blank{continuous} data.
+}
+
+\card{
+    What does this equation calculate?
+    \[H(X) = -\sum\limits_i p(x_i)\log_2 p(x_i)\]
+}{
+    The entropy of a variable $X$
+}
+
+\flashcard{
+    The `information' contained in a varibale is called the \blank{entropy}.
+}
+
+\card{
+    Explain the process of cross validation.
+}{
+    \begin{tabularx}{0.32\textwidth}{l X}
+        1. & Break the data evenly into $N$ chunks\\
+        2. & Leave one chunk out\\
+        3. & Train on the remaining $N-1$ chunks\\
+        4. & Test on the chunk you leave out\\
+        5. & Repeat until all chunks have been used to test\\
+        6. & Plot the average and error bars for the $N$ chunks\\
+    \end{tabularx}
+}
+
+\card{
+    What factors should affect our decision on the best value of k?
+}{
+    \begin{tabularx}{0.32\textwidth}{l X}
+        1. & Accuracy\\
+        2. & Training time and space complexity\\
+        3. & Testing time and space complexity\\
+        4. & Interpretability\\
+    \end{tabularx}
+}
+
+\card{
+    What is the ensemble approach to machine learning?
+}{
+    Select a class of models, fit multiple models to training data (called base learners), use the models as a committee to vote on testing data.
+}
+
+\card{
+    Briefly describe bootstrapping
+}{
+    Bootstrapping is the process of generating multiple data sets from an original.
+}
+
+\card{
+    On average, what is the percentage of data points that are left unselected?
+}{
+    36.8\%
+}
+
+\card{
+    Explain bagging
+}{
+    Generate $m$ bootstraps and train a model on each one. When the testing data arrives a simple majority vote takes place.
+}
+
+\card{
+    Explain boosting
+}{
+    Get a data set, take a bootsrap and train a model on it. See which examples the model got wrong then upweight those `hard' examples and downweight the `easy' ones. Now go back to training a model, but now you have a weighted bootstrap.
+}
+
+\card{
+    What type of classifier models a classification rule directly and models the probability of class memberships based on input data?
+}{
+    A discriminative classifier
+}
+
+\card{
+    What type of classifier makes a probabilistic model of data within each class?
+}{
+    A generative classifier
+}
+
+\card{
+    What type of classifier uses probabilities to classify data?
+}{
+    A probabilistic classifier
+}
+
+\card{
+    What is the formula to work out $P(c|X')$ Where $c$ is a class and $X'$ is an example?
+}{
+    \[P(c|X') = [P(x_1|c)P(x_2|c)....P(x_n|c)]P(c)\]
+    Where $x$ is a feature in the example.
+}
+
+\card{
+    What is the formula to work out a Gaussian model?
+}{
+    \[\frac{1}{\sigma \sqrt{2\pi}}exp(-\frac{(x - \mu)^2}{2 \times \sigma^2})\]
+}
+
+\card{
+    What are the two data representation methods that we talk about in clustering analysis?
+}{
+    Data matrices and distance matrices.
+}
+
+\card{
+    What is the formula to work out Minowski distance.
+}{
+    \[d(x,y) = \sqrt[p]{(x_1 - y_1)^p + (x_2 - y_2)^p...+ (x_n - y_n)^p}\]
+}
+
+\card{
+    What is the formula for Manhattan distance?
+}{
+    \[d(x,y) = (x_1 - y_1) + (x_2 - y_2) + (x_n - y_n)\]
+}
+
+\card{
+    What is the formula for Euclidean distance?
+}{
+    \[d(x,y) = \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2...+ (x_n - y_n)^2}\]  
+}
+
+\card{
+    What is the cosine measure equation
+}{
+    \[\frac{x_1y_1+...+x_ny_n}{\sqrt{x_1^2+...+x_n^2}\sqrt{y_1^2+...+y_n^2}}\]
+}
+
+\card{
+    What is the formula for the distance between symmetric binary attributes?
+}{
+    \[d(x, y) = \frac{b + c}{a + b + c + d}\]
+}
+
+\card{
+    What is the formula for the distance between asymmetric binary attributes?
+}{
+    \[d(x, y) = \frac{b + c}{a + b + c}\]
+}
 \end{document} 
