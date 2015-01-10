@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  8 JAN 2015 10:54
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  10 JAN 2015 11:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1297,7 +1297,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 65.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 65.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 65.
 Package rerunfilecheck Info: File `notes.out' has not changed.
-(rerunfilecheck)             Checksum: B95BC4EAE45777DCCF12BAAB68F84CB6;2565.
+(rerunfilecheck)             Checksum: B4432F3DDD3DD3C4AC6262483012805A;2558.
 
 
 LaTeX Warning: There were undefined references.
@@ -1328,7 +1328,7 @@ fb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/t
 ype1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></u
 sr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/pu
 blic/lm/lmvtt10.pfb>
-Output written on notes.pdf (19 pages, 394441 bytes).
+Output written on notes.pdf (19 pages, 394200 bytes).
 PDF statistics:
  483 PDF objects out of 1000 (max. 8388607)
  437 compressed objects within 5 object streams

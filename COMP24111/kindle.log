@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  8 JAN 2015 10:54
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  10 JAN 2015 11:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -962,7 +962,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 ) (./scala_listing.tex))
-No file kindle.aux.
+(./kindle.aux)
 \openout1 = `kindle.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
@@ -980,7 +980,7 @@ LaTeX Font Info:    ... okay on input line 31.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
 LaTeX Font Info:    ... okay on input line 31.
 LaTeX Font Info:    Try loading font information for T1+lmr on input line 31.
-(/usr/share/texmf/tex/latex/lm/t1lmr.fd
+ (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 \AtBeginShipoutBox=\box82
@@ -997,11 +997,12 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 31.
 LaTeX Info: Redefining \pageref on input line 31.
 LaTeX Info: Redefining \nameref on input line 31.
+
+(./kindle.out) (./kindle.out)
 \@outlinefile=\write5
 \openout5 = `kindle.out'.
 
-
-ABD: EveryShipout initializing macros
+ ABD: EveryShipout initializing macros
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count182
@@ -1146,7 +1147,18 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.43 \newpage
-              [2]
+              [2] (./kindle.toc
+Overfull \hbox (10.7484pt too wide) in paragraph at lines 3--3
+ [][] [][]\T1/lmr/m/n/14.4 (-20) Finding the dis-tance be-tween two $\OML/lmm/m
+/it/14.4 n$\T1/lmr/m/n/14.4 (-20) -dimensional 
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.24 ...10.1}Representing data}{}{subsection.10.1}
+                                                   [3])
 \tf@toc=\write6
 \openout6 = `kindle.toc'.
 
@@ -1155,7 +1167,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.47 \newpage
-              [3] (./content.tex
+              [4] (./content.tex
 
 Package nag Warning: Command \it is an old LaTeX 2.09 command. 
 (nag)                Use \itshape or \textit instead on input line 23.
@@ -1165,7 +1177,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.35 
-      [4]
+      [5]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 47.
@@ -1184,9 +1196,6 @@ Overfull \hbox (52.63568pt too wide) detected at line 55
  ) = []
  []
 
-
-LaTeX Warning: Reference `scala_nn' on page  undefined on input line 59.
-
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 61.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
@@ -1195,17 +1204,13 @@ een already used, duplicate ignored
                    \relax 
 l.63   val 
            delta: Set[Double] = for {(a,b) <- c1 zip c2} yield math.pow(a-b, 2)
-[5]
+[6]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 63.
 
 Overfull \hbox (6.0pt too wide) in paragraph at lines 66--66
 [][][][][][][] 
  []
-
-
-LaTeX Warning: Reference `nearestNeighbour' on page  undefined on input line 77
-.
 
 
 Overfull \hbox (6.0pt too wide) in paragraph at lines 83--83
@@ -1226,10 +1231,6 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-
-LaTeX Warning: Reference `scala_nn' on page  undefined on input line 87.
-
-
 Overfull \hbox (30.0pt too wide) in paragraph at lines 87--87
 [] 
  []
@@ -1244,23 +1245,16 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.95 
-      [6]
+      [7]
 Overfull \hbox (6.0pt too wide) in paragraph at lines 105--105
 [][][][][][][] 
  []
-
-
-LaTeX Warning: Reference `fig:knn-large' on page  undefined on input line 111.
 
 (./diagrams/knn-large.tex)
 File: diagrams/knn-large.tex Graphic file (type tex)
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: Reference `fig:knn-boundary' on page  undefined on input line 12
-7.
 
 (./diagrams/knn-boundary.tex)
 File: diagrams/knn-boundary.tex Graphic file (type tex)
@@ -1273,12 +1267,12 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.144 
-       [7]pdfTeX warning (ext4): destination with the same identifier (name{pag
+       [8]pdfTeX warning (ext4): destination with the same identifier (name{pag
 e.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.144 
-       [8]
+       [9]
 Overfull \hbox (6.0pt too wide) in paragraph at lines 163--163
 [][][][][][][] 
  []
@@ -1288,7 +1282,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.170 
-       [9]
+       [10]
 Overfull \hbox (6.0pt too wide) in paragraph at lines 185--185
 [][][][][][][] 
  []
@@ -1304,7 +1298,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.205 
-       [10]
+       [11]
 Overfull \hbox (27.74648pt too wide) in paragraph at lines 206--210
 []\T1/lmr/m/n/14.4 (-20) The al-go-rithm has $\OML/lmm/m/it/14.4 d$ \T1/lmr/m/n
 /14.4 (-20) in-puts ($\OML/lmm/m/it/14.4 i[]; [] ; i[]$\T1/lmr/m/n/14.4 (-20) )
@@ -1317,7 +1311,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.221 
-       [11] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+       [12] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2013/08/26 1.5b listings language file
 )
 LaTeX Font Info:    Try loading font information for OMS+lmr on input line 227.
@@ -1346,7 +1340,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.262 
-       [12] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+       [13] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2013/08/26 1.5b listings language file
 )
 Overfull \hbox (6.0pt too wide) in paragraph at lines 274--274
@@ -1358,17 +1352,12 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.297 
-       [13]
-
-LaTeX Warning: Reference `createDecisionTree' on page  undefined on input line 
-318.
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
+       [14]pdfTeX warning (ext4): destination with the same identifier (name{pa
+ge.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.320 
-       [14]
+       [15]
 Overfull \hbox (6.0pt too wide) in paragraph at lines 336--336
 [][][][][][][] 
  []
@@ -1379,7 +1368,7 @@ een already used, duplicate ignored
                    \relax 
 l.352 W
        hen we're choosing an important feature, we want to reduce the entrop...
-[15]
+[16]
 Overfull \hbox (30.0pt too wide) in paragraph at lines 356--356
 [] 
  []
@@ -1394,7 +1383,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.385 \end{align*}
-                   [16]
+                   [17]
 Overfull \hbox (172.93292pt too wide) in paragraph at lines 409--409
 [] 
  []
@@ -1404,17 +1393,12 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.409 \end{align*}
-                   [17]pdfTeX warning (ext4): destination with the same identif
+                   [18]pdfTeX warning (ext4): destination with the same identif
 ier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.430 
-       [18]
-
-LaTeX Warning: Reference `fig:overfitting' on page  undefined on input line 431
-.
-
-
+       [19]
 Overfull \hbox (5.57278pt too wide) in paragraph at lines 460--460
 []\T1/lmr/bx/n/20.74 Learning ex-per-i-ments in Ma-chine
  []
@@ -1424,12 +1408,12 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.466 
-       [19]pdfTeX warning (ext4): destination with the same identifier (name{pa
+       [20]pdfTeX warning (ext4): destination with the same identifier (name{pa
 ge.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.487 
-       [20]
+       [21]
 Overfull \hbox (58.7646pt too wide) detected at line 523
 \OML/lmm/m/it/14.4 cost \OT1/lmr/m/n/14.4 = (#\OML/lmm/m/it/14.4 False \OMS/lms
 y/m/n/14.4 ^^@ \OML/lmm/m/it/14.4 Positive \OMS/lmsy/m/n/14.4 ^^@ \OT1/lmr/m/n/
@@ -1444,7 +1428,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.523 \]
-         [21]
+         [22]
 Overfull \hbox (11.92313pt too wide) in paragraph at lines 529--529
 []\T1/lmr/bx/n/20.74 Ensemble Learn-ing Al-go-rithms 
  []
@@ -1454,17 +1438,17 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.555 
-       [22]pdfTeX warning (ext4): destination with the same identifier (name{pa
+       [23]pdfTeX warning (ext4): destination with the same identifier (name{pa
 ge.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.578 \end{enumerate}
-                      [23]pdfTeX warning (ext4): destination with the same iden
+                      [24]pdfTeX warning (ext4): destination with the same iden
 tifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.608 
-       [24]
+       [25]
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <14.4> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 610.
 
@@ -1489,22 +1473,22 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.634 
-       [25]pdfTeX warning (ext4): destination with the same identifier (name{pa
+       [26]pdfTeX warning (ext4): destination with the same identifier (name{pa
 ge.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.669 \end{center}
-                   [26]pdfTeX warning (ext4): destination with the same identif
+                   [27]pdfTeX warning (ext4): destination with the same identif
 ier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.701 
-       [27]pdfTeX warning (ext4): destination with the same identifier (name{pa
+       [28]pdfTeX warning (ext4): destination with the same identifier (name{pa
 ge.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.736 \end{align*}
-                   [28]
+                   [29]
 Overfull \hbox (10.50177pt too wide) in paragraph at lines 738--738
 []\T1/lmr/bx/n/14.4 Measuring the dis-tance of bi-nary fea-tures 
  []
@@ -1515,7 +1499,7 @@ een already used, duplicate ignored
                    \relax 
 l.757   \item $
                b$ is the number of features that are 0 for $x$ and 1 for $y$
-[29]
+[30]
 Overfull \hbox (17.47131pt too wide) in paragraph at lines 780--785
  [] 
  []
@@ -1525,17 +1509,17 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.800 
-       [30]pdfTeX warning (ext4): destination with the same identifier (name{pa
-ge.}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.830 
        [31]pdfTeX warning (ext4): destination with the same identifier (name{pa
 ge.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
+l.830 
+       [32]pdfTeX warning (ext4): destination with the same identifier (name{pa
+ge.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
 l.860   \item C
-               ompute the mean points of the clusters (aka centroids). [32]
+               ompute the mean points of the clusters (aka centroids). [33]
 Overfull \hbox (30.0pt too wide) in paragraph at lines 879--879
 [] 
  []
@@ -1545,7 +1529,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.891 \end{itemize}
-                    [33]
+                    [34]
 Overfull \hbox (30.0pt too wide) in paragraph at lines 902--902
 [] 
  []
@@ -1555,7 +1539,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.922   \item \textbf
-                     {Average}\\ [34]
+                     {Average}\\ [35]
 Overfull \hbox (104.1296pt too wide) in paragraph at lines 938--938
 [] 
  []
@@ -1566,22 +1550,8 @@ een already used, duplicate ignored
                    \relax 
 l.955   \item U
                pdate the distance matrix to take into account the new cluster
-[35]
-
-LaTeX Warning: Reference `fig:dendrogram' on page  undefined on input line 960.
-
-
-
-LaTeX Warning: Reference `data1' on page  undefined on input line 964.
-
-(./diagrams/dendrogram.tex)
+[36] (./diagrams/dendrogram.tex)
 File: diagrams/dendrogram.tex Graphic file (type tex)
-
-
-LaTeX Warning: Reference `data1' on page  undefined on input line 985.
-
-
-LaTeX Warning: Reference `data1' on page  undefined on input line 985.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1590,14 +1560,14 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.992 
-       [36]pdfTeX warning (ext4): destination with the same identifier (name{pa
-ge.}) has been already used, duplicate ignored
+l.993 \subsection
+                 {Cluster validation} [37]pdfTeX warning (ext4): destination wi
+th the same identifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.1003 algorithm}
                   Because of this, common sense and prior knowledge is used ...
-[37]
+[38]
 Overfull \hbox (30.0pt too wide) in paragraph at lines 1003--1003
 [] 
  []
@@ -1617,7 +1587,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.1034 \end{center}
-                    [38])
+                    [39])
 
 Package nag Warning: 4 complaints in total.
 
@@ -1627,7 +1597,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.55 \end{document}
-                    [39]
+                    [40]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 55.
  (./kindle.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 55.
@@ -1639,22 +1609,19 @@ Package rerunfilecheck Warning: File `kindle.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `kindle.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  B95BC4EAE45777DCCF12BAAB68F84CB6;2565.
+(rerunfilecheck)             Before: B95BC4EAE45777DCCF12BAAB68F84CB6;2565
+(rerunfilecheck)             After:  B4432F3DDD3DD3C4AC6262483012805A;2558.
 
 LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 55.
  ) 
 Here is how much of TeX's memory you used:
- 30405 strings out of 493304
- 636433 string characters out of 6139870
- 845933 words of memory out of 5000000
- 33020 multiletter control sequences out of 15000+600000
- 78448 words of font info for 112 fonts, out of 8000000 for 9000
+ 30453 strings out of 493304
+ 637156 string characters out of 6139870
+ 847524 words of memory out of 5000000
+ 33058 multiletter control sequences out of 15000+600000
+ 78577 words of font info for 113 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  59i,12n,96p,925b,1835s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/en
@@ -1668,10 +1635,10 @@ ts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb>
 /public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/sha
 re/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/
 lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmvtt10.pfb>
-Output written on kindle.pdf (39 pages, 289112 bytes).
+Output written on kindle.pdf (40 pages, 294528 bytes).
 PDF statistics:
- 343 PDF objects out of 1000 (max. 8388607)
- 287 compressed objects within 3 object streams
+ 506 PDF objects out of 1000 (max. 8388607)
+ 446 compressed objects within 5 object streams
  119 named destinations out of 1000 (max. 500000)
- 24077 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 24365 words of extra memory for PDF output out of 24883 (max. 10000000)
 
