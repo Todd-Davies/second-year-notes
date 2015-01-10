@@ -581,9 +581,9 @@ This means that each new member of the ensemble focuses on thee ones that the
 previous member got wrong. It's a serial algorithm, since members are trained
 one after the other rather than at the same time.
 
-\section{Ke Chen's types of classifiers}
+\section{Types of ML classifiers}
 
-Ke is very keen to emphasise the following:
+Ke Chen is very keen to emphasise the following:
 
 \begin{description}
   \item \textbf{Discriminative} classifiers both model a classification rule
@@ -680,14 +680,14 @@ features:
 
 \begin{description}
   \item \textbf{Euclidean Distance}\\ 
-    $d(x,y) = \sqrt{|x_1 - y_1|^2 + \dots + |x_n - y_n|^2}$
+    $d(a,b) = \sqrt{|a_1 - b_1|^2 + \dots + |a_n - b_n|^2}$
   \item \textbf{Manhattan Distance}\\
-    $d(x,y) = |x_1 - y_1| + \dots + |x_n - y_n|$\\
+    $d(a,b) = |a_1 - b_1| + \dots + |a_n - b_n|$\\
     This one would find the distance you'd have to go if you could only go in
     straight lines, and turn in $90^{\circ}$ increments (so it's the distance
     you'd have to walk in Manhattan).
   \item \textbf{Minkowski Distance}\\
-    $d(x,y) = \sqrt[\leftroot{-2}\uproot{2}p]{|x_1 - y_1|^p + \dots + |x_n - y_n|^p}, p > 0$
+    $d(a,b) = \sqrt[\leftroot{-2}\uproot{2}p]{|a_1 - b_1|^p + \dots + |a_n - b_n|^p}, p > 0$
 \end{description}
 
 \subsubsection{Cosine Similarity}
@@ -847,7 +847,7 @@ the value of:
   \sum\limits_{k=1}^K\sum\limits_{x \in S_k}d^2(x, m_k)
 \]
 
-Where $K$ is the number of partitions to find, $S_i$ is the $i$th partition (a
+Where $K$ is the number of partitions to find, $S_k$ is the $k$th partition (a
 set) of the data, and $m_k$ is the `Representative object' (or the mean of the
 points) in the set $S_i$.
 
@@ -1012,7 +1012,7 @@ cluster variance is minimised, and the inter-cluster variance is maximised.
 
 This analysis generates an `F-ratio index' that we can use to determine how well
 our clustering algorithms have done. In order to calculate the F-ratio index, we
-do the divide the intra-cluster variance by the inter-cluster variance:
+the divide the intra-cluster variance by the inter-cluster variance:
 
 \[
   F(m) = \frac{mSSW(m)}{SSB(m)} = \frac{m\sum\limits_{i=1}^m\sum\limits_{j=1}^{n_i}d^2(x_{ij},c_i)}{\sum\limits_{i=1}^mn_id^2(c_i,c)}
@@ -1055,4 +1055,5 @@ clusters.
 
 %TODO: Work out what's going on here...
 
-We can use the Rand Index do this... I don't understand Ke's notes though... 
+We can use the Rand Index do this, however, I don't understand enough of the
+course notes to write a well explained description here.

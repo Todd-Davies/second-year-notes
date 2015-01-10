@@ -18,7 +18,7 @@
 \contentsline {subsection}{\numberline {7.1}Bootstrapping}{12}{subsection.7.1}
 \contentsline {subsection}{\numberline {7.2}Bagging}{12}{subsection.7.2}
 \contentsline {subsection}{\numberline {7.3}Boosting}{12}{subsection.7.3}
-\contentsline {section}{\numberline {8}Ke Chen's types of classifiers}{12}{section.8}
+\contentsline {section}{\numberline {8}Types of ML classifiers}{12}{section.8}
 \contentsline {section}{\numberline {9}Naive Bayes Classifier}{12}{section.9}
 \contentsline {section}{\numberline {10}Clustering Analysis}{13}{section.10}
 \contentsline {subsection}{\numberline {10.1}Representing data}{13}{subsection.10.1}

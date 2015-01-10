@@ -834,8 +834,8 @@ tables are created, altered or dropped, as well as when error messages are
 generated. Triggers can fire before, after or instead of the triggering event,
 and the \texttt{action} is a block that is executed if the trigger fires.
 
-Row level trigers execute the action that for each row that has changed in a
-table, while statement level triggers only excecute once per fire event.
+Row level triggers execute the action that for each row that has changed in a
+table, while statement level triggers only execute once per fire event.
 Triggers can be made to cascade, if the effects of one cause another to fire. It
 is possible that this could result in non-termination.
 
@@ -852,3 +852,150 @@ is possible that this could result in non-termination.
     triggerAction (e.g. call procedure)
   ;
 \end{verbatim}
+
+\section{Transactions, concurrency and recovery}
+
+These are all very important features of a DBMS system, and are some of the
+greatest advantages of using a DBMS instead of rolling your own system as a
+programmer.
+
+\subsection{Transactions}
+
+A transaction is a action or series of actions carried out by an application on
+the database. It can be seen as a logical unit of work on the database, and one
+level of abstraction sees client applications as just a series of transactions
+with intervals of non-database work in between.
+
+Each transaction moves the database from one state to another (or possible the
+same state). Each state is consistent, however, in between states, the database
+may be inconsistent (i.e. while processing occurs on the database, constraints
+may be violated).
+
+Transactions can have two outcomes, success and failure. If the transaction is
+successful, then it will be committed, and the database will enter a new state.
+If the transaction fails, then it will be aborted and the database is rolled
+back to the state it was in before the start of the transaction. Once a
+transaction is committed, it cannot be aborted, but an aborted transaction can
+always be restarted later for another attempt.
+
+Transactions have four basic properties, called ACID:
+
+\begin{description}
+  \item \textbf{Atomicity}\\
+    A transaction is either fully successful, or it's failed; there's no
+    in between. This is sometimes called an `all or nothing' contract.
+  \item \textbf{Consistency}\\
+    The transaction must transform the database from one consistent state to
+    another.
+  \item \textbf{Isolation}\\
+    Partial effects of incomplete transactions are not visible to other
+    transactions. All transactions are in effect, sandboxed.
+  \item \textbf{Durability}\\
+    The effects of a committed transaction are permanent. If a later transaction
+    fails, then it will not affect previous transactions.
+\end{description}
+
+\subsection{Concurrency}
+
+Concurrency control is important since it allows multiple operations on the
+database to take place simultaneously without interfering with each other.
+
+Without concurrency control, if two transactions were to execute in parallel,
+they could affect each other and produce incorrect results. Problems can include:
+
+\begin{description}
+  \item \textbf{Lost update problem}\\
+    If two users update the database at once, the one that finishes first will
+    be overridden by the one that finished second. This is mitigated by stopping
+    concurrent operations from reading objects/tables while another operation is
+    writing to it.
+  \item \textbf{Uncommitted dependency problem}\\
+    If one operation reads a piece of data while another operation writes to it,
+    then the first could read data that is in an intermediate state which is 
+    inconsistent. To prevent this from occurring, then we must stop reads from
+    occurring on objects that haven't been committed.
+  \item \textbf{Inconsistent analysis problem}\\
+    If one transaction reads several values, but they are updated by another
+    transaction part way through the read, then some of them will be
+    inconsistent with the others. To avoid this, again stop one transaction from
+    reading while another is updating and vice versa.
+\end{description}
+
+\subsubsection{Serializability}
+
+We want to be able to schedule transactions so that they don't interfere with
+each other. The easy way of doing this, is to have no concurrency, but this would
+severely limit performance. Serializability guarantees sequences of execution
+that will ensure consistency.
+
+Lets define some terminology; a \textit{schedule} is a set of of reads and
+writes to the database by concurrent transactions, a \textit{serial schedule} is
+when the reads and writes must be executed consecutively with no interleaved
+operations, and a \textit{non-serial schedule} is one where any operations can
+be interleaved.
+
+To make the database as efficient as possible, we want to find as many non-
+serial schedules as we can so that we can get parallel computation. These are
+called serializable schedules.
+
+The exact order of the reads and writes in the database is important; the
+transactions need to execute in a serial manner if one transaction is writing
+while another is reading or writing to the same data item. We can use precedence
+graphs to test for these conflicts.
+
+In order to create a \textbf{precedence graph}, you create a node for each
+transaction and then create a directed edge from $T_i$ to $T_j$ if:
+
+\begin{itemize}
+  \item $T_j$ reads the value of an item written by $T_i$
+  \item $T_j$ writes a value into an item after it has been read by $T_i$
+  \item $T_j$ writes a value into an item after it has been written by $T_i$.
+\end{itemize}
+
+When you've drawn a precedence graph, you must run a cycle finding algorithm on
+it (such as Floyd's cycle finding algorithm). If a cycle is present, then the
+transactions must run in a serial manner.
+
+\subsubsection{Concurrency control techniques}
+
+The two most basic control techniques are locking and timestamping. Both
+techniques are pessimistic, which means that they delay a transaction in case it
+conflicts with another transaction.
+
+Locking is when data items are locked to prevent other transactions from viewing
+or updating them (depending on the type of lock obtained). Transactions must
+obtain a shared lock on a data item when it wants to read, and an exclusive lock
+when it wants to write.
+
+In order to ensure that assigning locks doesn't violate isolation and atomicity
+rules for the database, locks are assigned (usually) using the two-phase-locking
+(2PL) protocol.
+
+The \textbf{Two Phase Locking} protocol, as you might expect, has two phases;
+the growing phase and the shrinking phase. In the growing phase, the transaction
+may aquire locks but cannot release them, and in the shrinking phase, it can
+release locks but cannot aquire them. If all transactions follow 2PL, then the
+schedule is serializable.
+
+If transactions depend on each other (due to locks being released before a
+transaction ends), then \textbf{cascading rollback} can occur. If T3 depends on
+T2, which depends on T1 and T1 is rolled back, then both T3 and T2 must also be
+rolled back. This can be stopped by ensureing that locks are only released at
+the end of transactions (since they have then been committed), which is called
+rigorous 2PL.
+
+Deadlock can occur if two transactions are waiting from a lock from each other.
+If this happens, then one or more of the transactions should be aborted and
+restarted. Deadlock can be detected using timeouts (only waiting $n$ seconds to
+aquire a lock).
+
+\subsubsection*{Recovery}
+
+You can keep a transaction log of all actions executed on a database. This log
+is stored in a file on (often) a backup system. If the database becomes
+corrupted, you can simply replay the transactions in the log and get the
+database back to the state it was in.
+
+Shadow paging is another recovery technique, where a copy of the page a
+transaction is taking place on is created. If the transaction fails, you can
+simply replace the page with the copy and it will be the same as before.
