@@ -96,7 +96,7 @@
 }
 
 \card{
-    What factors should affect our decision on the best value of k?
+    What factors should affect our decision on the best learning algorithm to use?
 }{
     \begin{tabularx}{0.32\textwidth}{l X}
         1. & Accuracy\\
@@ -317,5 +317,11 @@
         $c$ & The mean centroid for the whole data set.\\
         $d(x,y)$ & The distance function we're using.\\
     \end{tabularx}
+}
+
+\card{
+    How do you find the number of clusters with the smallest F-ratio?
+}{
+    Run the clustering algorithm ranging from $K=2$ up to $n$. Then find the F-ratio index for each $K$ value, and use the value with the lowest F-ratio index.
 }
 \end{document}
