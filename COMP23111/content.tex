@@ -255,53 +255,53 @@ Gives:
   The SQL command to select rows from a table is:
 
   \begin{alltt}
-  	SELECT <column-name>\\
-  	FROM <table-name>;
+    SELECT <column-name>\\
+    FROM <table-name>;
   \end{alltt}
 
   If you only want distinct values from a column, use \texttt{DISTINCT}:
 
   \begin{alltt}
-  	SELECT DISTINCT <column-name>\\
-  	FROM <table-name>;
+    SELECT DISTINCT <column-name>\\
+    FROM <table-name>;
   \end{alltt}
 
   If you want all of the columns, use \texttt{*}:
 
   \begin{alltt}
-  	SELECT *\\
-  	FROM <table-name>;
+    SELECT *\\
+    FROM <table-name>;
   \end{alltt}
 
   You can also do derivations:
 
   \begin{alltt}
-  	SELECT salary/2\\
-  	FROM <table-name>;
+    SELECT salary/2\\
+    FROM <table-name>;
   \end{alltt}
 
   In order to specify which rows you want from the table, or you want to join two
   tables together, use the \texttt{WHERE} clause:
 
   \begin{alltt}
-  	SELECT *\\
-  	WHERE <condition>\\
-  	FROM <table-name>;
+    SELECT *\\
+    WHERE <condition>\\
+    FROM <table-name>;
   \end{alltt}
 
   \begin{alltt}
-  	SELECT *\\
-  	WHERE table1.columnx = table2.columny\\
-  	FROM table1, table2;
+    SELECT *\\
+    WHERE table1.columnx = table2.columny\\
+    FROM table1, table2;
   \end{alltt}
 
   Use \texttt{AND} to chain multiple conditions in a \texttt{WHERE} clause:
 
   \begin{alltt}
-  	SELECT *\\
-  	WHERE x > 100\\
-  	AND table1.x = table2.y\\
-  	FROM <table-name>;
+    SELECT *\\
+    WHERE x > 100\\
+    AND table1.x = table2.y\\
+    FROM <table-name>;
   \end{alltt}
 
   \subsubsection{Where conditions}
@@ -310,29 +310,29 @@ Gives:
   but SQL also lets you use \texttt{LIKE}, \texttt{BETWEEN} and \texttt{IS NULL}:
 
   \begin{alltt}
-  	SELECT *\\
-  	FROM <table-name>\\
-  	WHERE name LIKE '%BOB%';
+    SELECT *\\
+    FROM <table-name>\\
+    WHERE name LIKE '%BOB%';
   \end{alltt}
 
   \begin{alltt}
-  	SELECT *\\
-  	FROM <table-name>\\
-  	WHERE salary BETWEEN 10000 AND 12000;
+    SELECT *\\
+    FROM <table-name>\\
+    WHERE salary BETWEEN 10000 AND 12000;
   \end{alltt}
 
   \begin{alltt}
-  	SELECT *\\
-  	FROM <table-name>\\
-  	WHERE previous-convictions IS NULL;
+    SELECT *\\
+    FROM <table-name>\\
+    WHERE previous-convictions IS NULL;
   \end{alltt}
 
   You can also compare tuples:
 
   \begin{alltt}
-  	SELECT *\\
-  	FROM t1, t2\\
-  	WHERE (t1.parent, t1.age) = ('Janet', t2.age);
+    SELECT *\\
+    FROM t1, t2\\
+    WHERE (t1.parent, t1.age) = ('Janet', t2.age);
   \end{alltt}
 
   \subsection{Set operations}
@@ -341,11 +341,11 @@ Gives:
   their meaning is rather self evident given their names. An example usage may be:
 
   \begin{alltt}
-  	(SELECT *\\
-  	 FROM <table-name>)\\
-  	UNION ALL\\
-  	(SELECT *\\
-  	 FROM <table-name>);
+    (SELECT *\\
+     FROM <table-name>)\\
+    UNION ALL\\
+    (SELECT *\\
+     FROM <table-name>);
   \end{alltt}
 
   \subsection{Joins}
@@ -353,25 +353,25 @@ Gives:
   We've already looked at the most common join:
 
   \begin{alltt}
-  	SELECT *\\
-  	WHERE table1.columnx = table2.columny\\
-  	FROM table1, table2;
+    SELECT *\\
+    WHERE table1.columnx = table2.columny\\
+    FROM table1, table2;
   \end{alltt}
 
   But you can also do it manually:
 
   \begin{alltt}
-  	SELECT *\\
-  	FROM table1 JOIN table2\\
-  	USING (<column-name>);
+    SELECT *\\
+    FROM table1 JOIN table2\\
+    USING (<column-name>);
   \end{alltt}
 
   Or with a \texttt{NATURAL JOIN}, which is automatic, but can only be applied
   when columns have identical names:
 
   \begin{alltt}
-  	SELECT *\\
-  	FROM table1 NATURAL JOIN table2
+    SELECT *\\
+    FROM table1 NATURAL JOIN table2
   \end{alltt}
 
   \subsection{Renaming columns}
@@ -379,9 +379,9 @@ Gives:
   You can use the \texttt{FROM} clause to rename tables:
 
   \begin{alltt}
-  	SELECT *\\
-  	FROM table1 as a, table2 as b\\
-  	where a.col > b.col;
+    SELECT *\\
+    FROM table1 as a, table2 as b\\
+    where a.col > b.col;
   \end{alltt}
 
   \subsection{Ordering and other operations}
@@ -389,21 +389,21 @@ Gives:
   \texttt{GROUP BY} can be used to sort rows by a column value:
 
   \begin{alltt}
-  	SELECT *\\
-  	FROM <table-name>\\
-  	GROUP BY height;
+    SELECT *\\
+    FROM <table-name>\\
+    GROUP BY height;
   \end{alltt}
 
   Other operators such as \texttt{AVG} and \texttt{COUNT} can also be used:
 
   \begin{alltt}
-  	SELECT AVG(salary)\\
-  	FROM <table-name>;	
+    SELECT AVG(salary)\\
+    FROM <table-name>;  
   \end{alltt}
 
   \begin{alltt}
-  	SELECT COUNT(DISTINCT salary)\\
-  	FROM <table-name>;	
+    SELECT COUNT(DISTINCT salary)\\
+    FROM <table-name>;  
   \end{alltt}
 
   \begin{alltt}
@@ -1010,3 +1010,153 @@ and a file to an entity type.
 
 When data is needed (to be modified or read), the database maps the logical
 location of the data in the database onto a physical location on the disk.
+
+The physical record is the unit of transfer bewteen main memory (RAM) and the
+secondary memory. When the DMBS wants to read or modify a part of the stored
+database, then the nececarry page is loaded into primary storage. Each `unit' of
+physical database is usually referred to as a \textit{page} or, less commonly
+block.
+
+Files are oragnised in three different ways:
+
+\begin{description}
+  \item \textbf{Heap files}\\
+    When the records stored in the file are in no particular order. New records
+    are inserted at the end of the file, which is efficient, but means that
+    finding them again later requires an $O(n)$ linear search (which is only
+    really kind of efficient if you're selecting most of the records in the
+    file, such as when doing \texttt{SELECT * FROM <tablename>}). Deleting
+    records requires more time than finding them, since the file must be written
+    back to disk. Perodic reorganisation (defragmenting) is required to compact
+    the file and fill in the blank spaces that were left by deletion.
+
+    Good for when you're doing bulk loading of data, a relation requires only a
+    few pages, indexes are used, and every record is almost always accessed.
+
+  \item \textbf{Sequential files}\\
+
+    When the files are ordered on a given field. This field also serves as a
+    key, called the ordering key. As you might expect, this vastly increases the
+    speed of finding a record, since we can use binary search. However, it also
+    increases the complexity of insertion; because elements must be kept in
+    order, if there's no free space at a location of the insert we must shift
+    all of the other records over (and potentially cascading this shift to other
+    pages).
+
+    \marginpar{Q: Where would you insert a record in a page if you wanted to
+    maximise the chance of cascading? A: Near the start.}
+
+    One way to minimise the effect of cascading is to have an unordered
+    `overflow' pool at the end of the file. Periodically, the DBMS will merge in
+    this pool with the rest of the file. This reduces the effectiveness of the
+    search, since we'll need to do a linear search of this section if we don't
+    find whatever we're looking for with a binary search of ordered bit.
+
+  \item \textbf{Hashed files}\\
+
+    A hash function determines at what logical address records reside at in the
+    file.
+
+    Each file is organised into $M$ equal sized buckets (read as partitions).
+    One of the fields in the file is designated as the hash key, and then
+    records are assigned to buckets based on the hash of this key. This means
+    that search is very efficient on this key.
+
+    One problem with hashed files is that when a bucket is full, where do we put
+    more records? This is the same problem that datastructures such as HashMaps
+    face, and it is mitigated in similar ways too:
+
+    \begin{description}
+      \item \textit{Open addressing}\\
+        This is when if a bucket is full, a linear search for the next blank
+        space will take place, and it is here that the item will be inserted.
+
+      \item \textit{Unchained overflow}\\
+        Here, a seperate area is designated for collision records. This is also
+        organised in terms of buckets.
+
+      \item \textit{Chained overflow}\\
+        If you're a Java whizz, you might have met this before; overflow items
+        are kept in a linked list structure, where each item points to the next.
+        This means searching is a linear operation, but lets you cut down the
+        amount of records you'd need to search otherwise. With this method,
+        every record must have an additional field to hold a pointer to the next
+        record.
+
+      \item \textit{Multiple hashing}\\
+        This is when a second field is used as a secondary hash key if the first
+        produces a collision, aiming to produce a new address for the record. In
+        general, the new hash function is used to place colliding records in the
+        overflow area.
+    \end{description}
+
+    These techniques can be combined in order to provide a comprehensive
+    solution (for example, having multiple hashing, then a chained overflow when
+    the second hash function fails).
+
+    When updating a record in a hashed file, you've got to relocate the record
+    if the hash key changes. This can make updating slow.
+
+    Using a hash is good when what you're searching for will exactly match the
+    hash key, but not good when you're pattern matching, getting a range of
+    values, updating frequently, or the search parameters aren't exactly on the
+    hash key (i.e. other fields or part of the hash key).
+
+\end{description}
+
+The steps taken by the DBMS to manipulate the pages is called the \textit{access
+method}.
+
+\subsection{Indexing}
+
+An index is a datastructure that allows the database to find records more
+quickly and thus improve query response time. It is similar to the index in a
+book, and is usually ordered on one key (the search key).
+
+An index can be either dense or sparse; the former has a value for every search
+key (so every record), while the latter has one for only some keys.
+
+There are three types of index; primary, clustering and secondary. Each file can
+have one primary or one clustering index, but many secondary indices. The
+different types of indices are listed here:
+
+\begin{description}
+  \item \textbf{Single level indices}\\
+    \begin{description}
+      \item \textit{Primary indices}\\
+        These indices are defined on a single file, that contains records
+        ordered by a key. The primary index is \textit{sparse}, containing an
+        entry for each disk block that can then be searched sequentially.
+      
+      \item \textit{Clustering indices}\\
+        Here, the keys are ordered like in primary indexing, however, the index
+        contains each distinct key value, and points to the start of that key in
+        the list (since theye'll probably be lots of repeated keys). This is
+        another \textit{sparse index}.
+
+      \item \textit{Secondary indices}\\
+        Secondary indices are \textit{dense} because they use keys that the file
+        is not ordered on. This means that they must point to every record
+        individually. They speed up indexing since they themselves are ordered,
+        so you can do a binary search on them. They are used to complement a
+        primary/clustering index, and there can be more than one of them per
+        file.
+    \end{description}
+  \item \textbf{Balanced trees}\\
+    If a tree has the same depth from root to leaf for all it's branches, then
+    it's called a balenced tree. The order (also known as the degree) of the
+    tree is the maximum number of branches per parent node, with larger orders
+    creating shallower trees (as would be expected). The access time is
+    dependent on the breadth of the tree, since it's $O(n\log_o{n})$, with $o$
+    being the order of the tree.
+
+    B+-Trees are similar, except their leaves form a linked list. This means
+    they can be traversed in $O(\log_b{n})$ time, where $b$ is the order of the
+    tree.
+
+    B+-Trees are very versatile, since they support pattern matching well, as
+    well as getting a range of or part of a key. Since B+-Trees are dynamic
+    (their structure changes as they are used), their performance is kept
+    optimal, and they also allow for efficient retrieval in the order of the
+    access key.
+\end{description}

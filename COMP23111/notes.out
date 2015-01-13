@@ -32,3 +32,5 @@
 \BOOKMARK [2][-]{subsection.8.2}{Concurrency}{section.8}% 32
 \BOOKMARK [3][-]{subsubsection.8.2.1}{Serializability}{subsection.8.2}% 33
 \BOOKMARK [3][-]{subsubsection.8.2.2}{Concurrency control techniques}{subsection.8.2}% 34
+\BOOKMARK [1][-]{section.9}{File organisation and indexing}{}% 35
+\BOOKMARK [2][-]{subsection.9.1}{Indexing}{section.9}% 36
