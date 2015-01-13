@@ -81,12 +81,12 @@ Primitive operations are defined as memory accesses, arithmetic operations,
 comparisons and the like.
 
 As a general rule, loops, recursion and other constructs for repeatedly
-performing operations will the best indicator as to the complexity of
+performing operations will be the best indicator as to the complexity of
 algorithms.
 
 If an algorithm is reducing the data it has to work with every so often, then it
-may have a logarithmic runtime. For example, the algorithm utilises a binary
-chop (such as binary search), then the runtime probably has a $log_2$ inside.
+may have a logarithmic runtime. For example, if an algorithm utilises a binary
+chop (such as binary search), then its runtime probably has a $log_2$ inside.
 See section~\ref{subsubsec:logs} for a bit more on logs.
 
 In order to determine complexity experimentally, you must implement the
@@ -235,8 +235,8 @@ for that operation}.
 The hard bit with this method is to pick appropriate costs for each operation
 and show that they are sufficient to allow payment for any sequence of valid
 operations. If $c_i$ is the actual cost of the $i$th operation, $C$ is the cost
-we charge per operation, and we do $n$ operations, then the following must hold
-for us to always have a positive bank account:
+we charge per operation, and if we do $n$ operations, then the following must
+hold for us to always have a positive bank account:
 
 \[
   \sum\limits_{i = 1}^nC \geq \sum\limits_{i=1}^nc_i
@@ -254,7 +254,7 @@ new array of double the length and copy the current one across.
 If we set a cost of $3$ for every array write, then this should cover the cost
 of copying when the size limit is reached. Note, that on `normal' writes (i.e.
 where we don't have to resize the array), we will only add $3$ to the bank since
-\textsterling $1$ is taken up for the write operation. If we start with an empty
+\textsterling $1$ is taken up for the write operation. We start with an empty
 array of size 0:
 
 \begin{figure}[H]
@@ -299,8 +299,8 @@ Adding 4 is normal:
   \label{banker4}
 \end{figure}
 
-But to add 5, we need another resize, costing $4 + 1 = \textsterling 5$ (we also
-get an income of \textsterling 3 too though):
+But to add 5, we need another resize, costing $4 + 1 = \text{\textsterling} 5$
+(we also get an income of \textsterling 3 too though):
 
 \begin{figure}[H]
   \centering
@@ -325,9 +325,8 @@ our algorithm runs in $O(n)$ amortized time.
 
 \subsubsection{Potential method}
 
-\marginpar{I think the idea of `potential' comes from potential energy in
-physics, which can be defined as ``The energy stored in a system due to it's
-configuration''.}
+\marginpar{The idea of `potential' comes from potential energy in physics, which
+can be defined as ``The energy stored in a system due to it's configuration''.}
 
 The potential method is similar to the banker's method in that it requires
 virtual money for each operation and it keeps a bank account (of potential in
@@ -341,7 +340,7 @@ operation, and $c_i$ to be the cost of operation $i$, then the cost of the
 operation will be:
 
 \[
-  C = c_i + \left(\Phi(D_i) - \Phi(D_{i-1}\right)
+  C = c_i + \left(\Phi(D_i) - \Phi(D_{i-1})\right)
 \]
 
 We can derive the following equation (I won't try to here):
@@ -364,7 +363,7 @@ potential function could be:
 This means that \texttt{push} will always have a cost of:
 
 \begin{align*}
-  C_{\text{\texttt{push}}} &= 1 + \left(\Phi(D_i) - \Phi(D_{i-1}\right)\\
+  C_{\text{\texttt{push}}} &= 1 + \left(\Phi(D_i) - \Phi(D_{i-1})\right)\\
                            &= 1 + \text{\#items} + \text{\#items - 1}\\
                            &= 1 + 1\\
                            &= 2
@@ -413,11 +412,11 @@ A total order is a relation that is transitive ($a \leq b \wedge b \leq c
 \implies a \leq c$), anti-symmetric ($a \leq b \wedge b \leq a \implies a = b$),
 and unsurprisingly, total $\neg(a \leq b \Leftrightarrow b \leq a)$.
 
-If the ordering on the elements of the array isn't a total order then bad
-things can happen when you try and use an algorithm to sort the data. For
-example, if you were to try and sort an array of rocks, papers and scissors
-according to the rules of the traditional game, then you wouldn't have a
-transitive relation, and a sorting algorithm would probably loop infinitely.
+If the ordering on the elements of the array isn't a total order then bad things
+can happen when you try and use an algorithm to sort the data. For example, if
+you were to try and sort an array of rocks, papers and scissors according to the
+rules of the traditional game, then you wouldn't have a transitive relation, and
+a (comparison based) sorting algorithm would probably loop infinitely.
 
 \subsection{The complexity of sorting}
 
@@ -438,7 +437,7 @@ the complexity of the sorting algorithm we're using.
   sorting algorithms, since every item needs to be looked at once (if only to
   check that the list is already sorted). Bucket, radix and bubble sort all
   achieve this for certain inputs. No comparison based sort can ever achieve
-  a lower bound with less than $O(log_2(n!))$ comparisons.
+  a lower bound with less than $O(log_2(n!)) \equiv O(n\log_2{n})$ comparisons.
 \end{description}
 
 \subsubsection{Worst case for comparison sorts}
@@ -491,9 +490,10 @@ optimal, while QuickSort is optimal for most inputs.
 
 \item \textbf{RadixSort}\\
   A RadixSort is basically bucket sort with multiple iterations. When you have
-  sorted the first digit/word etc, you apply the same sort to each bucket in
-  turn, until all of the buckets have size 1. RadixSort has a time complexity of
-  $O(n)$
+  sorted the first digit/word etc, you condense the buckets back into a list
+  and, you apply the same sort again, except sorting on the second item.
+  This repeats until you've sorted every character.digit in the list. RadixSort
+  has a time complexity of $O(n)$, and is not in place.
 
   RadixSort can be done \textbf{in-place}, and in a \textbf{stable} manner:
   \begin{Verbatim}[commandchars=\\\{\},codes={\catcode`$=3\catcode`_=8}]

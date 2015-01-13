@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  6 JAN 2015 10:27
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  12 JAN 2015 21:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -983,15 +983,15 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.71 
+l.68 
       [6pdfTeX warning (ext4): destination with the same identifier (name{table
 .1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.71 
+l.68 
      ]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 73--73
+Overfull \hbox (30.0pt too wide) in paragraph at lines 76--76
 [] 
  []
 
@@ -999,14 +999,14 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.94 
+l.97 
       [7]pdfTeX warning (ext4): destination with the same identifier (name{page
 .}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.129 \end{gather*}
-                    [8]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 133--133
+l.122 
+       [8]
+Overfull \hbox (30.0pt too wide) in paragraph at lines 136--136
 [] 
  []
 
@@ -1014,10 +1014,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.158 S
-       uch a recurrence relation occurs whenever an algorithm uses a divide and
-[9]
-Overfull \hbox (158.11995pt too wide) in paragraph at lines 183--196
+l.148 \]
+         [9]
+Overfull \hbox (158.11995pt too wide) in paragraph at lines 189--202
 [] \T1/fve/m/n/14.4 (-20) ([])
  []
 
@@ -1025,129 +1024,123 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.196 \end{aquote}
+l.202 \end{aquote}
                    [10]pdfTeX warning (ext4): destination with the same identif
 ier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.204 \subsubsection
-                    {Aggregate analysis} [11]pdfTeX warning (ext4): destination
- with the same identifier (name{page.}) has been already used, duplicate ignore
-d
+l.218 
+       [11]pdfTeX warning (ext4): destination with the same identifier (name{pa
+ge.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.229 T
-       he hard bit with this method is to pick appropriate costs for each op...
-[12] <diagrams/banker0.pdf, id=174, 51.53854pt x 24.33592pt>
+l.240 
+       [12] <diagrams/banker0.pdf, id=171, 51.53854pt x 24.33592pt>
 File: diagrams/banker0.pdf Graphic file (type pdf)
 
 <use diagrams/banker0.pdf>
-Package pdftex.def Info: diagrams/banker0.pdf used on input line 256.
+Package pdftex.def Info: diagrams/banker0.pdf used on input line 262.
 (pdftex.def)             Requested size: 90.39981pt x 42.67912pt.
 
 
-Package nag Warning: \label in float, but not after \caption on input line 257.
+Package nag Warning: \label in float, but not after \caption on input line 263.
 
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.258 \end{figure}
-                   [13]
-<diagrams/banker1.pdf, id=179, 57.37134pt x 24.33592pt>
+<diagrams/banker1.pdf, id=172, 57.37134pt x 24.33592pt>
 File: diagrams/banker1.pdf Graphic file (type pdf)
 
 <use diagrams/banker1.pdf>
-Package pdftex.def Info: diagrams/banker1.pdf used on input line 264.
+Package pdftex.def Info: diagrams/banker1.pdf used on input line 270.
 (pdftex.def)             Requested size: 100.63068pt x 42.67912pt.
 
 
-Package nag Warning: \label in float, but not after \caption on input line 265.
+Package nag Warning: \label in float, but not after \caption on input line 271.
 
 
-<diagrams/banker2.pdf, id=180, 91.65744pt x 80.42949pt>
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.272 \end{figure}
+                   [13 <./diagrams/banker0.pdf>]
+<diagrams/banker2.pdf, id=193, 91.65744pt x 80.42949pt>
 File: diagrams/banker2.pdf Graphic file (type pdf)
 
 <use diagrams/banker2.pdf>
-Package pdftex.def Info: diagrams/banker2.pdf used on input line 274.
-(pdftex.def)             Requested size: 194.56595pt x 170.71652pt.
+Package pdftex.def Info: diagrams/banker2.pdf used on input line 280.
+(pdftex.def)             Requested size: 162.13852pt x 142.26378pt.
 
 
-Package nag Warning: \label in float, but not after \caption on input line 275.
+Package nag Warning: \label in float, but not after \caption on input line 281.
 
 
-<diagrams/banker3.pdf, id=181, 103.32301pt x 80.42949pt>
+<diagrams/banker3.pdf, id=194, 103.32301pt x 80.42949pt>
 File: diagrams/banker3.pdf Graphic file (type pdf)
 
 <use diagrams/banker3.pdf>
-Package pdftex.def Info: diagrams/banker3.pdf used on input line 284.
-(pdftex.def)             Requested size: 219.32906pt x 170.71652pt.
+Package pdftex.def Info: diagrams/banker3.pdf used on input line 290.
+(pdftex.def)             Requested size: 182.77448pt x 142.26378pt.
 
 
-Package nag Warning: \label in float, but not after \caption on input line 285.
+Package nag Warning: \label in float, but not after \caption on input line 291.
 
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.287 
-       [14 <./diagrams/banker0.pdf> <./diagrams/banker1.pdf> <./diagrams/banker
-2.pdf>] <diagrams/banker4.pdf, id=221, 103.32301pt x 24.33592pt>
+<diagrams/banker4.pdf, id=195, 103.32301pt x 24.33592pt>
 File: diagrams/banker4.pdf Graphic file (type pdf)
 
 <use diagrams/banker4.pdf>
-Package pdftex.def Info: diagrams/banker4.pdf used on input line 292.
+Package pdftex.def Info: diagrams/banker4.pdf used on input line 298.
 (pdftex.def)             Requested size: 181.231pt x 42.67912pt.
 
 
-Package nag Warning: \label in float, but not after \caption on input line 293.
-
-
-
-LaTeX Warning: Command \textsterling invalid in math mode on input line 296.
-
-Missing character: There is no ¿ in font cmr12!
-<diagrams/banker5.pdf, id=222, 140.88133pt x 80.42949pt>
-File: diagrams/banker5.pdf Graphic file (type pdf)
-
-<use diagrams/banker5.pdf>
-Package pdftex.def Info: diagrams/banker5.pdf used on input line 301.
-(pdftex.def)             Requested size: 299.05608pt x 170.71652pt.
-
-
-Package nag Warning: \label in float, but not after \caption on input line 302.
+Package nag Warning: \label in float, but not after \caption on input line 299.
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.308 
-       [15 <./diagrams/banker3.pdf> <./diagrams/banker4.pdf> <./diagrams/banker
-5.pdf>] <diagrams/banker9.pdf, id=256, 226.89168pt x 80.42949pt>
+l.300 \end{figure}
+                   [14 <./diagrams/banker1.pdf> <./diagrams/banker2.pdf> <./dia
+grams/banker3.pdf>] <diagrams/banker5.pdf, id=229, 140.88133pt x 80.42949pt>
+File: diagrams/banker5.pdf Graphic file (type pdf)
+
+<use diagrams/banker5.pdf>
+Package pdftex.def Info: diagrams/banker5.pdf used on input line 307.
+(pdftex.def)             Requested size: 249.21376pt x 142.26378pt.
+
+
+Package nag Warning: \label in float, but not after \caption on input line 308.
+
+
+<diagrams/banker9.pdf, id=230, 226.89168pt x 80.42949pt>
 File: diagrams/banker9.pdf Graphic file (type pdf)
 
 <use diagrams/banker9.pdf>
-Package pdftex.def Info: diagrams/banker9.pdf used on input line 311.
-(pdftex.def)             Requested size: 481.63469pt x 170.71652pt.
+Package pdftex.def Info: diagrams/banker9.pdf used on input line 317.
+(pdftex.def)             Requested size: 401.36281pt x 142.26378pt.
 
 
-Package nag Warning: \label in float, but not after \caption on input line 312.
+Package nag Warning: \label in float, but not after \caption on input line 318.
 
 
 
-Overfull \hbox (117.43939pt too wide) in paragraph at lines 311--313
+Overfull \hbox (37.16751pt too wide) in paragraph at lines 317--319
  [][] 
  []
 
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.320 
+       [15 <./diagrams/banker4.pdf> <./diagrams/banker5.pdf>]
 
-LaTeX Warning: Command \textsterling invalid in math mode on input line 317.
+LaTeX Warning: Command \textsterling invalid in math mode on input line 323.
 
 Missing character: There is no ¿ in font cmr12!
 
-Overfull \hbox (30.0pt too wide) in paragraph at lines 324--324
+Overfull \hbox (30.0pt too wide) in paragraph at lines 329--329
 [] 
  []
 
@@ -1155,21 +1148,22 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.331 
-       [16 <./diagrams/banker9.pdf>]
-LaTeX Font Info:    Try loading font information for T1+fvm on input line 350.
+l.337 M
+       athematically, if we define $\Phi$ to be the potential function, whic...
+[16 <./diagrams/banker9.pdf>]
+LaTeX Font Info:    Try loading font information for T1+fvm on input line 355.
 
 (/usr/share/texlive/texmf-dist/tex/latex/bera/t1fvm.fd
 File: t1fvm.fd 2004/09/07 scalable font definitions for T1/fvm.
 )
 LaTeX Font Info:    Font shape `T1/fvm/m/n' will be
-(Font)              scaled to size 12.9599pt on input line 350.
+(Font)              scaled to size 12.9599pt on input line 355.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `fvm' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Overfull \hbox (21.04103pt too wide) detected at line 356
+Overfull \hbox (21.04103pt too wide) detected at line 361
 \OT1/cmr/m/n/14.4 ^^H(\OML/cmm/m/it/14.4 D[]\OT1/cmr/m/n/14.4 ) = []
  []
 
@@ -1177,25 +1171,24 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.356 \]
-         [17]pdfTeX warning (ext4): destination with the same identifier (name{
-page.}) has been already used, duplicate ignored
+l.370 \end{align*}
+                   [17]pdfTeX warning (ext4): destination with the same identif
+ier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.385 
+l.396 
        [18]pdfTeX warning (ext4): destination with the same identifier (name{pa
 ge.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.406 A
-        total order is a relation that is transitive ($a \leq b \wedge b \le...
-[19]pdfTeX warning (ext4): destination with the same identifier (name{page.}) h
-as been already used, duplicate ignored
+l.420 
+       [19]pdfTeX warning (ext4): destination with the same identifier (name{pa
+ge.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.436 \end{description}
+l.441 \end{description}
                         [20]
-Overfull \hbox (0.90945pt too wide) in paragraph at lines 448--454
+Overfull \hbox (0.90945pt too wide) in paragraph at lines 453--459
 \T1/fve/m/n/14.4 (-20) which gives it a space com-plex-ity of at least $\OML/cm
 m/m/it/14.4 O\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 log\OT1/cmr/m/n/14.4 (\OML/c
 mm/m/it/14.4 n\OT1/cmr/m/n/14.4 ))$\T1/fve/m/n/14.4 (-20) .
@@ -1205,32 +1198,32 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.458 
+l.466 
        [21]pdfTeX warning (ext4): destination with the same identifier (name{pa
 ge.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.485 
+l.497 
        [22]
 LaTeX Font Info:    Font shape `T1/fvm/b/n' will be
-(Font)              scaled to size 12.9599pt on input line 495.
+(Font)              scaled to size 12.9599pt on input line 501.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.512 
-       [23]
+l.519 \end{description}
+                        [23]
 
-Package nag Warning: \label in float, but not after \caption on input line 521.
+Package nag Warning: \label in float, but not after \caption on input line 527.
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.547 
+l.553 
        [24]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 557--557
+Overfull \hbox (30.0pt too wide) in paragraph at lines 563--563
 [] 
  []
 
@@ -1238,54 +1231,40 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.564 
-       [25]
-Underfull \hbox (badness 10000) in paragraph at lines 572--573
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 581--582
-
- []
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.586 
-       [26] <diagrams/hello-automata.pdf, id=311, 351.85251pt x 28.01366pt>
+l.570 
+       [25] <diagrams/hello-automata.pdf, id=304, 351.85251pt x 28.01366pt>
 File: diagrams/hello-automata.pdf Graphic file (type pdf)
 
 <use diagrams/hello-automata.pdf>
-Package pdftex.def Info: diagrams/hello-automata.pdf used on input line 589.
-(pdftex.def)             Requested size: 2145.24493pt x 170.71652pt.
+Package pdftex.def Info: diagrams/hello-automata.pdf used on input line 593.
+(pdftex.def)             Requested size: 364.1953pt x 28.9967pt.
 
 
-Package nag Warning: \label in float, but not after \caption on input line 590.
+Package nag Warning: \label in float, but not after \caption on input line 594.
 
-
-
-Overfull \hbox (1781.04964pt too wide) in paragraph at lines 589--591
- [][] 
- []
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.595 \newpage
-               [27 <./diagrams/hello-automata.pdf>]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 599--599
+l.602     T
+           he trouble with DFA's is that they are expensive to create (you n...
+[26 <./diagrams/hello-automata.pdf>]pdfTeX warning (ext4): destination with the
+ same identifier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.617 \newpage
+               [27]
+Overfull \hbox (30.0pt too wide) in paragraph at lines 621--621
 [] 
  []
 
 
-Package nag Warning: \label in float, but not after \caption on input line 601.
+Package nag Warning: \label in float, but not after \caption on input line 623.
 
 
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 601.
+nput line 623.
 (./code/QuickSort.java
 LaTeX Font Info:    Font shape `T1/fve/m/n' will be
 (Font)              scaled to size 5.39996pt on input line 1.
@@ -1300,26 +1279,26 @@ l.31
 name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.602 \newpage
+l.624 \newpage
                [29]
 
-Package nag Warning: \label in float, but not after \caption on input line 603.
+Package nag Warning: \label in float, but not after \caption on input line 625.
 
 
 (./code/MergeSort.java)pdfTeX warning (ext4): destination with the same identif
 ier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.603 ...t}, label=mergesort]{code/MergeSort.java}
+l.625 ...t}, label=mergesort]{code/MergeSort.java}
                                                    [30]pdfTeX warning (ext4): d
 estination with the same identifier (name{page.}) has been already used, duplic
 ate ignored
 <to be read again> 
                    \relax 
-l.604 \newpage
+l.626 \newpage
                [31]
 
-Package nag Warning: \label in float, but not after \caption on input line 605.
+Package nag Warning: \label in float, but not after \caption on input line 627.
 
 
 (./code/BinarySearch.javapdfTeX warning (ext4): destination with the same ident
@@ -1347,10 +1326,10 @@ Package rerunfilecheck Info: File `kindle.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 52.
  ) 
 Here is how much of TeX's memory you used:
- 18748 strings out of 493304
- 313942 string characters out of 6139870
+ 18747 strings out of 493304
+ 313949 string characters out of 6139870
  658897 words of memory out of 5000000
- 21479 multiletter control sequences out of 15000+600000
+ 21480 multiletter control sequences out of 15000+600000
  66291 words of font info for 175 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  55i,23n,57p,925b,1796s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1358,22 +1337,21 @@ Here is how much of TeX's memory you used:
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-s10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmu10.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/bera/fveb8a.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/bera/fver8a.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/bera/fver8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/bera/fvmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fv
-mr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
-m10.pfb>
-Output written on kindle.pdf (33 pages, 190946 bytes).
+/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmu10.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/bera/fveb8a.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/bera/fver8a.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/bera/fver8a.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/bera/fvmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+bera/fvmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symb
+ols/msbm10.pfb>
+Output written on kindle.pdf (33 pages, 187025 bytes).
 PDF statistics:
- 547 PDF objects out of 1000 (max. 8388607)
- 483 compressed objects within 5 object streams
- 157 named destinations out of 1000 (max. 500000)
+ 542 PDF objects out of 1000 (max. 8388607)
+ 479 compressed objects within 5 object streams
+ 155 named destinations out of 1000 (max. 500000)
  32989 words of extra memory for PDF output out of 35830 (max. 10000000)
 
