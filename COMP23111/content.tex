@@ -999,3 +999,14 @@ database back to the state it was in.
 Shadow paging is another recovery technique, where a copy of the page a
 transaction is taking place on is created. If the transaction fails, you can
 simply replace the page with the copy and it will be the same as before.
+
+\section{File organisation and indexing}
+
+Most (certainly the ones in this course) databases store their data on a
+secondary data store, such as magnetic disk. Data is organised onto files on the
+disk, and each file is composed of multiple records, each with one or more
+fields. Typically, a field corresponds to an attribute, a record to an entity,
+and a file to an entity type.
+
+When data is needed (to be modified or read), the database maps the logical
+location of the data in the database onto a physical location on the disk.
