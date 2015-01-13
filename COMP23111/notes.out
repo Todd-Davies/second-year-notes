@@ -1,36 +1,37 @@
-\BOOKMARK [1][-]{section.1}{An introduction to Database Management Systems}{}% 1
-\BOOKMARK [1][-]{section.2}{Relational Algebra and SQL}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Selection }{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Projection }{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{Product }{section.2}% 5
-\BOOKMARK [2][-]{subsection.2.4}{Renaming }{section.2}% 6
-\BOOKMARK [2][-]{subsection.2.5}{Join }{section.2}% 7
-\BOOKMARK [2][-]{subsection.2.6}{Distinct }{section.2}% 8
-\BOOKMARK [2][-]{subsection.2.7}{Chaining operators}{section.2}% 9
-\BOOKMARK [1][-]{section.3}{SQL Syntax}{}% 10
-\BOOKMARK [2][-]{subsection.3.1}{Selecting rows}{section.3}% 11
-\BOOKMARK [3][-]{subsubsection.3.1.1}{Where conditions}{subsection.3.1}% 12
-\BOOKMARK [2][-]{subsection.3.2}{Set operations}{section.3}% 13
-\BOOKMARK [2][-]{subsection.3.3}{Joins}{section.3}% 14
-\BOOKMARK [2][-]{subsection.3.4}{Renaming columns}{section.3}% 15
-\BOOKMARK [2][-]{subsection.3.5}{Ordering and other operations}{section.3}% 16
-\BOOKMARK [1][-]{section.4}{Designing databases}{}% 17
-\BOOKMARK [2][-]{subsection.4.1}{Entity Relationship Modelling}{section.4}% 18
-\BOOKMARK [3][-]{subsubsection.4.1.1}{ER Notation}{subsection.4.1}% 19
-\BOOKMARK [3][-]{subsubsection.4.1.2}{Specialising entities}{subsection.4.1}% 20
-\BOOKMARK [1][-]{section.5}{Converting an ER diagram into a relational language}{}% 21
-\BOOKMARK [1][-]{section.6}{Normalization}{}% 22
-\BOOKMARK [2][-]{subsection.6.1}{Functional Dependencies}{section.6}% 23
-\BOOKMARK [1][-]{section.7}{`Advanced SQL'}{}% 24
-\BOOKMARK [2][-]{subsection.7.1}{Procedural Language/SQL}{section.7}% 25
-\BOOKMARK [3][-]{subsubsection.7.1.1}{Anonymous Block}{subsection.7.1}% 26
-\BOOKMARK [3][-]{subsubsection.7.1.2}{Cursors}{subsection.7.1}% 27
-\BOOKMARK [3][-]{subsubsection.7.1.3}{Subprograms; Procedures and Functions}{subsection.7.1}% 28
-\BOOKMARK [3][-]{subsubsection.7.1.4}{Triggers}{subsection.7.1}% 29
-\BOOKMARK [1][-]{section.8}{Transactions, concurrency and recovery}{}% 30
-\BOOKMARK [2][-]{subsection.8.1}{Transactions}{section.8}% 31
-\BOOKMARK [2][-]{subsection.8.2}{Concurrency}{section.8}% 32
-\BOOKMARK [3][-]{subsubsection.8.2.1}{Serializability}{subsection.8.2}% 33
-\BOOKMARK [3][-]{subsubsection.8.2.2}{Concurrency control techniques}{subsection.8.2}% 34
-\BOOKMARK [1][-]{section.9}{File organisation and indexing}{}% 35
-\BOOKMARK [2][-]{subsection.9.1}{Indexing}{section.9}% 36
+\BOOKMARK [1][-]{section.1}{These notes}{}% 1
+\BOOKMARK [1][-]{section.2}{An introduction to Database Management Systems}{}% 2
+\BOOKMARK [1][-]{section.3}{Relational Algebra and SQL}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Selection }{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Projection }{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Product }{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.4}{Renaming }{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.5}{Join }{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.6}{Distinct }{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.7}{Chaining operators}{section.3}% 10
+\BOOKMARK [1][-]{section.4}{SQL Syntax}{}% 11
+\BOOKMARK [2][-]{subsection.4.1}{Selecting rows}{section.4}% 12
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Where conditions}{subsection.4.1}% 13
+\BOOKMARK [2][-]{subsection.4.2}{Set operations}{section.4}% 14
+\BOOKMARK [2][-]{subsection.4.3}{Joins}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.4}{Renaming columns}{section.4}% 16
+\BOOKMARK [2][-]{subsection.4.5}{Ordering and other operations}{section.4}% 17
+\BOOKMARK [1][-]{section.5}{Designing databases}{}% 18
+\BOOKMARK [2][-]{subsection.5.1}{Entity Relationship Modelling}{section.5}% 19
+\BOOKMARK [3][-]{subsubsection.5.1.1}{ER Notation}{subsection.5.1}% 20
+\BOOKMARK [3][-]{subsubsection.5.1.2}{Specialising entities}{subsection.5.1}% 21
+\BOOKMARK [1][-]{section.6}{Converting an ER diagram into a relational language}{}% 22
+\BOOKMARK [1][-]{section.7}{Normalization}{}% 23
+\BOOKMARK [2][-]{subsection.7.1}{Functional Dependencies}{section.7}% 24
+\BOOKMARK [1][-]{section.8}{`Advanced SQL'}{}% 25
+\BOOKMARK [2][-]{subsection.8.1}{Procedural Language/SQL}{section.8}% 26
+\BOOKMARK [3][-]{subsubsection.8.1.1}{Anonymous Block}{subsection.8.1}% 27
+\BOOKMARK [3][-]{subsubsection.8.1.2}{Cursors}{subsection.8.1}% 28
+\BOOKMARK [3][-]{subsubsection.8.1.3}{Subprograms; Procedures and Functions}{subsection.8.1}% 29
+\BOOKMARK [3][-]{subsubsection.8.1.4}{Triggers}{subsection.8.1}% 30
+\BOOKMARK [1][-]{section.9}{Transactions, concurrency and recovery}{}% 31
+\BOOKMARK [2][-]{subsection.9.1}{Transactions}{section.9}% 32
+\BOOKMARK [2][-]{subsection.9.2}{Concurrency}{section.9}% 33
+\BOOKMARK [3][-]{subsubsection.9.2.1}{Serializability}{subsection.9.2}% 34
+\BOOKMARK [3][-]{subsubsection.9.2.2}{Concurrency control techniques}{subsection.9.2}% 35
+\BOOKMARK [1][-]{section.10}{File organisation and indexing}{}% 36
+\BOOKMARK [2][-]{subsection.10.1}{Indexing}{section.10}% 37
