@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.9.18)  7 JAN 2015 16:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.9.18)  13 JAN 2015 15:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -252,42 +252,43 @@ Underfull \hbox (badness 3460) in paragraph at lines 78--78
 [1
 
 {/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2] <images/simpleAttribute.png, id=14, 111.41624pt x 37.13875pt>
+[2] [3] [4] <images/simpleAttribute.png, id=22, 111.41624pt x 37.13875pt>
 File: images/simpleAttribute.png Graphic file (type png)
 
 <use images/simpleAttribute.png>
-Package pdftex.def Info: images/simpleAttribute.png used on input line 108.
+Package pdftex.def Info: images/simpleAttribute.png used on input line 163.
 (pdftex.def)             Requested size: 111.41597pt x 37.13866pt.
 
-<images/compositeAttribute.png, id=15, 299.1175pt x 137.51375pt>
+<images/compositeAttribute.png, id=23, 299.1175pt x 137.51375pt>
 File: images/compositeAttribute.png Graphic file (type png)
 
 <use images/compositeAttribute.png>
-Package pdftex.def Info: images/compositeAttribute.png used on input line 115.
+Package pdftex.def Info: images/compositeAttribute.png used on input line 170.
 (pdftex.def)             Requested size: 179.47188pt x 82.50888pt.
 
-<images/multiAttribute.png, id=16, 111.41624pt x 38.1425pt>
+<images/multiAttribute.png, id=24, 111.41624pt x 38.1425pt>
 File: images/multiAttribute.png Graphic file (type png)
 
 <use images/multiAttribute.png>
-Package pdftex.def Info: images/multiAttribute.png used on input line 122.
+Package pdftex.def Info: images/multiAttribute.png used on input line 177.
 (pdftex.def)             Requested size: 111.41597pt x 38.1424pt.
 
-<images/derivedAttribute.png, id=17, 111.41624pt x 38.1425pt>
+<images/derivedAttribute.png, id=25, 111.41624pt x 38.1425pt>
 File: images/derivedAttribute.png Graphic file (type png)
 
 <use images/derivedAttribute.png>
-Package pdftex.def Info: images/derivedAttribute.png used on input line 129.
+Package pdftex.def Info: images/derivedAttribute.png used on input line 184.
 (pdftex.def)             Requested size: 111.41597pt x 38.1424pt.
- [3 <./images/simpleAttribute.png> <./images/compositeAttribute.png> <./images/
-multiAttribute.png> <./images/derivedAttribute.png>] [4] <images/weakEntity.png
-, id=26, 76.285pt x 37.13875pt>
+
+<images/weakEntity.png, id=26, 76.285pt x 37.13875pt>
 File: images/weakEntity.png Graphic file (type png)
 
 <use images/weakEntity.png>
-Package pdftex.def Info: images/weakEntity.png used on input line 136.
+Package pdftex.def Info: images/weakEntity.png used on input line 191.
 (pdftex.def)             Requested size: 76.2848pt x 37.13866pt.
- [5 <./images/weakEntity.png>] [6] (./doc.aux) ) 
+ [5 <./images/simpleAttribute.png> <./images/compositeAttribute.png> <./images/
+multiAttribute.png> <./images/derivedAttribute.png> <./images/weakEntity.png>] 
+[6] [7] [8] [9] [10] [11] [12] [13] [14] (./doc.aux) ) 
 Here is how much of TeX's memory you used:
  2185 strings out of 493117
  32113 string characters out of 6135433
@@ -296,18 +297,18 @@ Here is how much of TeX's memory you used:
  4771 words of font info for 20 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,18n,38p,229b,282s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2014/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/local/texlive/2014/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2014/texmf-dist/fon
-ts/type1/public/amsfonts/latxfont/lasy10.pfb>
-Output written on doc.pdf (6 pages, 87938 bytes).
+</usr/local/texlive/2014/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/local/texlive/2014/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2014/texmf-di
+st/fonts/type1/public/amsfonts/latxfont/lasy10.pfb>
+Output written on doc.pdf (14 pages, 108304 bytes).
 PDF statistics:
- 56 PDF objects out of 1000 (max. 8388607)
- 35 compressed objects within 1 object stream
+ 83 PDF objects out of 1000 (max. 8388607)
+ 54 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
