@@ -13,7 +13,7 @@
 \contentsline {subsubsection}{\numberline {4.1.1}Where conditions}{6}{subsubsection.4.1.1}
 \contentsline {subsection}{\numberline {4.2}Set operations}{6}{subsection.4.2}
 \contentsline {subsection}{\numberline {4.3}Joins}{7}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Renaming columns}{7}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.4}Renaming tables}{7}{subsection.4.4}
 \contentsline {subsection}{\numberline {4.5}Ordering and other operations}{7}{subsection.4.5}
 \contentsline {section}{\numberline {5}Designing databases}{7}{section.5}
 \contentsline {subsection}{\numberline {5.1}Entity Relationship Modelling}{7}{subsection.5.1}
@@ -35,3 +35,5 @@
 \contentsline {subsubsection}{\numberline {9.2.2}Concurrency control techniques}{15}{subsubsection.9.2.2}
 \contentsline {section}{\numberline {10}File organisation and indexing}{16}{section.10}
 \contentsline {subsection}{\numberline {10.1}Indexing}{17}{subsection.10.1}
+\contentsline {section}{\numberline {11}DBMS Architectures}{18}{section.11}
+\contentsline {subsection}{\numberline {11.1}Types of architectures}{19}{subsection.11.1}

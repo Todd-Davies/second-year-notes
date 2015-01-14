@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  4 JAN 2015 21:54
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  14 JAN 2015 15:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -846,11 +846,16 @@ e.}) has been already used, duplicate ignored
                    \relax 
 l.43 \newpage
               [3] (./kindle.toc
-Overfull \hbox (3.16682pt too wide) in paragraph at lines 1--1
-  [][]\OT1/cmr/bx/n/14.4 An in-tro-duc-tion to Database Man-age-ment Sys- 
+Overfull \hbox (3.16682pt too wide) in paragraph at lines 2--2
+ [] [][]\OT1/cmr/bx/n/14.4 An in-tro-duc-tion to Database Man-age-ment Sys- 
  []
 
-)
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.25 ...numberline {8}`Advanced SQL'}{}{section.8}
+                                                   [4])
 \tf@toc=\write6
 \openout6 = `kindle.toc'.
 
@@ -859,19 +864,25 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.47 \newpage
-              [4] (./content.tex
-Overfull \hbox (13.17125pt too wide) in paragraph at lines 7--7
+              [5] (./content.tex
+Overfull \hbox (13.17125pt too wide) in paragraph at lines 15--15
 []\OT1/cmr/bx/n/20.74 An in-tro-duc-tion to Database Man-
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 23.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 31.
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <14.4> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 23.
-
-Overfull \hbox (30.0pt too wide) in paragraph at lines 45--46
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 31.
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.34   \item S
+              ince the data is decoupled from the application, using a DBMS (in
+[6]
+Overfull \hbox (30.0pt too wide) in paragraph at lines 53--54
 [][] 
  []
 
@@ -879,161 +890,154 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.47 I
-      f the database is using a relational format, then it will be defined by a
-[5]pdfTeX warning (ext4): destination with the same identifier (name{page.}) ha
-s been already used, duplicate ignored
+l.63 
+      [7]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 83.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\sigma' on input line 83.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 83.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.63 \end{itemize}
-                   [6]
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 75.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\sigma' on input line 75.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 75.
-
-
-Overfull \hbox (2.74791pt too wide) in paragraph at lines 92--94
+l.98 \end{center}
+                  [8]
+Overfull \hbox (2.74791pt too wide) in paragraph at lines 100--102
 []\OT1/cmr/m/n/14.4 (-20) If we run $[] := \OML/cmm/m/it/14.4 ^^[[]\OT1/cmr/m/n
 /14.4 (-20) ([])$, we'll
  []
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.102 \end{center}
-                   [7]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 104.
+(hyperref)                removing `math shift' on input line 112.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\pi' on input line 104.
+(hyperref)                removing `\pi' on input line 112.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 104.
+(hyperref)                removing `math shift' on input line 112.
 
 
-Overfull \hbox (4.94914pt too wide) in paragraph at lines 106--108
+Overfull \hbox (4.94914pt too wide) in paragraph at lines 114--116
 [] \OT1/cmr/m/n/14.4 (-20) := \OML/cmm/m/it/14.4 ^^Y[]\OT1/cmr/m/n/14.4 (-20) (
 [])$: 
  []
 
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 138.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\times' on input line 138.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 138.
-
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.148 \end{center}
-                   [8]
-Overfull \hbox (5.60516pt too wide) in paragraph at lines 150--152
+l.135 \begin{center}
+                     [9]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 146.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\times' on input line 146.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 146.
+
+
+Overfull \hbox (5.60516pt too wide) in paragraph at lines 158--160
 \OT1/cmr/m/n/14.4 (-20) Selection ta-bles $[] := [] \OMS/cmsy/m/n/14.4 ^^B []$\
 OT1/cmr/m/n/14.4 (-20) : 
  []
 
 
-Overfull \hbox (74.80862pt too wide) in paragraph at lines 154--173
+Overfull \hbox (74.80862pt too wide) in paragraph at lines 162--181
  [] 
- []
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 175.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\rho' on input line 175.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 175.
-
-
-Overfull \hbox (5.16425pt too wide) in paragraph at lines 177--179
-\OT1/cmr/m/n/14.4 (-20) The no-ta-tion for re-nam-ing columns is pretty sim-ple
-; $[] :=
  []
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.180 \begin{center}
-                     [9]
+l.181 \end{center}
+                   [10]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 192.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\Join' on input line 192.
+(hyperref)                removing `math shift' on input line 183.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 192.
+(hyperref)                removing `\rho' on input line 183.
 
 
-Overfull \hbox (15.45573pt too wide) in paragraph at lines 205--207
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 183.
+
+
+Overfull \hbox (5.16425pt too wide) in paragraph at lines 185--187
+\OT1/cmr/m/n/14.4 (-20) The no-ta-tion for re-nam-ing columns is pretty sim-ple
+; $[] :=
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 200.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\Join' on input line 200.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 200.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.204 \begin{center}
+                     [11]
+Overfull \hbox (15.45573pt too wide) in paragraph at lines 213--215
 []\OT1/cmr/m/n/14.4 (-20) We could join it with the Grog-Shops ta-ble, us-ing $
 [] :=
  []
 
 
-Overfull \hbox (156.79114pt too wide) in paragraph at lines 209--222
+Overfull \hbox (156.79114pt too wide) in paragraph at lines 217--230
  [] 
  []
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.222 \end{center}
-                   [10]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 227.
+(hyperref)                removing `math shift' on input line 235.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\delta' on input line 227.
+(hyperref)                removing `\delta' on input line 235.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 227.
+(hyperref)                removing `math shift' on input line 235.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.247 \end{center}
-                   [11]
+l.243 $
+       \delta(\pi_{Strength, Colour}(\text{\it Alcohol-Selection}))$ [12]
 Package microtype Info: Loading generic settings for font family
 (microtype)             `cmtt' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Overfull \hbox (27.85936pt too wide) in paragraph at lines 421--421
+Overfull \hbox (27.85936pt too wide) in paragraph at lines 429--429
 []\OT1/cmr/m/n/14.4 (-20) If you only want dis-tinct val-ues from a col-umn, us
 e \OT1/cmtt/m/n/14.4 DISTINCT\OT1/cmr/m/n/14.4 (-20) : 
  []
@@ -1042,14 +1046,14 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.421 \end{mymulticols}
-                        [12]pdfTeX warning (ext4): destination with the same id
+l.429 \end{mymulticols}
+                        [13]pdfTeX warning (ext4): destination with the same id
 entifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.421 \end{mymulticols}
-                        [13]
-Overfull \hbox (30.00204pt too wide) in paragraph at lines 421--421
+l.429 \end{mymulticols}
+                        [14]
+Overfull \hbox (30.00204pt too wide) in paragraph at lines 429--429
 \OT1/cmr/m/n/14.4 (-20) The three main set op-er-a-tions are \OT1/cmtt/m/n/14.4
  UNION, EXCEPT \OT1/cmr/m/n/14.4 (-20) and \OT1/cmtt/m/n/14.4 INTERSECT\OT1/cmr
 /m/n/14.4 (-20) ,
@@ -1059,19 +1063,19 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.421 \end{mymulticols}
-                        [14]pdfTeX warning (ext4): destination with the same id
-entifier (name{page.}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.421 \end{mymulticols}
+l.429 \end{mymulticols}
                         [15]pdfTeX warning (ext4): destination with the same id
 entifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.449   \item S
-               tored or Derived\\ [16]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 462--462
+l.429 \end{mymulticols}
+                        [16]pdfTeX warning (ext4): destination with the same id
+entifier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.454   \item S
+               ingle or Multi valued\\ [17]
+Overfull \hbox (30.0pt too wide) in paragraph at lines 470--470
 [] 
  []
 
@@ -1079,25 +1083,21 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.477 
-       [17]
-Overfull \hbox (27.58531pt too wide) in paragraph at lines 482--487
+l.477 \textbf{Carnality ratio}
+                               constraints specify the ratio of one entity to
+[18]
+Overfull \hbox (27.58531pt too wide) in paragraph at lines 490--495
 \OT1/cmr/m/n/14.4 (-20) are en-tity types (e.g. \OT1/cmr/bx/n/14.4 em-ploy-ees,
  de-part-ments and projects\OT1/cmr/m/n/14.4 (-20) ),
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 587--587
+Underfull \hbox (badness 10000) in paragraph at lines 595--595
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 587--587
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 587--587
+Underfull \hbox (badness 10000) in paragraph at lines 595--595
 
  []
 
@@ -1105,34 +1105,24 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.587 \end{mymulticols}
-                        [18]
-Underfull \hbox (badness 10000) in paragraph at lines 587--587
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 587--587
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 587--587
-
- []
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.587 \end{mymulticols}
+l.595 \end{mymulticols}
                         [19]
-Underfull \hbox (badness 10000) in paragraph at lines 587--587
+Underfull \hbox (badness 10000) in paragraph at lines 595--595
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 587--587
+Underfull \hbox (badness 10000) in paragraph at lines 595--595
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 595--595
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 595--595
 
  []
 
@@ -1140,9 +1130,14 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.587 \end{mymulticols}
+l.595 \end{mymulticols}
                         [20]
-Underfull \hbox (badness 10000) in paragraph at lines 587--587
+Underfull \hbox (badness 10000) in paragraph at lines 595--595
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 595--595
 
  []
 
@@ -1150,14 +1145,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.587 \end{mymulticols}
+l.595 \end{mymulticols}
                         [21]
-Underfull \hbox (badness 10000) in paragraph at lines 587--587
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 587--587
+Underfull \hbox (badness 10000) in paragraph at lines 595--595
 
  []
 
@@ -1165,9 +1155,24 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.587 \end{mymulticols}
+l.595 \end{mymulticols}
                         [22]
-Overfull \hbox (30.0pt too wide) in paragraph at lines 599--599
+Underfull \hbox (badness 10000) in paragraph at lines 595--595
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 595--595
+
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.595 \end{mymulticols}
+                        [23]
+Overfull \hbox (30.0pt too wide) in paragraph at lines 607--607
 [] 
  []
 
@@ -1175,9 +1180,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.608 \end{center}
-                   [23]
-Overfull \hbox (8.62851pt too wide) in paragraph at lines 628--629
+l.616 \end{center}
+                   [24]
+Overfull \hbox (8.62851pt too wide) in paragraph at lines 636--637
  [] 
  []
 
@@ -1185,8 +1190,259 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.629 \end{center}
-                   [24])
+l.637 \end{center}
+                   [25]pdfTeX warning (ext4): destination with the same identif
+ier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.647 \section
+              {Converting an ER diagram into a relational language} [26]
+Overfull \hbox (30.0pt too wide) in paragraph at lines 660--660
+[] 
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.671 
+       [27]pdfTeX warning (ext4): destination with the same identifier (name{pa
+ge.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.699 
+       [28]
+Overfull \hbox (2.37064pt too wide) in paragraph at lines 711--714
+\OT1/cmr/m/n/14.4 (-20) which is what we have the priv-i-lege of us-ing on the 
+course. 
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.725     error_code NUMBER;
+                             [29]
+Overfull \hbox (55.95105pt too wide) in paragraph at lines 737--737
+[]    \OT1/cmtt/m/n/14.4 INSERT INTO errors VALUES(error_code, error_message);[
+] 
+ []
+
+
+Overfull \hbox (30.0pt too wide) in paragraph at lines 747--747
+[] 
+ []
+
+
+Overfull \hbox (169.32387pt too wide) in paragraph at lines 752--752
+[]  \OT1/cmtt/m/n/14.4 CURSOR getStudentsDoingCourse(myCourseName Student.cours
+eName%TYPE) IS 
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.753     SELECT *
+                   [30]
+Overfull \hbox (176.73386pt too wide) in paragraph at lines 770--770
+[]  \OT1/cmtt/m/n/14.4 CREATE OR REPLACE PROCEDURE getAverageGrade(sID IN Stude
+nts.ID%TYPE) AS 
+ []
+
+
+Overfull \hbox (58.17404pt too wide) in paragraph at lines 776--776
+[]    \OT1/cmtt/m/n/14.4 CURSOR getStudentGrades(sId StudentGrades.ID%TYPE) IS[
+] 
+ []
+
+
+Overfull \hbox (6.30412pt too wide) in paragraph at lines 781--781
+[]    \OT1/cmtt/m/n/14.4 CURSOR getStudentName(sId Students.ID%TYPE) IS[] 
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.785 
+       [31]
+Overfull \hbox (115.23096pt too wide) in paragraph at lines 810--810
+[]      \OT1/cmtt/m/n/14.4 DBMS_OUTPUT.PUT_LINE(var_name || ': ' || var_grade |
+| '%');[] 
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.816     EXCEPTION
+                    [32]
+Overfull \hbox (26.3111pt too wide) in paragraph at lines 820--820
+[]        \OT1/cmtt/m/n/14.4 var_error_message := SUBSTR(SQLERRM, 1, 255);[] 
+ []
+
+
+Overfull \hbox (181.92085pt too wide) in paragraph at lines 821--821
+[]        \OT1/cmtt/m/n/14.4 DBMS_OUTPUT.PUT_LINE(var_error_code || ': ' || var
+_error_message);[] 
+ []
+
+
+Overfull \hbox (64.9548pt too wide) in paragraph at lines 833--834
+[]\OT1/cmr/m/n/14.4 (-20) To ex-e-cute a pro-ce-dure, do \OT1/cmtt/m/n/14.4 EXE
+CUTE getAverageGrade(8955942)\OT1/cmr/m/n/14.4 (-20) . 
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.849 
+       [33]
+Overfull \hbox (21.1241pt too wide) in paragraph at lines 856--856
+[]    \OT1/cmtt/m/n/14.4 [REFERENCING (OLD | NEW) AS (oldName | newName)][] 
+ []
+
+
+Overfull \hbox (6.78603pt too wide) in paragraph at lines 864--864
+[]\OT1/cmr/bx/n/20.74 Transactions, con-cur-rency and re-
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.881 
+       [34]pdfTeX warning (ext4): destination with the same identifier (name{pa
+ge.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.904 \end{description}
+                        [35]pdfTeX warning (ext4): destination with the same id
+entifier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.938 
+       [36]pdfTeX warning (ext4): destination with the same identifier (name{pa
+ge.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.961 \end{itemize}
+                    [37]pdfTeX warning (ext4): destination with the same identi
+fier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.994 
+       [38]
+Overfull \hbox (14.42145pt too wide) in paragraph at lines 1011--1011
+[]\OT1/cmr/bx/n/20.74 File or-gan-i-sa-tion and in-dex-ing 
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1018 
+        [39]
+Underfull \hbox (badness 10000) in paragraph at lines 1044--1045
+
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1045 
+        [40]
+Underfull \hbox (badness 10000) in paragraph at lines 1063--1064
+
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1072 
+        [41]
+Overfull \hbox (4.44656pt too wide) in paragraph at lines 1082--1085
+\OT1/cmr/m/n/14.4 (-20) Here, a sep-a-rate area is des-ig-nated for col-li-sion
+ records.
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1104 
+        [42]
+Underfull \hbox (badness 10000) in paragraph at lines 1132--1133
+
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1133     \begin{description}
+                               [43]pdfTeX warning (ext4): destination with the 
+same identifier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1164 
+        [44]pdfTeX warning (ext4): destination with the same identifier (name{p
+age.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1195 
+        [45]pdfTeX warning (ext4): destination with the same identifier (name{p
+age.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1223 
+        [46]pdfTeX warning (ext4): destination with the same identifier (name{p
+age.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1249       \item \textit
+                          {Transaction servers}\\ [47]pdfTeX warning (ext4): de
+stination with the same identifier (name{page.}) has been already used, duplica
+te ignored
+<to be read again> 
+                   \relax 
+l.1273 
+        [48]
+Overfull \hbox (6.13838pt too wide) in paragraph at lines 1284--1286
+[]\OT1/cmr/m/n/14.4 (-20) More re-cent de-vel-op-ments in databases such as NoS
+QL
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1307 
+        [49]pdfTeX warning (ext4): destination with the same identifier (name{p
+age.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1335 
+        [50]pdfTeX warning (ext4): destination with the same identifier (name{p
+age.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1358 
+        [51]
+Underfull \hbox (badness 10000) in paragraph at lines 1361--1362
+
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1387 
+        [52])
 No complaints by nag.
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 55.
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
@@ -1194,28 +1450,23 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.55 \end{document}
-                    [25]pdfTeX warning (ext4): destination with the same identi
-fier (name{page.}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.55 \end{document}
-                    [26]
+                    [53]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 55.
  (./kindle.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 55.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 55.
 Package rerunfilecheck Info: File `kindle.out' has not changed.
-(rerunfilecheck)             Checksum: 5B3FAA6A89996868B5084D4D314A3D63;1291.
+(rerunfilecheck)             Checksum: 238941612FAE88841068CA7B6BF8825D;2594.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 55.
  ) 
 Here is how much of TeX's memory you used:
- 18763 strings out of 493304
- 337676 string characters out of 6139870
- 481273 words of memory out of 5000000
- 21751 multiletter control sequences out of 15000+600000
- 13107 words of font info for 86 fonts, out of 8000000 for 9000
+ 18823 strings out of 493304
+ 338450 string characters out of 6139870
+ 481224 words of memory out of 5000000
+ 21773 multiletter control sequences out of 15000+600000
+ 13668 words of font info for 95 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 55i,8n,74p,925b,838s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,8n,74p,925b,842s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texl
@@ -1226,10 +1477,10 @@ type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
 nts/latxfont/lasy10.pfb>
-Output written on kindle.pdf (26 pages, 159018 bytes).
+Output written on kindle.pdf (53 pages, 212902 bytes).
 PDF statistics:
- 271 PDF objects out of 1000 (max. 8388607)
- 211 compressed objects within 3 object streams
- 26 named destinations out of 1000 (max. 500000)
- 16671 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 461 PDF objects out of 1000 (max. 8388607)
+ 373 compressed objects within 4 object streams
+ 46 named destinations out of 1000 (max. 500000)
+ 16823 words of extra memory for PDF output out of 17280 (max. 10000000)
 

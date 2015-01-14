@@ -13,7 +13,7 @@
 \BOOKMARK [3][-]{subsubsection.4.1.1}{Where conditions}{subsection.4.1}% 13
 \BOOKMARK [2][-]{subsection.4.2}{Set operations}{section.4}% 14
 \BOOKMARK [2][-]{subsection.4.3}{Joins}{section.4}% 15
-\BOOKMARK [2][-]{subsection.4.4}{Renaming columns}{section.4}% 16
+\BOOKMARK [2][-]{subsection.4.4}{Renaming tables}{section.4}% 16
 \BOOKMARK [2][-]{subsection.4.5}{Ordering and other operations}{section.4}% 17
 \BOOKMARK [1][-]{section.5}{Designing databases}{}% 18
 \BOOKMARK [2][-]{subsection.5.1}{Entity Relationship Modelling}{section.5}% 19
@@ -35,3 +35,5 @@
 \BOOKMARK [3][-]{subsubsection.9.2.2}{Concurrency control techniques}{subsection.9.2}% 35
 \BOOKMARK [1][-]{section.10}{File organisation and indexing}{}% 36
 \BOOKMARK [2][-]{subsection.10.1}{Indexing}{section.10}% 37
+\BOOKMARK [1][-]{section.11}{DBMS Architectures}{}% 38
+\BOOKMARK [2][-]{subsection.11.1}{Types of architectures}{section.11}% 39

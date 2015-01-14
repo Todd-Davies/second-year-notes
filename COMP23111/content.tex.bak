@@ -4,6 +4,14 @@
   pdfauthor = {\Author}
 }
 
+\section{These notes}
+
+This course is very reading oriented. If I were to write comprehensive notes on
+the whole course, I'd probably need to take a gap year. Consequently, I've
+written notes from the content in the lecture slides only. This means that
+\textbf{there is content in the course not covered in these notes}. However, I
+certainly hope that the stuff in here is enough to get a decent grade.
+
 \section{An introduction to Database Management Systems}
 
 DataBase Management Systems (DBMS's) are a type of middleware that provide a
@@ -255,53 +263,53 @@ Gives:
   The SQL command to select rows from a table is:
 
   \begin{alltt}
-  	SELECT <column-name>\\
-  	FROM <table-name>;
+    SELECT <column-name>\\
+    FROM <table-name>;
   \end{alltt}
 
   If you only want distinct values from a column, use \texttt{DISTINCT}:
 
   \begin{alltt}
-  	SELECT DISTINCT <column-name>\\
-  	FROM <table-name>;
+    SELECT DISTINCT <column-name>\\
+    FROM <table-name>;
   \end{alltt}
 
   If you want all of the columns, use \texttt{*}:
 
   \begin{alltt}
-  	SELECT *\\
-  	FROM <table-name>;
+    SELECT *\\
+    FROM <table-name>;
   \end{alltt}
 
   You can also do derivations:
 
   \begin{alltt}
-  	SELECT salary/2\\
-  	FROM <table-name>;
+    SELECT salary/2\\
+    FROM <table-name>;
   \end{alltt}
 
   In order to specify which rows you want from the table, or you want to join two
   tables together, use the \texttt{WHERE} clause:
 
   \begin{alltt}
-  	SELECT *\\
-  	WHERE <condition>\\
-  	FROM <table-name>;
+    SELECT *\\
+    WHERE <condition>\\
+    FROM <table-name>;
   \end{alltt}
 
   \begin{alltt}
-  	SELECT *\\
-  	WHERE table1.columnx = table2.columny\\
-  	FROM table1, table2;
+    SELECT *\\
+    WHERE table1.columnx = table2.columny\\
+    FROM table1, table2;
   \end{alltt}
 
   Use \texttt{AND} to chain multiple conditions in a \texttt{WHERE} clause:
 
   \begin{alltt}
-  	SELECT *\\
-  	WHERE x > 100\\
-  	AND table1.x = table2.y\\
-  	FROM <table-name>;
+    SELECT *\\
+    WHERE x > 100\\
+    AND table1.x = table2.y\\
+    FROM <table-name>;
   \end{alltt}
 
   \subsubsection{Where conditions}
@@ -310,29 +318,29 @@ Gives:
   but SQL also lets you use \texttt{LIKE}, \texttt{BETWEEN} and \texttt{IS NULL}:
 
   \begin{alltt}
-  	SELECT *\\
-  	FROM <table-name>\\
-  	WHERE name LIKE '%BOB%';
+    SELECT *\\
+    FROM <table-name>\\
+    WHERE name LIKE '%BOB%';
   \end{alltt}
 
   \begin{alltt}
-  	SELECT *\\
-  	FROM <table-name>\\
-  	WHERE salary BETWEEN 10000 AND 12000;
+    SELECT *\\
+    FROM <table-name>\\
+    WHERE salary BETWEEN 10000 AND 12000;
   \end{alltt}
 
   \begin{alltt}
-  	SELECT *\\
-  	FROM <table-name>\\
-  	WHERE previous-convictions IS NULL;
+    SELECT *\\
+    FROM <table-name>\\
+    WHERE previous-convictions IS NULL;
   \end{alltt}
 
   You can also compare tuples:
 
   \begin{alltt}
-  	SELECT *\\
-  	FROM t1, t2\\
-  	WHERE (t1.parent, t1.age) = ('Janet', t2.age);
+    SELECT *\\
+    FROM t1, t2\\
+    WHERE (t1.parent, t1.age) = ('Janet', t2.age);
   \end{alltt}
 
   \subsection{Set operations}
@@ -341,11 +349,11 @@ Gives:
   their meaning is rather self evident given their names. An example usage may be:
 
   \begin{alltt}
-  	(SELECT *\\
-  	 FROM <table-name>)\\
-  	UNION ALL\\
-  	(SELECT *\\
-  	 FROM <table-name>);
+    (SELECT *\\
+     FROM <table-name>)\\
+    UNION ALL\\
+    (SELECT *\\
+     FROM <table-name>);
   \end{alltt}
 
   \subsection{Joins}
@@ -353,35 +361,35 @@ Gives:
   We've already looked at the most common join:
 
   \begin{alltt}
-  	SELECT *\\
-  	WHERE table1.columnx = table2.columny\\
-  	FROM table1, table2;
+    SELECT *\\
+    WHERE table1.columnx = table2.columny\\
+    FROM table1, table2;
   \end{alltt}
 
   But you can also do it manually:
 
   \begin{alltt}
-  	SELECT *\\
-  	FROM table1 JOIN table2\\
-  	USING (<column-name>);
+    SELECT *\\
+    FROM table1 JOIN table2\\
+    USING (<column-name>);
   \end{alltt}
 
   Or with a \texttt{NATURAL JOIN}, which is automatic, but can only be applied
   when columns have identical names:
 
   \begin{alltt}
-  	SELECT *\\
-  	FROM table1 NATURAL JOIN table2
+    SELECT *\\
+    FROM table1 NATURAL JOIN table2
   \end{alltt}
 
-  \subsection{Renaming columns}
+  \subsection{Renaming tables}
 
   You can use the \texttt{FROM} clause to rename tables:
 
   \begin{alltt}
-  	SELECT *\\
-  	FROM table1 as a, table2 as b\\
-  	where a.col > b.col;
+    SELECT *\\
+    FROM table1 as a, table2 as b\\
+    where a.col > b.col;
   \end{alltt}
 
   \subsection{Ordering and other operations}
@@ -389,21 +397,21 @@ Gives:
   \texttt{GROUP BY} can be used to sort rows by a column value:
 
   \begin{alltt}
-  	SELECT *\\
-  	FROM <table-name>\\
-  	GROUP BY height;
+    SELECT *\\
+    FROM <table-name>\\
+    GROUP BY height;
   \end{alltt}
 
   Other operators such as \texttt{AVG} and \texttt{COUNT} can also be used:
 
   \begin{alltt}
-  	SELECT AVG(salary)\\
-  	FROM <table-name>;	
+    SELECT AVG(salary)\\
+    FROM <table-name>;  
   \end{alltt}
 
   \begin{alltt}
-  	SELECT COUNT(DISTINCT salary)\\
-  	FROM <table-name>;	
+    SELECT COUNT(DISTINCT salary)\\
+    FROM <table-name>;  
   \end{alltt}
 
   \begin{alltt}
@@ -973,21 +981,21 @@ rules for the database, locks are assigned (usually) using the two-phase-locking
 
 The \textbf{Two Phase Locking} protocol, as you might expect, has two phases;
 the growing phase and the shrinking phase. In the growing phase, the transaction
-may aquire locks but cannot release them, and in the shrinking phase, it can
-release locks but cannot aquire them. If all transactions follow 2PL, then the
+may acquire locks but cannot release them, and in the shrinking phase, it can
+release locks but cannot acquire them. If all transactions follow 2PL, then the
 schedule is serializable.
 
 If transactions depend on each other (due to locks being released before a
 transaction ends), then \textbf{cascading rollback} can occur. If T3 depends on
 T2, which depends on T1 and T1 is rolled back, then both T3 and T2 must also be
-rolled back. This can be stopped by ensureing that locks are only released at
+rolled back. This can be stopped by ensuring that locks are only released at
 the end of transactions (since they have then been committed), which is called
 rigorous 2PL.
 
 Deadlock can occur if two transactions are waiting from a lock from each other.
 If this happens, then one or more of the transactions should be aborted and
 restarted. Deadlock can be detected using timeouts (only waiting $n$ seconds to
-aquire a lock).
+acquire a lock).
 
 \subsubsection*{Recovery}
 
@@ -999,3 +1007,390 @@ database back to the state it was in.
 Shadow paging is another recovery technique, where a copy of the page a
 transaction is taking place on is created. If the transaction fails, you can
 simply replace the page with the copy and it will be the same as before.
+
+\section{File organisation and indexing}
+
+Most (certainly the ones in this course) databases store their data on a
+secondary data store, such as magnetic disk. Data is organised onto files on the
+disk, and each file is composed of multiple records, each with one or more
+fields. Typically, a field corresponds to an attribute, a record to an entity,
+and a file to an entity type.
+
+When data is needed (to be modified or read), the database maps the logical
+location of the data in the database onto a physical location on the disk.
+
+The physical record is the unit of transfer between main memory (RAM) and the
+secondary memory. When the DBMS wants to read or modify a part of the stored
+database, then the necessary page is loaded into primary storage. Each `unit' of
+physical database is usually referred to as a \textit{page} or, less commonly
+block.
+
+Files are organised in three different ways:
+
+\begin{description}
+  \item \textbf{Heap files}\\
+    When the records stored in the file are in no particular order. New records
+    are inserted at the end of the file, which is efficient, but means that
+    finding them again later requires an $O(n)$ linear search (which is only
+    really kind of efficient if you're selecting most of the records in the
+    file, such as when doing \texttt{SELECT * FROM <tablename>}). Deleting
+    records requires more time than finding them, since the file must be written
+    back to disk. Periodic reorganisation (defragmenting) is required to compact
+    the file and fill in the blank spaces that were left by deletion.
+
+    Good for when you're doing bulk loading of data, a relation requires only a
+    few pages, indexes are used, and every record is almost always accessed.
+
+  \item \textbf{Sequential files}\\
+
+    When the files are ordered on a given field. This field also serves as a
+    key, called the ordering key. As you might expect, this vastly increases the
+    speed of finding a record, since we can use binary search. However, it also
+    increases the complexity of insertion; because elements must be kept in
+    order, if there's no free space at a location of the insert we must shift
+    all of the other records over (and potentially cascading this shift to other
+    pages).
+
+    \marginpar{Q: Where would you insert a record in a page if you wanted to
+    maximise the chance of cascading? A: Near the start.}
+
+    One way to minimise the effect of cascading is to have an unordered
+    `overflow' pool at the end of the file. Periodically, the DBMS will merge in
+    this pool with the rest of the file. This reduces the effectiveness of the
+    search, since we'll need to do a linear search of this section if we don't
+    find whatever we're looking for with a binary search of ordered bit.
+
+  \item \textbf{Hashed files}\\
+
+    A hash function determines at what logical address records reside at in the
+    file.
+
+    Each file is organised into $M$ equal sized buckets (read as partitions).
+    One of the fields in the file is designated as the hash key, and then
+    records are assigned to buckets based on the hash of this key. This means
+    that search is very efficient on this key.
+
+    One problem with hashed files is that when a bucket is full, where do we put
+    more records? This is the same problem that datastructures such as HashMaps
+    face, and it is mitigated in similar ways too:
+
+    \begin{description}
+      \item \textit{Open addressing}\\
+        This is when if a bucket is full, a linear search for the next blank
+        space will take place, and it is here that the item will be inserted.
+
+      \item \textit{Unchained overflow}\\
+        Here, a separate area is designated for collision records. This is also
+        organised in terms of buckets.
+
+      \item \textit{Chained overflow}\\
+        If you're a Java whizz, you might have met this before; overflow items
+        are kept in a linked list structure, where each item points to the next.
+        This means searching is a linear operation, but lets you cut down the
+        amount of records you'd need to search otherwise. With this method,
+        every record must have an additional field to hold a pointer to the next
+        record.
+
+      \item \textit{Multiple hashing}\\
+        This is when a second field is used as a secondary hash key if the first
+        produces a collision, aiming to produce a new address for the record. In
+        general, the new hash function is used to place colliding records in the
+        overflow area.
+    \end{description}
+
+    These techniques can be combined in order to provide a comprehensive
+    solution (for example, having multiple hashing, then a chained overflow when
+    the second hash function fails).
+
+    When updating a record in a hashed file, you've got to relocate the record
+    if the hash key changes. This can make updating slow.
+
+    Using a hash is good when what you're searching for will exactly match the
+    hash key, but not good when you're pattern matching, getting a range of
+    values, updating frequently, or the search parameters aren't exactly on the
+    hash key (i.e. other fields or part of the hash key).
+
+\end{description}
+
+The steps taken by the DBMS to manipulate the pages is called the \textit{access
+method}.
+
+\subsection{Indexing}
+
+An index is a datastructure that allows the database to find records more
+quickly and thus improve query response time. It is similar to the index in a
+book, and is usually ordered on one key (the search key).
+
+An index can be either dense or sparse; the former has a value for every search
+key (so every record), while the latter has one for only some keys.
+
+There are three types of index; primary, clustering and secondary. Each file can
+have one primary or one clustering index, but many secondary indices. The
+different types of indices are listed here:
+
+\begin{description}
+  \item \textbf{Single level indices}\\
+    \begin{description}
+      \item \textit{Primary indices}\\
+        These indices are defined on a single file, that contains records
+        ordered by a key. The primary index is \textit{sparse}, containing an
+        entry for each disk block that can then be searched sequentially.
+      
+      \item \textit{Clustering indices}\\
+        Here, the keys are ordered like in primary indexing, however, the index
+        contains each distinct key value, and points to the start of that key in
+        the list (since they'll probably be lots of repeated keys). This is
+        another \textit{sparse index}.
+
+      \item \textit{Secondary indices}\\
+        Secondary indices are \textit{dense} because they use keys that the file
+        is not ordered on. This means that they must point to every record
+        individually. They speed up indexing since they themselves are ordered,
+        so you can do a binary search on them. They are used to complement a
+        primary/clustering index, and there can be more than one of them per
+        file.
+    \end{description}
+  \item \textbf{Balanced trees}\\
+    If a tree has the same depth from root to leaf for all it's branches, then
+    it's called a balanced tree. The order (also known as the degree) of the
+    tree is the maximum number of branches per parent node, with larger orders
+    creating shallower trees (as would be expected). The access time is
+    dependent on the breadth of the tree, since it's $O(n\log_o{n})$, with $o$
+    being the order of the tree.
+
+    B+-Trees are similar, except their leaves form a linked list. This means
+    they can be traversed in $O(\log_b{n})$ time, where $b$ is the order of the
+    tree.
+
+    B+-Trees are very versatile, since they support pattern matching well, as
+    well as getting a range of or part of a key. Since B+-Trees are dynamic
+    (their structure changes as they are used), their performance is kept
+    optimal, and they also allow for efficient retrieval in the order of the
+    access key.
+\end{description}
+
+\section{DBMS Architectures}
+
+What's in a database management system? The following list goes over the main
+components:
+
+\begin{description}
+  \item \textbf{Storage management}\\
+    The storage manager is a module in a DBMS that provides the interface
+    between the physical data in the database and the programs and queries that
+    use the system. It's responsible for interacting with the file manager and
+    efficiently storing, retrieving and updating data. It implements a lot of
+    what we covered in the previous section; file organisation, indexing and
+    hashing.
+
+  \item \textbf{Transaction management}\\
+    The transaction manager ensures that the database remains in a consistent
+    (i.e. valid and correct) state despite system failures (unavoidable things
+    the power failing, the OS crashing etc), and transaction failures.
+
+  \item \textbf{Concurrency controller}\\
+    If multiple users are concurrently updating the same data, then the
+    concurrency controller ensures that the concurrent transactions don't
+    interfere with each other and compromise the consistency of the database.
+
+  \item \textbf{Query processor}\\
+    The query processor evaluates queries (DDL, QL, DML). It has three main
+    phrases; parsing and translation, optimisation and evaluation.
+
+    There are different ways of evaluating any given query. Many logical
+    expression are equivalent, and the algorithms used for each different
+    logical operation will have different costs, therefore the cost difference
+    between a good way of evaluating a query and a bad one can be massive.
+    Henceforth, the query optimiser will estimate the cost of operations, and
+    execute the cheapest equivalent one. It does this by analysing statistical
+    information about relations that the database will maintain,
+
+  \item \textbf{User roles}\\
+    Different users of the database will require different permissions. For
+    example administrators will need privileges to monitor users and
+    performance, while more sophisticated users may have access to the command
+    line to implement more detailed logic. Less sophisticated users will
+    probably get a GUI written for them so that they can interact with the
+    database easily.
+
+\end{description}
+
+\subsection{Types of architectures}
+
+How a database system works is greatly influenced by the hardware that is
+running it. Is all the computation being done on one machine? Is the client on a
+remote machine? How many parallel threads of computation are there?
+
+\begin{description}
+  \item \textbf{Centralised}\\
+    Centralised systems run on a single system, and don't need to interact with
+    other systems. These are usually general purpose PC's that have from one to
+    four(ish) CPU's, with access to common memory. Although the computation is
+    only done on one system, multiple other agents can still connect to the
+    database system and use it (it's not air-gapped from everything else).
+
+  \item \textbf{Client-server systems}\\
+    These run on (computationally) large servers that usually have multiple
+    users, aiming to provide capacity for lots of client systems, we assume that
+    the server is many time better resourced than the client is. The
+    functionality can be divided into back end (concurrency, recovery,
+    optimisation, query evaluation etc), and front end (forms, GUI, report
+    construction etc). The interface between the two halves is done using either
+    an API or directly through the SQL engine.
+
+    If the front end functionality is migrated to user workstations, then the UI
+    experience often improves (lower latency for the user), there's more
+    functionality for the same cost and it's easier to upgrade and expand
+    systems (just stick a PC wherever and connect it to the server).
+
+    There are two types of server in client-server systems:
+
+    \begin{description}
+      \item \textit{Transaction servers}\\
+        Widely used in relational database systems, these servers take requests
+        from clients, execute the necessary transactions and then send the
+        results back to the client..
+
+        Requests are specified using SQL, and communicated using an RPC
+        mechanism. \marginpar{If you did COMP18112, then you'd know that RPC
+        stands for Remote Procedure Call, and is kind of synonymous with an
+        API.} API's for this include the Open Database Connectivity API for C
+        and the JDBC (similar acronym) for Java.
+
+        Queries are handled by server processes, and are massively
+        multi-threaded to handle many concurrent requests. Processes run on the
+        server to control access to shared memory, these include the lock
+        manager (controls concurrent access), the database writer (to handle
+        both persistent and volatile storage) and the process monitor (handles
+        commits, aborts, roll-backs etc).
+
+        There are trade offs between having these processes to ensure the
+        consistency of the database, since they are also a drain on resources.
+
+        As mentioned above, transaction servers implement some form of mutual
+        exclusion in order to stop processes interfering with each other through
+        mediums such as the log buffer, lock table, query plan cache etc.
+
+      \item \textit{Data servers}\\
+        Data servers are usually made use of when there is a fast connection
+        between the client and the server, and the client has a comparable
+        amount of processing power to the server, or the queries are very
+        computationally intensive.
+
+        Instead of the query being executed on the server, the necessary data is
+        sent back the the client where it is processed. This requires a full
+        back end functionality for every client.
+
+        More recent developments in databases such as NoSQL rely on lots of
+        equipotent systems (systems of similar processing power) in this manner.
+
+    \end{description}
+
+  \item \textbf{Parallel systems}\\
+    These consist of multiple processors with multiple disks that are connected
+    by a fast network. \textit{Coarse grained} parallel machines have few very
+    powerful processors, while \textit{fine grained} (massively parallel)
+    machines use thousands of smaller processors.
+
+    There are two measures of performance; throughput and response. Throughput
+    is the number of tasks that can be completed in a given time interval, while
+    response time is the amount of time it takes to complete a single task. The
+    goal is to improve performance as we increase the amount of parallelism
+    used.
+
+    We want a system whose performance will increase in a linear manner as we
+    invest in faster computing resources. A sub-linear speedup means that the
+    full investment on resources is not recouped in time reduction on queries.
+    We can also scale up our architecture by investing in more computing
+    resources, the goal is to keep the latency down as we increase the amount of
+    computing resources.
+
+    Factors that make scale and speed up's sublinear include start up costs (it
+    may take a while to make multiple processes synchronise and get into a ready
+    state), interference (multiple processes accessing shared resources can be
+    slowed down by congestion) and skew (more parallel computation means more
+    variance in computation time, and the overall execution time is determined by
+    the slowest tasks).
+
+    Parallel systems can share different parts of their architectures:
+
+    \begin{description}
+      \item \textit{Shared memory}\\
+        Processors and disks can access common memory through a bus or
+        interconnection network. Very efficient communication between processors
+        can be used facilitate accesses to memory without having to use software.
+    
+        This isn't scalable beyond 32 or 64 (depending on the word size)
+        processors, since the bus becomes a bottleneck. Four or eight processors
+        are more commonly used.
+
+      \item \textit{Shared disk}\\
+        All the processors can directly access the disks, but their memory is
+        private. This means that the memory bus is not a bottleneck, and the
+        architecture is reasonably fault tolerant (if a processor fails, other
+        ones can take on the work). The main downside is that the disk IO is now
+        the bottleneck (which can be worse). Shared disk systems can scale to
+        much larger numbers of processors than shared memory systems can, but
+        their inter-processor communication is much lower.
+
+      \item \textit{Shared nothing}\\
+        Here, each computing node has its own processor, memory and disk.
+        Communication is facilitated using a network, and the node serves as the
+        server for the data on it's own disk. The data directly on local disks
+        never leaves the system so resource sharing is minimal (though the data
+        does eventually get out in the form of queries).
+
+        This architecture allows you to scale up to thousands of processors
+        without them interfering with each other, but they are hit by a
+        comparatively slow network (sending data requires lots of software
+        interaction at both ends).
+
+      \item \textit{Hierarchical}\\
+        A hierarchical architecture combines the characteristics of the above
+        three architectures. Here, there's a top level of shared nothing
+        architecture, where each node is made up of shared-disk or shared-memory
+        processors.
+
+        The complexity of such a system is reduced by using distributed virtual
+        memory architectures (the memory split over multiple systems, but is
+        addressed using the same address space). It's also called a non-uniform
+        memory architecture.
+
+    \end{description}
+
+  \item \textbf{Distributed Systems}\\
+
+    Distributed systems spread data over multiple nodes, connected by a network.
+    Some systems (homogenous) use the same software or database schema over all
+    the sites, but the data is split among them, while others (heterogeneous)
+    use different systems/software at different sites with different data too
+    (maybe they're intergrating multiple pre-existing systems).
+
+    Distributed systems bring the notion of local and global transactions. A
+    local transaction accesses data in the single site where a transaction was
+    initiated, but a global one uses data from a (potentially several) different
+    site(s).
+
+    Distributed systems allow data to be shared across sites, each site retains
+    lots of control of the data that is stored locally, and the system as a
+    whole is reliable, since data can be replicated on remote sites so the
+    system can function in the event of one failing.
+
+    However, there is an increased development cost and overhead for a multi-
+    site system, coordinating the interactions between the sites is a hard
+    problem. Atomicity is needed across mulltiple locations for global
+    transactions. This can be achieved using 2PC (two phase commit) protocol.
+    The idea of 2PC is that all the sites execute the transaction until just
+    before the commit, and a coordinator will say whether to commit or not. All
+    the sites must follow the coordinator's decision. 2PC isn't always the
+    answer; other models may be more suited to a specific implementation.
+
+    There are two types of network that a distributed system can run on; LAN's
+    and WAN's. Local Area Networks are composed of processors distributed over a
+    small geographical area, such as a building, or street. A Wide Area Network
+    is made of processors that are distributed over a large geographical area,
+    such as the internet. Some applications can work on sites that have a non-
+    continous connection to a WAN.
+
+\end{description}
+
