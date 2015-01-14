@@ -1,17 +1,17 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.9.18)  9 JAN 2015 19:11
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  10 JAN 2015 20:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **doc.tex
 (./doc.tex
-LaTeX2e <2014/05/01>
-Babel <3.9k> and hyphenation patterns for 78 languages loaded.
-(/usr/local/texlive/2014/texmf-dist/tex/latex/flacards/flacards.cls
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/flacards/flacards.cls
 Document Class: flacards 2005/11/06 Klasse fuer Lernkarten/Class for flashcards
 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/article.cls
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/local/texlive/2014/texmf-dist/tex/latex/base/size10.clo
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -26,22 +26,22 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(/usr/local/texlive/2014/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 2014/05/08 v1.15 key=value parser (DPC)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
 Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
-(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
 Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 )
-(/usr/local/texlive/2014/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
 \Gm@cnth=\count87
@@ -64,29 +64,29 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \front=\box26
 \back=\box27
 )
-(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/color.sty
-Package: color 2014/04/23 v1.1a Standard LaTeX Color (DPC)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/color.cfg
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
-Package color Info: Driver file: pdftex.def on input line 137.
+Package color Info: Driver file: pdftex.def on input line 130.
 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/pdftex-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
-(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
 Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count92
 ))
-(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/tabularx.sty
-Package: tabularx 2014/05/13 v2.10 `tabularx' package (DPC)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 1999/01/07 v2.07 `tabularx' package (DPC)
 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/array.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
 Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen113
 \extrarowheight=\dimen114
@@ -151,7 +151,7 @@ LaTeX Font Info:    ... okay on input line 20.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count94
 \scratchdimen=\dimen120
@@ -171,8 +171,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 55.
  [1
 
-{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2]
+{/home/td/.texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
 Underfull \hbox (badness 1515) in paragraph at lines 96--96
 []|\OT1/cmr/m/it/10 Break the data evenly into $\OML/cmm/m/it/10 N$
  []
@@ -232,28 +231,32 @@ Overfull \hbox (61.74236pt too wide) in paragraph at lines 307--307
  [][] 
  []
 
+
+Overfull \hbox (61.74236pt too wide) in paragraph at lines 320--320
+ [][] 
+ []
+
 [11] [12] (./doc.aux) ) 
 Here is how much of TeX's memory you used:
- 1628 strings out of 493117
- 22145 string characters out of 6135433
- 95271 words of memory out of 5000000
- 5124 multiletter control sequences out of 15000+600000
+ 1625 strings out of 493304
+ 21890 string characters out of 6139870
+ 94626 words of memory out of 5000000
+ 5117 multiletter control sequences out of 15000+600000
  4644 words of font info for 17 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 32i,19n,38p,249b,282s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2014/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmbxti10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmmi5.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmmi7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmr7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-sy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y7.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
-0.pfb>
-Output written on doc.pdf (12 pages, 127161 bytes).
+ 957 hyphenation exceptions out of 8191
+ 32i,19n,38p,250b,280s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmti10.pfb>
+Output written on doc.pdf (12 pages, 129692 bytes).
 PDF statistics:
  87 PDF objects out of 1000 (max. 8388607)
  61 compressed objects within 1 object stream

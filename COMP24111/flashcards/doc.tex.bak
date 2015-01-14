@@ -79,7 +79,7 @@
 }
 
 \flashcard{
-    The `information' contained in a variable is called the \blank{entropy}.
+    The `information' contained in a varibale is called the \blank{entropy}.
 }
 
 \card{
@@ -133,7 +133,7 @@
 \card{
     Explain boosting
 }{
-    Get a data set, take a bootstrap and train a model on it. See which examples the model got wrong then upweight those `hard' examples and downweight the `easy' ones. Now go back to training a model, but now you have a weighted bootstrap.
+    Get a data set, take a bootsrap and train a model on it. See which examples the model got wrong then upweight those `hard' examples and downweight the `easy' ones. Now go back to training a model, but now you have a weighted bootstrap.
 }
 
 \card{
@@ -174,7 +174,7 @@
 }
 
 \card{
-    What is the formula to work out Minkowski distance.
+    What is the formula to work out Minowski distance.
 }{
     \[d(x,y) = \sqrt[p]{(x_1 - y_1)^p + (x_2 - y_2)^p...+ (x_n - y_n)^p}\]
 }
@@ -216,7 +216,7 @@
 }
 
 \card{
-    Briefly explain the hierarchical clustering approach
+    Briefly explain the hierarchical clustering apporoach
 }{
     Create a hierarchical decomposition of the set of data (or objects) using some criterion. Typical methods are Agglomerative, Diana, Agnes, BIRCH, ROCK.
 }
@@ -317,20 +317,5 @@
         $c$ & The mean centroid for the whole data set.\\
         $d(x,y)$ & The distance function we're using.\\
     \end{tabularx}
-}
-
-\card{
-    What is additive smoothing used for? Give an equation for it.
-}{
-    When a $P(x|\omega_i)$ has a probability of $0$ (it's $0$ for just class $i$
-    , additive smoothing can ensure the probability of the data object isn't
-    $0$.
-    \vspace{1em}
-    \[
-        P(x|\omega_i) = \frac{N_{i,\omega}+\alpha}{N_i + \alpha d}
-    \]
-    Where $N_i$ is the count of that feature, $N_{i,\omega}$ is the count for
-    that class, $\alpha$ is the smoothing parameter (1 for laplace smoothing)
-    and $d$ is the number of dimensions.
 }
 \end{document}
