@@ -270,7 +270,7 @@
 \card{
 	In terms of transaction, what does durability mean?
 }{
-	The effects of a committed transaction are permanent and must not be lost because of later failure.
+	The effects of a committed transaction are permanent and must niot be lost because of later failure.
 }
 
 \card{
@@ -288,7 +288,7 @@
 \card{
 	When does an uncommitted dependency problem occur? How do you solve it?
 }{
-	When one transaction can see the immediate results of another transaction before it has committed. Mitigate this by stopping reads from occurring on objects that haven't been committed.
+	When one transaction can see the immediate results of another transaction before it has committed. Mitigate this by stopping reads from occuring on objects tha haven't been committed.
 }
 
 \card{
