@@ -14,6 +14,7 @@
 \contentsline {section}{\numberline {4}Satisfiability}{6}{section.4}
 \contentsline {subsection}{\numberline {4.1}Signed Formulae}{6}{subsection.4.1}
 \contentsline {subsection}{\numberline {4.2}Splitting}{7}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Polarity of subformulae}{8}{subsection.4.3}
 \contentsline {section}{\numberline {5}CNF}{8}{section.5}
 \contentsline {section}{\numberline {6}Definitional Clausal Form Translation}{8}{section.6}
 \contentsline {section}{\numberline {7}DPLL}{8}{section.7}

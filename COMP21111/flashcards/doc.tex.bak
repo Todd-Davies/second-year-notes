@@ -93,7 +93,7 @@
 \card{
   If a formula is true for every interpretation, then it is...
 }{
-  Valid (aka a tautology).
+  Valid (aka a taugology).
 }
 
 % TODO: Add re-write rules

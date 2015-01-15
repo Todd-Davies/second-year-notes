@@ -326,7 +326,7 @@
 \card{
 	What is the formula to work out the number of pages used in a system?
 }{
-	\[#pages = \frac{addressSpace}{PageSize}\]
+	\[\#pages = \frac{addressSpace}{PageSize}\]
 	Where $addressSpace$ and $pageSize$ are measured in bits.
 }
 
@@ -341,7 +341,7 @@
 }{
 	\begin{tabularx}{0.32\textwidth}{l X}
 		1. & Look up the page number in the page table and see if it's in physical memory.\\
-		2. & If it is in memory, generate a physical address ((page-size \times page-nmber) + offset), and request that from RAM.\\
+		2. & If it is in memory, generate a physical address ((pagesize $\times$ pagenumber) + offset), and request that from RAM.\\
 		3. & If it's not, abort the memory access, OS will load the page into memory (this is a page fault).
 	\end{tabularx}
 }

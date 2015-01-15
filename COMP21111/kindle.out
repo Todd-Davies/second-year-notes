@@ -14,13 +14,14 @@
 \BOOKMARK [1][-]{section.4}{Satisfiability}{}% 14
 \BOOKMARK [2][-]{subsection.4.1}{Signed Formulae}{section.4}% 15
 \BOOKMARK [2][-]{subsection.4.2}{Splitting}{section.4}% 16
-\BOOKMARK [1][-]{section.5}{CNF}{}% 17
-\BOOKMARK [1][-]{section.6}{Definitional Clausal Form Translation}{}% 18
-\BOOKMARK [1][-]{section.7}{DPLL}{}% 19
-\BOOKMARK [1][-]{section.8}{Encoding problems in SAT}{}% 20
-\BOOKMARK [1][-]{section.9}{Randomly generated clause sets}{}% 21
-\BOOKMARK [1][-]{section.10}{Randomised algorithms for satisfiability checking}{}% 22
-\BOOKMARK [1][-]{section.11}{Signed Formulae}{}% 23
-\BOOKMARK [2][-]{subsection.11.1}{Finding a model of a specifiable formula}{section.11}% 24
-\BOOKMARK [2][-]{subsection.11.2}{Tabelau}{section.11}% 25
-\BOOKMARK [3][-]{subsubsection.11.2.1}{Branch expansions}{subsection.11.2}% 26
+\BOOKMARK [2][-]{subsection.4.3}{Polarity of subformulae}{section.4}% 17
+\BOOKMARK [1][-]{section.5}{CNF}{}% 18
+\BOOKMARK [1][-]{section.6}{Definitional Clausal Form Translation}{}% 19
+\BOOKMARK [1][-]{section.7}{DPLL}{}% 20
+\BOOKMARK [1][-]{section.8}{Encoding problems in SAT}{}% 21
+\BOOKMARK [1][-]{section.9}{Randomly generated clause sets}{}% 22
+\BOOKMARK [1][-]{section.10}{Randomised algorithms for satisfiability checking}{}% 23
+\BOOKMARK [1][-]{section.11}{Signed Formulae}{}% 24
+\BOOKMARK [2][-]{subsection.11.1}{Finding a model of a specifiable formula}{section.11}% 25
+\BOOKMARK [2][-]{subsection.11.2}{Tabelau}{section.11}% 26
+\BOOKMARK [3][-]{subsubsection.11.2.1}{Branch expansions}{subsection.11.2}% 27
