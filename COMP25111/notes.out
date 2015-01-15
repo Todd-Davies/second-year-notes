@@ -28,5 +28,7 @@
 \BOOKMARK [2][-]{subsection.6.3}{Virtual Memory}{section.6}% 28
 \BOOKMARK [2][-]{subsection.6.4}{Virtual paged memory}{section.6}% 29
 \BOOKMARK [3][-]{subsubsection.6.4.1}{Page replacement algorithms}{subsection.6.4}% 30
-\BOOKMARK [3][-]{subsubsection.6.4.2}{Swapping pages}{subsection.6.4}% 31
-\BOOKMARK [2][-]{subsection.6.5}{Virtual segmented memory}{section.6}% 32
+\BOOKMARK [3][-]{subsubsection.6.4.2}{Pre-paging}{subsection.6.4}% 31
+\BOOKMARK [3][-]{subsubsection.6.4.3}{Swapping pages}{subsection.6.4}% 32
+\BOOKMARK [3][-]{subsubsection.6.4.4}{Shared memory}{subsection.6.4}% 33
+\BOOKMARK [2][-]{subsection.6.5}{Virtual segmented memory}{section.6}% 34

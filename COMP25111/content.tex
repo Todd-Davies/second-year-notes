@@ -908,13 +908,37 @@ to use (programs are dynamic), we can't do this.
     expensive in terms of hardware, but is fast.
 
   \item \textbf{Not Recently Used (NRU)}\\
-    The NRU algorithm is a dumb replacement for LRU. It keeps an extra bit
-    called the `referenced bit' in the page table, that is set to $1$ when the
-    page is referenced. When a page needs to be replaced, ones with their
-    reference bit set to zero will be candidates. At fixed intervals, all of
-    these bits will be reset to $0$ (so all pages don't get `recently used'
-    eventually).
+
+    The NRU algorithm is a dumb replacement for LRU. It keeps two extra bits in
+    the page table; one called the `referenced bit' that is set to $1$ when the
+    page is referenced and the other, called the `modified bit' that is set to
+    $1$ when the page is written to. At fixed intervals, all of these bits will
+    be reset to $0$ (so all pages don't get `recently used' eventually).
+
+    When a page needs to be removed from memory, the OS first looks for ones
+    that have two $0$'s (they've been neither read or written to recently). Then
+    it looks for ones that have only been written to recently (referenced pages
+    are more important than ones that are merely modified), if it still can't
+    find a page, then ones that have only their referenced bit set, and if not
+    then it'll just choose one with both bits set.
 \end{description}
+
+These algorithms are worth it, because each memory access will probably take
+around $100ns$, while a read from a hard drive can take $4ms$ ($40,000 \times$
+longer). Even an SSD isn't that much better, taking $16\upsilon s$ ($160 \times$
+slower).
+
+\subsubsection{Pre-paging}
+
+If the pages from a process are brought back into the main memory, the
+algorithms above would re-load the pages one-by one as they were required. A
+more sensible algorithm might keep track of which pages belonged to which
+processes, and load them in bulk before restarting the process. A half-way
+solution would be to keep track of groups of pages that are commonly used
+together when the process is running, and load that group in bulk.
+
+In practice, the page in memory which holds the page table may be paged out,
+however, when a page is running, its page tables \textit{must be in memory}.
 
 \subsubsection{Swapping pages}
 
@@ -924,6 +948,19 @@ the page table, and is called a \textbf{write-back}. An alternative strategy is
 \textbf{write-through}, where you write to RAM and disk every time, (so you
 don't need to copy the whole page on every swap), however, this is silly, since
 you spend ages waiting for disk IO.
+
+\subsubsection{Shared memory}
+
+Processes often need to share memory (e.g. unix pipes or library code). If each
+process only had access to its own memory, then this wouldn't be able to occur.
+To allow for this, page tables can be set up let virtual addresses be mapped to
+the same real pages. This is organised by the OS since allowing processes to
+edit their own page tables is an, umm, \textit{slight} security issue.
+
+It's a shame that we can't easily protect different areas of memory according to
+their function; the stack area, the data area and the code area. Unfortunately,
+we can't do this easily (unless we're using a Harvard Architecture or
+something).
 
 \subsection{Virtual segmented memory}
 

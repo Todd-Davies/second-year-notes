@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  3 JAN 2015 18:23
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  15 JAN 2015 16:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1154,7 +1154,8 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2013/08/26 1.5b listings language file
-)) (./kindle.aux)
+))
+No file kindle.aux.
 \openout1 = `kindle.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
@@ -1189,12 +1190,11 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 31.
 LaTeX Info: Redefining \pageref on input line 31.
 LaTeX Info: Redefining \nameref on input line 31.
-
-(./kindle.out) (./kindle.out)
 \@outlinefile=\write5
 \openout5 = `kindle.out'.
 
- ABD: EveryShipout initializing macros
+
+ABD: EveryShipout initializing macros
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count281
@@ -1382,22 +1382,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.43 \newpage
-              [2] (./kindle.toc
-LaTeX Font Info:    Try loading font information for T1+lmvtt on input line 28.
-
- (/usr/share/texmf/tex/latex/lm/t1lmvtt.fd
-File: t1lmvtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-Package microtype Info: Loading generic settings for font family
-(microtype)             `lmvtt' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.31 ...e {6.2}Multiprogramming}{}{subsection.6.2}
-                                                   [3])
+              [2]
 \tf@toc=\write6
 \openout6 = `kindle.toc'.
 
@@ -1406,7 +1391,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.47 \newpage
-              [4] (./content.tex
+              [3] (./content.tex
 Overfull \hbox (80.43433pt too wide) in paragraph at lines 8--8
 []\T1/lmr/bx/n/20.74 Recap of COMP12111 & COMP15111 
  []
@@ -1424,17 +1409,24 @@ Overfull \hbox (32.17499pt too wide) in paragraph at lines 36--36
 []\T1/lmr/bx/n/17.28 The MU0 In-struc-tion Set Ar-chi-tec-ture 
  []
 
+
+LaTeX Warning: Reference `instruction' on page  undefined on input line 42.
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.45 
-      [5] <diagrams/instruction.pdf, id=181, 456.64803pt x 115.21443pt>
+      [4] <diagrams/instruction.pdf, id=31, 456.64803pt x 115.21443pt>
 File: diagrams/instruction.pdf Graphic file (type pdf)
 
 <use diagrams/instruction.pdf>
 Package pdftex.def Info: diagrams/instruction.pdf used on input line 48.
 (pdftex.def)             Requested size: 256.0748pt x 64.61105pt.
+
+
+LaTeX Warning: Reference `instruction_set' on page  undefined on input line 59.
+
 
 
 Package nag Warning: Command \bf is an old LaTeX 2.09 command. 
@@ -1453,15 +1445,25 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.84 
-      [6 <./diagrams/instruction.pdf>]pdfTeX warning (ext4): destination with t
+      [5 <./diagrams/instruction.pdf>]pdfTeX warning (ext4): destination with t
 he same identifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.97 \subsubsection
-                   {Fetching instructions} [7]
+                   {Fetching instructions} [6]
 
 Package nag Warning: Command \tt is an old LaTeX 2.09 command. 
 (nag)                Use \ttfamily or \texttt instead on input line 112.
+
+LaTeX Font Info:    Try loading font information for T1+lmvtt on input line 112
+.
+(/usr/share/texmf/tex/latex/lm/t1lmvtt.fd
+File: t1lmvtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic settings for font family
+(microtype)             `lmvtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
 
 
 Package nag Warning: Command \tt is an old LaTeX 2.09 command. 
@@ -1481,7 +1483,7 @@ een already used, duplicate ignored
                    \relax 
 l.123 \paragraph
                 {{\tt ADD}} To perform the {\tt ADD} instruction, we need to...
-[8]
+[7]
 
 Package nag Warning: Command \tt is an old LaTeX 2.09 command. 
 (nag)                Use \ttfamily or \texttt instead on input line 123.
@@ -1505,7 +1507,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.149 
-       [9]
+       [8]
 Overfull \hbox (30.0pt too wide) in paragraph at lines 152--152
 [] 
  []
@@ -1522,12 +1524,19 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.170 
-       [10] (./labs/lab1.tex)pdfTeX warning (ext4): destination with the same i
-dentifier (name{page.}) has been already used, duplicate ignored
+       [9]
+
+LaTeX Warning: Reference `lab:1:fetch' on page  undefined on input line 172.
+
+
+LaTeX Warning: Reference `lab:1:execute' on page  undefined on input line 173.
+
+(./labs/lab1.tex)pdfTeX warning (ext4): destination with the same identifier (n
+ame{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.191 
-       [11]
+       [10]
 
 Package nag Warning: Command \tt is an old LaTeX 2.09 command. 
 (nag)                Use \ttfamily or \texttt instead on input line 193.
@@ -1546,7 +1555,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.200 
-       [12]
+       [11]
 
 Package nag Warning: Command \tt is an old LaTeX 2.09 command. 
 (nag)                Use \ttfamily or \texttt instead on input line 201.
@@ -1560,12 +1569,12 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.227 
-       [13]pdfTeX warning (ext4): destination with the same identifier (name{pa
+       [12]pdfTeX warning (ext4): destination with the same identifier (name{pa
 ge.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.250 \section
-              {Engineering an Operating System} [14]
+              {Engineering an Operating System} [13]
 Overfull \hbox (38.46431pt too wide) in paragraph at lines 250--250
 []\T1/lmr/bx/n/20.74 Engineering an Op-er-at-ing Sys-tem 
  []
@@ -1581,7 +1590,7 @@ een already used, duplicate ignored
                    \relax 
 l.283 I
         feel obliged to point out that monolithic, in this instance, refers ...
-[15]
+[14]
 Overfull \hbox (30.0pt too wide) in paragraph at lines 304--304
 [] 
  []
@@ -1592,7 +1601,12 @@ een already used, duplicate ignored
                    \relax 
 l.304 too, but they're not as important)} b
                                            ut we've not been over how a proc...
-[16] <diagrams/process-lifecycle.pdf, id=240, 447.18367pt x 226.01138pt>
+[15]
+
+LaTeX Warning: Reference `fig:proc-lifecycle' on page  undefined on input line 
+312.
+
+<diagrams/process-lifecycle.pdf, id=101, 447.18367pt x 226.01138pt>
 File: diagrams/process-lifecycle.pdf Graphic file (type pdf)
 
 <use diagrams/process-lifecycle.pdf>
@@ -1604,14 +1618,14 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.328 
-       [17 <./diagrams/process-lifecycle.pdf>]pdfTeX warning (ext4): destinatio
+       [16 <./diagrams/process-lifecycle.pdf>]pdfTeX warning (ext4): destinatio
 n with the same identifier (name{page.}) has been already used, duplicate ignor
 ed
 <to be read again> 
                    \relax 
 l.351 P
        rocesses alternate between CPU (expensive computation) and IO (blocke...
-[18] <diagrams/fcfs.pdf, id=254, 436.67741pt x 257.47894pt>
+[17] <diagrams/fcfs.pdf, id=116, 436.67741pt x 257.47894pt>
 File: diagrams/fcfs.pdf Graphic file (type pdf)
 
 <use diagrams/fcfs.pdf>
@@ -1622,8 +1636,8 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.382   \item \textbf
-                     {Round Robin}\\ [19 <./diagrams/fcfs.pdf>]
-<diagrams/roundrobin.pdf, id=269, 607.39323pt x 257.47894pt>
+                     {Round Robin}\\ [18 <./diagrams/fcfs.pdf>]
+<diagrams/roundrobin.pdf, id=130, 607.39323pt x 257.47894pt>
 File: diagrams/roundrobin.pdf Graphic file (type pdf)
 
 <use diagrams/roundrobin.pdf>
@@ -1634,8 +1648,8 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.403 
-       [20 <./diagrams/roundrobin.pdf>]
-<diagrams/priority.pdf, id=281, 607.84488pt x 371.28914pt>
+       [19 <./diagrams/roundrobin.pdf>]
+<diagrams/priority.pdf, id=143, 607.84488pt x 371.28914pt>
 File: diagrams/priority.pdf Graphic file (type pdf)
 
 <use diagrams/priority.pdf>
@@ -1646,7 +1660,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.440 ...be the ones you want to run the fastest.}
-                                                   [21]
+                                                   [20]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 449.
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10> not available
@@ -1656,12 +1670,12 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.453 
-       [22 <./diagrams/priority.pdf>]pdfTeX warning (ext4): destination with th
+       [21 <./diagrams/priority.pdf>]pdfTeX warning (ext4): destination with th
 e same identifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.482 ...sters (including the PC), and the stack.}
-                                                   [23]
+                                                   [22]
 Overfull \hbox (30.0pt too wide) in paragraph at lines 482--482
 [] 
  []
@@ -1677,16 +1691,22 @@ een already used, duplicate ignored
                    \relax 
 l.503 once.})
               first. Since a thread is not guaranteed to always run at the s...
-[24]pdfTeX warning (ext4): destination with the same identifier (name{page.}) h
+[23]pdfTeX warning (ext4): destination with the same identifier (name{page.}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.536 
-       [25]
+       [24]
 Overfull \hbox (16.1838pt too wide) in paragraph at lines 539--542
 \T1/lmr/m/n/14.4 (-20) The fa-mous com-puter sci-en-tist Di-jk-stra for-mu-late
 d a lightweight
  []
+
+
+LaTeX Warning: Reference `lst:semaphore' on page  undefined on input line 547.
+
+
+LaTeX Warning: Reference `lst:semaphore' on page  undefined on input line 551.
 
 
 Overfull \hbox (30.0pt too wide) in paragraph at lines 551--551
@@ -1700,17 +1720,21 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.565       S-
-              -; [26]
+              -; [25]
 Overfull \hbox (6.0pt too wide) in paragraph at lines 573--573
 [][][][][][][] 
  []
+
+
+LaTeX Warning: Reference `lst:semaphore-clever' on page  undefined on input lin
+e 584.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.604     //
-             V = Vacate the critical section [27]
+             V = Vacate the critical section [26]
 Overfull \hbox (6.0pt too wide) in paragraph at lines 610--610
 [][][][][][][] 
  []
@@ -1720,7 +1744,7 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.634   ...
-            [28]
+            [27]
 Overfull \hbox (6.0pt too wide) in paragraph at lines 638--638
 [][][][][][][] 
  []
@@ -1737,17 +1761,22 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.677 
+       [28]
+
+LaTeX Warning: Reference `lst:semaphore-clever' on page  undefined on input lin
+e 691.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.701 
        [29]pdfTeX warning (ext4): destination with the same identifier (name{pa
 ge.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.701 
-       [30]pdfTeX warning (ext4): destination with the same identifier (name{pa
-ge.}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
 l.732 \end{center}
-                   [31]
+                   [30]
 Overfull \hbox (30.0pt too wide) in paragraph at lines 747--747
 [] 
  []
@@ -1757,12 +1786,15 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.753 
-       [32]
+       [31]
 Overfull \hbox (30.0pt too wide) in paragraph at lines 755--755
 [] 
  []
 
-<images/mmu-loader.jpg, id=415, 1160.335pt x 668.4975pt>
+
+LaTeX Warning: Reference `mmu-translate' on page  undefined on input line 759.
+
+<images/mmu-loader.jpg, id=281, 1160.335pt x 668.4975pt>
 File: images/mmu-loader.jpg Graphic file (type jpg)
 
 <use images/mmu-loader.jpg>
@@ -1773,17 +1805,22 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.773 
-       [33 <./images/mmu-loader.jpg>]pdfTeX warning (ext4): destination with th
+       [32 <./images/mmu-loader.jpg>]pdfTeX warning (ext4): destination with th
 e same identifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.798 
-       [34]pdfTeX warning (ext4): destination with the same identifier (name{pa
-ge.}) has been already used, duplicate ignored
+       [33]
+
+LaTeX Warning: Reference `memory-address' on page  undefined on input line 823.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.824 
-       [35] <diagrams/memory-address.pdf, id=427, 456.64803pt x 115.21443pt>
+       [34] <diagrams/memory-address.pdf, id=295, 456.64803pt x 115.21443pt>
 File: diagrams/memory-address.pdf Graphic file (type pdf)
 
 <use diagrams/memory-address.pdf>
@@ -1800,7 +1837,52 @@ een already used, duplicate ignored
                    \relax 
 l.857 T
        he page table contains one row for each page. The columns will include:
-[36 <./diagrams/memory-address.pdf>])
+[35 <./diagrams/memory-address.pdf>]pdfTeX warning (ext4): destination with the
+ same identifier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.880 
+       [36]pdfTeX warning (ext4): destination with the same identifier (name{pa
+ge.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.907 ...s translation speed. Most PC's have one.}
+                                                  , which is [37]
+Underfull \hbox (badness 10000) in paragraph at lines 910--911
+
+ []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.924 \end{description}
+                        [38]pdfTeX warning (ext4): destination with the same id
+entifier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.952 \subsubsection
+                    {Shared memory} [39]pdfTeX warning (ext4): destination with
+ the same identifier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.979 
+       [40]
+
+LaTeX Warning: Reference `memoryMap' on page  undefined on input line 1001.
+
+<images/memoryMapping.png, id=333, 1253.68375pt x 788.9475pt>
+File: images/memoryMapping.png Graphic file (type png)
+
+<use images/memoryMapping.png>
+Package pdftex.def Info: images/memoryMapping.png used on input line 1006.
+(pdftex.def)             Requested size: 256.0748pt x 161.1454pt.
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1017 
+        [41])
 
 Package nag Warning: 16 complaints in total.
 
@@ -1810,21 +1892,39 @@ een already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.52 \end{document}
-                    [37]
+                    [42]pdfTeX warning (ext4): destination with the same identi
+fier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.52 \end{document}
+                    [43 <./images/memoryMapping.png>]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 52.
  (./kindle.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 52.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 52.
-Package rerunfilecheck Info: File `kindle.out' has not changed.
-(rerunfilecheck)             Checksum: 1450E82595344F5D0380F5FF10B4EF24;2001.
+
+
+Package rerunfilecheck Warning: File `kindle.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `kindle.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  DF3F6AA151D9989C97C36F9BA84B47C3;2377.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 52.
  ) 
 Here is how much of TeX's memory you used:
- 31184 strings out of 493304
- 624383 string characters out of 6139870
- 756807 words of memory out of 5000000
- 33785 multiletter control sequences out of 15000+600000
- 94986 words of font info for 133 fonts, out of 8000000 for 9000
+ 31165 strings out of 493304
+ 624132 string characters out of 6139870
+ 755807 words of memory out of 5000000
+ 33760 multiletter control sequences out of 15000+600000
+ 95289 words of font info for 136 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  55i,9n,92p,10441b,2222s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/en
@@ -1840,10 +1940,10 @@ r17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/font
 s/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb><
 /usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1
 /public/lm/lmvtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmvtt10.pfb>
-Output written on kindle.pdf (37 pages, 446377 bytes).
+Output written on kindle.pdf (43 pages, 559227 bytes).
 PDF statistics:
- 528 PDF objects out of 1000 (max. 8388607)
- 462 compressed objects within 5 object streams
- 129 named destinations out of 1000 (max. 500000)
- 35096 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 425 PDF objects out of 1000 (max. 8388607)
+ 353 compressed objects within 4 object streams
+ 135 named destinations out of 1000 (max. 500000)
+ 34869 words of extra memory for PDF output out of 35830 (max. 10000000)
 
