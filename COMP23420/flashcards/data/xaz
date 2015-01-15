@@ -1,0 +1,10 @@
+Which of these is a good use case?
+Add Client Record
+Client Database
+Client update
+Database update
+Correct. This is a typical use case with the format of verb-direct  - object-noun .  Add (verb-direct) Client Record (object-noun).
+Incorrect. This sounds like a domain object rather than a use case, its not doing anything, its just the name of something in the system. The answer is Add client record, which is a typical use case with the format of verb-direct  - object-noun .  Add (verb-direct) Client Record (object-noun).
+Incorrect. It is not clear what this is, are we updating a client? Is it a client updating something? If so what? The answer is Add client record, which is a typical use case with the format of verb-direct  - object-noun .  Add (verb-direct) Client Record (object-noun). 
+Incorrect. It is not clear what this is, are we updating a database? And what database?  Is it a database updating something else? If so what? The answer is Add client record, which is a typical use case with the format of verb-direct  - object-noun .  Add (verb-direct) Client Record (object-noun).
+The answer is Add client record . This is a typical use case with the format of verb-direct  - object-noun .  Add (verb-direct) Client Record (object-noun). The others are too vague or sound like a domain object (Client Database).

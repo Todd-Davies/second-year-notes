@@ -1,0 +1,479 @@
+'In a Banking System, which of these would you consider a non-functional requirement?'
+'Cash withdraws should be possible 24/7'
+'Customer can withdraw Cash'
+'Customer can transfer money to another account'
+'Customer can close their account'
+'Correct. This is how something should be done, not what should be done.'
+
+
+
+'This is a condition on how the cash withdraws functional requirement should be donw.The other three are functional requirements.'
+'In A Banking System, which of these would you consider a functional requirement?'
+'Customer can create a new account'
+'Cutomer can make balance transfers online'
+'Customer can view account changes within 1 hour of transactions happening'
+'The system should have the latest security protection'
+'Correct. This is a clear functional aspect of a banking system.'
+"Incorrect. This is non-functional as it has the constraint of being online, rather than just the function itself. The correct answer is 'Customer can create a new account' as this is a a clear functional aspect of a banking system."
+"Incorrect. This is more about the performance of a function, rather than the actual function. If it said 'Customer can view account changes' only, then that would be a functional requirement. The correct answer is 'Customer can create a new account' as this is a a clear functional aspect of  a banking system."
+"Incorrect. This is more about the system perfomance and how it performs, rather than an actual function it does. The correct answer is 'Customer can create a new account' as this is a a clear functional aspect of a banking system."
+'This is a very basic functional requirement that a bank should provide.  It has no information on how this should be done, just that it should be done. The others are non-functional as they are descriptive ways in which certain functions should be done, rather than the functional requirement itself'
+'Which of these requirements for a hotel booking system is the odd one out?'
+'A customer should be able to manage their bookings'
+'A customer can book a room up to 12 months in advance.'
+'A customer can cancel a room booking.'
+'A customer can amend a booking.'
+'Correct. The level of abstraction is higher than the others. It is very general and can include many other things.  The others are of a more fine granualarity and refer to more specific requirements'
+
+
+
+'FEEDBACK HERE'
+'Which one of these requirements for a car hire company is the odd one out? '
+'The system should allow clients with a way to hire cars'
+'Clients should be able to browse the vehicles available to hire'
+'Clients should be able to view vehicle availability'
+'Clients should be able to extend the time period of a vehicle hire, availability permitting.'
+'Correct. This one is too general and not of the same granualarity as the others.'
+
+
+
+'This one is too general and not of the same granualarity as the others.'
+'At what stage of the generic software developed process does Requirements come?'
+'At the start'
+'Second, after Domain Modelling and before System Design'
+'Last'
+'in the middle.'
+'Correct. Requirements are done at the start, generally speaking, however it is best practice for them to be done all the time, to adapt to any changes and correct any you may have wrong. But mostly done at the start.'
+
+
+
+'Requirements are done at the start, generally speaking, however it is best practice for them to be done all the time, to adapt to any changes and correct any you may have wrong. But mostly done at the start.'
+'In an Aircraft system which of the following is the odd one out?'
+'The warning lights for the pilot should be red and flash'
+'There must be a warning light when fuel is low'
+'A warning light must indicate if the cabin door is not shut properly'
+'Pilot should be able to disable a warning light'
+'Correct. This is a non-functional requirement, as it says how the function of the warning light should behave. The others are all functional requirements'
+
+
+
+'This is a non-functional requirement, as it says how the function of the warning light should behave. The others are all functional requirements'
+'In a spaceship control system, which of the following is the odd one out.'
+'The system should provide a complete flight management solution.'
+"The system should inform ground control it's exact position, when requested"
+'The system must have an autopilot mode to guide it to a given postition.'
+'The system should adjust pressure within the spaceship.'
+'Correct. This is not at the same granualarity as the others. it is very general and does not state any specific requirement. Where as the others are more fine grain, refering to exact  requirements.'
+
+
+
+'This is not at the same granualarity as the others. it is very general and does not state any specific requirement. Where as the others are more fine grain, refering to exact  requirements.'
+'Which of the following would be a functional requirement in a James Bond style car?'
+'Must be able to spray oil out the back to stop any baddies chasing him'
+'Would be good to have the controls light up in fancy colours'
+'The stero should be able to play extra loud'
+'The gadgets should have new software updates done every month'
+'Correct. This states a function it should perform.'
+"Incorrect. This is a preference about how it should look, not an actual action it performs. The odd one out is 'Must be able to spray oil out the back to stop any baddies chasing him' Because this states a function it should perform."
+"Incorrect. This is a preference about how the stero should perform its function, not the actual function itself. The correct answer is 'Must be able to spray oil out the back to stop any baddies chasing him' Because this states a function it should perform."
+"Incorrect. Updating the system is more of a preference and not a functional requirement The correct answer is 'Must be able to spray oil out the back to stop any baddies chasing him' Because this states a function it should perform."
+'This states a function it should perform. The others stat something about how functions should be performed'
+'In a flight booking database system, what would be a non-functional requirement?'
+'The booking database should be backed up every 5 minutes'
+'A new booking should be added to the database'
+'A cancelled booking can be deleted from the database'
+'A particular booking information can be read from the database'
+'Correct. this is more of a safety requirement and not a acutal functional requirement. The others are acutal functions on the database'
+
+
+
+'This is more of a safety requirement and not a acutal functional requirement. The others are acutal functions on the database'
+'Which of the following is the odd one out in a Book ordering System?'
+'The layout of the menu can be toggled from a tabbed view to a drop down list.'
+'A particular book name can be searched for'
+'A customer can order a book'
+'A customer can browse available book titles'
+'Correct. This is just about how the menu options are displayed. No actual function being performed. The others are particular actions the system can perform.'
+
+
+
+'This is just about how the menu options are displayed. No actual function being performed. The others are particular actions the system can perform.'
+'Imagine an e-commerce system, which could be a functional requirement?'
+'Customer can add an item to their basket.'
+'Customer Data should comply with the Data Protection Act.'
+'Address labels should be printed on sticky paper.'
+'Pictures of products on the website should be displayed in colour'
+'Correct. This is a sensible basic functionality you could expect of an e-commerce system. The others are all some kind of constraints on how the business performs tasks and acts.'
+"Incorrect. This is a condition on how customer data should be treated. not a function itself. The correct Answer is 'Customer can add an item to their basket' as this is a sensible basic functionality you could expect of an e-commerce system."
+"Incorrect. If it was just 'Must be able to print Address labels' It could be seen as a functional requirement However, it is a condition on this, that the labels should be on sticky paper.  The correct answer is 'Customer can add an item to their basket' as this is a sensible basic functionality you could expect of an e-commerce system."
+"Incorrect. it is a preference on how pictures of products should be displayed. Remember the car anaology, the car colour made no effect what so ever of the it's functional requirements.  The correct answer is 'Customer can add an item to their basket' as this is a sensible basic functionality you could expect of an e-commerce system."
+"The correct answer is 'Customer can add an item to their basket' as this is a sensible basic functionality you could expect of an e-commerce system."
+'Imagine an e-commerce system, which would be a non-functional requirement?'
+'Orders should be confirmed via email within 24 hours.'
+'Customer can change their payment details'
+'Customer can view their order status.'
+'Orders can be cancelled'
+"Correct. The time constraint on this makes it non-functional. The others are clear functions, with no constraints on how they are done.  Remember the 'file download example', the constraints on speed of download, made no effect on the file being downloaded or uploaded."
+
+
+
+"The correct answer is 'Orders should be confirmed via email within 24 hours' the time constraint on this makes it non-functional. The others are clear functions, with no constraints on how they are done.  Remember the 'file download example', the constraints on speed of download, made no effect on the file being downloaded or uploaded."
+'Imagine a Hotel Management System, which would be a good example of a functional requirement?'
+'A room can be reserved for a customer.'
+'The database should have enough storage for 10,000 customer records.'
+'The system should have the latest anti-virus software installed.'
+'Each room should be described clearly on the hotel website.'
+'Correct. This is basic functional requirement with nothing about how it should do it. The others have some description properties of the system or how functions should be performed.'
+
+
+
+"The answer is 'A room can be reserved for a customer' This is basic functional requirement with nothing about how it should do it. The others have some description properties of the system or how functions should be performed."
+'In an ATM System, which would be a non-functional requirement?'
+'The interface should be physically robust and hard wearing'
+'Customer can view their account balance.'
+'Customer can select an amount to withdraw.'
+'Cash must be ejected for the customer.'
+"Correct. This is a constraint on the performance of the interface, not an actual function the system performs.The others are simple, yet essential functional activities you'd expect from an ATM and so, are functional activities."
+
+
+
+"The correct answer is 'The interface should be physically robust and hard wearing'. This is a constraint on the performance of the interface, not an actual function the system performs.The others are simple, yet essential functional activities you'd expect from an ATM and so, are functional activities."
+'Which is the odd one out from these requirements for a music download website system?'
+'Members can manage their account.'
+'Members can download bought songs.'
+'Artists can add songs to their catalogue.'
+"Members can leave comments on artists' page."
+'Correct. This is not at the same abstraction level as the others.  It is of a more general nature about what the whole system should acheive, rather than the more specific functionality of the others.'
+
+
+
+"The Correct answer is 'Members can manage their account' as this is not at the same abstraction level as the others. It is of a more general nature about what the whole system should acheive, rather than the more specific functionality of the others."
+'Which of these statements, best describes the requirements process?'
+'Requirements are an essential input to the software development process.'
+'Requirements are essential to deciding what software architecture to use.'
+'Requirements tell the software developer everthing they need to know to develope the required system.'
+'In the generic software development process, Requirements comes after domain modelling to aid the system class design.'
+'Correct. Requirements come in at the start to help the development process begin. Remember the hairdressing anaolgy where the hairdresser must know how the customer wants their hair cut. The haircut Requirments.'
+"Incorrect. They could play some part in this decision, but by no means essential. The answer is 'Requirements are an essential input to the software development process'. Remember the hairdressing anaolgy where the hairdresser must know how the customer wants their hair cut. The haircut Requirments."
+"Incorrect. They play a huge part in what the the developer needs to know. However it is not everything. Activity diagrams, observations, interviews, documentation amoungst other things can help aid this also. The answer is 'Requirements are an essential input to the software development process'. Remember the hairdressing anaolgy where the hairdresser must know how the customer wants their hair cut. The haircut Requirments."
+"Incorrect. Domain modelling can not be done without any requiremnets gathering and so should be done before this. The answer is 'Requirements are an essential input to the software development process'. Remember the hairdressing anaolgy where the hairdresser must know how the customer wants their hair cut. The haircut Requirments."
+"The answer is 'Requirements are an essential input to the software development process'. Remember the hairdressing anaolgy where the hairdresser must know how the customer wants their hair cut. The haircut Requirments."
+'Requirements are ....?'
+'... recorded in an official document.'
+'... not recorded at all. They are remembered from conversations.'
+'... a waste of time.'
+'... gathered at the end of the software process.'
+'Correct. Requirements are recorded in a semi-structed document. The others not serious answers at all'
+
+
+
+'Obviously the answer is Requirements are recorded in a semi-structed document. The others not serious answers at all'
+'In a stock ordering system which of these is the odd one out?'
+"The system should help the company manage it's stock levels."
+'The system must be able to order a given stock item.'
+'The system should be able to display stock levels.'
+'Stock items should be displayed with a picture.'
+'Correct. This is a very general requirement, where as the rest are more fine grain requirements.'
+
+
+
+"The odd one out is 'The system should help the company manage it's stock levels.' because it is  a very general requirement, where as the rest are more fine grain requirements."
+'In the hairdressing analogy, which would be a non-functional requirement?'
+'The chair height should set high'
+'hair must be cut short round the back'
+'hair must be cut short round the sides'
+"Don't cut too much off the top."
+'Correct. This does not effect the function of the hair being cut. The others are specific to the function of cutting hair'
+
+
+
+"The correct answer is 'The chair height should set high' because this does not effect the function of the hair being cut. The others are specific to the function of cutting hair"
+'Which of the following would be a sensible use case in a banking system?'
+'Customer withdraws money.'
+'Customer records should be stored in a  back up database.'
+'Customers should recive an account statement every month'
+'Customer manages account.'
+"Correct. This is a clear use case in the format of 'verb-direct object noun' - Withdraws Money, with the Customer being the actor performing this."
+"Incorrect. This seems like more of a requirements, a use case equilivant would be 'Back up customer records, which follows the use case format of 'verb-direct object noun'.  Back up (verb-direct) Customer records (noun). The answer is 'Customer withdraws money'.  In this case it is Customer (Actor) withdraws (verb-direct) money (object-noun)"
+"Incorrect. This seems like more of a requirements, a use case equilivant would be 'Send account statement', which follows the use case format of 'verb-direct object noun'.  Send (verb-direct) account statement (noun). The answer is 'Customer withdraws money'.  In this case it is Customer (Actor) withdraws (verb-direct) money (object-noun)"
+"Incorrect. This is a very general use case and would comprised of many smaller, more fine grain use cases, such as Transer Money, View account and withdraw money. The answer is 'Customer withdraws money'.  In this case it is Customer (Actor) withdraws (verb-direct) money (object-noun)"
+"The answer is 'Customer withdraws money'. This is a clear use case in the format of 'verb-direct object noun' - Withdraws Money, with the Customer being the actor performing this."
+'Which is the odd one out here?'
+'Staff member manages hotel bookings.'
+'Staff member adds a booking.'
+'Staff member deletes a booking.'
+'Staff member changes a booking.'
+'Correct. This is too general. The others are of more fine granularity and refer to a specific task within the system.'
+
+
+
+"The answer is 'Staff member manages hotel bookings' because this is too general. The others are of more fine granularity and refer to a specific task within the system."
+'In a spaceship system, which use case would be the odd one out?'
+'Spaceship takes off.'
+'Spaceman increases speed.'
+'Ground control reads spaceship location'
+'Spaceman creates an error log'
+"Correct. this is a very general function, which is likely to involve many other use cases, such as 'open rocket thrusters' for example.  The others are specific use cases."
+
+
+
+"The correct answer is 'Spaceship takes off' because this is a very general function, which is likely to involve many other use cases, such as 'open rocket thrusters' for example.  The others are specific use cases."
+"Use Case: 'Tax system extracts tax payments from company database'  which is the actor in this company system."
+'Tax System.'
+'Company database.'
+'Company manager.'
+'Employee'
+'Correct. The tax system is an external system that uses the company system.'
+
+
+
+'The correct Answer is:  Tax System, as this is an external system that uses the company system.'
+'In a James Bond style car system, which of these would not be a use case?'
+'Windows should be black, so no one can see in.'
+'Eject passenger seat.'
+'Spray oil out of car'
+'Boost  car speed'
+"Correct. This is more of a requirement of the car, not an action performed by the car in the format of 'verb-direct'  - 'object-noun',  such as, Eject (doing, verb-direct) passenger seat (to something, object-noun)."
+"Incorrect.  This is  a clear use case in the correct format.  Eject (verb-direct) Passenger seat (object-noun). The correct answer is 'Windows should be black, so no one can see in' as this is more of a requirement of the car, not an action performed by the car in the format of 'verb-direct'  - 'object-noun',  such as, Eject (doing, verb-direct) passenger seat (to something, object-noun)."
+"Incorrect.  This is  a clear use case in the correct format.  spray(verb-direct) oil out of car(object-noun). The correct answer is 'Windows should be black, so no one can see in' as this is more of a requirement of the car, not an action performed by the car in the format of 'verb-direct'  - 'object-noun',  such as, Eject (doing, verb-direct) passenger seat (to something, object-noun)."
+"Incorrect.  This is  a clear use case in the correct format.  Boost(verb-direct) car speed(object-noun). The correct answer is 'Windows should be black, so no one can see in' as this is more of a requirement of the car, not an action performed by the car in the format of 'verb-direct'  - 'object-noun',  such as, Eject (doing, verb-direct) passenger seat (to something, object-noun)."
+"The correct answer is 'Windows should be black, so no one can see in' as this is more of a requirement of the car, not an action performed by the car in the format of 'verb-direct'  - 'object-noun',  such as, Eject (doing, verb-direct) passenger seat (to something, object-noun)."
+' How does Craig Larman describe use cases?'
+"Things you say you're doing when the boss shows up"
+'Things you do when the boss is away'
+'Things the boss asks you to do'
+'Things the boss does'
+"Correct.  'Things you say you're doing when the boss shows up', so he's basically saying use cases are things the boss would expect you to be doing. Example:  Boss: What are you doing?  You: Printing accounts.  Use case format:  Printing (direct-verb) accounts (object-noun)"
+"Incorrect. You may well be doing worthwhile things while the boss is away, but Larman describes them as  \uFFFDThings you say you're doing when the boss shows up"
+"Incorrect. This does not sound like too bad a description of what use cases are, but maybe boss should have to tell you what to do and so Larman describes  them as 'Things you say' you're doing when the boss shows up"
+"Incorrect. The boss doesn't do everything !!  Larman describes them as \uFFFDThings you say you're doing when the boss shows up"
+"Larman describes them as 'Things you say you're doing when the boss shows up', so he's basically saying use cases are things the boss would expect you to be doing. Example:  Boss: What are you doing?  You: Printing accounts.  Use case format:  Printing (direct-verb) accounts (object-noun)"
+'Which of these is a good use case?'
+'Add Client Record'
+'Client Database'
+'Client update'
+'Database update'
+"Correct. This is a typical use case with the format of 'verb-direct'  - 'object-noun' .  Add (verb-direct) Client Record (object-noun)."
+"Incorrect. This sounds like a domain object rather than a use case, it's not doing anything, it's just the name of something in the system. The answer is 'Add client record', which is a typical use case with the format of 'verb-direct'  - 'object-noun' .  Add (verb-direct) Client Record (object-noun)."
+"Incorrect. It is not clear what this is, are we updating a client? Is it a client updating something? If so what? The answer is 'Add client record', which is a typical use case with the format of 'verb-direct'  - 'object-noun' .  Add (verb-direct) Client Record (object-noun). "
+"Incorrect. It is not clear what this is, are we updating a database? And what database?  Is it a database updating something else? If so what? The answer is 'Add client record', which is a typical use case with the format of 'verb-direct'  - 'object-noun' .  Add (verb-direct) Client Record (object-noun)."
+"The answer is 'Add client record' . This is a typical use case with the format of 'verb-direct'  - 'object-noun' .  Add (verb-direct) Client Record (object-noun). The others are too vague or sound like a domain object (Client Database)."
+'Which of these is not a very good use case?'
+'Customer records are reviewed.'
+'Review customer records.'
+'Read customer records.'
+'Open customer records.'
+'Correct. This is not in a very good format, its noun (customer) then verb (reviewed) The others are of a better format as they say what we doing before the actual object.'
+
+
+
+'The correct answer is Customer records are reviewed. This is not in a very good format, its noun (customer) then verb (reviewed) The others are of a better format as they say what we doing before the actual object.'
+
+
+
+'Delete account.'
+'Update account.'
+'Correct. Manage account could involve all the others in itself, so it is not of the same granularity as the others and is not a very specific use case.  The others are more fine grain and define a specific action performed on the system.'
+
+
+
+"Create account, Delete account and Update account are all very specific actions which is what you want from a use case. The correct answer is 'Manage account' as this is not of the same granularity and not as specific. It's a bit vague, it could involve all the others for example."
+
+
+
+'Account activation.'
+'Account Deletion.'
+"Correct. This is a typical use case, which is a specific action performed on the system, in the form of Verb-direct -object-noun.  'Manage account is a bit vague, 'Account activation' and 'Account Deletion' could be valid use cases, but are not written properly, as they have the object-noun first (account) and then the verb (activation and deletion)."
+"Incorrect. Manage account is a bit vague, 'Account activation' and 'Account Deletion' could be valid use cases, but are not written properly, as they have the object-noun first (account) and then the verb (activation and deletion). Correct answer is 'Create account'. This is a typical use case, which is a specific action performed on the system, in the form of Verb-direct -object-noun."
+
+
+"Correct answer is 'Create account'. This is a typical use case, which is a specific action performed on the system, in the form of Verb-direct -object-noun.  .  'Manage account is a bit vague, 'Account activation' and 'Account Deletion' could be valid use cases, but are not written properly, as they have the object-noun first (account) and then the verb (activation and deletion)."
+
+'Customer deletion.'
+'Add Customer record'
+
+'Edit Customer.'
+
+
+
+
+"Correct answer 'Customer deletion' as this is not a very good use case name because it's not in the format of Verb-direct - object-noun. The others are, they state the 'doing' thing first then what it's doing it to."
+
+'Customer activation.'
+'Add Customer.'
+'Remove Client.'
+
+
+
+"Incorrect. The odd one out is 'Customer activation' as this is not a very good use case name because it's not in  the format of Verb-direct -object-noun. The others are, they state the 'doing' thing first then what it's doing it to."
+
+"Correct answer 'Customer activation' as this is not a very good use case name because it's not in the format of Verb-direct -object-noun. The others are, they state the 'doing' thing first then what it's doing it to."
+
+'Create Account'
+
+
+'Print statement'
+
+
+
+
+"The answer is 'Create Account' as this is beyond the scope of the ATM system, although very much part of the bank system.  The others are tasks you would expect to be able to perform at an ATM.  Remember a use case may look like a valid one, but it may be beyond what your system is defined to do."
+
+'Upgrade credit card'
+
+
+'Print balance'
+
+
+
+
+"The answer is 'Upgrade credit card' as this is beyond the scope of the ATM system, although very much part of the bank system.  The others are tasks you would expect to be able to perform at an ATM.  Remember a use case may look like a valid one, but it may be beyond what your system is defined to do."
+'A Domain Class can be used to ... ?'
+'Realise several use cases.'
+'Realise only one use case'
+'aid requirements gathering'
+'discover use cases'
+'Correct.  One Domain class can play a role in many different use cases. For example in an ATM example. Imagine a domain class called dispay, you would expect this to play a role in acheiving the following use cases: Display Balance and Withdraw Cash (to display amounts to withdraw)'
+'Incorrect.  A Domain class can help realise several use cases, not just one.For example in an ATM example. Imagine a domain class called dispay, you would expect this to play a role in acheiving the following use cases: Display Balance and Withdraw Cash (to display amounts to withdraw)'
+"Incorrect. Requrements gathering would be done a while before domain classes are used.  Remember the order of the phases:  - Requirements - Use cases - domain modelling (which involved domain classes) \n The answer is 'A Domain class can be used to realise several use cases."
+'Incorrect. Use cases will already have been discovered before, from requirements gathering, amongst other techniques'
+$intern_2
+'Which of these would not be a domain class in an ATM Cash machine system?'
+'ATM'
+'dispenser'
+'keypad'
+'screen'
+'Correct.  This is the name of the system itself not domains within it. The others are domains which play thier own individual parts in the ATM System.'
+
+
+
+"The answer is 'ATM' because This is the name of the system itself not domains within it. The others are domains which play thier own individual parts in the ATM System."
+'In a university system, which of these would not be a good domain class?'
+'Select Course'
+'Course'
+'Exam'
+'Student'
+'Correct. This sounds like a use case. The others are typical domain areas of a university.'
+
+
+
+'The correct answer is Select Course, becaus it sounds like a use case. The others are typical domain areas of a university.'
+'In the generic software engineering process, domain modelling comes ....'
+'After requirements.'
+'before requirements.'
+'after System design.'
+'After testing.'
+'Correct. The order is: Requirements, Domain Modelling, System Modelling, Implementation...'
+
+
+
+'The correct answer is they come after requirements. The order is Requirements, Domain Modelling, System Modelling, Implementation...'
+'In a Car hire system which of these would be a good domain class?'
+'Car'
+'Car hire service'
+'Add Customer'
+'Purchase new car'
+'Correct. A car would be an important domain area of the system.  The others all look like use cases, as they are doing something to things.'
+
+
+
+'The correct answer is a car, as this would be an important domain area of the system.  The others all look like use cases, as they are doing something to things.'
+'In a Bank System, which of these would not be a good domain class?'
+'Tax System'
+
+'Account'
+'Mortgage'
+'Correct. Tax system would be an external system, a seperate system. The others are common domains within a typical bank.'
+
+
+'Incorrect. The correct answer is Tax system, as this would be an external system, a seperate system. The others are common domains within a typical bank.Incorrect. The correct answer is Tax system, as this would be an external system, a seperate system. The others are common domains within a typical bank.'
+'The correct answer is Tax system, as this would be an external system, a seperate system. The others are common domains within a typical bank.'
+'Which of these would not be a good domain in a Parcel Delivery System.'
+'Van'
+
+'Parcel'
+'Customer Account'
+"Correct. A van might be used for the delivery, but wouldn't be used as a domain class. The others are well defined domain areas which the system will want to use."
+
+
+
+
+'How can a domain class play a part in many use cases?'
+'It may have different roles in them or the same role.'
+'It will always have the same role in them.'
+'They always play a part in every use case.  They just do.'
+'Each domain class represents the whole system, so by definition they do.'
+'Correct. They can play different roles in different use cases.'
+'Incorrect. They do not always have the same role in all use cases, they may have a differnt one or not play a role in some use cases at all.'
+'Incorrect. They do not necessarily play the a part in every use case, they may only play a role in one.'
+'Incorrect. Each domain class does not represent the whole system, they respresent a domain within the system and so can play a role in many use cases, but they could only play a role in one.'
+$intern_2
+"Why is 'DATABASE' not a good domain class name?"
+'It does not say what the database is holding, CUSTOMER DATABASE would be better.'
+'Databases can not be used as domain classes.'
+"It's in capitals."
+"It's external to the system."
+"Correct. It's more description, on it's own, it means nothing."
+'Incorrect. Databases can be very good domain classes, but the problem with this one is it needs more description, such as CUSTOMER DATABASE, to give it more meaning.'
+'Incorrect. It has nothing to do with it being in capitals. The problem with this one is it needs more description, such as CUSTOMER DATABASE, to give it more meaning.'
+'Incorrect. It could be a big part of the system, but the problem with this one is it needs more description, such as CUSTOMER DATABASE, to give it more meaning.'
+'The problem with this one is it needs more description, such as CUSTOMER DATABASE, to give it more meaning.'
+'Which of these is not a good domain class for a game system?'
+'Box game comes in.'
+'Players Score'
+
+
+'Correct. This is not important in the game system. The others sound like things used in a game.'
+
+
+
+"The correct answer is 'Box game comes in' This is not important in the game system. The others sound like things used in a game."
+
+'Roll Dice'
+'Start Game'
+'Box game comes in'
+"Correct. A player is an important domain class in this game. the others sound like use cases, apart from 'Box game comes in' this just seems odd."
+"Incorrect. Roll Dice seeems more like a use case, as its doing something. as is 'Start game' and 'Box game comes in, is nothing to do with it. The correct answer of course in 'Player'"
+"Incorrect. Start game seeems more like a use case, as its doing something. as is 'Roll Dice' and 'Box game comes in, is nothing to do with it. The correct answer of course in 'Player'"
+'Incorrect. This seems to have nothing to do with the actual game system. The correct answer is player, an important domain of the game, the rest sound more like use cases.'
+"The correct answer is'player', which is an important domain class in this game. the others sound like use cases, apart from 'Box game comes in' this just seems odd."
+com_google_gwt_lang_Array_initDim__Ljava_lang_Class_2Lcom_google_gwt_core_client_JavaScriptObject_2IIILcom_google_gwt_lang_Array_2(com_google_gwt_lang_ClassLiteralHolder__13Ljava_1lang_1String_12_1classLit, makeCastMap([Q$java_io_Serializable, Q$java_lang_String_$1]), Q$java_lang_String, 10, 0)
+'Play button'
+'Remote control'
+'Television'
+'HiFi'
+'Correct, this would be an attribute of the domain class remote control. not a domain class itself.'
+
+
+
+"The correct answer is 'Play Button' as this would be an attribute of the domain class remote control. not a domain class itself."
+com_google_gwt_lang_Array_initDim__Ljava_lang_Class_2Lcom_google_gwt_core_client_JavaScriptObject_2IIILcom_google_gwt_lang_Array_2(com_google_gwt_lang_ClassLiteralHolder__13Ljava_1lang_1String_12_1classLit, makeCastMap([Q$java_io_Serializable, Q$java_lang_String_$1]), Q$java_lang_String, 10, 0)
+'Roll dice'
+
+
+
+
+
+
+
+
+com_google_gwt_lang_Array_initDim__Ljava_lang_Class_2Lcom_google_gwt_core_client_JavaScriptObject_2IIILcom_google_gwt_lang_Array_2(com_google_gwt_lang_ClassLiteralHolder__13Ljava_1lang_1String_12_1classLit, makeCastMap([Q$java_io_Serializable, Q$java_lang_String_$1]), Q$java_lang_String, 10, 0)
+'Start game'
+
+
+
+
+
+
+
+
+com_google_gwt_lang_Array_initDim__Ljava_lang_Class_2Lcom_google_gwt_core_client_JavaScriptObject_2IIILcom_google_gwt_lang_Array_2(com_google_gwt_lang_ClassLiteralHolder__13Ljava_1lang_1String_12_1classLit, makeCastMap([Q$java_io_Serializable, Q$java_lang_String_$1]), Q$java_lang_String, 10, 0)
+'Move player'
+
+
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+Imagine a Hotel Management System, which would be a good example of a functional requirement?
+A room can be reserved for a customer.
+The database should have enough storage for 10,000 customer records.
+The system should have the latest anti-virus software installed.
+Each room should be described clearly on the hotel website.
+Correct. This is basic functional requirement with nothing about how it should do it. The others have some description properties of the system or how functions should be performed.
+
+
+
+The answer is A room can be reserved for a customer This is basic functional requirement with nothing about how it should do it. The others have some description properties of the system or how functions should be performed.

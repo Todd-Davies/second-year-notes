@@ -1,0 +1,10 @@
+How can a domain class play a part in many use cases?
+It may have different roles in them or the same role.
+It will always have the same role in them.
+They always play a part in every use case.  They just do.
+Each domain class represents the whole system, so by definition they do.
+Correct. They can play different roles in different use cases.
+Incorrect. They do not always have the same role in all use cases, they may have a differnt one or not play a role in some use cases at all.
+Incorrect. They do not necessarily play the a part in every use case, they may only play a role in one.
+Incorrect. Each domain class does not represent the whole system, they respresent a domain within the system and so can play a role in many use cases, but they could only play a role in one.
+

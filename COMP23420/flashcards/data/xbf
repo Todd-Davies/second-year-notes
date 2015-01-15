@@ -1,0 +1,10 @@
+In a Car hire system which of these would be a good domain class?
+Car
+Car hire service
+Add Customer
+Purchase new car
+Correct. A car would be an important domain area of the system.  The others all look like use cases, as they are doing something to things.
+
+
+
+The correct answer is a car, as this would be an important domain area of the system.  The others all look like use cases, as they are doing something to things.

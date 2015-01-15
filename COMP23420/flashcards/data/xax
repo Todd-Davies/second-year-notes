@@ -1,0 +1,10 @@
+In a James Bond style car system, which of these would not be a use case?
+Windows should be black, so no one can see in.
+Eject passenger seat.
+Spray oil out of car
+Boost  car speed
+Correct. This is more of a requirement of the car, not an action performed by the car in the format of verb-direct  - object-noun,  such as, Eject (doing, verb-direct) passenger seat (to something, object-noun).
+Incorrect.  This is  a clear use case in the correct format.  Eject (verb-direct) Passenger seat (object-noun). The correct answer is Windows should be black, so no one can see in as this is more of a requirement of the car, not an action performed by the car in the format of verb-direct  - object-noun,  such as, Eject (doing, verb-direct) passenger seat (to something, object-noun).
+Incorrect.  This is  a clear use case in the correct format.  spray(verb-direct) oil out of car(object-noun). The correct answer is Windows should be black, so no one can see in as this is more of a requirement of the car, not an action performed by the car in the format of verb-direct  - object-noun,  such as, Eject (doing, verb-direct) passenger seat (to something, object-noun).
+Incorrect.  This is  a clear use case in the correct format.  Boost(verb-direct) car speed(object-noun). The correct answer is Windows should be black, so no one can see in as this is more of a requirement of the car, not an action performed by the car in the format of verb-direct  - object-noun,  such as, Eject (doing, verb-direct) passenger seat (to something, object-noun).
+The correct answer is Windows should be black, so no one can see in as this is more of a requirement of the car, not an action performed by the car in the format of verb-direct  - object-noun,  such as, Eject (doing, verb-direct) passenger seat (to something, object-noun).

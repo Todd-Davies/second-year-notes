@@ -1,0 +1,10 @@
+Use Case: Tax system extracts tax payments from company database  which is the actor in this company system?
+Tax System.
+Company database.
+Company manager.
+Employee
+Correct. The tax system is an external system that uses the company system.
+
+
+
+The correct Answer is:  Tax System, as this is an external system that uses the company system.

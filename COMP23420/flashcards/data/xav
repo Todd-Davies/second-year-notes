@@ -1,0 +1,10 @@
+In a spaceship system, which use case would be the odd one out?
+Spaceship takes off.
+Spaceman increases speed.
+Ground control reads spaceship location
+Spaceman creates an error log
+Correct. this is a very general function, which is likely to involve many other use cases, such as open rocket thrusters for example.  The others are specific use cases.
+
+
+
+The correct answer is Spaceship takes off because this is a very general function, which is likely to involve many other use cases, such as open rocket thrusters for example.  The others are specific use cases.

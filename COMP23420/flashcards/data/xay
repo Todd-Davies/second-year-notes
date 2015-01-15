@@ -1,0 +1,10 @@
+ How does Craig Larman describe use cases?
+Things you say youre doing when the boss shows up
+Things you do when the boss is away
+Things the boss asks you to do
+Things the boss does
+Correct.  Things you say youre doing when the boss shows up, so hes basically saying use cases are things the boss would expect you to be doing. Example:  Boss: What are you doing?  You: Printing accounts.  Use case format:  Printing (direct-verb) accounts (object-noun)
+Incorrect. You may well be doing worthwhile things while the boss is away, but Larman describes them as  Things you say youre doing when the boss shows up
+Incorrect. This does not sound like too bad a description of what use cases are, but maybe boss should have to tell you what to do and so Larman describes  them as Things you say youre doing when the boss shows up
+Incorrect. The boss doesnt do everything !!  Larman describes them as Things you say youre doing when the boss shows up
+Larman describes them as Things you say youre doing when the boss shows up, so hes basically saying use cases are things the boss would expect you to be doing. Example:  Boss: What are you doing?  You: Printing accounts.  Use case format:  Printing (direct-verb) accounts (object-noun)

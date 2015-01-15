@@ -1,0 +1,10 @@
+Imagine an e-commerce system, which could be a functional requirement?
+Customer can add an item to their basket.
+Customer Data should comply with the Data Protection Act.
+Address labels should be printed on sticky paper.
+Pictures of products on the website should be displayed in colour
+Correct. This is a sensible basic functionality you could expect of an e-commerce system. The others are all some kind of constraints on how the business performs tasks and acts.
+Incorrect. This is a condition on how customer data should be treated. not a function itself. The correct Answer is Customer can add an item to their basket as this is a sensible basic functionality you could expect of an e-commerce system.
+Incorrect. If it was just Must be able to print Address labels It could be seen as a functional requirement However, it is a condition on this, that the labels should be on sticky paper.  The correct answer is Customer can add an item to their basket as this is a sensible basic functionality you could expect of an e-commerce system.
+Incorrect. it is a preference on how pictures of products should be displayed. Remember the car anaology, the car colour made no effect what so ever of the its functional requirements.  The correct answer is Customer can add an item to their basket as this is a sensible basic functionality you could expect of an e-commerce system.
+The correct answer is Customer can add an item to their basket as this is a sensible basic functionality you could expect of an e-commerce system.

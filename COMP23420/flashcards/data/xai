@@ -1,0 +1,10 @@
+In a flight booking database system, what would be a non-functional requirement?
+The booking database should be backed up every 5 minutes
+A new booking should be added to the database
+A cancelled booking can be deleted from the database
+A particular booking information can be read from the database
+Correct. this is more of a safety requirement and not a acutal functional requirement. The others are acutal functions on the database
+
+
+
+This is more of a safety requirement and not a acutal functional requirement. The others are acutal functions on the database

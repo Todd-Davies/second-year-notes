@@ -1,3 +1,3 @@
 #!/bin/bash
-aspell -t check doc.tex
+python gen.py > content.tex
 pdflatex doc.tex

@@ -1,0 +1,10 @@
+A Domain Class can be used to ... ?
+Realise several use cases.
+Realise only one use case
+aid requirements gathering
+discover use cases
+Correct.  One Domain class can play a role in many different use cases. For example in an ATM example. Imagine a domain class called dispay, you would expect this to play a role in acheiving the following use cases: Display Balance and Withdraw Cash (to display amounts to withdraw)
+Incorrect.  A Domain class can help realise several use cases, not just one.For example in an ATM example. Imagine a domain class called dispay, you would expect this to play a role in acheiving the following use cases: Display Balance and Withdraw Cash (to display amounts to withdraw)
+Incorrect. Requrements gathering would be done a while before domain classes are used.  Remember the order of the phases:  - Requirements - Use cases - domain modelling (which involved domain classes) The answer is A Domain class can be used to realise several use cases.
+Incorrect. Use cases will already have been discovered before, from requirements gathering, amongst other techniques
+

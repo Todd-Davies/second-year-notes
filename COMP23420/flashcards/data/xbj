@@ -1,0 +1,10 @@
+Why is DATABASE not a good domain class name?
+It does not say what the database is holding, CUSTOMER DATABASE would be better.
+Databases can not be used as domain classes.
+Its in capitals.
+Its external to the system.
+Correct. Its more description, on its own, it means nothing.
+Incorrect. Databases can be very good domain classes, but the problem with this one is it needs more description, such as CUSTOMER DATABASE, to give it more meaning.
+Incorrect. It has nothing to do with it being in capitals. The problem with this one is it needs more description, such as CUSTOMER DATABASE, to give it more meaning.
+Incorrect. It could be a big part of the system, but the problem with this one is it needs more description, such as CUSTOMER DATABASE, to give it more meaning.
+The problem with this one is it needs more description, such as CUSTOMER DATABASE, to give it more meaning.

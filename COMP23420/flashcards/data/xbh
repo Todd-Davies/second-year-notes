@@ -1,0 +1,10 @@
+Which of these would not be a good domain in a Parcel Delivery System?
+Van
+
+Parcel
+Customer Account
+Correct. A van might be used for the delivery, but wouldnt be used as a domain class. The others are well defined domain areas which the system will want to use.
+
+
+
+

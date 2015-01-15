@@ -1,0 +1,10 @@
+Which of these would not be a domain class in an ATM Cash machine system?
+ATM
+dispenser
+keypad
+screen
+Correct.  This is the name of the system itself not domains within it. The others are domains which play thier own individual parts in the ATM System.
+
+
+
+The answer is ATM because This is the name of the system itself not domains within it. The others are domains which play thier own individual parts in the ATM System.

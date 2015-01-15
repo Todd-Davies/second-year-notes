@@ -1,0 +1,10 @@
+Imagine an e-commerce system, which would be a non-functional requirement?
+Orders should be confirmed via email within 24 hours.
+Customer can change their payment details
+Customer can view their order status.
+Orders can be cancelled
+Correct. The time constraint on this makes it non-functional. The others are clear functions, with no constraints on how they are done.  Remember the file download example, the constraints on speed of download, made no effect on the file being downloaded or uploaded.
+
+
+
+The correct answer is Orders should be confirmed via email within 24 hours the time constraint on this makes it non-functional. The others are clear functions, with no constraints on how they are done.  Remember the file download example, the constraints on speed of download, made no effect on the file being downloaded or uploaded.

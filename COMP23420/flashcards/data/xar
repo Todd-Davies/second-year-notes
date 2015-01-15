@@ -1,0 +1,10 @@
+In a stock ordering system which of these is the odd one out?
+The system should help the company manage its stock levels.
+The system must be able to order a given stock item.
+The system should be able to display stock levels.
+Stock items should be displayed with a picture.
+Correct. This is a very general requirement, where as the rest are more fine grain requirements.
+
+
+
+The odd one out is The system should help the company manage its stock levels. because it is  a very general requirement, where as the rest are more fine grain requirements.
