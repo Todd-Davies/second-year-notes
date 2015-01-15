@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.9.18)  15 JAN 2015 15:38
+=======
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.19)  15 JAN 2015 16:10
+>>>>>>> eede89d5e65169e7c620cb0603013c120782d174
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1423,7 +1427,7 @@ Package nag Warning: Command \it is an old LaTeX 2.09 command.
 Package nag Warning: Command \it is an old LaTeX 2.09 command. 
 (nag)                Use \itshape or \textit instead on input line 11.
 
-<diagrams/instruction.pdf, id=183, 456.64803pt x 115.21443pt>
+<diagrams/instruction.pdf, id=188, 456.64803pt x 115.21443pt>
 File: diagrams/instruction.pdf Graphic file (type pdf)
 
 <use diagrams/instruction.pdf>
@@ -1499,7 +1503,7 @@ Package nag Warning: Command \tt is an old LaTeX 2.09 command.
 Package nag Warning: Command \it is an old LaTeX 2.09 command. 
 (nag)                Use \itshape or \textit instead on input line 210.
 
-[6] <diagrams/process-lifecycle.pdf, id=225, 447.18367pt x 226.01138pt>
+[6] <diagrams/process-lifecycle.pdf, id=230, 447.18367pt x 226.01138pt>
 File: diagrams/process-lifecycle.pdf Graphic file (type pdf)
 
 <use diagrams/process-lifecycle.pdf>
@@ -1507,21 +1511,21 @@ Package pdftex.def Info: diagrams/process-lifecycle.pdf used on input line 316.
 
 (pdftex.def)             Requested size: 415.12572pt x 209.8194pt.
  [7]
-<diagrams/fcfs.pdf, id=232, 436.67741pt x 257.47894pt>
+<diagrams/fcfs.pdf, id=237, 436.67741pt x 257.47894pt>
 File: diagrams/fcfs.pdf Graphic file (type pdf)
  <use diagrams/fcfs.pdf>
 Package pdftex.def Info: diagrams/fcfs.pdf used on input line 368.
 (pdftex.def)             Requested size: 256.0748pt x 150.99583pt.
 
 [8 <./diagrams/process-lifecycle.pdf>]
-<diagrams/roundrobin.pdf, id=243, 607.39323pt x 257.47894pt>
+<diagrams/roundrobin.pdf, id=248, 607.39323pt x 257.47894pt>
 File: diagrams/roundrobin.pdf Graphic file (type pdf)
 
 <use diagrams/roundrobin.pdf>
 Package pdftex.def Info: diagrams/roundrobin.pdf used on input line 391.
 (pdftex.def)             Requested size: 256.0748pt x 108.55293pt.
 
-<diagrams/priority.pdf, id=244, 607.84488pt x 371.28914pt>
+<diagrams/priority.pdf, id=249, 607.84488pt x 371.28914pt>
 File: diagrams/priority.pdf Graphic file (type pdf)
 
 <use diagrams/priority.pdf>
@@ -1555,34 +1559,47 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 652--652
 
 LaTeX Font Info:    Font shape `T1/lmvtt/bx/n' in size <12> not available
 (Font)              Font shape `T1/lmvtt/b/n' tried instead on input line 671.
-[13] <images/mmu-loader.jpg, id=379, 1160.335pt x 668.4975pt>
+[13] <images/mmu-loader.jpg, id=384, 1160.335pt x 668.4975pt>
 File: images/mmu-loader.jpg Graphic file (type jpg)
 
 <use images/mmu-loader.jpg>
 Package pdftex.def Info: images/mmu-loader.jpg used on input line 763.
 (pdftex.def)             Requested size: 415.12572pt x 239.15945pt.
  [14] [15 <./images/mmu-loader.jpg>]
-<diagrams/memory-address.pdf, id=391, 456.64803pt x 115.21443pt>
+<diagrams/memory-address.pdf, id=396, 456.64803pt x 115.21443pt>
 File: diagrams/memory-address.pdf Graphic file (type pdf)
 
 <use diagrams/memory-address.pdf>
 Package pdftex.def Info: diagrams/memory-address.pdf used on input line 827.
 (pdftex.def)             Requested size: 256.0748pt x 64.61105pt.
- [16 <./diagrams/memory-address.pdf>])
+ [16 <./diagrams/memory-address.pdf>] [17]
+<images/memoryMapping.png, id=420, 1253.68375pt x 788.9475pt>
+File: images/memoryMapping.png Graphic file (type png)
+
+<use images/memoryMapping.png>
+Package pdftex.def Info: images/memoryMapping.png used on input line 969.
+(pdftex.def)             Requested size: 256.0748pt x 161.1454pt.
+)
 
 Package nag Warning: 16 complaints in total.
 
+<<<<<<< HEAD
 [17]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 62.
+=======
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 62.
+[18] [19 <./images/memoryMapping.png>]
+>>>>>>> eede89d5e65169e7c620cb0603013c120782d174
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 62.
  (./notes.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 62.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 62.
 Package rerunfilecheck Info: File `notes.out' has not changed.
-(rerunfilecheck)             Checksum: 48FF368399D3C54A3483F2A469219FB3;2162.
+(rerunfilecheck)             Checksum: 73F2A4902AA441FEFB27049412FBCBD5;2234.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 62.
  ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  31882 strings out of 493117
  655936 string characters out of 6135433
  797847 words of memory out of 5000000
@@ -1613,9 +1630,36 @@ e1/public/lm/lmsy8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/l
 m/lmvtk10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmvtt10
 .pfb>
 Output written on notes.pdf (17 pages, 536673 bytes).
+=======
+ 30300 strings out of 493304
+ 605477 string characters out of 6139870
+ 759997 words of memory out of 5000000
+ 32893 multiletter control sequences out of 15000+600000
+ 102593 words of font info for 129 fonts, out of 8000000 for 9000
+ 957 hyphenation exceptions out of 8191
+ 65i,9n,92p,10440b,2226s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
+ips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/s
+hare/texmf/fonts/enc/dvips/lm/lm-rm.enc}</usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/s
+hare/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/publi
+c/lm/lmbx7.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lm
+r10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fon
+ts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr5.pfb><
+/usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/p
+ublic/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/
+texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/
+lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/
+fonts/type1/public/lm/lmvtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmvtt
+10.pfb>
+Output written on notes.pdf (19 pages, 648722 bytes).
+>>>>>>> eede89d5e65169e7c620cb0603013c120782d174
 PDF statistics:
- 511 PDF objects out of 1000 (max. 8388607)
- 460 compressed objects within 5 object streams
- 147 named destinations out of 1000 (max. 500000)
- 33576 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 529 PDF objects out of 1000 (max. 8388607)
+ 475 compressed objects within 5 object streams
+ 151 named destinations out of 1000 (max. 500000)
+ 33589 words of extra memory for PDF output out of 35830 (max. 10000000)
 

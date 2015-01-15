@@ -31,6 +31,7 @@
 \contentsline {subsection}{\numberline {6.2}Multiprogramming}{14}{subsection.6.2}
 \contentsline {subsubsection}{\numberline {6.2.1}Swapping}{15}{subsubsection.6.2.1}
 \contentsline {subsection}{\numberline {6.3}Virtual Memory}{15}{subsection.6.3}
-\contentsline {subsubsection}{\numberline {6.3.1}Paged memory}{15}{subsubsection.6.3.1}
-\contentsline {subsubsection}{\numberline {6.3.2}Page replacement algorithms}{16}{subsubsection.6.3.2}
-\contentsline {subsubsection}{\numberline {6.3.3}Swapping pages}{16}{subsubsection.6.3.3}
+\contentsline {subsection}{\numberline {6.4}Virtual paged memory}{15}{subsection.6.4}
+\contentsline {subsubsection}{\numberline {6.4.1}Page replacement algorithms}{16}{subsubsection.6.4.1}
+\contentsline {subsubsection}{\numberline {6.4.2}Swapping pages}{17}{subsubsection.6.4.2}
+\contentsline {subsection}{\numberline {6.5}Virtual segmented memory}{17}{subsection.6.5}

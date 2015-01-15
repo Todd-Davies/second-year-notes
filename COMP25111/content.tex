@@ -803,7 +803,7 @@ chunks of a variable size. As you may have been able to tell from exploits into
 programs like Windows Task Manager, paging is the most commonly used method of
 implementing virtual memory.
 
-\subsubsection{Paged memory}
+\subsection{Virtual paged memory}
 
 The number of pages used in the system is given by the formula:
 
@@ -878,6 +878,44 @@ another in the main memory next time we have a page fault. We need an algorithm
 to determine which page to swap. The LRU (Last Recently Used) and FIFO (First In
 First Out) algorithms are good for this.
 
+If we make bad choices about which pages to reject from memory, then our
+performance can seriously degrade. The following algorithms try and find the
+best page to swap out whenever we've got a page fault on our hands. An ideal
+solution is to find the page that will be used furthest in the future and swap
+that one out, but since we don't know in advance what memory programs will want
+to use (programs are dynamic), we can't do this.
+
+\begin{description}
+  \item \textbf{First In First Out (FIFO)}\\
+    Identifies the oldest page in memory and gets rid of that. This is risky,
+    since old pages can be critical pages (such as the operating system for
+    example, that's going to be loaded into RAM pretty early on isn't it!).
+
+  \item \textbf{Second Chance Algorithm (SCA)}\\
+    This algorithm is similar to FIFO, except that the oldest page with the
+    fewest number of accesses since the last pass of the algorithm is removed.
+    It's implemented by keeping a count of page accesses, that is reset on every
+    pass of the algorithm.
+
+  \item \textbf{Last Recently Used (LRU)}\\
+    The LRU algorithm works on the principle that if a page has been used
+    recently, then it's probably going to be used again soon. The easiest
+    implementation is to have a timestamp for every page (32/64 bit counter)
+    that is updated whenever the page is accessed. This can be slow when
+    implemented in software, so it's often added as a counter in the Translation
+    Lookaside Buffer (TLB)\marginpar{The TLB is a cache that's used to improve
+    the virtual address translation speed. Most PC's have one.}, which is
+    expensive in terms of hardware, but is fast.
+
+  \item \textbf{Not Recently Used (NRU)}\\
+    The NRU algorithm is a dumb replacement for LRU. It keeps an extra bit
+    called the `referenced bit' in the page table, that is set to $1$ when the
+    page is referenced. When a page needs to be replaced, ones with their
+    reference bit set to zero will be candidates. At fixed intervals, all of
+    these bits will be reset to $0$ (so all pages don't get `recently used'
+    eventually).
+\end{description}
+
 \subsubsection{Swapping pages}
 
 If we do want to swap a page in physical memory, we first need to decide if we
@@ -887,4 +925,78 @@ the page table, and is called a \textbf{write-back}. An alternative strategy is
 don't need to copy the whole page on every swap), however, this is silly, since
 you spend ages waiting for disk IO.
 
+\subsection{Virtual segmented memory}
 
+The idea behind segmented virtual memory is similar to that of paged virtual
+memory, except that the segments (nearly synonymous with pages) are of a
+variable size. The motivation behind segmentation is about supporting the system
+as a whole by allowing multiple address spaces, rather than enabling us to
+address a larger memory space (like it is with paging), though that is a side
+effect of segmented memory too.
+
+However, unlike a page, a segment is a variably sized block of virtual address
+space, and each segment has attributes that define how it is used, these include
+access rights (which users can use the segment), and usage rights (what
+operations can be performed on the segment, read/write/execute). Also unlike
+pages, programmers can actually \textit{segments}!
+
+Really though, in most respects, paged and segmented memory is really quite
+similar:
+
+\begin{itemize}
+  \item Both segmentation and paging ensures that programs don't interfere with
+  each other by writing to (or   reading from) each others memory. This
+  protects against malicious and badly   made programs; if a program could
+  write to the OS's memory, then the OS could be taken over by a malicious
+  program!
+
+  \item Both act like a mini address space, starting from address 0, and ending
+  at address $n$, where $n$ is the length of the page in bytes.
+
+  \item The address of a segment is made up of a segment number and an offset,
+  just like the address of a page is made up of a page number and offset.
+
+  \item A table of segments/pages is kept by the OS that keeps informational
+  about the segment/page. The only difference for segments is that an additional
+  field for the segment size is added.
+\end{itemize}
+
+Figure~\ref{memoryMap} shows how pages and segments are mapped from number-
+offset combinations onto actual address space locations.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=90mm]{images/memoryMapping.png}
+  \caption{Richard's diagram of \textbf{virtual address mapping} for segmented
+  memory (it's really similar for paged memory too)}
+  \label{memoryMap}
+\end{figure}
+
+A \textbf{segment fault} occurs if the OS tries to get a segment that is not in
+memory. If this occurs, then the page must be loaded from the hard drive into
+memory before it can be accessed. This isn't necessarily a \textit{bad} thing,
+but it will take time to move the segment from the hard drive onto memory, and
+potentially free up space in memory for it first.
+
+The position of segments in memory is harder to manage than that of pages, since
+segments come in different sizes. The OS needs to decide where to put segments
+in the memory, and what to do with fragmented memory. Fragmentation of the
+memory space builds up over time as segments of different sizes are moved
+between main memory and the backing store. This is called \textbf{External
+Fragmentation}.
+
+The OS compacts fragmented memory by shuffling segments to fill the holes,
+however, this is expensive since whole fragments must be copied (potentially
+lots of data). Of course, it's better to avoid fragmentation in the first place?
+
+When the OS is placing segments in memory, it can use algorithms such as best
+fit (scan all the holes in the memory, and find the closest fit), or first fit
+(shove the segment in the first hold that's big enough). The first tends to
+produce lots of small holes (which is more efficient), while the second is
+faster. All of these are a lot more intensive than the LRU and FIFO algorithms
+we saw with paging.
+
+The above points can make segments a lot less efficient than pages (especially
+since some segments can be just a few bytes, which incurs a lot of overhead for
+the amount of data being used), but the extra power that they give to
+programmers makes them a good trade off.
