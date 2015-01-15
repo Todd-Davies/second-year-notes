@@ -302,7 +302,7 @@
 	What are the two main reasons for virtual memory in a computer system?
 }{
 	\begin{tabularx}{0.32\textwidth}{l X}
-		1. & To all a processor to address a much larger address space than is implemented by the physical memory\\
+		1. & To allow a processor to address a much larger address space than is implemented by the physical memory\\
 		2. & To support the OS in the management of processes\\
 	\end{tabularx}
 }
@@ -313,6 +313,74 @@
 	A table used by the MMU to translate from a virtual to a physical address.
 }
 
-%TODO: Include slide 25: https://online.manchester.ac.uk/bbcswebdav/pid-3119077-dt-content-rid-10554249_1/courses/I3023-COMP-25111-1141-1SE-001890/PPT%20STUDENTS%20Lecture12%286%29.pdf
+\card{
+	What are the two techniques used to implement virtual memory?
+}{
+	Paged virtual memory and segmented virtual memory.
+}
 
+\flashcard{
+	Segmented memory is split into chunks of a \blank{variable} size.
+}
+
+\card{
+	What is the formula to work out the number of pages used in a system?
+}{
+	\[#pages = \frac{addressSpace}{PageSize}\]
+	Where $addressSpace$ and $pageSize$ are measured in bits.
+}
+
+\card{
+	What is the format of an address to paged memory?
+}{
+	Page number + offset
+}
+
+\card{
+	What steps does the MMU take when it receives a paged address?
+}{
+	\begin{tabularx}{0.32\textwidth}{l X}
+		1. & Look up the page number in the page table and see if it's in physical memory.\\
+		2. & If it is in memory, generate a physical address ((page-size \times page-nmber) + offset), and request that from RAM.\\
+		3. & If it's not, abort the memory access, OS will load the page into memory (this is a page fault).
+	\end{tabularx}
+}
+
+\card{
+	What columns are present in the page table?
+}{
+	\begin{tabularx}{0.32\textwidth}{l X}
+		- & Resident flag\\
+		- & Used flag\\
+		- & Dirty flag\\
+		- & Physical address\\
+		- & Disk address\\
+	\end{tabularx}
+}
+
+\flashcard{
+	In a page table, the resident flag checks whether the page is \blank{currently in virtual memory}
+}
+
+\flashcard{
+	In a page table the used flag check whether the page \blank{has been used}
+}
+
+\card{
+	In a page table, what does the dirty flag do?
+}{
+	Checks whether the page has been written to while it's been in physical memory (so it needs to be copied back in full when it's put back onto the disk).
+}
+
+\card{
+	LRU is a page replacement algorithm, what does LRU stand for?
+}{
+	Last recently used
+}
+
+\card{
+	FIFO is a page replacement algorithm, what does FIFO stand for?
+}{
+	First in first out.
+}
 \end{document} 
