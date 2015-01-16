@@ -2,6 +2,7 @@
 \usepackage{color}
 \usepackage{tabularx}
 \usepackage{graphicx}
+\usepackage{amsmath}
 \definecolor{light-gray}{gray}{0.75}
 
 \newcommand{\frontcard}[1]{\textcolor{light-gray}{\colorbox{light-gray}{$#1$}}}
@@ -21,120 +22,121 @@
 
 \pagesetup{2}{4} 
 
-\card{
-	The MU0 is a 16 bit architecture, what make us these 16 of the instruction?
-}{
-	4 bits for an operation and 12 for the address.
-}
+%\card{
+%	The MU0 is a 16 bit architecture, what two parts are in each instruction, and
+% how large are they?
+%}{
+%	4 bits for an operation and 12 for the address.
+%}
+%
+%\card{
+%	In the MU0, what are the two programmer visible registers?
+%}{
+%	The program counter and the accumulator.
+%}
+%
+%\card{
+%	How many bits long is the program counter and what does it store?
+%}{
+%	12 bits, stores the address in memory of the next instruction to be executed.
+%}
+%
+%\card{
+%	How many bits is the accumulator and what does it store?
+%}{
+%	16 bits, stores the result of the last arithmetic operation.
+%}
+%
+%\card{
+%	What happens when `LDA s' is run?
+%}{
+%	ACC = [s]
+%}
+%
+%\card{
+%	What happens when `STA s' is run?
+%}{
+%	[s] = ACC
+%}
+%
+%\card{
+%	What happens when `ADD s' is run?
+%}{
+%	ACC += [s]
+%}
+%
+%\card{
+%	What happens when `SUB s' is run?
+%}{
+%	ACC -= [s]
+%}
+%
+%\card{
+%	What happens when `JMP s' is run?
+%}{
+%	PC = s
+%}
+%
+%\card{
+%	What happens when `JGE s' is run?
+%}{
+%	if ACC >= 0 then PC = s
+%}
+%
+%\card{
+%	What happens when `JNE s' is run?
+%}{
+%	if ACC != 0 then PC = s
+%}
+%
+%\card{
+%	Briefly explain what the fetch-execute cycle is.
+%}{
+%	The next instruction is fetched from memory (at the address pointed to by the PC), then the instruction is executed.
+%}
+%
+%\card{
+%	What three steps occur during the fetch phase?
+%}{
+%	\begin{tabularx}{0.32\textwidth}{l X}
+%		1. & Read the data stored in the address that the PC is pointing to.\\
+%		2. & Save result of read in the instruction register\\
+%		3. & Increment the PC.
+%	\end{tabularx}
+%}
+%
+%\card{
+%	In order for every instruction to run smoothly what needs to be worked out?
+%}{
+%	\begin{tabularx}{0.32\textwidth}{l X}
+%		1. & The critical path for each operation.\\
+%		2. & The time allowed for signals to propagate through even the longest critical path.\\
+%	\end{tabularx}
+%}
 
-\card{
-	In the MU0, what are the two programmer visible registers?
-}{
-	The program counter and the accumulator.
-}
-
-\card{
-	How many bits long is the program counter and what does it store?
-}{
-	12 bits, stores the address in memory of the next instruction to be executed.
-}
-
-\card{
-	How many bits is the accumulator and what does it store?
-}{
-	16 bits, stores the result of the last arithmetic operation.
-}
-
-\card{
-	What happens when `LDA s' is run?
-}{
-	ACC = [s]
-}
-
-\card{
-	What happens when `STA s' is run?
-}{
-	[s] = ACC
-}
-
-\card{
-	What happens when `ADD s' is run?
-}{
-	ACC += [s]
-}
-
-\card{
-	What happens when `SUB s' is run?
-}{
-	ACC -= [s]
-}
-
-\card{
-	What happens when `JMP s' is run?
-}{
-	PC = s
-}
-
-\card{
-	What happens when `JGE s' is run?
-}{
-	if ACC >= 0 then PC = s
-}
-
-\card{
-	What happens when `JNE s' is run?
-}{
-	if ACC != 0 then PC = s
-}
-
-\card{
-	Briefly explain what the fetch-execute cycle is.
-}{
-	The next instruction is fetched from memory (at the address pointed to by the PC), then the instruction is executed.
-}
-
-\card{
-	What three steps occur during the fetch phase?
-}{
-	\begin{tabularx}{0.32\textwidth}{l X}
-		1. & Read the data stored in the address that the PC is pointing to.\\
-		2. & Save result of read in the instruction register\\
-		3. & Increment the PC.
-	\end{tabularx}
-}
-
-\card{
-	In order for every execution to run smoothly what needs to be worked out?
-}{
-	\begin{tabularx}{0.32\textwidth}{l X}
-		1. & The critical path for each operation.\\
-		2. & The time allowed for signals to propagate through even the longest critical path.\\
-	\end{tabularx}
-}
-
-\card{
-	What control signals do all registers need?
-}{
-	An enable signal
-}
-
-\card{
-	What control signal does a multiplexer need?
-}{
-	A signal to select an input
-}
-
-\card{
-	What control signals does the memory need?
-}{
-	Ren (read enable) and Wen (write enable)
-}
-
-\card{
-	Which 3 signals control the ALU?
-}{
-	add, sub \& byp
-}
+%\card{
+%	What control signals do all registers need?
+%}{
+%	An enable signal
+%}
+%
+%\card{
+%	What control signal does a multiplexer need?
+%}{
+%	A signal to select an input
+%}
+%
+%\card{
+%	What control signals does the memory need?
+%}{
+%	Ren (read enable) and Wen (write enable)
+%}
+%
+%\card{
+%	Which 3 signals control the ALU?
+%}{
+%	add, sub \& byp
+%}
 
 \card{
 	What two jobs do operating systems do in general?
@@ -172,7 +174,9 @@
 \card{
 	How do we make programs think they have sole use of memory?
 }{
-	Use \textbf{relocation}, where we swap a program out of memory and later swap it back in.
+  Use \textbf{relocation}, where we provide a virtual machine for each program,
+  allowing them to behave as though they have sole use of memory. We need to
+  support some kind of virtual memory for this.
 }
 
 \card{
@@ -253,19 +257,23 @@
 }
 
 \card{
-	What is meant by pre-emptive scheduling?	
+	What is meant by non-pre-emptive scheduling?	
 }{
 	Scheduling where processes run until they are terminated or blocked.
 }
 
 \card{
-	What is meant by non-pre-emptive scheduling?
+	What is meant by pre-emptive scheduling?
 }{
-	Scheduling where a process can run for some fixed maximum time, once it has reached its maximum time, it is interrupted and set `ready' and the scheduler runs the next process.
+  A pre-emptive scheduler will temporarily interrupt a process, without
+  requiring its cooperation, so that other processes can execute, and with the
+  intention of resuming the task at a later time. The interrupted process is set
+  in the `ready' state so that it can be started again later.
 }
 
 \card{
-	What is the fixed time amount called in non-pre-emptive processing?
+	What is the maximum length a process will be allowed to execute for called in
+  pre-emptive processing?
 }{
 	The `time-slice' or `time-quantum'.
 }
@@ -354,13 +362,6 @@
 }
 
 \card{
-	What is the difference between a partition and a program?
-}{
-	A partition is: division of the storage area of a memory.\\
-	A program is: supplies a computer with a set of pre-written instructions.
-}
-
-\card{
 	What are the two main reasons for virtual memory in a computer system?
 }{
 	\begin{tabularx}{0.32\textwidth}{l X}
@@ -403,7 +404,7 @@
 }{
 	\begin{tabularx}{0.32\textwidth}{l X}
 		1. & Look up the page number in the page table and see if it's in physical memory.\\
-		2. & If it is in memory, generate a physical address ((pageSize $\times$ pageNumber) + offset), and request that from RAM.\\
+		2. & If it is in memory, generate a physical address $\text{page-base address} + \text{offset}$, and request that from RAM.\\
 		3. & If it's not, abort the memory access, OS will load the page into memory (this is a page fault).
 	\end{tabularx}
 }
@@ -421,7 +422,8 @@
 }
 
 \flashcard{
-	In a page table, the resident flag checks whether the page is \blank{currently in virtual memory}
+	In a page table, the resident flag checks whether the page is \blank{currently
+  in memory}
 }
 
 \flashcard{
@@ -455,13 +457,15 @@
 \card{
 	Briefly explain what the second chance page replacement algorithm does.
 }{
-	This picks the oldest page with the fewest number of accesses since the last pass of the algorithm.
+	This picks the oldest page with the fewest number of accesses since the last
+  pass of the algorithm.
 }
 
 \card{
 	Briefly explain the last recently used page replacement algorithm.
 }{
-	This picks the page that has been used the least amount of time. Implemented by using a timestamp.
+	This picks the page that has been used the longest ago. It's implemented using 
+  a timestamp that is updated when the page is read or written to.
 }
 
 \card{
@@ -485,12 +489,15 @@
 \card{
 	Explain external fragmentation.
 }{
-	When segments of different sizes are moved between main memory and the backing store.
+	When segments are moved in and out of main memory, `holes' appear in the
+  memory (due to segments having different sizes), which reduces the amount of
+  useful memory.
 }
 
 \card{
 	What can we do to prevent fragmentation?
 }{
-	Use algorithms such as best fit and first fit when the OS is placing segments in memory.
+	Use algorithms to find a good place to put segments, such as `best fit' and
+  `first fit' when the OS is placing segments in memory.
 }
 \end{document} 

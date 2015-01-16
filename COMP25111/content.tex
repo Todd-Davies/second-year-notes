@@ -832,11 +832,11 @@ rest of the bits is the offset. This is depicted in Figure~\ref{memory-address}.
 When the MMU gets a paged address, it follows these steps:
 
 \begin{enumerate}
-	\item Look up the page number in the page table, see if the page is in the
-		physical memory or not.
+	\item Look up the page base address in the page table (using the page number),
+    see if the page is in the physical memory or not.
 	\item If the page is in memory, generate a physical address (
-		$(\text{page-size} \times \text{page-number}) + \text{offset}$), and
-		request that from the RAM.
+		$\text{page-base address} + \text{offset}$), and request that from the
+    RAM.
 	\item If it's not, then abort the memory access, and the operating system
 		will load the page into memory (this is a \textbf{page fault}).
 \end{enumerate}
@@ -908,7 +908,6 @@ to use (programs are dynamic), we can't do this.
     expensive in terms of hardware, but is fast.
 
   \item \textbf{Not Recently Used (NRU)}\\
-
     The NRU algorithm is a dumb replacement for LRU. It keeps two extra bits in
     the page table; one called the `referenced bit' that is set to $1$ when the
     page is referenced and the other, called the `modified bit' that is set to

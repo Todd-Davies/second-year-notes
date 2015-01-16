@@ -1,6 +1,7 @@
 \documentclass[frontgrid]{flacards}
 \usepackage{color}
 \usepackage{tabularx}
+\usepackage{graphicx}
 \definecolor{light-gray}{gray}{0.75}
 
 \newcommand{\frontcard}[1]{\textcolor{light-gray}{\colorbox{light-gray}{$#1$}}}
@@ -20,127 +21,128 @@
 
 \pagesetup{2}{4} 
 
-\card{
-	The MU0 is a 16 bit architecture, what make us these 16 of the instruction?
-}{
-	4 bits for an operation and 12 for the address.
-}
+%\card{
+%	The MU0 is a 16 bit architecture, what two parts are in each instruction, and
+% how large are they?
+%}{
+%	4 bits for an operation and 12 for the address.
+%}
+%
+%\card{
+%	In the MU0, what are the two programmer visible registers?
+%}{
+%	The program counter and the accumulator.
+%}
+%
+%\card{
+%	How many bits long is the program counter and what does it store?
+%}{
+%	12 bits, stores the address in memory of the next instruction to be executed.
+%}
+%
+%\card{
+%	How many bits is the accumulator and what does it store?
+%}{
+%	16 bits, stores the result of the last arithmetic operation.
+%}
+%
+%\card{
+%	What happens when `LDA s' is run?
+%}{
+%	ACC = [s]
+%}
+%
+%\card{
+%	What happens when `STA s' is run?
+%}{
+%	[s] = ACC
+%}
+%
+%\card{
+%	What happens when `ADD s' is run?
+%}{
+%	ACC += [s]
+%}
+%
+%\card{
+%	What happens when `SUB s' is run?
+%}{
+%	ACC -= [s]
+%}
+%
+%\card{
+%	What happens when `JMP s' is run?
+%}{
+%	PC = s
+%}
+%
+%\card{
+%	What happens when `JGE s' is run?
+%}{
+%	if ACC >= 0 then PC = s
+%}
+%
+%\card{
+%	What happens when `JNE s' is run?
+%}{
+%	if ACC != 0 then PC = s
+%}
+%
+%\card{
+%	Briefly explain what the fetch-execute cycle is.
+%}{
+%	The next instruction is fetched from memory (at the address pointed to by the PC), then the instruction is executed.
+%}
+%
+%\card{
+%	What three steps occur during the fetch phase?
+%}{
+%	\begin{tabularx}{0.32\textwidth}{l X}
+%		1. & Read the data stored in the address that the PC is pointing to.\\
+%		2. & Save result of read in the instruction register\\
+%		3. & Increment the PC.
+%	\end{tabularx}
+%}
+%
+%\card{
+%	In order for every instruction to run smoothly what needs to be worked out?
+%}{
+%	\begin{tabularx}{0.32\textwidth}{l X}
+%		1. & The critical path for each operation.\\
+%		2. & The time allowed for signals to propagate through even the longest critical path.\\
+%	\end{tabularx}
+%}
 
-\card{
-	In the MU0, what are the two programmer visible registers?
-}{
-	The program counter and the accumulator.
-}
-
-\card{
-	How many bits long is the program counter and what does it store?
-}{
-	12 bits, stores the address in memory of the next instruction to be executed.
-}
-
-\card{
-	How many bits is the accumulator and what does it store?
-}{
-	16 bits, stores the result of the last arithmetic operation.
-}
-
-\card{
-	What happens when `LDA s' is run?
-}{
-	ACC = [s]
-}
-
-\card{
-	What happens when `STA s' is run?
-}{
-	[s] = ACC
-}
-
-\card{
-	What happens when `ADD s' is run?
-}{
-	ACC += [s]
-}
-
-\card{
-	What happens when `SUB s' is run?
-}{
-	ACC -= [s]
-}
-
-\card{
-	What happens when `JMP s' is run?
-}{
-	PC = s
-}
-
-\card{
-	What happens when `JGE s' is run?
-}{
-	if ACC >= 0 then PC = s
-}
-
-\card{
-	What happens when `JNE s' is run?
-}{
-	if ACC != 0 then PC = s
-}
-
-\card{
-	Briefly explain what the fetch-execute cycle is.
-}{
-	The next instruction is fetched from memory (at the address pointed to by the PC), then the instruction is executed.
-}
-
-\card{
-	What three steps occur during the fetch phase?
-}{
-	\begin{tabularx}{0.32\textwidth}{l X}
-		1. & Read the data stored in the adress that the PC is pointing to.\\
-		2. & Save result of read in the instruction register\\
-		3. & Increment the PC.
-	\end{tabularx}
-}
-
-\card{
-	In order for every execution to run smoothly what needs to be worked out?
-}{
-	\begin{tabularx}{0.32\textwidth}{l X}
-		1. & The critical path for each operation.\\
-		2. & The time allowed for signals to propagate through even the longest critical path.\\
-	\end{tabularx}
-}
-
-\card{
-	What control signals do all registers need?
-}{
-	An enable signal
-}
-
-\card{
-	What control signal does a multiplexer need?
-}{
-	A signal to select an input
-}
-
-\card{
-	What control signals does the memory need?
-}{
-	Ren (read enable) and Wen (write enable)
-}
-
-\card{
-	Which 3 signals control the ALU?
-}{
-	add, sub \& byp
-}
+%\card{
+%	What control signals do all registers need?
+%}{
+%	An enable signal
+%}
+%
+%\card{
+%	What control signal does a multiplexer need?
+%}{
+%	A signal to select an input
+%}
+%
+%\card{
+%	What control signals does the memory need?
+%}{
+%	Ren (read enable) and Wen (write enable)
+%}
+%
+%\card{
+%	Which 3 signals control the ALU?
+%}{
+%	add, sub \& byp
+%}
 
 \card{
 	What two jobs do operating systems do in general?
 }{
 	\begin{tabularx}{0.32\textwidth}{l X}
 		1. & Manage the resources of the system.\\
-		2. & Abstact the implementation of the system from the running programs.\\
+		2. & Abstract the implementation of the system from the running programs.\\
 	\end{tabularx}
 }
 
@@ -331,7 +333,7 @@
 \card{
 	What is the base register usage sequence?
 }{
-	When the processor references memory, either fetch an instruction or read or write a data word, the CPU hardware automatically adds the base balue to the address generated by the processor before sending the address out on the memory bus.
+	When the processor references memory, either fetch an instruction or read or write a data word, the CPU hardware automatically adds the base value to the address generated by the processor before sending the address out on the memory bus.
 }
 
 \card{
@@ -402,7 +404,7 @@
 }{
 	\begin{tabularx}{0.32\textwidth}{l X}
 		1. & Look up the page number in the page table and see if it's in physical memory.\\
-		2. & If it is in memory, generate a physical address ((pagesize $\times$ pagenumber) + offset), and request that from RAM.\\
+		2. & If it is in memory, generate a physical address $\text{page-base address} + \text{offset}$, and request that from RAM.\\
 		3. & If it's not, abort the memory access, OS will load the page into memory (this is a page fault).
 	\end{tabularx}
 }
@@ -420,7 +422,8 @@
 }
 
 \flashcard{
-	In a page table, the resident flag checks whether the page is \blank{currently in virtual memory}
+	In a page table, the resident flag checks whether the page is \blank{currently
+  in memory}
 }
 
 \flashcard{
@@ -454,13 +457,15 @@
 \card{
 	Briefly explain what the second chance page replacement algorithm does.
 }{
-	This picks the oldest page with the fewest number of accesses since the last pass of the algorithm.
+	This picks the oldest page with the fewest number of accesses since the last
+  pass of the algorithm.
 }
 
 \card{
 	Briefly explain the last recently used page replacement algorithm.
 }{
-	This picks the page that has been used the least amount of time. Implemented by using a timestamp.
+	This picks the page that has been used the longest ago. It's implmented using 
+  a timestamp that is updated when the page is read or written to.
 }
 
 \card{
@@ -484,12 +489,15 @@
 \card{
 	Explain external fragmentation.
 }{
-	When segments of different sizes are moved between main memory and the backing store.
+	When segments are moved in and out of main memory, `holes' appear in the
+  memory (due to segments having different sizes), which reduces the amount of
+  useful memory.
 }
 
 \card{
 	What can we do to prevent fragmentation?
 }{
-	Use algorithms such as best fit and first fit when the OS is placing segments in memory.
+	Use algorithms to find a good place to put segments, such as `best fit' and
+  `first fit' when the OS is placing segments in memory.
 }
 \end{document} 
