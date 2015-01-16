@@ -14,8 +14,22 @@
 \usepackage{drawstack}
 % For urls
 \usepackage[hyphenbreaks]{breakurl}
+% For putting floats in their place
 % For graphics
 \usepackage{graphicx}
+% For splitting long lists into columns
+\usepackage{multicol}
+% For no multicol on the kindle
+\usepackage{environ}
+\newif\ifmulticols
+\NewEnviron{mymulticols}{
+\ifmulticols
+  \begin{multicols}{2}
+    \BODY
+  \end{multicols}
+\else
+  \BODY
+\fi}
 % Make LaTeX pretty with better kerning etc
 \usepackage{microtype}
 

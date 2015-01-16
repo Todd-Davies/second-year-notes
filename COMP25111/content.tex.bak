@@ -1000,7 +1000,7 @@ similar:
 Figure~\ref{memoryMap} shows how pages and segments are mapped from number-
 offset combinations onto actual address space locations.
 
-\begin{figure}[ht!]
+\begin{figure}[H]
   \centering
   \includegraphics[width=90mm]{images/memoryMapping.png}
   \caption{Richard's diagram of \textbf{virtual address mapping} for segmented
@@ -1114,7 +1114,7 @@ writing to files that are being frequently accessed.
 
 Disks are usually structured in the following way:
 
-\begin{figure}[ht!]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{images/disk-structure}
   \caption{MOS2 fig 6.11 - How a disk may be structured}
@@ -1194,7 +1194,7 @@ process is writing. To avoid this, we can let only one process write to a file,
 or have many processes reading a file. Some applications (such as databases)
 could have specific protocols if they're extra clever.
 
-In order to increase performance, its a good idea to use a cache in between the
+In order to increase performance, its a good idea to use a cache inbetween the
 programs and the disk. This way, the turnaround time to access frequently used
 data can be lowered. The efficiency of such caches depends on the usage patterns
 and the cache strategies used.
