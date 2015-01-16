@@ -6,6 +6,7 @@ IT IS THE DEFINITION OF A QUICK HACK ;)
 
 from string import Template
 from os import listdir
+import random
 
 s = Template("""
 \card{
@@ -28,20 +29,28 @@ s = Template("""
 
 def convert(question):
   lines = question.split('\n')
-  for i in range(1,9):
+  nlines = question.split('\n')
+  nums = [1,2,3,4]
+  random.shuffle(nums)
+  nums2 = [nums[0] + 4,nums[1] + 4,nums[2] + 4,nums[3] + 4]
+  order = nums + nums2
+  index = 1
+  print("%" + str(order))
+  for i in order:
     out = ""
     if lines[i]:
-      num = (i % 4)
+      num = (index % 4)
       if num == 0:
         num = 4
       out = str(num) + ". & " + lines[i]
-      if i % 4 != 0:
+      if index % 4 != 0:
         out = out + "\\\\"  
     else:
       out = " & " 
-      if i % 4 != 0:
+      if index % 4 != 0:
         out = out + "\\\\"
-    lines[i] = out
+    nlines[index] = out
+    index += 1
 
     """if lines[i]:
       num = (i % 4)
@@ -52,17 +61,17 @@ def convert(question):
       lines[i] = lines[i] + "& "
       lines[i] = lines[i] + "\\\\"
     """
-  return s.safe_substitute(question=lines[0], answer1=lines[1],
-                                              answer2=lines[2],
-                                              answer3=lines[3],
-                                              answer4=lines[4],
-                                              actual1=lines[5],
-                                              actual2=lines[6],
-                                              actual3=lines[7],
-                                              actual4=lines[8])
+  return s.safe_substitute(question=nlines[0], answer1=nlines[1],
+                                              answer2=nlines[2],
+                                              answer3=nlines[3],
+                                              answer4=nlines[4],
+                                              actual1=nlines[5],
+                                              actual2=nlines[6],
+                                              actual3=nlines[7],
+                                              actual4=nlines[8])
 
 files = listdir("data")
 for f in files:
   dat = open("data/" + f, 'r')
-  print "%" + f
-  print convert(dat.read())
+  print("%" + f)
+  print(convert(dat.read()))
