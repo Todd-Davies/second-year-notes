@@ -1,10 +1,10 @@
 In A Banking System, which of these would you consider a functional requirement?
 Customer can create a new account
-Cutomer can make balance transfers online
+Customer can make balance transfers online
 Customer can view account changes within 1 hour of transactions happening
 The system should have the latest security protection
 Correct. This is a clear functional aspect of a banking system.
 Incorrect. This is non-functional as it has the constraint of being online, rather than just the function itself. The correct answer is Customer can create a new account as this is a a clear functional aspect of a banking system.
 Incorrect. This is more about the performance of a function, rather than the actual function. If it said Customer can view account changes only, then that would be a functional requirement. The correct answer is Customer can create a new account as this is a a clear functional aspect of  a banking system.
-Incorrect. This is more about the system perfomance and how it performs, rather than an actual function it does. The correct answer is Customer can create a new account as this is a a clear functional aspect of a banking system.
+Incorrect. This is more about the system performance and how it performs, rather than an actual function it does. The correct answer is Customer can create a new account as this is a a clear functional aspect of a banking system.
 This is a very basic functional requirement that a bank should provide.  It has no information on how this should be done, just that it should be done. The others are non-functional as they are descriptive ways in which certain functions should be done, rather than the functional requirement itself

@@ -3,7 +3,7 @@ A customer should be able to manage their bookings
 A customer can book a room up to 12 months in advance.
 A customer can cancel a room booking.
 A customer can amend a booking.
-Correct. The level of abstraction is higher than the others. It is very general and can include many other things.  The others are of a more fine granualarity and refer to more specific requirements
+Correct. The level of abstraction is higher than the others. It is very general and can include many other things.  The others are of a more fine granularity and refer to more specific requirements
 
 
 

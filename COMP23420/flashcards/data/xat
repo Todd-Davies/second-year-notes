@@ -1,10 +1,10 @@
 Which of the following would be a sensible use case in a banking system?
 Customer withdraws money.
 Customer records should be stored in a  back up database.
-Customers should recive an account statement every month
+Customers should receive an account statement every month
 Customer manages account.
 Correct. This is a clear use case in the format of verb-direct object noun - Withdraws Money, with the Customer being the actor performing this.
-Incorrect. This seems like more of a requirements, a use case equilivant would be Back up customer records, which follows the use case format of verb-direct object noun.  Back up (verb-direct) Customer records (noun). The answer is Customer withdraws money.  In this case it is Customer (Actor) withdraws (verb-direct) money (object-noun)
-Incorrect. This seems like more of a requirements, a use case equilivant would be Send account statement, which follows the use case format of verb-direct object noun.  Send (verb-direct) account statement (noun). The answer is Customer withdraws money.  In this case it is Customer (Actor) withdraws (verb-direct) money (object-noun)
-Incorrect. This is a very general use case and would comprised of many smaller, more fine grain use cases, such as Transer Money, View account and withdraw money. The answer is Customer withdraws money.  In this case it is Customer (Actor) withdraws (verb-direct) money (object-noun)
+Incorrect. This seems like more of a requirements, a use case equivalent would be Back up customer records, which follows the use case format of verb-direct object noun.  Back up (verb-direct) Customer records (noun). The answer is Customer withdraws money.  In this case it is Customer (Actor) withdraws (verb-direct) money (object-noun)
+Incorrect. This seems like more of a requirements, a use case equivalent would be Send account statement, which follows the use case format of verb-direct object noun.  Send (verb-direct) account statement (noun). The answer is Customer withdraws money.  In this case it is Customer (Actor) withdraws (verb-direct) money (object-noun)
+Incorrect. This is a very general use case and would comprised of many smaller, more fine grain use cases, such as Transfer Money, View account and withdraw money. The answer is Customer withdraws money.  In this case it is Customer (Actor) withdraws (verb-direct) money (object-noun)
 The answer is Customer withdraws money. This is a clear use case in the format of verb-direct object noun - Withdraws Money, with the Customer being the actor performing this.

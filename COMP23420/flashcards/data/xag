@@ -1,10 +1,10 @@
 In a spaceship control system, which of the following is the odd one out?
 The system should provide a complete flight management solution.
 The system should inform ground control its exact position, when requested
-The system must have an autopilot mode to guide it to a given postition.
+The system must have an autopilot mode to guide it to a given position.
 The system should adjust pressure within the spaceship.
-Correct. This is not at the same granualarity as the others. it is very general and does not state any specific requirement. Where as the others are more fine grain, refering to exact  requirements.
+Correct. This is not at the same granularity as the others. it is very general and does not state any specific requirement. Where as the others are more fine grain, referring to exact  requirements.
 
 
 
-This is not at the same granualarity as the others. it is very general and does not state any specific requirement. Where as the others are more fine grain, refering to exact  requirements.
+This is not at the same granularity as the others. it is very general and does not state any specific requirement. Where as the others are more fine grain, referring to exact  requirements.

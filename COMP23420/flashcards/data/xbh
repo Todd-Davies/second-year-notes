@@ -3,7 +3,7 @@ Van
 
 Parcel
 Customer Account
-Correct. A van might be used for the delivery, but wouldnt be used as a domain class. The others are well defined domain areas which the system will want to use.
+Correct. A van might be used for the delivery, but wouldn't be used as a domain class. The others are well defined domain areas which the system will want to use.
 
 
 
