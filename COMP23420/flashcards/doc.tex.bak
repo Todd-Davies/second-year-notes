@@ -82,20 +82,20 @@
 }{
 	How classes interact with each other and in what order these interactions
 	occur. It is a type of interaction diagram. System classes go along the top,
-	and interactions go horizontally between vertical lines below them.
+	and interactions go horizontally bewteen vertical lines below them.
 }
 
 \card{
 	What is an activity diagram?
 }{
-	An activity diagram describes what the system should do, not how it does it.
+	An activity diagram decribes what the system should do, not how it does it.
 	Basically a flowchart of what the system should do.
 }
 
 \card{
 	What is an action?
 }{
-	A non-decomposable piece of behaviour.
+	A non-decomposable piece of behaviuour.
 }
 
 \card{
@@ -107,7 +107,7 @@
 \card{
 	What is a non-functional requirement?
 }{
-	A criteria that is used to judge the operation of a system rather than
+	A creteria that is used to judge the operation of a system rather than
 	specific behaviours.
 }
 
@@ -145,7 +145,7 @@
 	\begin{tabular}{l}
 	Wizard interface\\
 	Form fill in\\
-	Direct manipulation (e.g. word, Photoshop)\\
+	Direct manipulation (e.g. word, photoshop)\\
 	Command line\\
 	Batch processing (e.g. cron)
 	\end{tabular}
