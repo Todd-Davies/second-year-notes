@@ -1250,7 +1250,7 @@ instead called through the Win32 API provided by the OS.
 \subsection{Architecture}
 
 Windows is split into layered modules that run in \textbf{P}rotected mode or
-\textbf{U}ser mode:
+\textbf{U}ser mode (illustrated in Figure~\ref{win-arch}):
 
 \begin{description}
   \item \textbf{P} - \textbf{Hardware Abstraction layer (HAL)}\\
@@ -1287,8 +1287,6 @@ are all exposed to the programmer.
     between processes, subject to the processes Access Control List (ACL).
     Unnamed processes are private.
 
-    %\newcommand{\backslash}{\char`\\}
-
   \item \textbf{Configuration manager}\\
     Better known as the registry, the configuration manager is a list of key
     value pairs in a  directory structure. Windows programs look in the registry
@@ -1299,7 +1297,6 @@ are all exposed to the programmer.
     share. Over time, as the registry gets bigger, it also gets slower.
 
   \item \textbf{Kernel}\\
-
     The kernel deals with four abstractions for running code instead of the
     normal two; Job, Process, Thread, Fiber. Processes own resources such as
     threads and locks on objects, while threads are scheduled by the OS and
@@ -1334,7 +1331,6 @@ are all exposed to the programmer.
     Windows can also memory map files to speed up IO.
 
   \item \textbf{IO}\\
-
     The IO manager inspects each slot of each bus both at boot time (to discover
     hardware), but also during run time (to support plug and play hardware such
     as USB). The device info oo will tell the IO manager where to find the
@@ -1346,7 +1342,6 @@ are all exposed to the programmer.
     support unplugging.
 
   \item \textbf{NTFS}\\
-
     The hard drive is split up into clusters (these are blocks in other file
     systems) of about 4Kb. Files are just a set of attributes with a byte stream
     on the end, which can be a maximum length of $2^64$ bytes (this is a number
@@ -1361,3 +1356,23 @@ are all exposed to the programmer.
     NTFS supports transactions and logging so the system can maintain its
     integrity, as well as supporting compression and encryption.
 \end{description}
+
+\begin{figure}[ht!]
+  \includegraphics[width=\textwidth]{images/windows-arch}
+  \caption{The Windows NT architecture, from Wikipedia}
+  \label{win-arch}
+\end{figure}
+
+\section{Unix}
+
+Concieved in 1969 as a single-user system, and expanded in 1973 to be a multi-
+user system, UNIX is a system written by programmers for programmers. It's
+source is freely distributed, and it has a modular design.
+
+The philospohy behind unix is that there should be lots of very simple programs
+that you can compose together to perform complex tasks. Each program does its
+own job very well, but it very minimal.
+
+The shell, IO redirection, pipes and filters make it really easy to reuse
+programs for uses that they were never intended for. In line with the ethos of
+simplicity, everything is treated as a file by unix.
