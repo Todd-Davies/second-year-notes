@@ -1230,3 +1230,134 @@ This is good because files can be manipulated quicker in RAM, however it can
 have bad implications if there are different access patterns between main memory
 and secondary backing storage that the manager will have to contend with (so you
 have to choose an algorithm that deals with both well).
+
+\section{Windows}
+
+Windows was the first operating system to demonstrate how useful a GUI could be.
+It was aimed at home use, and concequently, early versions (upto and including
+98) were 16 bit and didn't have multiprocessing capabilities. Later versions are
+32 or 64 bit, and are much more secure.
+
+The goals of Windows are to provide a secure, multi-processing, reliable
+operating system that is compaible (with DOS emulation) with older windows
+programs. Windows also supports unicode, so that it can be used in languages
+with a non-latin alphabet.
+
+Most non-programmers (and programmers) see Windows as a single entity; the GUI
+is built into the OS, and system calls are not publically accessible, but are
+instead called through the Win32 API provided by the OS.
+
+\subsection{Architecture}
+
+Windows is split into layered modules that run in \textbf{P}rotected mode or
+\textbf{U}ser mode:
+
+\begin{description}
+  \item \textbf{P} - \textbf{Hardware Abstraction layer (HAL)}\\
+    The HAL deals with very low level stuff, reading and writing to registers,
+    timing on the clock, interrupt handeling etc.
+  \item \textbf{P} - \textbf{Kernel}\\
+    Deals with thread scheduling, processor synchronization, more interrupt
+    handeling etc.
+  \item \textbf{P} - \textbf{Executive services}\\
+    Deals with IO, object management, security, process management etc. Most
+    system calls are implemented at this level.
+  \item \textbf{U} - \textbf{Service processes}\\
+    A number of running services such as the work station service and the
+    security service.
+  \item \textbf{U} - \textbf{Environments}\\
+    Win32, POSIX and OS/2 are the actual components that run programs. As you
+    might expect, Win32 runs windows programs, and can also emulate DOS
+    machines, OS/2 is a OS/2 1.x emuator for 16-bit character based
+    applications, and POSIX supports programs written in the POSIX standard.
+\end{description}
+
+The Win32 API is a very large library of functions, that wrap around (and hide)
+the windows system calls, and include a GUI. This is how windows applications
+create a GUI. This contrasts with UNIX, where there are few system calls that
+are all exposed to the programmer.
+
+\subsection{Components}
+
+\begin{description}
+  \item \textbf{Object manager}\\
+    The object manager uses handles (objects) to reference and manage services
+    and entities. These can be processes, threads, address spaces, semaphores,
+    timers etc. It's a searchable directory and named objects can be shared
+    between processes, subject to the processes Access Control List (ACL).
+    Unnamed processes are private.
+
+    %\newcommand{\backslash}{\char`\\}
+
+  \item \textbf{Configuration manager}\\
+    Better known as the registry, the configuration manager is a list of key
+    value pairs in a  directory structure. Windows programs look in the registry
+    to access the user's configuration settings, finding key/value pairs.
+
+    It replaces the many scattered config files found in systems like Unix,
+    however, it's also a single point of faliure, and hard to edit, back up and
+    share. Over time, as the registry gets bigger, it also gets slower.
+
+  \item \textbf{Kernel}\\
+
+    The kernel deals with four abstractions for running code instead of the
+    normal two; Job, Process, Thread, Fiber. Processes own resources such as
+    threads and locks on objects, while threads are scheduled by the OS and
+    fibers are scheduled by libraries run inside threads (so a fiber is like a
+    psudo thread).
+
+    As well as scheduling, the kernel deals with pipes, networking sockets,
+    remote procedure calls, semaphores, multicore CPU's etc.
+
+    The scheduling on Windows is pre-emptive. There are fifteen user priorities
+    (1-15) and the same number of system priorities (16-31). Each process has a
+    selectable amount of time quantum, and priorities can be dynamically
+    changed. For example, when the time quantum expires, the priority goes to
+    -1, when threads are released from being IO bound they are given a higher
+    priority, the foreground application recieves a larger time slice, and
+    threads that haven't run in a while are given CPU time to prevent
+    starvation.
+
+  \item \textbf{Memory management}\\
+    On 32 bit windows, the top two gigabytes are given to the OS, while the
+    bottom two are given to the user. The memory is split up into pages, not
+    segments. The page size is usually around 4Kb.
+
+    Processes can share pages, and a copy on write strategy is used if they
+    don't act in a read only manner.
+
+    In order to support virtual memory, a version of LRU is used, where some
+    pages are always kept free in memory so that a new page can always be
+    loaded. A max number of pages per process is dynamically calculated to try
+    and achieve optimal use of memory.
+
+    Windows can also memory map files to speed up IO.
+
+  \item \textbf{IO}\\
+
+    The IO manager inspects each slot of each bus both at boot time (to discover
+    hardware), but also during run time (to support plug and play hardware such
+    as USB). The device info oo will tell the IO manager where to find the
+    driver for the device.
+
+    Drivers use object based methods (such as \texttt{init}, \texttt{interrupt}
+    etc) to interface with hardware. Direct Memory Access is avalible to
+    minimise CPU involvement. All drivers are multiprocessor safe and should
+    support unplugging.
+
+  \item \textbf{NTFS}\\
+
+    The hard drive is split up into clusters (these are blocks in other file
+    systems) of about 4Kb. Files are just a set of attributes with a byte stream
+    on the end, which can be a maximum length of $2^64$ bytes (this is a number
+    of exabytes).
+
+    The Master File Table (MFT) holds a list of 1Kb records, the first 26 are
+    needed for booting, such as the boot sector and access control list.
+
+    Directories are supported by having a list of file names and MFT records,
+    though large directories will use a B+ tree to store the data.
+
+    NTFS supports transactions and logging so the system can maintain its
+    integrity, as well as supporting compression and encryption.
+\end{description}

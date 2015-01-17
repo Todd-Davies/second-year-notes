@@ -40,3 +40,6 @@
 \BOOKMARK [3][-]{subsubsection.7.3.2}{The structure of directories on a disk}{subsection.7.3}% 40
 \BOOKMARK [3][-]{subsubsection.7.3.3}{Other issues with file organisation}{subsection.7.3}% 41
 \BOOKMARK [2][-]{subsection.7.4}{Unifying the virtual memory and storage}{section.7}% 42
+\BOOKMARK [1][-]{section.8}{Windows}{}% 43
+\BOOKMARK [2][-]{subsection.8.1}{Architecture}{section.8}% 44
+\BOOKMARK [2][-]{subsection.8.2}{Components}{section.8}% 45
