@@ -319,6 +319,7 @@ state machine like diagram, as shown in Figure~\ref{fig:proc-lifecycle}.
 \end{figure}
 
 \subsubsection{Scheduling}
+\label{scheduling}
 
 One particularly troublesome section of the lifecycle of a process is going from
 the \textit{ready} state to the \textit{running} state (and vice versa). In
@@ -1131,7 +1132,7 @@ After this, there will be a number (possibly one) of partitions. Each partition
 will have it's own internal structure, as shown in the diagram.
 
 \subsubsection{The structure of files on a disk}
-
+\label{files-on-disk}
 There are a number of ways to store a file on disk:
 
 \begin{itemize}
@@ -1234,17 +1235,17 @@ have to choose an algorithm that deals with both well).
 \section{Windows}
 
 Windows was the first operating system to demonstrate how useful a GUI could be.
-It was aimed at home use, and concequently, early versions (upto and including
+It was aimed at home use, and consequently, early versions (upto and including
 98) were 16 bit and didn't have multiprocessing capabilities. Later versions are
 32 or 64 bit, and are much more secure.
 
 The goals of Windows are to provide a secure, multi-processing, reliable
-operating system that is compaible (with DOS emulation) with older windows
-programs. Windows also supports unicode, so that it can be used in languages
-with a non-latin alphabet.
+operating system that is compatible (with DOS emulation) with older windows
+programs. Windows also supports Unicode, so that it can be used in languages
+with a non-Latin alphabet.
 
 Most non-programmers (and programmers) see Windows as a single entity; the GUI
-is built into the OS, and system calls are not publically accessible, but are
+is built into the OS, and system calls are not publicly accessible, but are
 instead called through the Win32 API provided by the OS.
 
 \subsection{Architecture}
@@ -1255,10 +1256,10 @@ Windows is split into layered modules that run in \textbf{P}rotected mode or
 \begin{description}
   \item \textbf{P} - \textbf{Hardware Abstraction layer (HAL)}\\
     The HAL deals with very low level stuff, reading and writing to registers,
-    timing on the clock, interrupt handeling etc.
+    timing on the clock, interrupt handling etc.
   \item \textbf{P} - \textbf{Kernel}\\
     Deals with thread scheduling, processor synchronization, more interrupt
-    handeling etc.
+    handling etc.
   \item \textbf{P} - \textbf{Executive services}\\
     Deals with IO, object management, security, process management etc. Most
     system calls are implemented at this level.
@@ -1268,7 +1269,7 @@ Windows is split into layered modules that run in \textbf{P}rotected mode or
   \item \textbf{U} - \textbf{Environments}\\
     Win32, POSIX and OS/2 are the actual components that run programs. As you
     might expect, Win32 runs windows programs, and can also emulate DOS
-    machines, OS/2 is a OS/2 1.x emuator for 16-bit character based
+    machines, OS/2 is a OS/2 1.x emulator for 16-bit character based
     applications, and POSIX supports programs written in the POSIX standard.
 \end{description}
 
@@ -1293,14 +1294,14 @@ are all exposed to the programmer.
     to access the user's configuration settings, finding key/value pairs.
 
     It replaces the many scattered config files found in systems like Unix,
-    however, it's also a single point of faliure, and hard to edit, back up and
+    however, it's also a single point of failure, and hard to edit, back up and
     share. Over time, as the registry gets bigger, it also gets slower.
 
   \item \textbf{Kernel}\\
     The kernel deals with four abstractions for running code instead of the
     normal two; Job, Process, Thread, Fiber. Processes own resources such as
     threads and locks on objects, while threads are scheduled by the OS and
-    fibers are scheduled by libraries run inside threads (so a fiber is like a
+    fibres are scheduled by libraries run inside threads (so a Fiber is like a
     psudo thread).
 
     As well as scheduling, the kernel deals with pipes, networking sockets,
@@ -1311,7 +1312,7 @@ are all exposed to the programmer.
     selectable amount of time quantum, and priorities can be dynamically
     changed. For example, when the time quantum expires, the priority goes to
     -1, when threads are released from being IO bound they are given a higher
-    priority, the foreground application recieves a larger time slice, and
+    priority, the foreground application receives a larger time slice, and
     threads that haven't run in a while are given CPU time to prevent
     starvation.
 
@@ -1333,11 +1334,11 @@ are all exposed to the programmer.
   \item \textbf{IO}\\
     The IO manager inspects each slot of each bus both at boot time (to discover
     hardware), but also during run time (to support plug and play hardware such
-    as USB). The device info oo will tell the IO manager where to find the
+    as USB). The device info will tell the IO manager where to find the
     driver for the device.
 
     Drivers use object based methods (such as \texttt{init}, \texttt{interrupt}
-    etc) to interface with hardware. Direct Memory Access is avalible to
+    etc) to interface with hardware. Direct Memory Access is available to
     minimise CPU involvement. All drivers are multiprocessor safe and should
     support unplugging.
 
@@ -1365,14 +1366,80 @@ are all exposed to the programmer.
 
 \section{Unix}
 
-Concieved in 1969 as a single-user system, and expanded in 1973 to be a multi-
+Conceived in 1969 as a single-user system, and expanded in 1973 to be a multi-
 user system, UNIX is a system written by programmers for programmers. It's
 source is freely distributed, and it has a modular design.
 
-The philospohy behind unix is that there should be lots of very simple programs
+The philosophy behind unix is that there should be lots of very simple programs
 that you can compose together to perform complex tasks. Each program does its
 own job very well, but it very minimal.
 
 The shell, IO redirection, pipes and filters make it really easy to reuse
 programs for uses that they were never intended for. In line with the ethos of
 simplicity, everything is treated as a file by unix.
+
+Here are some things you should know about unix:
+
+\begin{description}
+  \item \textbf{Unix shell}\\
+  The unix shell is the command line interpreter (CLI). It's a user level
+  process that executes programs. Put simply, it reads input from the user,
+  extracts the command to run, searches for the path of the program, forks a
+  child process for the program and executes it. That program runs in the
+  foreground of that shell until it is terminated and the user is returned to the
+  shell.
+
+  \item \textbf{IO redirection}\\
+  All unix processes start with three files open; stdin, stdout and stderr. As
+  you should know as a second year computer scientist, it's possible to redirect
+  IO between programs and files (on the command line, you use $>$, $<$ and $|$).
+
+  \item \textbf{Architecture}\\
+  Like windows, unix has both user level processes and kernel level. User level
+  processes are stuff like applications, libraries etc. They use libraries,
+  which in turn use system calls to interface with lower level parts of the OS.
+  The kernel level processes are managers, such as the file, memory and process
+  manager.
+
+  \item \textbf{Processes}\\
+  Each process has a unique process id (PID) and address space. They also have a
+  set of UFID's (User File ID's, you should know that by now), a user and group
+  ID, scheduling priorities along with properties that it inherited from its
+  parent.
+
+  Processes can be managed using the scheduling algorithms mentioned in
+  Section~\ref{scheduling}, and can also be run at specific times using
+  utilities such as \texttt{cron} (for running commands every so often) or
+  \texttt{at} (for running one command at a specific time).
+
+  \item \textbf{Virtual Memory}\\
+  Virtual memory in Linux is achieved using both paging and segmentation. On a
+  32 bit system, the kernel will often be allocated one gigabyte of address
+  space, while the other three gigabytes will be assigned to the user. Memory
+  can be shared on a copy-on-write basis, and files can be memory mapped.
+
+  Linux uses a second-chance-LRU variant for its page replacement algorithm,
+  that uses a reference bit to keep track of which pages have been used, and
+  round robin to keep some pages pre-cleaned.
+
+  \item \textbf{Storage}\\
+  We covered most of unix's storage strategies earlier in the document
+  (section~\ref{files-on-disk}), since unix uses inodes to keep track of where
+  files are on disk. The \texttt{ext2} file system is the second version of the
+  one that unix uses (the first is called \texttt{ext}), which uses groups of
+  inodes that point to nearby blocks as an optimisation, and \texttt{ext3}
+  brings journaling to the format too.
+
+  \item \textbf{Protection}\\
+  As previously mentioned, each process has a UserID and GroupID, this lets the
+  system decide if a process has permission to perform actions such as write to
+  files (dependent on the file permissions). Since `everything is a file' on
+  unix, then we can apply the same protection strategy to everything on the
+  system, such as devices and network connections.
+
+  \item \textbf{IO}\\
+  Device drivers run in the kernel mode, and user level programs can access them
+  through special files such as \texttt{/dev/sdbx}. They can use characters or
+  blocks to transfer data.
+
+\end{description}
