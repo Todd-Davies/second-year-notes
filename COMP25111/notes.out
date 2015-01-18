@@ -37,15 +37,17 @@
 \BOOKMARK [3][-]{subsubsection.7.1.1}{Reading data}{subsection.7.1}% 37
 \BOOKMARK [2][-]{subsection.7.2}{Simple IO device example - interrupts}{section.7}% 38
 \BOOKMARK [3][-]{subsubsection.7.2.1}{Types of interrupts}{subsection.7.2}% 39
-\BOOKMARK [1][-]{section.8}{File systems}{}% 40
-\BOOKMARK [2][-]{subsection.8.1}{File names}{section.8}% 41
-\BOOKMARK [2][-]{subsection.8.2}{Processes and files}{section.8}% 42
-\BOOKMARK [2][-]{subsection.8.3}{How are hard disks organised?}{section.8}% 43
-\BOOKMARK [3][-]{subsubsection.8.3.1}{The structure of files on a disk}{subsection.8.3}% 44
-\BOOKMARK [3][-]{subsubsection.8.3.2}{The structure of directories on a disk}{subsection.8.3}% 45
-\BOOKMARK [3][-]{subsubsection.8.3.3}{Other issues with file organisation}{subsection.8.3}% 46
-\BOOKMARK [2][-]{subsection.8.4}{Unifying the virtual memory and storage}{section.8}% 47
-\BOOKMARK [1][-]{section.9}{Windows}{}% 48
-\BOOKMARK [2][-]{subsection.9.1}{Architecture}{section.9}% 49
-\BOOKMARK [2][-]{subsection.9.2}{Components}{section.9}% 50
-\BOOKMARK [1][-]{section.10}{Unix}{}% 51
+\BOOKMARK [3][-]{subsubsection.7.2.2}{Hardware interrupts}{subsection.7.2}% 40
+\BOOKMARK [3][-]{subsubsection.7.2.3}{Direct Memory Access}{subsection.7.2}% 41
+\BOOKMARK [1][-]{section.8}{File systems}{}% 42
+\BOOKMARK [2][-]{subsection.8.1}{File names}{section.8}% 43
+\BOOKMARK [2][-]{subsection.8.2}{Processes and files}{section.8}% 44
+\BOOKMARK [2][-]{subsection.8.3}{How are hard disks organised?}{section.8}% 45
+\BOOKMARK [3][-]{subsubsection.8.3.1}{The structure of files on a disk}{subsection.8.3}% 46
+\BOOKMARK [3][-]{subsubsection.8.3.2}{The structure of directories on a disk}{subsection.8.3}% 47
+\BOOKMARK [3][-]{subsubsection.8.3.3}{Other issues with file organisation}{subsection.8.3}% 48
+\BOOKMARK [2][-]{subsection.8.4}{Unifying the virtual memory and storage}{section.8}% 49
+\BOOKMARK [1][-]{section.9}{Windows}{}% 50
+\BOOKMARK [2][-]{subsection.9.1}{Architecture}{section.9}% 51
+\BOOKMARK [2][-]{subsection.9.2}{Components}{section.9}% 52
+\BOOKMARK [1][-]{section.10}{Unix}{}% 53

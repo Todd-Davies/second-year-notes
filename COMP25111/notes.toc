@@ -42,15 +42,17 @@
 \contentsline {subsubsection}{\numberline {7.1.1}Reading data}{19}{subsubsection.7.1.1}
 \contentsline {subsection}{\numberline {7.2}Simple IO device example - interrupts}{20}{subsection.7.2}
 \contentsline {subsubsection}{\numberline {7.2.1}Types of interrupts}{20}{subsubsection.7.2.1}
-\contentsline {section}{\numberline {8}File systems}{20}{section.8}
+\contentsline {subsubsection}{\numberline {7.2.2}Hardware interrupts}{20}{subsubsection.7.2.2}
+\contentsline {subsubsection}{\numberline {7.2.3}Direct Memory Access}{20}{subsubsection.7.2.3}
+\contentsline {section}{\numberline {8}File systems}{21}{section.8}
 \contentsline {subsection}{\numberline {8.1}File names}{21}{subsection.8.1}
 \contentsline {subsection}{\numberline {8.2}Processes and files}{21}{subsection.8.2}
-\contentsline {subsection}{\numberline {8.3}How are hard disks organised?}{21}{subsection.8.3}
+\contentsline {subsection}{\numberline {8.3}How are hard disks organised?}{22}{subsection.8.3}
 \contentsline {subsubsection}{\numberline {8.3.1}The structure of files on a disk}{22}{subsubsection.8.3.1}
-\contentsline {subsubsection}{\numberline {8.3.2}The structure of directories on a disk}{22}{subsubsection.8.3.2}
-\contentsline {subsubsection}{\numberline {8.3.3}Other issues with file organisation}{22}{subsubsection.8.3.3}
+\contentsline {subsubsection}{\numberline {8.3.2}The structure of directories on a disk}{23}{subsubsection.8.3.2}
+\contentsline {subsubsection}{\numberline {8.3.3}Other issues with file organisation}{23}{subsubsection.8.3.3}
 \contentsline {subsection}{\numberline {8.4}Unifying the virtual memory and storage}{23}{subsection.8.4}
-\contentsline {section}{\numberline {9}Windows}{23}{section.9}
-\contentsline {subsection}{\numberline {9.1}Architecture}{23}{subsection.9.1}
+\contentsline {section}{\numberline {9}Windows}{24}{section.9}
+\contentsline {subsection}{\numberline {9.1}Architecture}{24}{subsection.9.1}
 \contentsline {subsection}{\numberline {9.2}Components}{24}{subsection.9.2}
-\contentsline {section}{\numberline {10}Unix}{25}{section.10}
+\contentsline {section}{\numberline {10}Unix}{26}{section.10}

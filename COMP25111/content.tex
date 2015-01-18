@@ -1116,7 +1116,47 @@ There are two types of interrupts; software and hardware:
     The processor can have a number of external hardware connections called
     interrupt lines. These can be connected to external devices that can signal
     when the external device wants to interrupt the processor.
+
+    If we made the keyboard example above use a hardware interrupt, then it
+    could have an interrupt line straight to the CPU. This could change state
+    (between \texttt{1} and \texttt{0}) whenever there is a new character in the
+    data register. This way, the processor won't need to waste cycles looking at
+    the status register.
 \end{description}
+
+\subsubsection{Hardware interrupts}
+
+\marginpar{See slide 13 of Richard's notes (lecture 15) for a really quick
+breakdown.}
+
+When a interrupt line indicates that there is data waiting to be processed, the
+processor will finish executing the current instruction and then send a special
+type of memory read called an \texttt{IACK}, after which the interrupting device
+will repond to the processor with its identity. This is so the processor can
+handle the interrupt correctly; an interrupt for the keyboard will be handelled
+differently from one from a hard disk.
+
+When the interrupt occurs, the value of the program counter and the registers
+are stored in memory. This is so the processor can go back to where it was after
+the interrupt has occured. The processor then looks at the ID of the
+interrupting device, and uses this as the index to the interrupt table - a table
+of memory addresses to the interrupt handeling programs. This address will point
+to an Interrupt Service Routine (ISR), which is moved into the PC and executed
+until a return from interrupt instruction is executed, at which point the
+registers and the PC will be loaded back in from memory, so the program that was
+running could continue.
+
+\subsubsection{Direct Memory Access}
+
+A DMA (Direct Memory Access) device is capable of writing to memory in the same
+way that a processor does. It's optimised for transferring large blocks of data
+without the supervision of the processor. This means that CPU cycles aren't
+wasted on moving data around.
+
+If DMA is used, then only two interrupts to the processor are needed; one when
+the transfer is started (where the processor writes to the DMA command register
+to tell it what to do), and one when its finished, so the processor can check
+for errors and run any final procedures.
 
 \section{File systems}
 
