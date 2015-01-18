@@ -1038,6 +1038,86 @@ since some segments can be just a few bytes, which incurs a lot of overhead for
 the amount of data being used), but the extra power that they give to
 programmers makes them a good trade off.
 
+\section{Inout Output (IO)}
+
+Each IO module connects to both the system bus, and peripheral that it uses.
+This could be any device that isn't the processor or the main memory, including
+hard drives, monitors, network cards, input devices etc. Each module contains
+special purpose hardware for moving data from main memory or the processor to
+the device and vice versa.
+
+As you may remember from COMP15111, IO devices are controlled by the processor
+using special purpose registers provided by the IO module of the device. There
+are two types of register that are used for IO transfers, one holds some data
+that is being transferred (the data is transfered in blocks), and the other
+holds status information about transfers. The registers are usually mapped onto
+virtual memory somewhere.
+
+\subsection{Simple IO device example - polling}
+
+Perhaps one of the most simple IO devices is the keyboard. In relation to the
+speed of the processor, and the maximum througput of the data we \textit{could}
+achieve, the keyboard is very slow. The processor can do a lot of work in
+between keypresses. Since it's so simple, only two registers are needed, the
+status and the data register.
+
+The status register indicates the status of the IO, we only need one bit for
+this (\texttt{1} is there is a character waiting in the data register,
+\texttt{0} if the previous character has been read and the data register is
+empty). Since the status register needs to be mapped onto virtual memory, we
+need it to be at least a byte long, so we just leave seven bits set to low all
+the time, and only use one of them.
+
+The data register (on a very simple keyboard) could also be one byte long, and
+would hold the character that was most recently typed. Since it would be eight
+bits long, we could support 256 different characters, which means that we can
+use ASCII! Most modern programs and systems use unicode now, but ASCII has all
+the `basic' characters you need.
+
+\subsubsection{Reading data}
+
+When the processor checks for a character in the data register, it first reads
+the value of the status register. If the value is \texttt{1}, then it reads the
+value of the data register and stores it in the main memory. The IO module will
+now clear the bit of the status register. If the value is \texttt{0}, then there
+is no character to be read.
+
+This approach is called \textbf{polling}, since the processor will periodically
+poll the status register to see if a character is waiting in the data register.
+This can be expensive, since the vast majority of the time, there will be no
+data in the data register (since keyboards transfer teeny tiny amounts of data
+compared to the maximum possible amount that could be transferred in a given
+time).
+
+We could make the processor poll the status register less frequently and
+therefore save on CPU cycles, but then we might miss characters if the user is
+typing very fast, especially if the keyboard doesn't have a buffer.
+
+\subsection{Simple IO device example - interrupts}
+
+Since polling is so inefficient, it makes sense to use a different method
+(rather than repeatedly reading the status register) to see if a character has
+been pressed. We can use an interrupt to stop the work that the processor is
+currently doing so that it can handle incoming data from IO. This way, the
+processor only devotes the time needed to processing the data, rather than
+having to keep checking status registers all the time.
+
+\subsubsection{Types of interrupts}
+
+There are two types of interrupts; software and hardware:
+
+\begin{description}
+  \item \textbf{Software interrupt}\\
+    These occur when a special interrupt instruction is in a program. The
+    processor will then need to run some other code, sometimes outside of the
+    program to handle this. These instructions are noramlly used when there is
+    an error, for example, if there is an overflow.
+  \item \textbf{Hardware interrupt}\\
+    The processor can have a number of external hardware connections called
+    interrupt lines. These can be connected to external devices that can signal
+    when the external device wants to interrupt the processor.
+\end{description}
+
 \section{File systems}
 
 A file is a collection of related information, usually found on secondary
