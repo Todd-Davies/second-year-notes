@@ -37,15 +37,20 @@
 \contentsline {subsubsection}{\numberline {6.4.3}Swapping pages}{17}{subsubsection.6.4.3}
 \contentsline {subsubsection}{\numberline {6.4.4}Shared memory}{17}{subsubsection.6.4.4}
 \contentsline {subsection}{\numberline {6.5}Virtual segmented memory}{18}{subsection.6.5}
-\contentsline {section}{\numberline {7}File systems}{19}{section.7}
-\contentsline {subsection}{\numberline {7.1}File names}{19}{subsection.7.1}
-\contentsline {subsection}{\numberline {7.2}Processes and files}{20}{subsection.7.2}
-\contentsline {subsection}{\numberline {7.3}How are hard disks organised?}{20}{subsection.7.3}
-\contentsline {subsubsection}{\numberline {7.3.1}The structure of files on a disk}{20}{subsubsection.7.3.1}
-\contentsline {subsubsection}{\numberline {7.3.2}The structure of directories on a disk}{21}{subsubsection.7.3.2}
-\contentsline {subsubsection}{\numberline {7.3.3}Other issues with file organisation}{21}{subsubsection.7.3.3}
-\contentsline {subsection}{\numberline {7.4}Unifying the virtual memory and storage}{22}{subsection.7.4}
-\contentsline {section}{\numberline {8}Windows}{22}{section.8}
-\contentsline {subsection}{\numberline {8.1}Architecture}{22}{subsection.8.1}
-\contentsline {subsection}{\numberline {8.2}Components}{23}{subsection.8.2}
-\contentsline {section}{\numberline {9}Unix}{25}{section.9}
+\contentsline {section}{\numberline {7}Input Output (IO)}{19}{section.7}
+\contentsline {subsection}{\numberline {7.1}Simple IO device example - polling}{19}{subsection.7.1}
+\contentsline {subsubsection}{\numberline {7.1.1}Reading data}{19}{subsubsection.7.1.1}
+\contentsline {subsection}{\numberline {7.2}Simple IO device example - interrupts}{20}{subsection.7.2}
+\contentsline {subsubsection}{\numberline {7.2.1}Types of interrupts}{20}{subsubsection.7.2.1}
+\contentsline {section}{\numberline {8}File systems}{20}{section.8}
+\contentsline {subsection}{\numberline {8.1}File names}{21}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Processes and files}{21}{subsection.8.2}
+\contentsline {subsection}{\numberline {8.3}How are hard disks organised?}{21}{subsection.8.3}
+\contentsline {subsubsection}{\numberline {8.3.1}The structure of files on a disk}{22}{subsubsection.8.3.1}
+\contentsline {subsubsection}{\numberline {8.3.2}The structure of directories on a disk}{22}{subsubsection.8.3.2}
+\contentsline {subsubsection}{\numberline {8.3.3}Other issues with file organisation}{22}{subsubsection.8.3.3}
+\contentsline {subsection}{\numberline {8.4}Unifying the virtual memory and storage}{23}{subsection.8.4}
+\contentsline {section}{\numberline {9}Windows}{23}{section.9}
+\contentsline {subsection}{\numberline {9.1}Architecture}{23}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}Components}{24}{subsection.9.2}
+\contentsline {section}{\numberline {10}Unix}{25}{section.10}

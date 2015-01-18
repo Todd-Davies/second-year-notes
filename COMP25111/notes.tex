@@ -51,14 +51,16 @@
 \courseinfo
 \newpage
 
-\tableofcontents
+% Do multicol
+\multicolstrue
+
+\begin{mymulticols}
+  \tableofcontents
+\end{mymulticols}
 \newpage
 
 % Restore the extra margin geometry
 \restoregeometry
-
-% Do multicol
-\multicolstrue
 
 \input{content.tex}
 

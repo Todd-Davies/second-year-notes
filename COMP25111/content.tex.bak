@@ -1038,7 +1038,7 @@ since some segments can be just a few bytes, which incurs a lot of overhead for
 the amount of data being used), but the extra power that they give to
 programmers makes them a good trade off.
 
-\section{Input Output (IO)}
+\section{Inout Output (IO)}
 
 Each IO module connects to both the system bus, and peripheral that it uses.
 This could be any device that isn't the processor or the main memory, including
@@ -1049,14 +1049,14 @@ the device and vice versa.
 As you may remember from COMP15111, IO devices are controlled by the processor
 using special purpose registers provided by the IO module of the device. There
 are two types of register that are used for IO transfers, one holds some data
-that is being transferred (the data is transferred in blocks), and the other
+that is being transferred (the data is transfered in blocks), and the other
 holds status information about transfers. The registers are usually mapped onto
 virtual memory somewhere.
 
 \subsection{Simple IO device example - polling}
 
 Perhaps one of the most simple IO devices is the keyboard. In relation to the
-speed of the processor, and the maximum throughput of the data we \textit{could}
+speed of the processor, and the maximum througput of the data we \textit{could}
 achieve, the keyboard is very slow. The processor can do a lot of work in
 between keypresses. Since it's so simple, only two registers are needed, the
 status and the data register.
@@ -1110,7 +1110,7 @@ There are two types of interrupts; software and hardware:
   \item \textbf{Software interrupt}\\
     These occur when a special interrupt instruction is in a program. The
     processor will then need to run some other code, sometimes outside of the
-    program to handle this. These instructions are normally used when there is
+    program to handle this. These instructions are noramlly used when there is
     an error, for example, if there is an overflow.
   \item \textbf{Hardware interrupt}\\
     The processor can have a number of external hardware connections called
