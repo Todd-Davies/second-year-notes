@@ -41,11 +41,10 @@ else
     for dir in "${directories[@]%*/}"; do
       cd $dir;
       for i in `ls *.tex`; do
-        pdflatex $i &
+        pdflatex $i;
       done;
       cd ..
     done;
-    wait;
   fi
   pdflatex notes.tex
   if [ "$compileall" = "1" ]; then
