@@ -912,8 +912,11 @@ to use (programs are dynamic), we can't do this.
     The NRU algorithm is a dumb replacement for LRU. It keeps two extra bits in
     the page table; one called the `referenced bit' that is set to $1$ when the
     page is referenced and the other, called the `modified bit' that is set to
-    $1$ when the page is written to. At fixed intervals, all of these bits will
+    $1$ when the page is written to. At fixed intervals, the referenced bit will
     be reset to $0$ (so all pages don't get `recently used' eventually).
+
+    \marginpar{The modified bit doesn't get reset since this is essentially the 
+    dirty bit, and is needed to know if we need to do a write back or not.}
 
     When a page needs to be removed from memory, the OS first looks for ones
     that have two $0$'s (they've been neither read or written to recently). Then
@@ -1132,15 +1135,15 @@ breakdown.}
 When a interrupt line indicates that there is data waiting to be processed, the
 processor will finish executing the current instruction and then send a special
 type of memory read called an \texttt{IACK}, after which the interrupting device
-will repond to the processor with its identity. This is so the processor can
-handle the interrupt correctly; an interrupt for the keyboard will be handelled
+will respond to the processor with its identity. This is so the processor can
+handle the interrupt correctly; an interrupt for the keyboard will be handled
 differently from one from a hard disk.
 
 When the interrupt occurs, the value of the program counter and the registers
 are stored in memory. This is so the processor can go back to where it was after
-the interrupt has occured. The processor then looks at the ID of the
+the interrupt has occurred. The processor then looks at the ID of the
 interrupting device, and uses this as the index to the interrupt table - a table
-of memory addresses to the interrupt handeling programs. This address will point
+of memory addresses to the interrupt handling programs. This address will point
 to an Interrupt Service Routine (ISR), which is moved into the PC and executed
 until a return from interrupt instruction is executed, at which point the
 registers and the PC will be loaded back in from memory, so the program that was
