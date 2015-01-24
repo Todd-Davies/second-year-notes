@@ -1,0 +1,5 @@
+Most of these flashcards were created by scraping questions from a website (that
+I can't remember now, but will try and add in later). Henceforth, the multiple-
+choice style content isn't mine. The 'gen.py' script generates a flashcard from
+each file in 'data', which is written into 'content.tex'. This is then included
+in 'doc.tex', which is what is compiled into a pdf.
