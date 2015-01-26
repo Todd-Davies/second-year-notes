@@ -3,3 +3,43 @@
 	pdftitle = {\Title},
 	pdfauthor = {\Author}
 }
+
+\section{Trees}
+
+\subsection{Motivation}
+
+A tree is an abstract data type for heirarchical storage of information.
+
+\subsection{Definition}
+
+Each element in a tree has a parent element, and zero or more children elements.
+The node at the top of the tree is called the root.
+
+A tree is said to be \textit{ordered} if a linear ordering relation is defined
+for the children of each node, that is to say that if we wanted to, we could
+apply this relation to sort the children into an ordered list.
+
+A binary tree is one where each node can have a maximum of two children. A
+binary tree is \textit{proper} if each node as two (or zero) children.
+
+The depth of a node is the number of ancestors of the node exclusing the node
+itself.
+
+% TODO: mention that recursive algorithms can be slooooowww for large trees
+%       compared to an equivalent iterative algorithm. 
+
+\subsubsection{Tree methods}
+
+\begin{description}
+	\item \texttt{isInternal}\\
+		Complexity = O(1)
+	\item \texttt{isExternal}
+	\item \texttt{isRoot}\\
+	\item \texttt{size}\\
+	\item \texttt{elements}\\
+	\item etc
+\end{description}
+
+\subsection{Tree traversal}
+
+Pre-order, in-order and post-order traversal.

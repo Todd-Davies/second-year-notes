@@ -1,0 +1,5 @@
+\contentsline {section}{\numberline {1}Trees}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}Motivation}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Definition}{3}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}Tree methods}{3}{subsubsection.1.2.1}
+\contentsline {subsection}{\numberline {1.3}Tree traversal}{3}{subsection.1.3}
