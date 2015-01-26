@@ -1,0 +1,86 @@
+% Set the author and title of the compiled pdf
+\hypersetup{
+	pdftitle = {\Title},
+	pdfauthor = {\Author}
+}
+
+\section{Introduction}
+
+Performance is always an attribute in high demand in computer systems. Even
+though processors have become so much more powerful over the last half century,
+there's still loads of stuff that we cannot do with current technology, such as
+synthesising HD video in realtime, or computing realistic game physics.
+
+Since 2004/5, companies haven't been able to increase the speed of
+microprocessors at such a rapid rate due to physical limits, such as power
+dissipation and device variability. Our devices are still getting faster, but
+now architecture and the design of systems play a larger role in making stuff
+run faster. An example of this include making computation more parallel.
+
+\section{Caches}
+
+Not all technology has improved at the same relative speed. CPU's have become
+over three orders of magnitude faster over the past thirty years, but memory has
+increased by only one order of magnitude. This is problematic, since it means
+that we need to reconcile this gap in order to achieve efficient computation.
+
+Processor caching is used to let the processesor do useful computation while
+it's also waiting on the memory. Modern processors couldn't perform anytwhere
+near how fast they do now without equally modern caching techniques, since the
+imbalance between the CPU and main memory is so high.
+
+Caches (in general) provide a limited, but very fast local space for the CPU to
+use. They are used in lots of places all over computer science, including web
+browsers, mobile phone UI's etc. Likewise, a processor cache is a temporary
+store for frequently used memory locations.
+
+The principle of locality is what makes caches work for processors, which is
+that the CPU will only use a small subset of memory over a short period of time.
+If this subset of memory can be loaded into the cache, then the computation can
+be sped up significantly.
+
+Every `cache miss' takes \textit{at least} sixty times longer to execute than a
+`cache hit' will (that's assuming there are no page faults etc). Circuit
+capacitance is the thing that makes electronic devices slow, and larger
+components have a larger capacitance, henceforth large memories are slow.
+Dynamic memories (DRAM) store data using capacitance, and are therefore slower
+than static memories (SRAM) that work using bistable circuits.
+
+Even the wires between the processor and the memory have a significant
+capacitance. Driving signals between chips needs specialised high power
+interface circuits. An ideal situation would be to have everything on a single
+chip, however current manufacturing limitations prevent this; maybe one day we
+will be able to do this.
+
+% TODO: Memory heirachy diagram
+
+\subsection{Why are caches expensive?}
+
+L1, L2 and (usually) L3 caches are SRAM instead of DRAM (which is what main
+memory is made from).
+
+SRAM needs six transistors per bit, DRAM needs one.
+
+SRAM is henceforth physically larger, taking up more space on the chip, which is
+expensive, since real estate costs money.
+
+
+\subsection{L1 Cache}
+
+The L1 cache is the first level of caching between the processor and the main
+memory. The L1 cache is around 32kb, which is very small in comparison to the
+size of the main memory, but this is driven out of nececcity, since the cache
+needs to be small to be fast. The cache must be able to hold any arbitraty
+location in the main memory (since we don't know in advance what the CPU will
+want), and henceforth requires specialised structures to implement this.
+
+
+\section{Pipelines}
+
+\section{Multi-Threading}
+
+\section{Multi-Core}
+
+\section{Virtualization}
+
+\section{Permanent Storage}
