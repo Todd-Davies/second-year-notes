@@ -75,6 +75,95 @@ location in the main memory (since we don't know in advance what the CPU will
 want), and henceforth requires specialised structures to implement this.
 
 
+\subsection{Types of cache}
+
+The cpu will give the cache a full address of a word in memory that it wants to
+read. The cache will contain a small selection of values from memory that it has
+locally, but will ask the main memory for values that it does not have. This is
+called a cache miss and is expensive in comparison to a cache hit.
+
+\subsubsection{Fully associative}
+
+A \textbf{Fully Associative} cache is one where the cache is small (around
+32,000 values), but stores both addresses and their corresponding data. The
+hardware compares the input address with all of the stored addresses (it does
+this in parallel). If the address is found, then the value is returned with no
+need to ask the RAM (cache hit), if the value isn't found, then a cache miss
+occurs, and the request must go to the main memory.
+
+Caches rely on locality in order to function effectively. There are two types of
+locality; temporal locality, which is the principle that if you use an address
+once, you may use it again soon (e.g. loops), and spatial locality, where if you
+use an address once, you are also likely to use addresses nearby (e.g. arrays).
+
+\marginpar{Spatial locality is exploited better by having a bigger data area in
+the cache (returning say 512 bits for every address instead of just one word)}
+
+The cache hit rate is the ratio of cache hits to misses. We need a hit rate of
+$98\%$ to hide the speed of memory from the CPU. Instruction hit rates are
+usually better than data hit rates (although they are in the same cache
+remember). The reason for this is that instructions are accessed in a more
+regular pattern, incrementing by one word every time, or looping around etc
+(have higher locality).
+
+When we do a cache miss (read), we should add the missed value to the cache. In
+order to do this, we need a cache replacement policy to find room in the cache
+to put the new value:
+
+\begin{itemize}
+	\item LRU - slow, good for hit rates
+	\item Round Robin - not as good, easier to implement
+	\item Random - Easy to implement, works better than expected.
+\end{itemize}
+
+Memory writes are more complicated than reads. If we've already got the value in
+the cache, then we change the value in the cache. We can use three write
+strategies for cache writes (on hits):
+
+\begin{itemize}
+	\item Write through (slow)
+	\item Write through + buffer (faster, slow when heavily used)
+	\item Copy back on cache replacement.
+\end{itemize}
+
+On misses:
+
+\begin{itemize}
+	\item We can find a location in the cache, and write to that, then rely on
+	copy back later, or write back straight away.
+	\item we can skip the cache, and write directly to RAM. Subsequent read will
+	add to the cache if necessary (good if you're initialising datastructures
+	with zeroes).
+\end{itemize}
+
+Fastset one is write allocate or copy back. Main memory and the cache aren't
+coherent, which can be a problem for stuff like multiprocessors, autonomous IO
+devices etc. This may need cleaning up later.
+
+Each cache line is at least half address and half data, but often, we store more
+data per address, so will have 64 bytes of data per 32 bit address.
+
+A fully associative cache is ideal, but this is expensive (in terms of silicon
+and power).
+
+\subsubsection{Directly mapped}
+
+We can use standard RAM to create a directly mapped cache, which mimics the
+functionality of an ideal cache. Usually, this uses static RAM, which is more
+expensive than dynamic RAM, but is faster. The address is divided into two
+parts, %TODO: Directly mapepd cache 2,3,4 + direct mapped replacement?
+
+\subsubsection{Set associative}
+
+Set associative caches are a comprimise. They comprise of a number of directly
+mapped caches operating in parallel. If one matches, we have a hit and select
+the appropriate data. This is good because we can have more flexible cache
+replacement strategies. In a 4 way, we could choose any one of the four caches
+for example. The hit rate of set associative caches improves with the number of
+caches, but increasing the number increase the cost.
+
+
+
 \section{Pipelines}
 
 \section{Multi-Threading}
