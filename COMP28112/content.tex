@@ -27,3 +27,20 @@ systems were for banks and airline booking systems, but the real proliferation
 of the technique arose with the internet in the early 90's.
 
 %TODO: The above is supposed to be lecture 1. Improve on it!
+
+% Lecture two
+
+% TODO: How to calculate latency
+ \section{Parellalising processes}
+
+Many applications can be parellised by doing homogenous operations on different
+processors on different data. If this is the case, in ideal conditions, your
+speedup will be the same as the number of processors you're using as opposed to
+using just one processor.
+
+Unfortunately for us, the speedup is not linear, since it takes time to split
+the data, coordinate the machines and collate the results. There is also a limit
+to how many processors will keep the speed improving or even keeping constant.
+If we have more processors than we can actually use, then the overhead of
+managing them will probably decrease performance, since the'll be doing nothing
+useful.
