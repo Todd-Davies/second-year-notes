@@ -162,7 +162,61 @@ replacement strategies. In a 4 way, we could choose any one of the four caches
 for example. The hit rate of set associative caches improves with the number of
 caches, but increasing the number increase the cost.
 
+% Lecture three
 
+\section{Practical caches}
+
+\subsection{Cache control bits}
+
+When the system is started, the cache is empty. We need a bit for each cache
+entry to indicate that the data is meaningful (i.e. it isn't just an unitialised
+zero or something). We also need a dirty bit if we're using the `write back'
+caching strategy (see above), rather than the `write through' strategy.
+
+\subsection{Exploiting spatial locality}
+
+In order to explot spatial locality, we need to have a wider `cache line', where
+each entry will give you more data than just one word. Each entry tag could
+correspond to two, four, eight etc words. Spatial locality says that if we get
+one byte, we'll probably want one from close by too.
+
+% TODO: Make image
+
+The lowest bits are used to select the word in the cache line. Most cache lines
+are 16 or 32 bytes, which is 4 or 8 32bit words. The data is transferred from
+RAM in bursts equal to the width of the line size, using specialised memory
+access modes.
+
+%TODO: Explain about more cache line = less number of tags? Is that even right?
+
+The line size is important, since we want to have a line size of multiple words
+to exploit spatial locality, but if the line is too big, then parts of it will
+never be used. The number of cache misses decreases as you increase the cache
+line size, until one point, where the line size will be too long to use all the
+words, and then the number of misses will increase.
+
+\subsection{Seperate instruction and data caches}
+
+Since instructions and data have different access patterns in memory (but they
+are stored in the same memory), we could use different caches for each type of
+word, so that the different caches can use different strategies to minimise
+misses according to their different access patterns.
+
+\subsection{Multi level caches}
+
+As chips get bigger, in theory, we should build bigger caches to perform better.
+However, big caches are slow, and the L1 cache needs to run at processor speed.
+We can instead put another cache between the RAM and the L1 cache, and keep the
+L1 cache the same size.
+
+The L2 cache is typically sixteen times bigger than the L1 cache, but also four
+times slower. It's still ten times faster than RAM though. The L1D and L1I
+caches both share the L2 cache.
+
+If a chip has an L3 cache, then it is usually quite large (maybe around 8Mb),
+but its performance is only about twice as good as that of RAM.
+
+%TODO: Cache example from slide 16
 
 \section{Pipelines}
 
