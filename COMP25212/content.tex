@@ -24,8 +24,8 @@ over three orders of magnitude faster over the past thirty years, but memory has
 increased by only one order of magnitude. This is problematic, since it means
 that we need to reconcile this gap in order to achieve efficient computation.
 
-Processor caching is used to let the processesor do useful computation while
-it's also waiting on the memory. Modern processors couldn't perform anytwhere
+Processor caching is used to let the processor do useful computation while
+it's also waiting on the memory. Modern processors couldn't perform anywhere
 near how fast they do now without equally modern caching techniques, since the
 imbalance between the CPU and main memory is so high.
 
@@ -69,8 +69,8 @@ expensive, since real estate costs money.
 
 The L1 cache is the first level of caching between the processor and the main
 memory. The L1 cache is around 32kb, which is very small in comparison to the
-size of the main memory, but this is driven out of nececcity, since the cache
-needs to be small to be fast. The cache must be able to hold any arbitraty
+size of the main memory, but this is driven out of necessity, since the cache
+needs to be small to be fast. The cache must be able to hold any arbitrary
 location in the main memory (since we don't know in advance what the CPU will
 want), and henceforth requires specialised structures to implement this.
 
@@ -136,7 +136,7 @@ On misses:
 	with zeroes).
 \end{itemize}
 
-Fastset one is write allocate or copy back. Main memory and the cache aren't
+Fastest one is write allocate or copy back. Main memory and the cache aren't
 coherent, which can be a problem for stuff like multiprocessors, autonomous IO
 devices etc. This may need cleaning up later.
 
@@ -155,7 +155,7 @@ parts, %TODO: Directly mapepd cache 2,3,4 + direct mapped replacement?
 
 \subsubsection{Set associative}
 
-Set associative caches are a comprimise. They comprise of a number of directly
+Set associative caches are a compromise. They comprise of a number of directly
 mapped caches operating in parallel. If one matches, we have a hit and select
 the appropriate data. This is good because we can have more flexible cache
 replacement strategies. In a 4 way, we could choose any one of the four caches
@@ -175,7 +175,7 @@ caching strategy (see above), rather than the `write through' strategy.
 
 \subsection{Exploiting spatial locality}
 
-In order to explot spatial locality, we need to have a wider `cache line', where
+In order to exploit spatial locality, we need to have a wider `cache line', where
 each entry will give you more data than just one word. Each entry tag could
 correspond to two, four, eight etc words. Spatial locality says that if we get
 one byte, we'll probably want one from close by too.
@@ -195,7 +195,7 @@ never be used. The number of cache misses decreases as you increase the cache
 line size, until one point, where the line size will be too long to use all the
 words, and then the number of misses will increase.
 
-\subsection{Seperate instruction and data caches}
+\subsection{Separate instruction and data caches}
 
 Since instructions and data have different access patterns in memory (but they
 are stored in the same memory), we could use different caches for each type of
@@ -218,12 +218,80 @@ but its performance is only about twice as good as that of RAM.
 
 %TODO: Cache example from slide 16
 
+\subsection{Cache misses}
+
+There are three types of cache misses, called the three C's
+
+\begin{description}
+  \item \textbf{Compulsory misses}\\ 
+    When we first start the computer, the cache is empty, so until the cache is
+    populated, we're going to have a lot of misses.
+  \item \textbf{Capacity misses}\\
+   Since the cache is limited in size, we can't contain all of the pages for a
+   program, so some misses will occur.
+  \item \textbf{Conflict misses}\\
+    In a direct mapped or set associative cache, there is competition between
+    memory locations for places in the cache. If the cache was fully
+    associative, then misses due to this wouldn't occur.
+\end{description}
+
+\subsection{More cache performance}
+
+%TODO: What happens when IO is memory mapped, does this go through the cache? :o
+
+In order to fill a cache from empty, it takes $\frac{\text{Cache
+size}}{\text{Line size}}$ memory accesses. If we multiply this by the time it
+takes for a single memory access (say $10\micro\second$), then we can work out
+how long it will take to fill the cache (assuming each access is to a unique
+memory address). We can derive how many CPU cycles this takes from this.
+
+\subsection{Cache consistency}
+
+We need to make sure that the values stored in the CPU cache are consistent with
+those in main memory. There are situations when they can disagree, for example
+if IO reads or writes directly to memory (perhaps using DMA), then that value
+could be different from whatever is in the cache.
+
+Solutions:
+\begin{description}
+  \item \textbf{Non-cacheable}\\
+    One solution is to make areas of memory that IO can access non-cachable, or
+    clear the cache before and after the IO takes place.
+  \item \textbf{IO use data cache}\\
+    Another is to have the IO go directly through the CPU's L1d (data) cache
+    before accessing memory, but this is slow.
+  \item \textbf{Snoop on IO activity}\\
+    We could have hardware logic that will look at the reads and writes to
+    memory from IO and make sure the cache is consistent with memory for those
+    addresses.
+\end{description}
+
+\subsection{Virtual Addresses}
+
+Since the CPU deals with virtual addresses when accessing memory, and uses a
+Translation Lookaside Buffer to derive the correct physical address. However,
+which address does the cache store? Does it sit before the TLB, or after it
+between the CPU and memory?
+
+If we make addresses go through the TLB before they reach the cache, then this
+is slow, since they must pass through extra logic etc before hitting the cache.
+However, if we make the cache store virtual addresses, and have the TLB sit
+inbetween the cache and memory, this makes snooping hard to implement along with
+more functional difficulties.
+
+The answer is to have the TLB operate in parallel to the cache. Since address
+translation only affects the high order bits of the cache (the low order bits
+are the offset which remains the same). The cache index is selected from the low
+order offset bits, and only the tag is changed by address translation.
+
+%TODO: Image goes here (something like in the lecture slide of lecture 4, S15)
+
 \section{Pipelines}
 
 \section{Multi-Threading}
 
 \section{Multi-Core}
 
-\section{Virtualization}
+\section{Vitalisation}
 
 \section{Permanent Storage}

@@ -6,8 +6,17 @@
 \BOOKMARK [3][-]{subsubsection.2.3.1}{Fully associative}{subsection.2.3}% 6
 \BOOKMARK [3][-]{subsubsection.2.3.2}{Directly mapped}{subsection.2.3}% 7
 \BOOKMARK [3][-]{subsubsection.2.3.3}{Set associative}{subsection.2.3}% 8
-\BOOKMARK [1][-]{section.3}{Pipelines}{}% 9
-\BOOKMARK [1][-]{section.4}{Multi-Threading}{}% 10
-\BOOKMARK [1][-]{section.5}{Multi-Core}{}% 11
-\BOOKMARK [1][-]{section.6}{Virtualization}{}% 12
-\BOOKMARK [1][-]{section.7}{Permanent Storage}{}% 13
+\BOOKMARK [1][-]{section.3}{Practical caches}{}% 9
+\BOOKMARK [2][-]{subsection.3.1}{Cache control bits}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.2}{Exploiting spatial locality}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.3}{Separate instruction and data caches}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.4}{Multi level caches}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.5}{Cache misses}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.6}{More cache performance}{section.3}% 15
+\BOOKMARK [2][-]{subsection.3.7}{Cache consistency}{section.3}% 16
+\BOOKMARK [2][-]{subsection.3.8}{Virtual Addresses}{section.3}% 17
+\BOOKMARK [1][-]{section.4}{Pipelines}{}% 18
+\BOOKMARK [1][-]{section.5}{Multi-Threading}{}% 19
+\BOOKMARK [1][-]{section.6}{Multi-Core}{}% 20
+\BOOKMARK [1][-]{section.7}{Vitalisation}{}% 21
+\BOOKMARK [1][-]{section.8}{Permanent Storage}{}% 22
