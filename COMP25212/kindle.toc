@@ -1,0 +1,26 @@
+\contentsline {section}{\numberline {1}Introduction}{}{section.1}
+\contentsline {section}{\numberline {2}Caches}{}{section.2}
+\contentsline {subsection}{\numberline {2.1}Why are caches expensive?}{}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}L1 Cache}{}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Types of cache}{}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Fully associative}{}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}Directly mapped}{}{subsubsection.2.3.2}
+\contentsline {subsubsection}{\numberline {2.3.3}Set associative}{}{subsubsection.2.3.3}
+\contentsline {section}{\numberline {3}Practical caches}{}{section.3}
+\contentsline {subsection}{\numberline {3.1}Cache control bits}{}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Exploiting spatial locality}{}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Separate instruction and data caches}{}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Multi level caches}{}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Cache misses}{}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}More cache performance}{}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}Cache consistency}{}{subsection.3.7}
+\contentsline {subsection}{\numberline {3.8}Virtual Addresses}{}{subsection.3.8}
+\contentsline {section}{\numberline {4}Pipelines}{}{section.4}
+\contentsline {subsection}{\numberline {4.1}Control Transfer Problem}{}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}Branch Prediction}{}{subsubsection.4.1.1}
+\contentsline {subsection}{\numberline {4.2}Data Hazards}{}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Instruction Level Parallelism}{}{subsection.4.3}
+\contentsline {section}{\numberline {5}Multi-Threading}{}{section.5}
+\contentsline {section}{\numberline {6}Multi-Core}{}{section.6}
+\contentsline {section}{\numberline {7}Vitalisation}{}{section.7}
+\contentsline {section}{\numberline {8}Permanent Storage}{}{section.8}

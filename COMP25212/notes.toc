@@ -16,7 +16,13 @@
 \contentsline {subsection}{\numberline {3.7}Cache consistency}{6}{subsection.3.7}
 \contentsline {subsection}{\numberline {3.8}Virtual Addresses}{6}{subsection.3.8}
 \contentsline {section}{\numberline {4}Pipelines}{7}{section.4}
-\contentsline {section}{\numberline {5}Multi-Threading}{7}{section.5}
-\contentsline {section}{\numberline {6}Multi-Core}{7}{section.6}
-\contentsline {section}{\numberline {7}Vitalisation}{7}{section.7}
-\contentsline {section}{\numberline {8}Permanent Storage}{7}{section.8}
+\contentsline {subsection}{\numberline {4.1}Control Transfer Problem}{7}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}Branch Prediction}{8}{subsubsection.4.1.1}
+\contentsline {subsection}{\numberline {4.2}Data Hazards}{9}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Instruction Level Parallelism}{10}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}Out of Order Execution}{11}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}Programmer assisted ILP}{12}{subsubsection.4.3.2}
+\contentsline {section}{\numberline {5}Multi-Threading}{13}{section.5}
+\contentsline {section}{\numberline {6}Multi-Core}{13}{section.6}
+\contentsline {section}{\numberline {7}Vitalisation}{13}{section.7}
+\contentsline {section}{\numberline {8}Permanent Storage}{13}{section.8}

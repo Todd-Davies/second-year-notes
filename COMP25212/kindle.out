@@ -20,9 +20,7 @@
 \BOOKMARK [3][-]{subsubsection.4.1.1}{Branch Prediction}{subsection.4.1}% 20
 \BOOKMARK [2][-]{subsection.4.2}{Data Hazards}{section.4}% 21
 \BOOKMARK [2][-]{subsection.4.3}{Instruction Level Parallelism}{section.4}% 22
-\BOOKMARK [3][-]{subsubsection.4.3.1}{Out of Order Execution}{subsection.4.3}% 23
-\BOOKMARK [3][-]{subsubsection.4.3.2}{Programmer assisted ILP}{subsection.4.3}% 24
-\BOOKMARK [1][-]{section.5}{Multi-Threading}{}% 25
-\BOOKMARK [1][-]{section.6}{Multi-Core}{}% 26
-\BOOKMARK [1][-]{section.7}{Vitalisation}{}% 27
-\BOOKMARK [1][-]{section.8}{Permanent Storage}{}% 28
+\BOOKMARK [1][-]{section.5}{Multi-Threading}{}% 23
+\BOOKMARK [1][-]{section.6}{Multi-Core}{}% 24
+\BOOKMARK [1][-]{section.7}{Vitalisation}{}% 25
+\BOOKMARK [1][-]{section.8}{Permanent Storage}{}% 26
