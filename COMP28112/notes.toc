@@ -1,0 +1,4 @@
+\contentsline {section}{\numberline {1}Distributed computing}{3}{section.1}
+\contentsline {section}{\numberline {2}Parallelising processes}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Finding parallelisable portions of a program}{4}{subsection.2.1}
+\contentsline {section}{\numberline {3}Architectures of distributed systems}{5}{section.3}

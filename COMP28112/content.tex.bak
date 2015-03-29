@@ -112,21 +112,21 @@ techniques, parallel computing is usually when you use multiple CPU's in the
 same computer, whereas distributed computing is using networked computers.
 
 You can still parallelise an application over different systems using the
-network as a medium. Not all applications will benefit from this; the most
+network as a medium. Not all applications will benifit from this; the most
 suitable applications have CPU intensive sections that don't require much
 communication between nodes. If the proportion of your application that you can
-speed up is $x$ (where $0 \leq x \leq 1$), then the maximum speedup you can
+speed up is $x$ (where $0 \leq x \geq 1$), then the maximum speedup you can
 achieve is $\frac{1}{x}$.
 
 The running time of a program executing on $n$ CPU's, when it runs in $t$
 seconds on one cpu is:
 
 \[
-  \text{Running time} = overhead + t\left(1 - x + \frac{x}{p}\right)
+  \text{Running time} = overhead + t\left(1 - x _ \frac{x}{p}\right)
 \]
 
 Where $overhead$ is the time it takes to setup, synchronise and communicate
-between CPU's. In practice, the $overhead$ is a function that takes the number
+between CPU's. In pracrice, the $overhead$ is a function that takes the number
 of processors as an argument (since it will usually increase as the number of
 processors increases).
 
