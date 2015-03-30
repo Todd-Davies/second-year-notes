@@ -112,21 +112,21 @@ techniques, parallel computing is usually when you use multiple CPU's in the
 same computer, whereas distributed computing is using networked computers.
 
 You can still parallelise an application over different systems using the
-network as a medium. Not all applications will benifit from this; the most
+network as a medium. Not all applications will benefit from this; the most
 suitable applications have CPU intensive sections that don't require much
 communication between nodes. If the proportion of your application that you can
-speed up is $x$ (where $0 \leq x \geq 1$), then the maximum speedup you can
+speed up is $x$ (where $0 \leq x \elq 1$), then the maximum speedup you can
 achieve is $\frac{1}{x}$.
 
 The running time of a program executing on $n$ CPU's, when it runs in $t$
 seconds on one cpu is:
 
 \[
-  \text{Running time} = overhead + t\left(1 - x _ \frac{x}{p}\right)
+  \text{Running time} = overhead + t\left(1 - x + \frac{x}{p}\right)
 \]
 
 Where $overhead$ is the time it takes to setup, synchronise and communicate
-between CPU's. In pracrice, the $overhead$ is a function that takes the number
+between CPU's. In practice, the $overhead$ is a function that takes the number
 of processors as an argument (since it will usually increase as the number of
 processors increases).
 
@@ -144,3 +144,67 @@ for repetitive operations on large amounts of data.
 
 \section{Architectures of distributed systems}
 % Lecture 3
+
+Broadly, there are two main architectures that can be used in the design of
+distributed systems; tightly coupled and loosely coupled architectures. Tightly
+coupled architectures look and (try to) behave as though they were a single
+computer, whereas loosely coupled architectures are often far more distributed
+and include client-server, peer-to-peer strategies.
+
+\subsection{Distributed Shared Memory}
+
+Distributed Shared Memory is a tightly coupled architecture that provides the
+programmer with an illusion of a single shared memory space. Since the
+programmer is not concerned with anything lower than the system calls to read
+and write to memory, and these system calls handle the distributed bit, the
+programmer can by abstracted from any concerns about message passing.
+
+However, the machines are still connected by a network, and therefore there is a
+latency between the memory reads and writes and their completion. The middleware
+will try and minimise network traffic, but depending on the application, this
+could become a limiting factor.
+
+There are also the issues of keeping track of the phsical location of each
+virtual memory address, since they will be on multiple machines, and replicating
+the data when needed.
+
+\subsection{Loosely coupled architecures}
+
+%TODO: Use the internet to pad these out more...
+
+\begin{description}
+  \item \textbf{Layered}\\
+    In the layered style, messages must flow through a certain number of layers
+    to reach the destination.
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{images/layered}
+      \caption{The layered architectural style}
+      \label{layered}
+    \end{figure}
+  \item \textbf{Object baseed}\\
+    Here, objects can call other objects.
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{images/object-based}
+      \caption{The object-based architectural style}
+      \label{object-based}
+    \end{figure}
+  \item \textbf{Event baseed}\\
+    Often used as a publish-subscribe (pub-sub) architecture.
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{images/event-based}
+      \caption{The event-based architectural style}
+      \label{event-based}
+    \end{figure}
+  \item \textbf{Shared dataspace}\\
+    % TODO: Defo describe more
+    \dots
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{images/shared-dataspace}
+      \caption{The shared-dataspace architectural style}
+      \label{shared-dataspace}
+    \end{figure}
+\end{description}

@@ -2,3 +2,5 @@
 \BOOKMARK [1][-]{section.2}{Parallelising processes}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Finding parallelisable portions of a program}{section.2}% 3
 \BOOKMARK [1][-]{section.3}{Architectures of distributed systems}{}% 4
+\BOOKMARK [2][-]{subsection.3.1}{Distributed Shared Memory}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.2}{Loosely coupled architectures}{section.3}% 6

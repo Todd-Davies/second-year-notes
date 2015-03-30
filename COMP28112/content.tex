@@ -144,3 +144,67 @@ for repetitive operations on large amounts of data.
 
 \section{Architectures of distributed systems}
 % Lecture 3
+
+Broadly, there are two main architectures that can be used in the design of
+distributed systems; tightly coupled and loosely coupled architectures. Tightly
+coupled architectures look and (try to) behave as though they were a single
+computer, whereas loosely coupled architectures are often far more distributed
+and include client-server, peer-to-peer strategies.
+
+\subsection{Distributed Shared Memory}
+
+Distributed Shared Memory is a tightly coupled architecture that provides the
+programmer with an illusion of a single shared memory space. Since the
+programmer is not concerned with anything lower than the system calls to read
+and write to memory, and these system calls handle the distributed bit, the
+programmer can by abstracted from any concerns about message passing.
+
+However, the machines are still connected by a network, and therefore there is a
+latency between the memory reads and writes and their completion. The middleware
+will try and minimise network traffic, but depending on the application, this
+could become a limiting factor.
+
+There are also the issues of keeping track of the physical location of each
+virtual memory address, since they will be on multiple machines, and replicating
+the data when needed.
+
+\subsection{Loosely coupled architectures}
+
+%TODO: Use the internet to pad these out more...
+
+\begin{description}
+  \item \textbf{Layered}\\
+    In the layered style, messages must flow through a certain number of layers
+    to reach the destination.
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{images/layered}
+      \caption{The layered architectural style}
+      \label{layered}
+    \end{figure}
+  \item \textbf{Object based}\\
+    Here, objects can call other objects.
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{images/object-based}
+      \caption{The object-based architectural style}
+      \label{object-based}
+    \end{figure}
+  \item \textbf{Event based}\\
+    Often used as a publish-subscribe (pub-sub) architecture.
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{images/event-based}
+      \caption{The event-based architectural style}
+      \label{event-based}
+    \end{figure}
+  \item \textbf{Shared dataspace}\\
+    % TODO: Defo describe more
+    \dots
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.5\textwidth]{images/shared-dataspace}
+      \caption{The shared-dataspace architectural style}
+      \label{shared-dataspace}
+    \end{figure}
+\end{description}
