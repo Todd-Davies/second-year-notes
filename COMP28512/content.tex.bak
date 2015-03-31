@@ -78,18 +78,18 @@ Figure~\ref{discrete-signal}.
 \end{figure} 
 
 Not all waves are so easy to analyse, rarely will a wave be at just one
-frequency, instead, they are usually `noisy' and will be composed of many waves
-added together. Many waves (that aren't just noise) will have a discernible
+frequency, instea, they are usually `noisy' and will be composed of many waves
+added together. Many waves (that aren't just noise) will have a discernable
 frequency that you can extract. The `extra' waves on top of this frequency
-aren't necessarily bad, they might add harmonics, or texture to a sound.
+aren't nececarrily bad, they might add harmonics, or texture to a sound.
 
-\subsection{The Sampling Theorem}
+\subsection{The Sampeling Theorem}
 
-The Sampling Theorem states that if a signal has all of its spectral energy
+The Sampeling Theorem states that if a signal has all of its spectral energy
 below $B$Hz, and is sampled at $F$Hz, where $F \geq 2B$, then it can be
 reconstructed \textit{exactly} from the samples and nothing is lost.
 
-In other words, if you are sampling a signal at \textit{less than half} of the
+In other words, if you are sampeling a singal at \textit{less than half} of the
 maximum frequency of the signal, then you won't be able to fully reconstruct the
 signal from the samples, and you will get distortion.
 
