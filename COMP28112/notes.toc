@@ -4,3 +4,5 @@
 \contentsline {section}{\numberline {3}Architectures of distributed systems}{5}{section.3}
 \contentsline {subsection}{\numberline {3.1}Distributed Shared Memory}{5}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Loosely coupled architectures}{5}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Client-Server model}{5}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Peer to Peer (P2P) model}{6}{subsubsection.3.2.2}

@@ -4,3 +4,5 @@
 \BOOKMARK [1][-]{section.3}{Architectures of distributed systems}{}% 4
 \BOOKMARK [2][-]{subsection.3.1}{Distributed Shared Memory}{section.3}% 5
 \BOOKMARK [2][-]{subsection.3.2}{Loosely coupled architectures}{section.3}% 6
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Client-Server model}{subsection.3.2}% 7
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Peer to Peer \(P2P\) model}{subsection.3.2}% 8

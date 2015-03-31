@@ -173,38 +173,69 @@ the data when needed.
 %TODO: Use the internet to pad these out more...
 
 \begin{description}
-  \item \textbf{Layered}\\
+  \item \textbf{Layered (figure~\ref{layered})}\\
     In the layered style, messages must flow through a certain number of layers
     to reach the destination.
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.5\textwidth]{images/layered}
-      \caption{The layered architectural style}
+      \caption{The layered (a) and object-based (b) architectural style}
       \label{layered}
     \end{figure}
-  \item \textbf{Object based}\\
+  \item \textbf{Object based (figure~\ref{layered})}\\
     Here, objects can call other objects.
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.5\textwidth]{images/object-based}
-      \caption{The object-based architectural style}
-      \label{object-based}
-    \end{figure}
-  \item \textbf{Event based}\\
+  \item \textbf{Event based (figure~\ref{event-based})}\\
     Often used as a publish-subscribe (pub-sub) architecture.
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.5\textwidth]{images/event-based}
-      \caption{The event-based architectural style}
+      \caption{The event-based (a) and shared-dataspace(b) architectural style}
       \label{event-based}
     \end{figure}
-  \item \textbf{Shared dataspace}\\
+  \item \textbf{Shared dataspace (figure~\ref{event-based})}\\
     % TODO: Defo describe more
     \dots
-    \begin{figure}[H]
-      \centering
-      \includegraphics[width=0.5\textwidth]{images/shared-dataspace}
-      \caption{The shared-dataspace architectural style}
-      \label{shared-dataspace}
-    \end{figure}
 \end{description}
+
+\textbf{Middleware} is used to abstract away the complexity of dealing with
+networks and their issues. Good middleware can effectively hide heterogeneity of
+the underlying platforms (e.g. Windows x86 computers talking to Linux ARM
+machines). The \textbf{end-to-end} argument reminds us of the limits of
+middleware; and states that the functions specific to each application should
+reside at the endpoints of the network, not the intermediary hosts. This means
+that though middleware can provide generic functions for you to use, you still
+have to apply these functions in your application in order to do something
+useful.
+
+\subsubsection{Client-Server model}
+
+In this model, many clients will invoke functions on a remote server. Servers
+(despite there being few of them) act as the slave, since they are passive and
+wait for requests to come. Clients are masters, since they are active, and send
+requests to servers. Servers can be stateful or stateless.
+
+Client server architectures, by nature, are asymmetrical. As a result of this,
+they often scale poorly, since the server load will increase proportional to the
+number of clients. Of course, you can use multiple servers to spread the load on
+any one server (horizontal scaling, done using proxies), and put caches between
+the client and the server to server common and easy requests.
+
+Another way to reduce the load on servers is to use `mobile code'. Popularised
+by Java, this is when code is downloaded to a client from the server, and the
+client executes the application locally. This reduces server load, and makes the
+app responsive on the user's computer.
+
+The opposite side to this, is having thin clients, who rely on the server to do
+all of the heavy lifting for them (e.g. a very simple web browser like Lynx).
+
+\subsubsection{Peer to Peer (P2P) model}
+
+Here, all nodes in the network are the same, and they all talk to eachother.
+These networks have no central point of coordination (or failure), which
+provides resilience, yet at the same time, complexity.
+
+Though P2P architectures scale well (since they are truly `distributed'), it is
+hard to find, coordinate and use resources over the network because of a lack of
+any central organisation.
+
+% TODO: Checksums
