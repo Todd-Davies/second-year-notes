@@ -605,10 +605,95 @@ performance:
   \item Minimising the impact of accessing memory with a cache
   \item Minimising bubbles (branch prediction)
   \item Minimising bubbles (out of order execution)
-  \item Parellilising instructions (with an superscalar architecture)
-  \item[ ] \begin{center}And maybe...\end{center}
-  \item Lenghtning the pipeline
-\end{itsemize}
+  \item Parallelising instructions (with an superscalar architecture)
+  \item[ ] \hspace{-2.2em}And, up to a point
+  \item Lengthening the pipeline
+\end{itemize}
+
+We have said that increasing the parallelism will speed up our pipeline, but in
+order to do this, we need to find enough instructions to safely parallelise at
+once. There are multiple ways to do this too:
+
+\begin{itemize}
+  \item When we get a branch instruction, do we pause until we evaluate the
+  outcome of the branch, or keep issueing instructions? If we're using branch
+  prediction, then we can keep issueing instructions.
+
+  \item After a cache miss, we need to wait for a certain amount of time for the
+  data we want to come from the memory, over the bus and into the CPU. While
+  we're waiting, can we carry on issuing other instructions?
+
+  \item Process instructions in parallel (e.g. with a superscalar architecture).
+
+  \item Write to registers while the previous write is pending?
+\end{itemize}
+
+These ways of increasing parellism are good, but assume we have only one source
+of instructions. However in reality, a CPU will be executing code from multiple
+processes at once. What about if we run out of instructions to execute in one
+program, we could just context switch to another!
+
+\subsection{Context switch}
+
+In a context switch, the Operating System must load/store a lot of data about
+the switching processes:
+
+\begin{mymulticols}
+  \begin{itemize}
+    \item Process ID
+    \item Process state
+    \item Program Counter
+    \item Stack Pointer
+    \item General registers
+    \item Memory management information
+    \item Open file list (and positions)
+    \item Network connections
+    \item CPU time used
+    \item Parent process ID
+  \end{itemize}
+\end{mymulticols}
+
+\subsection{Hardware multithreading}
+
+We could have two PC's, two sets of registers (GPR's on the diagram), two
+virtual address mappings etc, and have the CPU support multi threading natively.
+This would require the OS to be able to handle multiple processors, since the
+easiest way of making it work is to make the one processor core look like two
+processor cores (since the inputs and outputs are effectively doubled).
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{images/hyperthreading}
+  \caption{The architecutre of a multithreaded CPU}
+  \label{hyperthreading}
+\end{figure}
+
+\subsubsection{Coarse grain multithreading}
+
+Coarse grain multithreading is when you switch threads whenever the current
+thread executes an expensive operation. This could be when there is a cache miss
+for example, or whenever the CPU has to wait to execute more instructions.
+
+This type of multithreading has benifits. If the CPU can execute one instruction
+per nanosecond ($1GHz$), a cache miss takes $20$ nano seconds, and one cache
+miss occurs on average, every hundred instructions, then the time number of
+instructions per clock cycle is:
+
+\begin{description}
+  \item \textbf{Without multithreading}
+    \[
+      \frac{100ns}{100ns + 20ns \text{(one hundred instructions and one cache miss)}} = 0.8333
+    \]
+  \item \textbf{With multithreading}
+    \[
+      \frac{100ns}{100ns + 1ns \text{(one hundred instructions and context switch)}} = 0.99
+    \]
+\end{description}
+
+%Unfortunately, when you do a context switch, a new program runs on the
+%processor. This is bad, since both the instruction and data caches will suddenly
+%contain an awful lot of entries that are obselete, and so most of the cache
+%requests will be misses.
 
 \section{Multi-Core}
 

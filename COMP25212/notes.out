@@ -25,6 +25,7 @@
 \BOOKMARK [1][-]{section.5}{Multi-Threading}{}% 25
 \BOOKMARK [2][-]{subsection.5.1}{Context switch}{section.5}% 26
 \BOOKMARK [2][-]{subsection.5.2}{Hardware multithreading}{section.5}% 27
-\BOOKMARK [1][-]{section.6}{Multi-Core}{}% 28
-\BOOKMARK [1][-]{section.7}{Vitalisation}{}% 29
-\BOOKMARK [1][-]{section.8}{Permanent Storage}{}% 30
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Coarse grain multithreading}{subsection.5.2}% 28
+\BOOKMARK [1][-]{section.6}{Multi-Core}{}% 29
+\BOOKMARK [1][-]{section.7}{Vitalisation}{}% 30
+\BOOKMARK [1][-]{section.8}{Permanent Storage}{}% 31
