@@ -532,16 +532,16 @@ Now we could have an architecture looking like that in Figure~\ref{superscalar}.
   \label{superscalar}
 \end{figure}
 
-\marginpar{Note, these multiple reads and writes will be occuring in different
+\marginpar{Note, these multiple reads and writes will be occurring in different
 parts of the register bank and cache, since the parallel instructions are (by
 nature) independent of each other.}
 
 If we are able to run multiple instructions at the same time, then our registers
 and caches are going to have (in this case, which is a low level of parallelism)
-rougly twice the load that they had previously. In order to allow them to handle
+roughly twice the load that they had previously. In order to allow them to handle
 this extra load, we can make them \textbf{dual ported}, which means that the
-access circuitary is duplicated so multiple reads and writes can happen
-simultansously.
+access circuitry is duplicated so multiple reads and writes can happen
+simultaneously.
 
 In order to implement ILP, we also need a `dispatch unit' in hardware which is
 part of the fetch stage (\texttt{IF}). This will fetch multiple instructions if
@@ -555,7 +555,7 @@ reduced number of interdependencies. One technique that is based on this is the
 Very Long Instruction Word, where each word will be longer than a normal word
 (maybe 48, 64 or more bits), and will contain more than one instruction.
 
-Having the compiler re-order instrucitons means that it will sometimes add
+Having the compiler re-order instructions means that it will sometimes add
 \texttt{NOP}'s into the code, which can increase the binary size, and bloat the
 code. The alternative it to rely on expensive hardware to detect out of order
 opportunities at runtime.
@@ -567,7 +567,7 @@ accesses until all the instructions have finished so that the application can
 execute normally as though all instructions executed in serial. Figure~\ref{out-
 of-order} shows how this could all be implemented.
 
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{images/out-of-order}
   \caption{An example of how an out-of-order processor could be implemented.}
@@ -580,7 +580,7 @@ Some processors now support SIMD (Single Instruction Multiple Data)
 instructions, that allow one instruction to be executed on multiple
 registers/memory locations etc. This is very useful when doing mathematical
 computation with stuff like vectors and matrices, since it requires a lot of
-repetitive operations that lend themselves easily to paralellism.
+repetitive operations that lend themselves easily to parallelism.
 
 One example of this is the \texttt{UADD8} ARM instruction. It adds two registers
 together into a third register like a normal add, but it does this four times;
@@ -595,6 +595,20 @@ R1, R2} will do:
 \end{figure}
 
 \section{Multi-Threading}
+
+We have already seen, there are many different ways of increasing CPU
+performance:
+
+\begin{itemize}
+  \item Increasing the clock frequency
+  \item Increasing the \textit{ips} (instructions per clock)
+  \item Minimising the impact of accessing memory with a cache
+  \item Minimising bubbles (branch prediction)
+  \item Minimising bubbles (out of order execution)
+  \item Parellilising instructions (with an superscalar architecture)
+  \item[ ] \begin{center}And maybe...\end{center}
+  \item Lenghtning the pipeline
+\end{itsemize}
 
 \section{Multi-Core}
 

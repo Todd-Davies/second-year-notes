@@ -23,6 +23,8 @@
 \BOOKMARK [3][-]{subsubsection.4.3.1}{Out of Order Execution}{subsection.4.3}% 23
 \BOOKMARK [3][-]{subsubsection.4.3.2}{Programmer assisted ILP}{subsection.4.3}% 24
 \BOOKMARK [1][-]{section.5}{Multi-Threading}{}% 25
-\BOOKMARK [1][-]{section.6}{Multi-Core}{}% 26
-\BOOKMARK [1][-]{section.7}{Vitalisation}{}% 27
-\BOOKMARK [1][-]{section.8}{Permanent Storage}{}% 28
+\BOOKMARK [2][-]{subsection.5.1}{Context switch}{section.5}% 26
+\BOOKMARK [2][-]{subsection.5.2}{Hardware multithreading}{section.5}% 27
+\BOOKMARK [1][-]{section.6}{Multi-Core}{}% 28
+\BOOKMARK [1][-]{section.7}{Vitalisation}{}% 29
+\BOOKMARK [1][-]{section.8}{Permanent Storage}{}% 30
