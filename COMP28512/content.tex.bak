@@ -55,6 +55,19 @@ analogue signals to \textit{discrete time signals} by sampling them at set
 intervals (discrete points in time). This produces a list of numbers from
 $-\inf$ to $\inf$.
 
+\subsection{Generating waves}
+
+In order to create a wave with a period of $T$ seconds, you can use the formula:
+
+\[
+  y = sin(\frac{2\pi x}{T})
+\]
+
+Of course, since $f = \frac{1}{T}$, the frequency of the wave is the reciprocal
+of the time period.
+
+\subsection{Sampeling waves}
+
 We can work out the frequency of a wave, by finding how many complete cycles it
 undergoes in one thousand samples, and multiplying that by the sample rate. For
 example, if a wave has ten cycles from $1000$ samples at $30,000Hz$, then its
@@ -78,18 +91,49 @@ Figure~\ref{discrete-signal}.
 \end{figure} 
 
 Not all waves are so easy to analyse, rarely will a wave be at just one
-frequency, instea, they are usually `noisy' and will be composed of many waves
-added together. Many waves (that aren't just noise) will have a discernable
+frequency, instead, they are usually `noisy' and will be composed of many waves
+added together. Many waves (that aren't just noise) will have a discernible
 frequency that you can extract. The `extra' waves on top of this frequency
-aren't nececarrily bad, they might add harmonics, or texture to a sound.
+aren't necessarily bad, they might add harmonics, or texture to a sound.
 
-\subsection{The Sampeling Theorem}
+\subsubsection{Quantisation}
 
-The Sampeling Theorem states that if a signal has all of its spectral energy
+When we've sampled a wave, if we leave all of our readings as floating point
+numbers, then we could be using a lot of space to store each sample. We could
+slightly reduce the quality of our sound by \textit{quantising} it. This is when
+you map the continous values onto a range of integers, where the range of
+integers spans a power of two (so you can use as few bits as possible).
+
+You can see that the third wave in Figure~\ref{quantised-wave} has been
+quantised into five integers, since there are five discrete values in the
+waveform ($0,1,2,3,4$) (requiring four bits), and there will be an extra bit to
+indicate the sign. If whoever made the diagram was trying to be as efficient as
+possible, they might have had either one less value (so that the numbers could
+be represented in three bits), or made full use of the four bits for the value,
+and used values from $0-7$.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[\textwidth]{images/quantised-wave}
+  \caption{An analogue wave (a), after its sampled (b), and once it's been quantised (c)}
+  \label{quantised-wave}
+\end{figure}
+
+Quantisation produces noise (known as quantisation noise), since errors are
+introduced in the process. If there are many bits per sample (e.g. 16), then
+this error will be small, but if you only used say, five bits, then the error
+would be noticable. As a concequence of this, we have to work a trade-off
+between storage capacity or bandwith and quality.
+
+\subsubsection{The Sampling Theorem}
+
+\marginpar{Also known as \textit{Nyquist criterion}.}
+
+The Sampling Theorem states that if a signal has all of its spectral energy
 below $B$Hz, and is sampled at $F$Hz, where $F \geq 2B$, then it can be
 reconstructed \textit{exactly} from the samples and nothing is lost.
 
-In other words, if you are sampeling a singal at \textit{less than half} of the
+In other words, if you are sampling a signal at \textit{less than half} of the
 maximum frequency of the signal, then you won't be able to fully reconstruct the
 signal from the samples, and you will get distortion.
 
@@ -105,6 +149,29 @@ distortion, known as aliasing. The first lab on this course relates to aliasing.
 Even if we don't want frequencies higher than half our sample rate, we need to
 filter them out anyway, since otherwise, we will get aliasing when we sample
 them.
+
+To be precise, if a wave of frequency $f$ is sampled at a frequency of below
+$2f$ (lets call this $F$, then the sampled output will be a wave of frequency $F
+- f$.
+
+For example, if we sample a $6kHz$ wave at a frequency of $10kHz$, when we will
+get a wave of frequency $10-6 = 4kHz$.
+
+This is bad, because if you have harmonics in a musical note that are higher
+than half the sampeling frequency, then these harmonics will be out of tune post
+sampling, and will go down when it's supposed to go up.
+
+It may be hard to work out exactly why aliasing occurs, but
+Figure~\ref{aliasing}, showing a $6kHz$ wave sampled at $8kHz$ makes it easier
+to see:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[\textwidth]{images/aliasing}
+  \caption{A $6kHz$ wave sampled at $8kHz$ has a post-sampling frequency of 
+  $2kHz$}
+  \label{aliasing}
+\end{figure}
 
 \section{Storing signals}
 
