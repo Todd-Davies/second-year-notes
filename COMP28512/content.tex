@@ -96,35 +96,6 @@ added together. Many waves (that aren't just noise) will have a discernible
 frequency that you can extract. The `extra' waves on top of this frequency
 aren't necessarily bad, they might add harmonics, or texture to a sound.
 
-\subsubsection{Quantisation}
-
-When we've sampled a wave, if we leave all of our readings as floating point
-numbers, then we could be using a lot of space to store each sample. We could
-slightly reduce the quality of our sound by \textit{quantising} it. This is when
-you map the continuous values onto a range of integers, where the range of
-integers spans a power of two (so you can use as few bits as possible).
-
-You can see that the third wave in Figure~\ref{quantised-wave} has been
-quantised into five integers, since there are five discrete values in the
-waveform ($0,1,2,3,4$) (requiring four bits), and there will be an extra bit to
-indicate the sign. If whoever made the diagram was trying to be as efficient as
-possible, they might have had either one less value (so that the numbers could
-be represented in three bits), or made full use of the four bits for the value,
-and used values from $0-7$.
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{images/quantised-wave}
-  \caption{An analogue wave (a), after its sampled (b), and once it's been quantised (c)}
-  \label{quantised-wave}
-\end{figure}
-
-Quantisation produces noise (known as quantisation noise), since errors are
-introduced in the process. If there are many bits per sample (e.g. 16), then
-this error will be small, but if you only used say, five bits, then the error
-would be noticeable. As a consequence of this, we have to work a trade-off
-between storage capacity or bandwidth and quality.
-
 \subsubsection{The Sampling Theorem}
 
 \marginpar{Also known as \textit{Nyquist criterion}.}
@@ -137,10 +108,10 @@ In other words, if you are sampling a signal at \textit{less than half} of the
 maximum frequency of the signal, then you won't be able to fully reconstruct the
 signal from the samples, and you will get distortion.
 
-Since music is usually sampled at $44.1$\si{\kilo\hertz}, we can accurately sample music with
-frequencies up to around $22$\si{\kilo\hertz}. Speech rarely has frequencies above $3.4$\si{\kilo\hertz},
-so the sample rate for it can be much lower, as we will see later on in the
-course.
+Since music is usually sampled at $44.1$\si{\kilo\hertz}, we can accurately
+sample music with frequencies up to around $22$\si{\kilo\hertz}. Speech rarely
+has frequencies above $3.4$\si{\kilo\hertz}, so the sample rate for it can be
+much lower, as we will see later on in the course.
 
 \subsubsection{Aliasing}
 
@@ -173,9 +144,367 @@ to see:
   \label{aliasing}
 \end{figure}
 
-% Slide 15 of lecture 2
+\subsection{Decibels}
+\label{decibels}
 
-\section{Storing signals}
+Sound can be measured in decibels, which is a logarithmic ratio. The formula is
+as follows:
+
+\[
+  \si{\decibel} = 10 \times log_{10}\left(\frac{s_1}{s_2}\right)
+\]
+
+If $s_1$ is twice as loud as $s_2$, then it will be $10\times\log_{10}(2)=3\si{\decibel}$
+louder than $s_2$.
+
+The following table shows the power ratio ($\frac{s_1}{s_2}$) against the
+equivalent decibels:
+
+\begin{center}
+  \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Power ratio} & \textbf{Decibels} \\ \hline
+    $\frac{1}{2}$ & -3 \\ \hline
+    $1$ & $0$ \\ \hline
+    $2$ & $3$ \\ \hline
+    $4$ & $6$ \\ \hline
+    $10$ & $10$ \\ \hline
+    $100$ & $20$ \\ \hline
+    $1000$ & $30$ \\ \hline
+    $10^{5}$ & $50$ \\ \hline
+    $10^{10}$ & $100$ \\ \hline
+  \end{tabular}
+\end{center}
+
+\section{Encoding and storing signals}
+
+There are a variety of different ways to encode sound. The two main types of
+coders for talking over the phone are \textit{waveform} coders, and
+\textit{parametric coders} (sometimes called vocoders).
+
+\begin{description}
+  \item \textbf{Waveform coders}\\
+  Waveform coders `operate on' the sound waves directly, and aim to change the
+  wave so that it is transmitted in an optimal way. They are simple to
+  understand and implement, but can't achieve \textit{really} low bit rates.
+  They aim to preserve the exact shape of the wave.
+
+  \item \textbf{Parametric coders}\\
+  Parametric coders try and model human speech by exploiting how we produce
+  sound with our vocal chords and mouth shape. They don't try and preserve the
+  exact wave shape, but instead try and describe \textit{perceptually
+  significant features} as sets of parameters. This is more complicated and
+  harder to implement, but achieves lower bit rates.
+\end{description}
+
+Techniques that fall into both types of coder will be discussed in this section.
+
+\marginpar{\textbf{Dynamic range} is the ratio between the loudest sound we can
+hear, and the most quiet sound we can hear.}
+
+Humans can hear frequencies between $20\si{\hertz}$ and $20\si{\kilo\hertz}$,
+and have a dynamic range of $120\si{\decibel}$. We can represent six decibels
+per bit of information using uniform quantisation (see section~\ref{uniform-quantisation}),
+so we need about $\frac{120}{6}$ bits to properly represent the sample.
+
+\subsection{Bitrates in different settings}
+
+Sometimes, 20 bits per sample is too much, so different bit rates are used in
+different applications:
+
+\begin{description}
+
+  \item \textbf{CD's}\\
+  Unfortunately, 20 bits per sample was too much for CD's (you wouldn't be able
+  to fit enough songs on each CD), so instead, 16 bits item per sample was
+  adopted as the standard. In order to `lose' these four bits, we make the quiet
+  bits of the songs louder (since we probably wouldn't be able to hear them
+  anyway).
+
+  As a consequence of this, a song on a CD plays at a rate of $16 \times 44100
+  \times 2 = 1411\si{\kilo\bit\per\second}$.
+
+  \item \textbf{Landlines}\\
+  \marginpar{In practice, sometimes, vowel sounds like `f' and `s' can be mixed
+  up.}
+  Landlines are band-limited to a range of frequencies from $50\si{\hertz}$ to
+  $3.4\si{\kilo\hertz}$. Obviously, this is much, much less than the dynamic
+  range that humans can hear, but we only usually talk in frequencies covered by
+  the range provided. This means that the sound will lose its `naturalness' but
+  not intelligibility (supposedly).
+
+  \marginpar{\textbf{Band limiting} is when a sound is Fourier transformed, and
+  frequencies above or below a certain frequency are stripped.}
+
+  The sample rate for telephone quality speech is $8\si{\kilo\hertz}$, with
+  $8\si{\bit\per}s$. This gives a bitrate of $64\si{\kilo\bit\per\second}$. In
+  order to use just $8\si{\bit}$ per sample, we need to use non-uniform
+  quantisation (like in the (second?) lab), such as $\mu$-law quantisation.
+
+  \item \textbf{Mobile Telephones}\\
+  Mobile phones use a bit rate that changes based on factors such as the signal
+  quality, but has a minimum value of $4.75\si{\kilo\bit\per\second}$, and a
+  maximum value of $12.2\si{\kilo\bit\per\second}$. AMR encoding (see
+  Section~\ref{amr}) is used to achieve such low bitrates.
+
+\end{description}
+
+\subsection{Quantisation}
+
+When we've sampled a wave, if we leave all of our readings as floating point
+numbers, then we could be using a lot of space to store each sample. We could
+slightly reduce the quality of our sound by \textit{quantising} it. This is when
+you map the continuous values onto a range of integers, where the range of
+integers spans a power of two (so you can use as few bits as possible).
+
+You can see that the third wave in Figure~\ref{quantised-wave} has been
+quantised into five integers, since there are five discrete values in the
+waveform ($0,1,2,3,4$) (requiring four bits), and there will be an extra bit to
+indicate the sign. If whoever made the diagram was trying to be as efficient as
+possible, they might have had either one less value (so that the numbers could
+be represented in three bits), or made full use of the four bits for the value,
+and used values from $0-7$.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{images/quantised-wave}
+  \caption{An analogue wave (a), after its sampled (b), and once it's been quantised (c)}
+  \label{quantised-wave}
+\end{figure}
+
+Quantisation produces noise (known as quantisation noise), since errors are
+introduced in the process. If there are many bits per sample (e.g. 16), then
+this error will be small, but if you only used say, five bits, then the error
+would be noticeable. As a consequence of this, we have to work a trade-off
+between storage capacity or bandwidth and quality.
+
+There are two types of quantisation, uniform and non-uniform:
+
+\begin{description}
+  \item \textbf{Uniform quantisation}\\
+  \label{uniform-quantisation}
+  A simple type of quantisation, each binary number represents a voltage, where 
+  incrementing the binary representation will correspond to an increase in the 
+  voltage of $\Delta\si{\volt}$, called the \textit{quantisation step-size}.
+
+  It might be hard to decide on a value for $\Delta$, because different sounds
+  will span different ranges of amplitude as shown in Figure~\ref{choosing-delta}.
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/choosing-delta}
+    \caption{This waveform shows how a a bad choice for $\Delta$ can adversely
+    affect the quality of the sound, when it is undergoing uniform quantisation.}
+    \label{choosing-delta}
+  \end{figure}
+
+  One solution to this, is to adjust the value of $\Delta$ on a sample-to-sample
+  basis. This uses up extra bandwidth though, so is not a preferred solution.
+
+  \item \textbf{Non-uniform quantisation}\\
+  \label{non-uniform-quantisation}
+  Non-uniform quantisation is when the quantisation step-size is not the same
+  between different quantised values, as evidenced in
+  Figure~\ref{fig-non-uniform-quantisation}.
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/non-uniform-quantisation}
+    \caption{An example of non-uniform quantisation.}
+    \label{fig-non-uniform-quantisation}
+  \end{figure}
+
+  Non-uniform quantisation is implemented like so:
+
+  \begin{enumerate}
+    \item Apply accurate uniform quantisation.
+    \item Apply a `compranding' formula, such as $\mu$-law.
+    \item Uniformly quantise again using fewer bits.
+    \item Transmit.
+    \item Reverse the process of steps three and two with an `expander'.
+  \end{enumerate}
+
+  \marginpar{Compranding is just a coding technique similar to compression. It
+  doesn't increase the quality of the sound or anything (though it might do if
+  the alternative was to use the same number of bits with uniform quantisation.)}
+
+  A `comprander' will increase the value of small samples, and decrease the
+  value of large samples, and an `expander' just does the reverse. Even though
+  we only apply two uniform quantisations, the comprander and expander mean the
+  overall effect is one of non-uniform quantisation.
+
+  % TODO: Mu law and A-law
+
+\end{description}
+
+\subsubsection{Quantisation error}
+
+Quantisation Error is produced when we quantise a wave, and is random in the
+range of $\pm\frac{\Delta}{2}$. Since the error is random, the error is heard as
+white noise, and is spread evenly across all frequencies. The Mean Square Value
+(MSV) of the noise, is $\frac{\Delta^2}{12}$.
+
+We can calculate the Signal to Quantisation Noise Ratio (SQNR), which is how
+loud the signal is in comparison to the noise (hence it is given in decibels -
+see Section~\ref{decibels}). To do this, we use the formula:
+
+\[
+  \text{SQNR} = 10\log_{10}\left(\frac{\text{MSV of signal power}}{\text{MSV of noise}}\right)
+\]
+
+We can use this formula to calculate the $\si{\decibel\per\bit}$ for sending
+telephone data (speech, text etc):
+
+\begin{mymulticols}
+\[
+  \text{SQNR} = 10\log_{10}\left(\frac{A^2 / 2}{\Delta^2 / 12}\right)
+\]
+
+The maximum amplitude of a sine wave that has been quantised with a step size
+of $\Delta$ is $\frac{2^{bits}}{2}\Delta$
+
+\allowdisplaybreaks
+\begin{align*}
+  &= 10\log_{10}\left(\frac{\left(\frac{2^{bits}}{2}\Delta\right)^2 / 2}{\Delta^2 / 12}\right)\\
+  &= 10\log_{10}\left(\frac{\left(2^{2 \times bits - 2}\Delta^2\right) / 2}{\Delta^2 / 12}\right)\\
+\end{align*}
+\begin{align*}
+  &= 10\log_{10}\left(\frac{\left(\frac{2^{2 \times bits}}{4}\Delta^2\right) / 2}{\Delta^2 / 12}\right)\\
+  &= 10\log_{10}\left(\frac{\frac{2^{2 \times bits}}{8}\Delta^2}{\Delta^2 / 12}\right)\\
+  &= 10\log_{10}\left(\frac{\frac{2^{2 \times bits}}{8}}{1 / 12}\right)\\
+  &= 10\log_{10}(1.5 \times 2^{2 \times bits})\\
+  &= 10\log_{10}(1.5) + 10\log_{10}(2^{2 \times bits})\\
+  &\approx 1.8 + 10\log_{10}(2^{2 \times bits})\\
+  &\approx 1.8 + (6 \times bits)\\
+\end{align*}
+\end{mymulticols}
+
+This only strictly applies for uniformly quantised sine waves, but also holds
+fairly well for speech and music.
+
+If an 8 bit uniform quantisation scheme is designed for loud talkers (so they
+will use all eight bits), then it will have a SQNR of $(6\times 8) + 1.8 =
+49.8$. If another talker is much quieter, and talks $30\si{\decibel}$ quieter,
+then the samples will be encoded using only $3$ bits:
+
+\begin{align*}
+  6 \times bits - 1.8 &= 49.8 - 30\\
+  6 \times bits &= 48 - 30\\
+  6 \times bits &= 18\\
+  bits &= 3
+\end{align*}
+
+\marginpar{Remember, since the SQNR is calculated by
+$\frac{\text{MSV of signal power}}{\text{MSV of noise}}$ it has an inversely
+proportional relationship with the amount of noise. I.e. will go up as the noise
+decreases.}
+
+Since the quantisation noise for three bits is much lower ($19.8\si{\decibel}$)
+for the quietly talking person, they will probably be able to hear the noise
+over the phone.
+
+For the loudest CD quality (16 bit) music, the maximum SQNR value is
+$97.8\si{\decibel}$, whereas for the most quiet sounds, it is
+$-22.8\si{\decibel}$ (which means the noise is louder than the actual sound).
+Obviously this isn't ideal, so we need to apply DRC (Dynamic Range Compression)
+improve the balance.
+
+\subsection{Differential encoding}
+
+A sample of audio isn't just random data, and since the data represents a wave,
+consecutive values are likely to be relatively close together. If that is the
+case, then maybe we could encode the data as the difference between one sample
+and the next. If the differences are easier to transmit than the raw data, then
+we could save resources such as bandwidth. Such an encoder is shown in
+Figure~\ref{differential-encoder}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{images/differential-encoder}
+  \caption{An example of how a differential encoder might both encode and decode
+  audio samples.}
+  \label{differential-encoder}
+\end{figure}
+
+\marginpar{PCM stands for Pulse Code Modulation, and is basically the same as
+what we mean by quantisation.}
+
+This is known as Adaptive Differential PCM, and can be made to work at bitrates
+of $16-32\si{\kilo\bit\per\second}$. However, for use in mobile telephones, we
+need a bit rate that is at least four times lower than this\dots
+
+\subsection{Linear Predictive Speech Coding}
+
+\marginpar{Voiced speech is normal speech, unvoiced speech is whispering. If
+normal speech is sampled, then some of it will be classed as unvoiced, since
+only vowel sounds actually require the use of vocal chords (try it!).}
+
+LPC is a type of parametric encoder. Working on the principle that voiced speech
+is created by the vocal chords opening and closing at frequencies that change
+over time, the coder can send the fundamental frequency of the noise as well as
+parameters (called coefficients here) modelling the shape of the mouth over the
+network to recreate the speech at the receiver.
+
+The sender derives the parameters at a rate of $50\si{hertz}$, which include how
+loud the speech is, the coefficients modelling the vocal tract, and the
+fundamental frequency of the sound. Figure~\ref{LPC} shows how these parameters
+are used to reconstruct the speech at the receiver.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{images/LPC}
+  \caption{An implementation of a Linear Predictive Speech Decoder}
+  \label{LPC}
+\end{figure}
+
+\subsubsection{LPC-10}
+
+LPC-10 was a coder once used by the military that had a bit rate of
+$2.4\si{\kilo\bit\per\second}$. Each $20\si{\milli\second}$ frame has the
+following components:
+
+\begin{tabular}{l l}
+  37 bits & Ten filter coefficients\\
+  1 bit & Voiced/unvoiced decision\\
+  8 bits & Gain (the amplitude)\\
+  8 bits & Fundamental frequency\\
+\end{tabular}
+
+\marginpar{MIPS is Millions of Instructions Per Second}
+
+This made for a total of $56\si{\bit}$ per frame. Although it's easy to
+understand and implement, and requires little processing power (according to
+Wikipedia\footnote{\url{http://en.wikipedia.org/wiki/FS-1015}}, it requires
+$20$MIPS and $2\si{\kilo\byte}$ of RAM).
+
+\subsubsection{Codebook Excited LPC}
+
+Codebook Excited LPC (CELP) is a way of further reducing the bandwidth used by
+LPC. The principle is that there are a number of pre-configured parameters that
+the receiver and sender have stored in a `codebook', and the sender just sends
+the index of the one that is most similar to the sound that it is trying to
+produce.
+
+It finds the most similar sample using `analysis by synthesis', which involves
+trying all the entries in the codebook one by one, and sending whichever is the
+closest to the one we want. 
+
+CELP is used in commercial mobile telephones, and is utilised by the
+\textbf{Adaptive MultiRate} (AMR) coder for rates at
+$12\si{\kilo\bit\per\second}$ or lower.
+
+\subsection{Comfort noise}
+
+When a two way conversation is going on, and neither party are speaking, nothing
+will be played through the speakers to either party (since we don't transmit
+quiet sounds since that wastes power). To mitigate this, the phones will
+generate and insert `comfort noise' which is psudorandom background noise that
+sounds like whatever is going on at the other end of the phoneline. Each phone
+will determine if its owner is silent, and transmit the characteristics of the
+background noise using very few bits if they are so that the other phone can
+recreate a similar background noise for the other person.
+
+\subsection{Wav files}
 
 Signals are stored in many different ways. One `easy' format, is the
 \texttt{.wav} format. It is just a list of binary numbers, each representing a

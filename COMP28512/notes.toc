@@ -3,7 +3,16 @@
 \contentsline {section}{\numberline {2}Signals in mobile systems}{3}{section.2}
 \contentsline {subsection}{\numberline {2.1}Generating waves}{3}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Sampling waves}{3}{subsection.2.2}
-\contentsline {subsubsection}{\numberline {2.2.1}Quantisation}{4}{subsubsection.2.2.1}
-\contentsline {subsubsection}{\numberline {2.2.2}The Sampling Theorem}{4}{subsubsection.2.2.2}
-\contentsline {subsubsection}{\numberline {2.2.3}Aliasing}{5}{subsubsection.2.2.3}
-\contentsline {section}{\numberline {3}Storing signals}{5}{section.3}
+\contentsline {subsubsection}{\numberline {2.2.1}The Sampling Theorem}{4}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Aliasing}{4}{subsubsection.2.2.2}
+\contentsline {subsection}{\numberline {2.3}Decibels}{5}{subsection.2.3}
+\contentsline {section}{\numberline {3}Encoding and storing signals}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}Bitrates in different settings}{5}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Quantisation}{6}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Quantisation error}{7}{subsubsection.3.2.1}
+\contentsline {subsection}{\numberline {3.3}Differential encoding}{8}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Linear Predictive Speech Coding}{8}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}LPC-10}{8}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Codebook Excited LPC}{8}{subsubsection.3.4.2}
+\contentsline {subsection}{\numberline {3.5}Comfort noise}{9}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Wav files}{9}{subsection.3.6}
