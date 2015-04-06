@@ -6,3 +6,5 @@
 \contentsline {subsection}{\numberline {3.2}Loosely coupled architectures}{5}{subsection.3.2}
 \contentsline {subsubsection}{\numberline {3.2.1}Client-Server model}{5}{subsubsection.3.2.1}
 \contentsline {subsubsection}{\numberline {3.2.2}Peer to Peer (P2P) model}{6}{subsubsection.3.2.2}
+\contentsline {section}{\numberline {4}Remote Procedure Calls and Remote Method Invocation (RPC \& RMI)}{6}{section.4}
+\contentsline {subsection}{\numberline {4.1}Interface Definition Languages}{6}{subsection.4.1}
