@@ -173,7 +173,7 @@ the data when needed.
 %TODO: Use the internet to pad these out more...
 
 \begin{description}
-  \item \textbf{Layered}\\
+  \item \textbf{Layered (figure~\ref{layered})}\\
     In the layered style, messages must flow through a certain number of layers
     to reach the destination.
     \begin{figure}[H]
@@ -182,9 +182,9 @@ the data when needed.
       \caption{The layered (a) and object-based (b) architectural style}
       \label{layered}
     \end{figure}
-  \item \textbf{Object based}\\
+  \item \textbf{Object based (figure~\ref{layered})}\\
     Here, objects can call other objects.
-  \item \textbf{Event based}\\
+  \item \textbf{Event based (figure~\ref{event-based})}\\
     Often used as a publish-subscribe (pub-sub) architecture.
     \begin{figure}[H]
       \centering
@@ -192,7 +192,7 @@ the data when needed.
       \caption{The event-based (a) and shared-dataspace(b) architectural style}
       \label{event-based}
     \end{figure}
-  \item \textbf{Shared dataspace}\\
+  \item \textbf{Shared dataspace (figure~\ref{event-based})}\\
     % TODO: Defo describe more
     \dots
 \end{description}
@@ -215,7 +215,7 @@ wait for requests to come. Clients are masters, since they are active, and send
 requests to servers. Servers can be stateful or stateless.
 
 Client server architectures, by nature, are asymmetrical. As a result of this,
-they often scale poorly, since the server load will increase proportinoal to the
+they often scale poorly, since the server load will increase proportional to the
 number of clients. Of course, you can use multiple servers to spread the load on
 any one server (horizontal scaling, done using proxies), and put caches between
 the client and the server to server common and easy requests.
@@ -231,11 +231,93 @@ all of the heavy lifting for them (e.g. a very simple web browser like Lynx).
 \subsubsection{Peer to Peer (P2P) model}
 
 Here, all nodes in the network are the same, and they all talk to eachother.
-These networks have no central point of coordination (or failiure), which
+These networks have no central point of coordination (or failure), which
 provides resilience, yet at the same time, complexity.
 
-Though P2P architecures scale well (since they are truly `distributed'), it is
+Though P2P architectures scale well (since they are truly `distributed'), it is
 hard to find, coordinate and use resources over the network because of a lack of
 any central organisation.
 
 % TODO: Checksums
+
+\section{Remote Procedure Calls and Remote Method Invocation (RPC \& RMI)}
+
+The basic idea of RPC and RMI is that a client will `call' a process on a remote
+server to execute the code of a specific procedure, with a specific set of
+arguments.
+
+There are two ways that RPC calls are fulfilled; synchronous calls and
+asynchronous calls. In a synchronous call, the idea is that the RPC call behaves
+like a normal (local) procedure call, and the program running on the local
+machine will stop executing until the RPC call has finished. In an asynchronous
+call, the local program will carry on executing, until the remote method is
+finished, at which point the remote machine will interrupt the local machine
+telling it to process the results of the call.
+
+\marginpar{Serialising parameters into transmittable and server-understandable
+values is also called \textit{parameter marshalling}. Doing the opposite (when
+the server receives the result) is called unmarshalling.}
+
+Since the local and the remote clients are (or at least are designed to be)
+running in different machines, the program arguments sent in the RPC call cannot
+be references to addresses in memory; they must be serialised into values that
+can be transmitted.
+
+Some kind of middleware wrapper will handle the actual sending of messages over
+the network. It will often provide `stub' methods to provide the service for
+both the client and the server to make the system as transparent as possible.
+This is shown in Figure~\ref{rpc-stub}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{images/rpc-stub}
+  \caption{How middleware stub methods could be used to facilitate RPC.}
+  \label{rpc-stub}
+\end{figure}
+
+This middleware will have to be specific to the architecture \textit{it} is
+running on, to make sure incoming data is passed to the program in the right
+format (e.g. little-endian not big-endian). If we communicate using a language
+and architecture independent medium such as a \textit{Interface Definition
+Language}, then we can mostly avoid these pitfalls.
+
+\subsection{Interface Definition Languages}
+
+There are many different IDL's for example COBRA (Common Object Request Broker
+Architecture) and DCE (Distributed Computing Environment).
+
+A COBRA file might look like this:
+
+\begin{lstlisting}
+  // Person.idl
+  struct Person {
+    string name; 
+    string place;
+    long year;
+  };
+  interface PersonList {
+    readonly attribute string listname;
+    void addPerson(in Person p);
+    void getPerson(in string name, 
+        out Person p);
+    long number();
+  };
+\end{lstlisting}
+
+RMI is included in the standard Java API. To be able to send an \texttt{Object}
+as a parameter, it must implement \texttt{Serializable}, which is an interface
+that lets you turn the object into a byte stream and back again. Having
+\texttt{Serializable} objects is good because it allows you to create
+arbitrarily nested serialisable objects.
+
+A major difference between RMI and RPC is that RMI can reference remote objects.
+The stub based architecture is similar, except the stub will forward the message
+to a per-class \texttt{dispatcher}, which then sends the message to the
+receiver's \texttt{skeleton} that handles unmarshalling. The \texttt{skeleton}
+will reply with another message to the dispatcher when the request finishes
+containing the result or any exceptions.
+
+Remote objects are made avalible to RMI clients by exposing the
+\texttt{rmiregistry} which is a key-object store on the server. Clients
+interrogate the registry using the String that corresponds to the object they
+want.
