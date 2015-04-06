@@ -79,7 +79,7 @@ Figure~\ref{discrete-signal}.
   \begin{tikzpicture}
     \begin{axis}[%
       domain = 0:1000,
-      samples = 1000,
+      samples = (\samplesScaleFactor * 1000),
       xlabel={Sample number},
       ylabel={Sample value (an integer)}]
       \addplot[black,thin] {sin(x * pi * (1080/1000))};
@@ -503,6 +503,139 @@ sounds like whatever is going on at the other end of the phoneline. Each phone
 will determine if its owner is silent, and transmit the characteristics of the
 background noise using very few bits if they are so that the other phone can
 recreate a similar background noise for the other person.
+
+\subsection{Frequency Domain Processing}
+
+Instead of processing waves, and parts of waves, how about we turn them into
+frequencies and process those instead? Frequencies are a lot easier to deal with
+in many ways since they are easier to understand and smaller to store.
+
+\subsubsection{Sinusoids}
+
+A sinusoid is a sine wave delayed by $D$ seconds, and is given by the formula:
+
+\[
+  y = M \times cos(2\pi F (t - D))
+\]
+
+Figure~\ref{fig-sinusoid} shows two sinusoids; one where $D = 30^{\circ}$ and
+another where $D = 0$.
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[%
+      width=\textwidth,
+      xtick={
+        -360, -270, -180, -90, 0,
+        90, 180, 270, 360
+      },
+      ytick={-1,0,1},
+      yscale=0.4,
+      domain = -360:360,
+      samples = (\samplesScaleFactor * 1000),
+      xlabel={},
+      ylabel={}]
+      \addplot[black,thin] {cos(2 * (x - 30)};
+      \addplot[red,thin, dashed] {cos(2 * (x - 0)};
+    \end{axis}
+  \end{tikzpicture}
+  \label{fig-sinusoid}
+  \caption{1000 samples of a sinusoid where $D = 30^{\circ}$ (black) and where
+  $D = 0$ (dotted red).}
+\end{figure} 
+
+Figure~\ref{fig-sinusoid} is a simple sine wave, but any wave (such as the one
+in Figure~\ref{fig-complex-wave}) that is periodic can be found to have a
+fundamental frequency of $\frac{1}{T}$, where $T$ is the period of the wave. A
+recording of a voice, or musical instrument may be found to have a similar
+waveform to that of Figure~\ref{fig-complex-wave} as long as we `zoom in' to a
+segment short enough that any gradual change in frequency is negligible. This is
+called \textbf{psudo-periodicity}.
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[%
+      width=\textwidth,
+      xtick={
+        -360, -270, -180, -90, 0,
+        90, 180, 270, 360
+      },
+      ytick={-1,0,1},
+      yscale=0.4,
+      domain = -360:360,
+      samples = (\samplesScaleFactor * 1000),
+      xlabel={},
+      ylabel={}]
+      \addplot[black,thin] {(1.0 * cos(2 * (x - 30) * 1)
+                          + (0.2 * cos(2 * (x - 00) * 4)
+                          + (0.2 * cos(2 * (x - 60) * 1.3))};
+    \end{axis}
+  \end{tikzpicture}
+  \label{fig-complex-wave}
+  \caption{A complex wave with a frequency of
+  $\frac{1}{180} = 0.00\overline{5}\si{\hertz}$}
+\end{figure} 
+
+\subsubsection{Fourier Series}
+
+Any periodic wave of frequency $F$ can be written as:
+
+\begin{align*}
+  x(t) = A_0 / 2 &+ A_1 cos(2 \pi Ft) + B_1 sin(2\pi Ft)\\
+                 &+ A_2 cos(2 \pi 2Ft) + B_2 sin(2\pi 2Ft)\\
+                 &+ A_3 cos(2 \pi 3Ft) + B_3 sin(2\pi 3Ft)\\
+                 &+ \dots
+\end{align*}
+
+This is sometimes called its `cos and sin' form, but we could re-write it as:
+
+\[
+  x(t) = \frac{M_0}{2} + \sum\limits^\infty_{k=1}M_k\cos(2\pi (kF)t + \phi_k)
+\]
+
+Here, each time the summation iterates, we are adding the next harmonic of the
+sound. The fundamental frequency $F$ is the first harmonic when $k=1$.
+
+Because the harmonics get higher and higher, we can't sample the whole series
+because otherwise the frequency of the harmonics will start to become higher
+than half the sampling frequency and we will get aliasing (see
+Section~\ref{aliasing}). In that case, we only go up to $k=\frac{N}{2} - 1$,
+where $F(\frac{N}{2} - 1) \le \frac{Fs}{2}$. If we took $Fs$ samples every
+second, then the formula would be:
+
+\[
+  x(n) = \frac{M_0}{2} + \sum\limits^{\frac{N}{2}-1}_{k=1}M_k\cos\left(2\pi (kF)\frac{n}{Fs} + \phi_k\right)
+\]
+\[
+  \text{Where } n = 0,1,\dots,\text{size}(x)
+\]
+
+The more harmonics we compute, the closer we can get to reconstructing the wave
+from them afterwards.
+
+\subsubsection{Discrete Fourier Transform (iDFT)}
+
+The DFT converts samples of length $n$ into $n/2 - 1$ samples and a `dc term'.
+They are arranged in a length $n$ array, but the second half is the same as the
+first half but reversed. The $0^{th}$ element of the array is the DC term, but
+the $i^{th}$ element is the $i^{th}$ harmonic. 
+
+The algorithm to convert from the time domain into the frequency domain is
+\textit{N-point DFT}. To do the opposite, we can use the \textit{N-point inverse
+DFT} algorithm.
+
+DFT is used to:
+
+\begin{itemize}
+  \item Perform spectral analysis on a signal to find out what components are 
+    present.
+  \item Convert into the frequency domain before applying signal processing (and
+    converting back again afterwards). For example, you could filter out noise 
+    from a sine wave, since you could remove all frequencies with an amplitude
+    below a certain level.
+\end{itemize}
 
 \subsection{Wav files}
 

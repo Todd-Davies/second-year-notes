@@ -38,16 +38,24 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}LPC-10}{8}{subsubsection.3.4.1}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.2}Codebook Excited LPC}{8}{subsubsection.3.4.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Comfort noise}{9}{subsection.3.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Wav files}{9}{subsection.3.6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces A $6\si {\kilo \hertz }$ wave sampled at $8\si {\kilo \hertz }$ has a post-sampling frequency of $2\si {\kilo \hertz }$}}{10}{figure.2}}
-\newlabel{aliasing}{{2}{10}{A $6\si {\kilo \hertz }$ wave sampled at $8\si {\kilo \hertz }$ has a post-sampling frequency of $2\si {\kilo \hertz }$}{figure.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces An analogue wave (a), after its sampled (b), and once it's been quantised (c)}}{10}{figure.3}}
-\newlabel{quantised-wave}{{3}{10}{An analogue wave (a), after its sampled (b), and once it's been quantised (c)}{figure.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces This waveform shows how a a bad choice for $\Delta $ can adversely affect the quality of the sound, when it is undergoing uniform quantisation.}}{10}{figure.4}}
-\newlabel{choosing-delta}{{4}{10}{This waveform shows how a a bad choice for $\Delta $ can adversely affect the quality of the sound, when it is undergoing uniform quantisation}{figure.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces An example of non-uniform quantisation.}}{10}{figure.5}}
-\newlabel{fig-non-uniform-quantisation}{{5}{10}{An example of non-uniform quantisation}{figure.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces An example of how a differential encoder might both encode and decode audio samples.}}{11}{figure.6}}
-\newlabel{differential-encoder}{{6}{11}{An example of how a differential encoder might both encode and decode audio samples}{figure.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces An implementation of a Linear Predictive Speech Decoder}}{11}{figure.7}}
-\newlabel{LPC}{{7}{11}{An implementation of a Linear Predictive Speech Decoder}{figure.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Frequency Domain Processing}{9}{subsection.3.6}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1}Sinusoids}{9}{subsubsection.3.6.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2}Fourier Series}{9}{subsubsection.3.6.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.3}Discrete Fourier Transform (iDFT)}{10}{subsubsection.3.6.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Wav files}{10}{subsection.3.7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces A $6\si {\kilo \hertz }$ wave sampled at $8\si {\kilo \hertz }$ has a post-sampling frequency of $2\si {\kilo \hertz }$}}{11}{figure.2}}
+\newlabel{aliasing}{{2}{11}{A $6\si {\kilo \hertz }$ wave sampled at $8\si {\kilo \hertz }$ has a post-sampling frequency of $2\si {\kilo \hertz }$}{figure.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces An analogue wave (a), after its sampled (b), and once it's been quantised (c)}}{11}{figure.3}}
+\newlabel{quantised-wave}{{3}{11}{An analogue wave (a), after its sampled (b), and once it's been quantised (c)}{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces This waveform shows how a a bad choice for $\Delta $ can adversely affect the quality of the sound, when it is undergoing uniform quantisation.}}{11}{figure.4}}
+\newlabel{choosing-delta}{{4}{11}{This waveform shows how a a bad choice for $\Delta $ can adversely affect the quality of the sound, when it is undergoing uniform quantisation}{figure.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces An example of non-uniform quantisation.}}{11}{figure.5}}
+\newlabel{fig-non-uniform-quantisation}{{5}{11}{An example of non-uniform quantisation}{figure.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces An example of how a differential encoder might both encode and decode audio samples.}}{12}{figure.6}}
+\newlabel{differential-encoder}{{6}{12}{An example of how a differential encoder might both encode and decode audio samples}{figure.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces An implementation of a Linear Predictive Speech Decoder}}{12}{figure.7}}
+\newlabel{LPC}{{7}{12}{An implementation of a Linear Predictive Speech Decoder}{figure.7}{}}
+\newlabel{fig-sinusoid}{{3.6.1}{12}{Sinusoids}{subsubsection.3.6.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces 1000 samples of a sinusoid where $D = 30^{\circ }$ (black) and where $D = 0$ (dotted red).}}{12}{figure.8}}
+\newlabel{fig-complex-wave}{{3.6.1}{12}{Sinusoids}{figure.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces A complex wave with a frequency of $\frac  {1}{180} = 0.00\overline  {5}\si {\hertz }$}}{12}{figure.9}}

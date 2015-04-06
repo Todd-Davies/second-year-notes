@@ -32,3 +32,10 @@
 \usepackage[parfill]{parskip}
 % Make LaTeX pretty with better kerning etc
 \usepackage{microtype}
+
+% If enabled, maybe skip certain stuff or do it for less time to compile faster
+\ifdefined\fastCompile
+  \newcommand{\samplesScaleFactor}{0.1}
+\else
+  \newcommand{\samplesScaleFactor}{1.0}
+\fi

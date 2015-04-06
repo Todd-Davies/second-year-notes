@@ -15,4 +15,8 @@
 \contentsline {subsubsection}{\numberline {3.4.1}LPC-10}{8}{subsubsection.3.4.1}
 \contentsline {subsubsection}{\numberline {3.4.2}Codebook Excited LPC}{8}{subsubsection.3.4.2}
 \contentsline {subsection}{\numberline {3.5}Comfort noise}{9}{subsection.3.5}
-\contentsline {subsection}{\numberline {3.6}Wav files}{9}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.6}Frequency Domain Processing}{9}{subsection.3.6}
+\contentsline {subsubsection}{\numberline {3.6.1}Sinusoids}{9}{subsubsection.3.6.1}
+\contentsline {subsubsection}{\numberline {3.6.2}Fourier Series}{9}{subsubsection.3.6.2}
+\contentsline {subsubsection}{\numberline {3.6.3}Discrete Fourier Transform (iDFT)}{10}{subsubsection.3.6.3}
+\contentsline {subsection}{\numberline {3.7}Wav files}{10}{subsection.3.7}
