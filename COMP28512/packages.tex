@@ -15,6 +15,9 @@
 % For diagrams
 \usepackage{tikz}
 \usepackage{pgfplots}
+% For colours and listings
+\usepackage{color}
+\usepackage{listings}
 % For SI units
 \usepackage[binary-units=true,per-mode=symbol]{siunitx}
 % For no multicol on the kindle
@@ -39,3 +42,15 @@
 \else
   \newcommand{\samplesScaleFactor}{1.0}
 \fi
+
+\definecolor{customblue}{RGB}{235,241,245}
+
+\lstdefinestyle{Java}{%
+  backgroundcolor=\color{customblue},
+  frame=single,
+  framerule=0pt,
+  basicstyle=\ttfamily,
+  breaklines=true,
+  columns=fullflexible,
+  language=Java
+}

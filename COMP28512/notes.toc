@@ -15,8 +15,10 @@
 \contentsline {subsubsection}{\numberline {3.4.1}LPC-10}{8}{subsubsection.3.4.1}
 \contentsline {subsubsection}{\numberline {3.4.2}Codebook Excited LPC}{8}{subsubsection.3.4.2}
 \contentsline {subsection}{\numberline {3.5}Comfort noise}{9}{subsection.3.5}
-\contentsline {subsection}{\numberline {3.6}Frequency Domain Processing}{9}{subsection.3.6}
-\contentsline {subsubsection}{\numberline {3.6.1}Sinusoids}{9}{subsubsection.3.6.1}
-\contentsline {subsubsection}{\numberline {3.6.2}Fourier Series}{9}{subsubsection.3.6.2}
-\contentsline {subsubsection}{\numberline {3.6.3}Discrete Fourier Transform (iDFT)}{10}{subsubsection.3.6.3}
-\contentsline {subsection}{\numberline {3.7}Wav files}{10}{subsection.3.7}
+\contentsline {subsection}{\numberline {3.6}Error correction \& detection}{9}{subsection.3.6}
+\contentsline {subsubsection}{\numberline {3.6.1}Forward Error Correction}{9}{subsubsection.3.6.1}
+\contentsline {section}{\numberline {4}Frequency Domain Processing}{10}{section.4}
+\contentsline {subsubsection}{\numberline {4.0.2}Sinusoids}{10}{subsubsection.4.0.2}
+\contentsline {subsubsection}{\numberline {4.0.3}Fourier Series}{10}{subsubsection.4.0.3}
+\contentsline {subsubsection}{\numberline {4.0.4}Discrete Fourier Transform (iDFT)}{11}{subsubsection.4.0.4}
+\contentsline {subsection}{\numberline {4.1}Wav files}{11}{subsection.4.1}

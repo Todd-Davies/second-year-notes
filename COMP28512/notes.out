@@ -15,8 +15,10 @@
 \BOOKMARK [3][-]{subsubsection.3.4.1}{LPC-10}{subsection.3.4}% 15
 \BOOKMARK [3][-]{subsubsection.3.4.2}{Codebook Excited LPC}{subsection.3.4}% 16
 \BOOKMARK [2][-]{subsection.3.5}{Comfort noise}{section.3}% 17
-\BOOKMARK [2][-]{subsection.3.6}{Frequency Domain Processing}{section.3}% 18
-\BOOKMARK [3][-]{subsubsection.3.6.1}{Sinusoids}{subsection.3.6}% 19
-\BOOKMARK [3][-]{subsubsection.3.6.2}{Fourier Series}{subsection.3.6}% 20
-\BOOKMARK [3][-]{subsubsection.3.6.3}{Discrete Fourier Transform \(iDFT\)}{subsection.3.6}% 21
-\BOOKMARK [2][-]{subsection.3.7}{Wav files}{section.3}% 22
+\BOOKMARK [2][-]{subsection.3.6}{Error correction \046 detection}{section.3}% 18
+\BOOKMARK [3][-]{subsubsection.3.6.1}{Forward Error Correction}{subsection.3.6}% 19
+\BOOKMARK [1][-]{section.4}{Frequency Domain Processing}{}% 20
+\BOOKMARK [2][-]{subsubsection.4.0.2}{Sinusoids}{section.4}% 21
+\BOOKMARK [3][-]{subsubsection.4.0.3}{Fourier Series}{subsubsection.4.0.2}% 22
+\BOOKMARK [3][-]{subsubsection.4.0.4}{Discrete Fourier Transform \(iDFT\)}{subsubsection.4.0.2}% 23
+\BOOKMARK [2][-]{subsection.4.1}{Wav files}{section.4}% 24

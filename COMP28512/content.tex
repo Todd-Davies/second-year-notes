@@ -504,7 +504,101 @@ will determine if its owner is silent, and transmit the characteristics of the
 background noise using very few bits if they are so that the other phone can
 recreate a similar background noise for the other person.
 
-\subsection{Frequency Domain Processing}
+\subsection{Error correction \& detection}
+
+Mobile systems are affected by errors in the transmission of data, often in the
+form of noise affecting radio reception. There are many ways of
+avoiding/mitigating errors, the most important ones looked at in this course
+are; Forward Error Correction (FEC) and error detection and retransmission
+(Automatic ReQuest).
+
+\subsubsection{Forward Error Correction}
+
+We can build redundancy into the transmission by appending check bits or some
+other form of coding that will bloat the size of the transmission, but result in
+less errors.
+
+We can use block coding or convolutional coding to implement this. \textbf{Block
+coding} is when you process the data in blocks (well duh), which requires you to
+encode the whole block at the transmitter and decode it again at the receiver.
+You can't use a block unless it's been fully decoded. \textbf{Convolutional
+coding} on the other hand can yield usable bits soon as just a few of the
+transmitted bits arrive at the receiver. Convolutional coders treat data as a
+stream, whereas block coders deal with data in chunks.
+
+Here are some examples of the above:
+
+\begin{description}
+  \item \textbf{Parity}\\
+    As a simple (and not very effective) way of detecting bit errors, we could
+    append a parity bit to the end of blocks. The parity bit would be \texttt{0}
+    if the block had an even number of ones, and \texttt{1} if it had an odd
+    number of ones. If we have an $n$ bit number, we can calculate the parity
+    using $n - 1$ \texttt{XOR} operations; $b_0 \oplus b_1 \oplus \dots \oplus
+    b_n$.
+
+    When the receiver gets the bits, the parity of all of them (including the
+    parity bit) must be computed. If the parity is \texttt{1}, then some bit
+    error definitely occurred, whereas if it is \texttt{0}, then the data
+    \textit{may be} correct (but there could be two or more errors as well).
+
+    Parity checking is a block code, since you need to wait for the whole block
+    to arrive before checking the parity.
+  \item \textbf{Hamming distance}\\
+    The Hamming distance between two binary numbers is the number of bits that
+    are different. This is obtained by \texttt{XOR}ing the two numbers together
+    and counting the number of ones. This is useful if we want to know how many
+    bit errors it takes to convert one number to another.
+
+    You have a set list of code words that you can use, each with a minimum
+    hamming distance from it to any other. Then, you can detect and even errors
+    by comparing your received code to the allowed ones.
+
+    Figure~\ref{HammingCodes} shows an implementation.
+
+    \begin{figure}
+      \lstinputlisting[style=java]{examples/hamming_code/HammingCode.java}
+      \label{HammingCodes}
+      \caption{A Java implementation of HammingCodes}
+    \end{figure}
+
+    Hamming codes are block codes, since you need the whole block to calculate
+    the distance between the received block and the ones in the codebook. It is
+    common practice to introduce check bits onto code words to make the distance
+    larger.
+
+    The notation for Hamming Codes is $(m+r, m)$, where $m$ is the number of
+    message bits, and $r$ is the number of check bits. The $r$ bits are appended
+    to the end of the code words, and are derived from the value of the $m$
+    bits. For example, with a $(7,4)$ hamming code, we could make:
+
+    \begin{itemize}
+      \item $r_0$ = $m_0 \oplus m_1 \oplus m_2$
+      \item $r_1$ = $m_0 \oplus m_1 \oplus m_3$
+      \item $r_2$ = $m_0 \oplus m_2 \oplus m_3$
+    \end{itemize}
+
+    This would give a \textit{syndrome table} (i.e. correction table) of:
+
+    \begin{center}
+      \begin{tabular}{|>{$}l<{$}|>{$}l<{$}|>{$}l<{$}|l|}
+        \hline
+          r_0 & r_1 & r_2 & Correction to\\ \hline
+          0   & 0   & 0   & None\\ \hline
+          0   & 0   & 1   & $r_2$\\ \hline
+          0   & 1   & 0   & $r_1$\\ \hline
+          0   & 1   & 1   & $m_1$\\ \hline
+          1   & 0   & 0   & $r_0$\\ \hline
+          1   & 0   & 1   & $m_2$\\ \hline
+          1   & 1   & 0   & $m_3$\\ \hline
+          1   & 1   & 1   & $m_0$\\ \hline
+      \end{tabular}
+    \end{center}
+
+\end{description}
+
+
+\section{Frequency Domain Processing}
 
 Instead of processing waves, and parts of waves, how about we turn them into
 frequencies and process those instead? Frequencies are a lot easier to deal with
