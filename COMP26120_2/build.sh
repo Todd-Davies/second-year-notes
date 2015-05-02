@@ -47,9 +47,9 @@ else
     done;
     wait;
   fi
-  pdflatex notes.tex &
+  pdflatex --shell-escape notes.tex &
   if [ "$compileall" = "1" ]; then
-    pdflatex kindle.tex &
+    pdflatex --shell-escape kindle.tex &
   fi
   wait;
   # In case the Author field isn't set

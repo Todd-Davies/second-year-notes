@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{k+kt}{int} \PYGdefault{n+nf}{left}\PYGdefault{p}{(}\PYGdefault{k+kt}{int} \PYGdefault{n}{n}\PYGdefault{p}{)} \PYGdefault{p}{\PYGdefaultZob{}} \PYGdefault{k}{return} \PYGdefault{l+m+mi}{2} \PYGdefault{o}{*} \PYGdefault{n}{n}\PYGdefault{p}{;} \PYGdefault{p}{\PYGdefaultZcb{}}
+\PYGdefault{k+kt}{int} \PYGdefault{n+nf}{right}\PYGdefault{p}{(}\PYGdefault{k+kt}{int} \PYGdefault{n}{n}\PYGdefault{p}{)} \PYGdefault{p}{\PYGdefaultZob{}} \PYGdefault{k}{return} \PYGdefault{p}{(}\PYGdefault{l+m+mi}{2} \PYGdefault{o}{*} \PYGdefault{n}{n}\PYGdefault{p}{)} \PYGdefault{o}{+} \PYGdefault{l+m+mi}{1}\PYGdefault{p}{;} \PYGdefault{p}{\PYGdefaultZcb{}}
+\end{Verbatim}

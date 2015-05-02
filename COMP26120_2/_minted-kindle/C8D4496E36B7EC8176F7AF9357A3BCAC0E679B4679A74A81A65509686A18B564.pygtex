@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYGdefault{k+kt}{int} \PYGdefault{n+nf}{depth}\PYGdefault{o}{()} \PYGdefault{o}{\PYGdefaultZob{}}
+    \PYGdefault{k}{if}\PYGdefault{o}{(}\PYGdefault{n}{parent} \PYGdefault{o}{==} \PYGdefault{k+kc}{null}\PYGdefault{o}{)} \PYGdefault{o}{\PYGdefaultZob{}}
+      \PYGdefault{c+c1}{// We\PYGdefaultZsq{}ve got no parent; we are the root!}
+      \PYGdefault{k}{return} \PYGdefault{l+m+mi}{0}\PYGdefault{o}{;}
+    \PYGdefault{o}{\PYGdefaultZcb{}} \PYGdefault{k}{else} \PYGdefault{o}{\PYGdefaultZob{}}
+      \PYGdefault{k}{return} \PYGdefault{n}{parent}\PYGdefault{o}{.}\PYGdefault{n+na}{depth}\PYGdefault{o}{()} \PYGdefault{o}{+} \PYGdefault{l+m+mi}{1}\PYGdefault{o}{;}
+    \PYGdefault{o}{\PYGdefaultZcb{}}
+  \PYGdefault{o}{\PYGdefaultZcb{}}
+\end{Verbatim}

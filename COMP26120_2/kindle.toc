@@ -1,0 +1,5 @@
+\contentsline {section}{\numberline {1}Trees}{}{section.1}
+\contentsline {subsection}{\numberline {1.1}Definition}{}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Tree algorithms}{}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}Depth of a node}{}{subsubsection.1.2.1}
+\contentsline {subsubsection}{\numberline {1.2.2}Tree traversal}{}{subsubsection.1.2.2}

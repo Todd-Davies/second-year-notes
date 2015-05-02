@@ -177,10 +177,10 @@ the datastructure so that we could have any number of children:
   }
 \end{javacode}
 
-\section{Priority Queues}
+\section{Proprity Queues}
 
 A priority queue is a datastructure capable of ordering items based on some
-associated key. The two most important operations implemented on it are
+asscoiated key. The two most important operations implemented on it are
 \texttt{insertItem{priority, item}} and \texttt{removeMin()}.
 
 Priority queues are the basis of some sorting algorithms, for example heap sort

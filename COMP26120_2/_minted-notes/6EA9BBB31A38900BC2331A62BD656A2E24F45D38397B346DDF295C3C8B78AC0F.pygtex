@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{k+kt}{void} \PYGdefault{n+nf}{mapPreOrder}\PYGdefault{p}{(}\PYGdefault{n}{Tree}\PYGdefault{o}{*} \PYGdefault{n}{root}\PYGdefault{p}{,} \PYGdefault{k+kt}{void} \PYGdefault{p}{(}\PYGdefault{o}{*}\PYGdefault{n}{action}\PYGdefault{p}{)(}\PYGdefault{n}{Tree}\PYGdefault{o}{*}\PYGdefault{p}{))} \PYGdefault{p}{\PYGdefaultZob{}}
+  \PYGdefault{n}{action}\PYGdefault{p}{(}\PYGdefault{n}{root}\PYGdefault{p}{);}
+  \PYGdefault{k}{for}\PYGdefault{p}{(}\PYGdefault{k+kt}{int} \PYGdefault{n}{i} \PYGdefault{o}{=} \PYGdefault{l+m+mi}{0}\PYGdefault{p}{;} \PYGdefault{n}{i} \PYGdefault{o}{\PYGdefaultZlt{}} \PYGdefault{n}{root}\PYGdefault{o}{\PYGdefaultZhy{}\PYGdefaultZgt{}}\PYGdefault{n}{numChildren}\PYGdefault{p}{;} \PYGdefault{n}{i}\PYGdefault{o}{++}\PYGdefault{p}{)} \PYGdefault{p}{\PYGdefaultZob{}}
+    \PYGdefault{n}{root}\PYGdefault{o}{\PYGdefaultZhy{}\PYGdefaultZgt{}}\PYGdefault{n}{children}\PYGdefault{p}{[}\PYGdefault{n}{i}\PYGdefault{p}{].}\PYGdefault{n}{mapInOrder}\PYGdefault{p}{(}\PYGdefault{n}{action}\PYGdefault{p}{);}
+  \PYGdefault{p}{\PYGdefaultZcb{}}
+\PYGdefault{p}{\PYGdefaultZcb{}}
+\PYGdefault{k+kt}{void} \PYGdefault{n+nf}{mapPostOrder}\PYGdefault{p}{(}\PYGdefault{n}{Tree}\PYGdefault{o}{*} \PYGdefault{n}{root}\PYGdefault{p}{,} \PYGdefault{k+kt}{void} \PYGdefault{p}{(}\PYGdefault{o}{*}\PYGdefault{n}{action}\PYGdefault{p}{)(}\PYGdefault{n}{Tree}\PYGdefault{o}{*}\PYGdefault{p}{))} \PYGdefault{p}{\PYGdefaultZob{}}
+  \PYGdefault{k}{for}\PYGdefault{p}{(}\PYGdefault{k+kt}{int} \PYGdefault{n}{i} \PYGdefault{o}{=} \PYGdefault{l+m+mi}{0}\PYGdefault{p}{;} \PYGdefault{n}{i} \PYGdefault{o}{\PYGdefaultZlt{}} \PYGdefault{n}{root}\PYGdefault{o}{\PYGdefaultZhy{}\PYGdefaultZgt{}}\PYGdefault{n}{numChildren}\PYGdefault{p}{;} \PYGdefault{n}{i}\PYGdefault{o}{++}\PYGdefault{p}{)} \PYGdefault{p}{\PYGdefaultZob{}}
+    \PYGdefault{n}{root}\PYGdefault{o}{\PYGdefaultZhy{}\PYGdefaultZgt{}}\PYGdefault{n}{children}\PYGdefault{p}{[}\PYGdefault{n}{i}\PYGdefault{p}{].}\PYGdefault{n}{mapInOrder}\PYGdefault{p}{(}\PYGdefault{n}{action}\PYGdefault{p}{);}
+  \PYGdefault{p}{\PYGdefaultZcb{}}
+  \PYGdefault{n}{action}\PYGdefault{p}{(}\PYGdefault{n}{root}\PYGdefault{p}{);}
+\PYGdefault{p}{\PYGdefaultZcb{}}
+\end{Verbatim}
