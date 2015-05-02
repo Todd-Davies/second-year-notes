@@ -322,4 +322,108 @@ Remote objects are made available to RMI clients by exposing the
 interrogate the registry using the String that corresponds to the object they
 want.
 
-% Carry on from lecture 7
+\subsubsection{Parameter passing}
+
+It is important to note that programming languages can use two different methods
+of passing parameters between functions; call by reference and call by value.
+The former is where you pass the function a pointer to a memory location (where
+a thing (object, value etc) is stored), while in the latter you actually pass
+the object/value directly to the function. If you're using RPC, then you need to
+use call by value, since the pointer you would pass with call by reference is
+meaningless to the remote machine.
+
+This means you will have to \textit{serialize} any parameters that you want to
+send along with an RPC call. To serialise and deserialise an object, you need to
+be able to convert it into text (it can be human readable, such as JSON, or just
+binary data in ascii format) and back again.
+
+\subsection{Connecting and binding to an RPC server}
+
+Obviously, it would be silly to hard code the details of the server into client
+applications. Instead we can use a directory server (at a known location) to
+tell us the IP address and port of the server we want. The server can use a
+process to allocate different ports to different connnections.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{images/directory-server}
+  \caption{How a directory server can be used can be used to find the location
+  and port of the remote server.}
+  \label{rpc-stub}
+\end{figure}
+
+\subsubsection{Name resolution}
+
+Names can be \textit{pure} or \textit{non-pure}. Pure names contain no
+information about the item they are associated with, while non-pure names do. An
+address is a non-pure name, since it tells you exactly where to find a server.
+
+When a name is \textit{resolved}, it is translated into data about the item it
+describes. Names are bound to attributes such as addresses, and as such, can
+often be directly used in resolution. For example, in a URL, you have the
+format:
+
+\begin{verbatim}
+  http://{domain name}:{port}/{path}
+\end{verbatim}
+
+The domain name (such as example.com) can be resolved into an IP address using a
+DNS lookup. This can be used in conjunction with the port and path to accurately
+describe where a resource is on the internet.
+
+There are three different, yet commonly used names for the web:
+
+\begin{description}
+  \item \textbf{U}niform \textbf{R}esource \textbf{I}dentifiers\\
+    These identify resources on the web, and start with a URI scheme such as
+    \texttt{http:}, \texttt{ftp:}, \texttt{ssh:} etc.
+  \item \textbf{U}niform \textbf{R}esource \textbf{L}ocators\\
+    These are a subset of URI's that give a location for a resource.
+  \item \textbf{U}niform \textbf{R}esource \textbf{N}ames\\
+    An URI which is not a URL. All URN's begin with \texttt{urn:}.
+\end{description}
+
+Names can also be flat, or heirachical. If the name is flat, then it can be
+resolved all at once, but if it is heirachical, then you have to resolve each
+part of the name in a different context.
+
+Obviously, DNS is the most well known name resolution mechanism; it is
+responsible for turning URLs into IP addresses. Replication and cachine are used
+to make the system able to handle the load. Since the data is very large, it is
+partitioned by the domain.
+
+Name resolution can be implemented recursively (Figure~\ref{recursive-
+resolution}), or iteratively (Figure~\ref{iterative-resolution}). In the former
+case, the whole name is sent to the root nameserver which resolves the top most
+part, and forwards it on to the next nameserver, which continues until the name
+has been fully resolved, at which point, it is sent back to the client. An
+iterative method would have the client poll each different nameserver in turn
+for a resolution of part of the name.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{images/recursive-resolution}
+  \caption{Recursive domain name resolution.}
+  \label{recursive-resolution}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{images/iterative-resolution}
+  \caption{Iterative domain name resolution.}
+  \label{iterative-resolution}
+\end{figure}
+
+Recursive resolution puts more burden on the name server, but also makes it
+easier to program clients, and also can improve caching (since the caches are
+centralised at the nameserver).
+
+\section{LDAP}
+
+The Lightweight Directory Access Protocol is a way of querying for information
+about services. LDAP works on top of the Internet Protocol, and provides a
+distributed directory information service.
+
+%TODO: Either move this somewhere else or add much more information ;)
+
+% Start from lecture 9
