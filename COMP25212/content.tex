@@ -761,6 +761,72 @@ maintained by the processor in hardware.
 
 \section{Multi-Core}
 
+Since Moore's law is slowly coming to an end, chip designers are having to look
+to other techniques to increase performance. Cooling is a serious problem now,
+since there are so many transistors on chips, that the power density (watts per
+unit area) is becoming unsustainable. Smaller transistors have very
+unpredictable characteristics, and the architecture of processors is becoming so
+complex that it's hard to reason about.
+
+Older problems are becoming worse too; memory is still not getting faster at the
+same rate as processors are, and as a result even when the clock speed and the
+instructions per second increases on the processor, lots of the time it may be
+sat idle.
+
+Lots of solutions have been tried and implemented to increase single core
+performance:
+
+\begin{mymulticols}
+  \begin{itemize}
+    \item Caching
+    \item Pipelines
+    \item Superscalar processors
+    %TODO: Ummm?
+    \item Out of order processing
+    \item Multithreading
+    \item Branch prediction
+    %TODO: Ummm?
+    \item Forwarding
+    %TODO: Ummm?
+    \item Register renaming
+  \end{itemize}
+\end{mymulticols}
+
+However, these all have a limited scalability; the hardware costs increase in a
+roughly quadratic manner but the performance increase is sublinear.
+
+Another way to speed up execution is to have multiple CPU cores on one chip.
+Multiple simple cores may achieve a higher performance than one complex core
+whilst being easier to design.
+
+There are different opinions on how to connect the processors; should they all
+access the same memory, or each have their own? From a software point of view,
+it is easier to have processors that can access shared memory (since
+synchronization is implicit) than having separate memories. Unfortunately,
+after a few cores, shared memory becomes harder to attain.
+
+Having more cores does not speed up programs without the programs making use of
+the cores explicitly. Threads must be spawned by a program if it wants to
+execute on more than one core, however, different programs can run concurrently
+on different cores. For example, one core could run an antivirus scan, while
+another could run a web browser.
+
+\subsection{The structure of a multi core processor}
+
+In a multicore processor, some components will be shared between processors, and
+some won't. Usually, each processor shares an L1 cache, and sometimes an L2
+cache. You can see a generalisation in Figure~\ref{multicore-arch}.
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{images/multicore-arch}
+  \caption{A simplified multicore architecture}
+  \label{multicore-arch}
+\end{figure}
+
+\subsection{Data coherency and consistency}
+
+% Resume from the slide on page 4 of multicore
+
 \section{Vitalisation}
 
 \section{Permanent Storage}
