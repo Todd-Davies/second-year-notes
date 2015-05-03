@@ -332,7 +332,7 @@ the object/value directly to the function. If you're using RPC, then you need to
 use call by value, since the pointer you would pass with call by reference is
 meaningless to the remote machine.
 
-This means you will have to \textit{serialize} any parameters that you want to
+This means you will have to \textit{serialise} any parameters that you want to
 send along with an RPC call. To serialise and deserialise an object, you need to
 be able to convert it into text (it can be human readable, such as JSON, or just
 binary data in ascii format) and back again.
@@ -342,7 +342,7 @@ binary data in ascii format) and back again.
 Obviously, it would be silly to hard code the details of the server into client
 applications. Instead we can use a directory server (at a known location) to
 tell us the IP address and port of the server we want. The server can use a
-process to allocate different ports to different connnections.
+process to allocate different ports to different connections.
 
 \begin{figure}[H]
   \centering
@@ -383,12 +383,12 @@ There are three different, yet commonly used names for the web:
     An URI which is not a URL. All URN's begin with \texttt{urn:}.
 \end{description}
 
-Names can also be flat, or heirachical. If the name is flat, then it can be
-resolved all at once, but if it is heirachical, then you have to resolve each
+Names can also be flat, or hierarchical. If the name is flat, then it can be
+resolved all at once, but if it is hierarchical, then you have to resolve each
 part of the name in a different context.
 
 Obviously, DNS is the most well known name resolution mechanism; it is
-responsible for turning URLs into IP addresses. Replication and cachine are used
+responsible for turning URLs into IP addresses. Replication and caching are used
 to make the system able to handle the load. Since the data is very large, it is
 partitioned by the domain.
 
@@ -426,4 +426,103 @@ distributed directory information service.
 
 %TODO: Either move this somewhere else or add much more information ;)
 
-% Start from lecture 9
+\section{Time and clocks}
+
+Being able to agree on a single clock is very advantageous in distributed
+systems, however, setting distributed systems to be set to the same time, and
+keeping them in time once they are is an issue.
+
+\subsection{UTC}
+
+Coordinated Universal Time is a time standard commonly used around the world.
+International Atomic Time is kept by around 200 atomic oscillators around the
+world, each with a drift rate of around 1 in $10^13$ seconds. Astronomical time
+is derived from stars and the sun, but diverges slightly because the earth's
+rotation is slowing. UTC is based off atomic time, but leap seconds are
+occasionally inserted so that it is in time with astronomical time. UTC is
+broadcast by satellites and radios.
+
+GPS receivers are accurate to about one millisecond, whilst receivers from
+radios or telephone lines are accurate to a few milliseconds. Inexpensive
+crystal clocks have a drift of around 1 in $10^6$ seconds, and this is usually
+what computers are accurate to.
+
+\subsection{Setting times}
+
+There are multiple ways of reaching a consensus about times between different
+machines:
+
+\begin{description}
+  \item \textbf{Cristian's method}:\\
+    Here, a time server is polled by clients and returns the time on the server.
+    The client times how long it took for the round trip time, divides it by two
+    and adds it to the time that the server returned. This works well for short
+    round trip times.
+  \item \textbf{Berkeley Algorithm}:\\
+    The Berkeley algorithm has one master that polls other slaves. Each slave 
+    replies with its own time, and the master estimates their local times (using
+    Cristian's method). The master then averages all of the slaves times and its
+    own time, and eliminates any times with an excessive round trip time and any
+    obvious outliers.
+
+    Once the master has determined the time, it then sends each clock a delta, 
+    which is how much to add or take off its own clock. If the master fails, 
+    then a distributed election algorithm elects a slave as the replacement.
+  \item \textbf{Network Time Protocol (NTP)}:\\
+    NTP is designed for large scale internet (as opposed to the other two, which
+    were designed for smaller scale networks). There is a network of servers,
+    one is primary and the others are secondary. The primary server will have
+    a UTC clock.
+
+    There are three methods of synchronisation; multicast mode, procedure call
+    mode and symmetric mode.
+
+    \begin{description}
+      \item \textit{Multicast mode}:\\
+        Multicast mode is used on high speed LAN's and is not accurate. The time
+        is broadcast to clients from the server at intervals, and the clients
+        set their time equal to the received time plus a little bit for latency.
+
+      \item \textit{Procedure call mode}:\\
+        This mode is very similar to Cristian's algorithm. The server basically
+        just accepts requests and replies with the time. This is more accurate
+        than multicast mode, and is used when accuracy is key, or multicast is 
+        not supported.
+
+      \item \textit{Symmetric mode}:\\
+        This is the most accurate of the three; messages are exchanged and data
+        is build up to improve the accuracy of the time as more messages are 
+        send and received. Each message contains time information about the
+        previous message.
+
+        Each NTP server will interact with several peers to identify which ones
+        are the most reliable. This can achieve accuracies of from
+        $10-100\si{\milli\second}$ over the Internet.
+    \end{description}
+\end{description}
+
+\subsection{Logical time}
+
+In a single processor, every event can be ordered in time using the local clock.
+However, if we are in a distributed system, then the synchronization between
+clocks may not be good enough to do this.
+
+If any two events happen in a process, they occur in the order given by the
+process. If a message is sent from one process to another, then the act of
+sending and that of receiving is said to be an event. This defines a partial
+ordering of events, given by the \textit{happens-before} relationship.
+
+A logical clock is a monotonically (i.e. increases by one) increasing counter.
+Each process keeps its own logical clock and uses it to timestamp its own
+events. When a message is received, then the clock is updated to be the logical
+time of the received message, or the current logical time (whichever is
+highest), plus one.
+
+A \textbf{Vector Clock} is similar to the \textbf{Lamport Clock} described
+above, but each process keeps track of the clock of each other process. It is in
+essence $n$ Lamport clocks, one for each process. When a process receives a
+message, it \textit{merges} its clock with the clock in the message, fining the
+max of each item.
+
+Vector clocks capture causality which Lamport clocks do not, however, vector
+clocks are more expensive in terms of bandwidth.
