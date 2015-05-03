@@ -504,7 +504,7 @@ will determine if its owner is silent, and transmit the characteristics of the
 background noise using very few bits if they are so that the other phone can
 recreate a similar background noise for the other person.
 
-\subsection{Error correction \& detection}
+\subsection{Error correction, detection \& prevention}
 
 Mobile systems are affected by errors in the transmission of data, often in the
 form of noise affecting radio reception. There are many ways of
@@ -529,6 +529,14 @@ stream, whereas block coders deal with data in chunks.
 Here are some examples of the above:
 
 \begin{description}
+  \item \textbf{Repeating bits}:\\
+    We could simply send bits a few times, instead of just once and take the 
+    mode of them at the receiver. If we sent three bits for every bit, then
+    if there was one bit error, then it would be fine since we could take the 
+    majority of the recieved bits, and the one error bit would be ignored.
+
+    The number of repeats must be an odd number, otherwise we could end up with 
+    a half and half split.
   \item \textbf{Parity}\\
     As a simple (and not very effective) way of detecting bit errors, we could
     append a parity bit to the end of blocks. The parity bit would be \texttt{0}
@@ -595,8 +603,42 @@ Here are some examples of the above:
       \end{tabular}
     \end{center}
 
+  \item \textbf{Interleaving}:\\
+    Since bit errors in radio links often occur in bursts (e.g. caused by a car
+    turning on), we could transform one dimensional blocks of data into two
+    dimensional matrices, and transfer them column by column. This way, if there
+    is a `bursty' bit error, then it will affect multiple rows, but the bit
+    error correction (such as) the repeating method, or hamming codes could
+    detect the error since only one or two bits may be wrong, not all of them.
 \end{description}
 
+\subsubsection{CRC checks}
+
+A Cyclic Redundancy Check is a block code for detecting bit errors. If we find
+the value of the number we're transmitting in decimal and divide it by a number
+such as seven, we can append the remainder onto the message. Then at the
+receiver, we can divide the received bits again and if we get a different
+remainder, then we know that a bit error has occured.
+
+If the bit errors happened to add or subtract the number that you were dividing
+by, then the remainder would be the same and you would not be able to detect the
+errors.
+
+Real CRC checks use \textit{Galois Field Arithmetic}\footnote{
+\url{http://en.wikipedia.org/wiki/Finite_field_arithmetic}} to do the maths,
+since binary numbers can be expressed as polynomials:
+
+\begin{description}
+  \item \textbf{Summing}:\\
+    To calculate the sum of two binary numbers, we can just XOR their bits.
+    Subtracting is the same:
+
+    \[
+      1001 \oplus 0111 = 1110
+    \]
+  \item \textbf{Long division}:\\
+    %TODO: Understand this
+\end{description}
 
 \section{Frequency Domain Processing}
 
