@@ -616,8 +616,8 @@ once. There are multiple ways to do this too:
 
 \begin{itemize}
   \item When we get a branch instruction, do we pause until we evaluate the
-  outcome of the branch, or keep issueing instructions? If we're using branch
-  prediction, then we can keep issueing instructions.
+  outcome of the branch, or keep issuing instructions? If we're using branch
+  prediction, then we can keep issuing instructions.
 
   \item After a cache miss, we need to wait for a certain amount of time for the
   data we want to come from the memory, over the bus and into the CPU. While
@@ -628,7 +628,7 @@ once. There are multiple ways to do this too:
   \item Write to registers while the previous write is pending?
 \end{itemize}
 
-These ways of increasing parellism are good, but assume we have only one source
+These ways of increasing parallelism are good, but assume we have only one source
 of instructions. However in reality, a CPU will be executing code from multiple
 processes at once. What about if we run out of instructions to execute in one
 program, we could just context switch to another!
@@ -656,16 +656,26 @@ the switching processes:
 \subsection{Hardware multithreading}
 
 We could have two PC's, two sets of registers (GPR's on the diagram), two
-virtual address mappings etc, and have the CPU support multi threading natively.
+virtual address mappings etc, and have the CPU support multi threading naively.
 This would require the OS to be able to handle multiple processors, since the
 easiest way of making it work is to make the one processor core look like two
-processor cores (since the inputs and outputs are effectively doubled).
+processor cores (since the inputs and outputs are effectively doubled). See
+Figure~\ref{hardware-multithreading-comparison} for a comparison of the three
+types.
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{images/hyperthreading}
-  \caption{The architecutre of a multithreaded CPU}
+  \caption{The architecture of a multithreaded CPU}
   \label{hyperthreading}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{images/multithreading}
+  \caption{How the three main types of hardware multithreading might execute
+  simultaneous threads.}
+  \label{hardware-multithreading-comparison}
 \end{figure}
 
 \subsubsection{Coarse grain multithreading}
@@ -674,7 +684,7 @@ Coarse grain multithreading is when you switch threads whenever the current
 thread executes an expensive operation. This could be when there is a cache miss
 for example, or whenever the CPU has to wait to execute more instructions.
 
-This type of multithreading has benifits. If the CPU can execute one instruction
+This type of multithreading has benefits. If the CPU can execute one instruction
 per nanosecond ($1GHz$), a cache miss takes $20$ nano seconds, and one cache
 miss occurs on average, every hundred instructions, then the time number of
 instructions per clock cycle is:
@@ -690,10 +700,64 @@ instructions per clock cycle is:
     \]
 \end{description}
 
+Coarse grain multithreading is good, because it requires a minimal change in the
+pipeline; only to abort instructions in the `shadow' of a cache miss and the
+ability to resume the instruction stream at the correct point afterwards.
+
 %Unfortunately, when you do a context switch, a new program runs on the
 %processor. This is bad, since both the instruction and data caches will suddenly
 %contain an awful lot of entries that are obselete, and so most of the cache
 %requests will be misses.
+
+\subsubsection{Fine grain multithreading}
+
+The aim of fine grain multithreading is to be able to switch between CPU threads
+with as little overhead as possible. This involves interleaving the instructions
+of several threads. This results in better overall performance, since the impact
+of short stalls such as accessing memory or the cache is alleviated by executing
+instructions from other threads. Each individual thread perceives it is being
+executed slower, but the overall performance is better.
+
+\subsubsection{Simultaneous multithreading (SMT)}
+
+The idea behind SMT is to exploit both instruction level parallelism and thread
+level parallelism at the same time. In a superscalar processor (i.e. one that
+can execute more than one instruction per clock cycle), we can issue
+instructions from different threads in the same cycle.
+
+SMT requires a significant overhead, and is only really feasible to processors
+with an out of order execution capability.
+
+\subsubsection{Disadvantages of hardware multithreading}
+
+Threads can `trash' the cache for other threads, since they will probably have
+completely different access patterns, so the overall cache performance may
+decrease. This will not occur if different threads are accessing the same areas
+of memory, but this is a relatively rare case (since processes can only access
+disjoint areas of memory) unless a process has multiple threads processing.
+
+Furthermore, there is a significant increase in the complexity of the hardware
+required. The thread state, priorities, OS-level information etc must all be
+maintained by the processor in hardware.
+
+\subsubsection{Other techniques}
+
+\begin{description}
+  \item \textbf{Slipstreaming}:\\
+    This is when an application is split into two parts; the critical path, and
+    all the rest. The critical path will run ahead, and pass the result of the
+    operations back to the `main thread'
+  \item \textbf{Memory prefetching}:\\
+    We could compile the application into two parts here too, execpt one will
+    get all the memory accesses, and the other will do everything else. This
+    means that the data will always be in the cache when it is needed in the 
+    second thread.
+  \item \textbf{Speculative execution}:\\
+    When we get to a conditional branch in the program, we could spawn two
+    threads; one for each path. When we know which is the correct path, we can 
+    kill the thread that wasn't executing that path. In this way, we could avoid
+    control hazards.
+\end{description}
 
 \section{Multi-Core}
 

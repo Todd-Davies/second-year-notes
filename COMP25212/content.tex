@@ -659,13 +659,23 @@ We could have two PC's, two sets of registers (GPR's on the diagram), two
 virtual address mappings etc, and have the CPU support multi threading naively.
 This would require the OS to be able to handle multiple processors, since the
 easiest way of making it work is to make the one processor core look like two
-processor cores (since the inputs and outputs are effectively doubled).
+processor cores (since the inputs and outputs are effectively doubled). See
+Figure~\ref{hardware-multithreading-comparison} for a comparison of the three
+types.
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{images/hyperthreading}
   \caption{The architecture of a multithreaded CPU}
   \label{hyperthreading}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{images/multithreading}
+  \caption{How the three main types of hardware multithreading might execute
+  simultaneous threads.}
+  \label{hardware-multithreading-comparison}
 \end{figure}
 
 \subsubsection{Coarse grain multithreading}
@@ -698,6 +708,56 @@ ability to resume the instruction stream at the correct point afterwards.
 %processor. This is bad, since both the instruction and data caches will suddenly
 %contain an awful lot of entries that are obselete, and so most of the cache
 %requests will be misses.
+
+\subsubsection{Fine grain multithreading}
+
+The aim of fine grain multithreading is to be able to switch between CPU threads
+with as little overhead as possible. This involves interleaving the instructions
+of several threads. This results in better overall performance, since the impact
+of short stalls such as accessing memory or the cache is alleviated by executing
+instructions from other threads. Each individual thread perceives it is being
+executed slower, but the overall performance is better.
+
+\subsubsection{Simultaneous multithreading (SMT)}
+
+The idea behind SMT is to exploit both instruction level parallelism and thread
+level parallelism at the same time. In a superscalar processor (i.e. one that
+can execute more than one instruction per clock cycle), we can issue
+instructions from different threads in the same cycle.
+
+SMT requires a significant overhead, and is only really feasible to processors
+with an out of order execution capability.
+
+\subsubsection{Disadvantages of hardware multithreading}
+
+Threads can `trash' the cache for other threads, since they will probably have
+completely different access patterns, so the overall cache performance may
+decrease. This will not occur if different threads are accessing the same areas
+of memory, but this is a relatively rare case (since processes can only access
+disjoint areas of memory) unless a process has multiple threads processing.
+
+Furthermore, there is a significant increase in the complexity of the hardware
+required. The thread state, priorities, OS-level information etc must all be
+maintained by the processor in hardware.
+
+\subsubsection{Other techniques}
+
+\begin{description}
+  \item \textbf{Slipstreaming}:\\
+    This is when an application is split into two parts; the critical path, and
+    all the rest. The critical path will run ahead, and pass the result of the
+    operations back to the `main thread'
+  \item \textbf{Memory prefetching}:\\
+    We could compile the application into two parts here too, except one will
+    get all the memory accesses, and the other will do everything else. This
+    means that the data will always be in the cache when it is needed in the 
+    second thread.
+  \item \textbf{Speculative execution}:\\
+    When we get to a conditional branch in the program, we could spawn two
+    threads; one for each path. When we know which is the correct path, we can 
+    kill the thread that wasn't executing that path. In this way, we could avoid
+    control hazards.
+\end{description}
 
 \section{Multi-Core}
 
