@@ -177,16 +177,17 @@ the datastructure so that we could have any number of children:
   }
 \end{javacode}
 
-\section{Proprity Queues}
+\section{Priority Queues}
 
 A priority queue is a datastructure capable of ordering items based on some
-asscoiated key. The two most important operations implemented on it are
+associated key. The two most important operations implemented on it are
 \texttt{insertItem{priority, item}} and \texttt{removeMin()}.
 
-Priority queues are the basis of some sorting algorithms, for example heap sort
-(heaps are the datastructure behind most priority queues). To sort a list using
-this method, add all the items to the priority queue in any order, fill up the
-array again in the order that the elements come out of the queue.
+Priority queues are the basis of some sorting algorithms, for example heap sort,
+smooth sort, selection sort and insertion sort. The different type of sort
+depends on how the priority queue is implemented. To sort a list using this
+method, add all the items to the priority queue in any order, fill up the array
+again in the order that the elements come out of the queue.
 
 \begin{javacode}
   public <T implements Comparable<T>> List<T> sort(List<T> list) {
@@ -200,3 +201,167 @@ array again in the order that the elements come out of the queue.
     return list;
   }
 \end{javacode}
+
+\subsection{Heaps}
+
+Priority queues are often implemented using a heap as the backing datastructure.
+A heap is a binary tree that stores a collection of values. The type of values
+stored by the heap must have a total order relationship, since otherwise, the
+heap cannot be constructed correctly. The two properties that make heaps
+different from normal binary trees are:
+
+\begin{description}
+  \item \textbf{Heap order property}:\\
+    For every node $v$ in the tree, the value of $v$ is greater than or equal to
+    the value of its parent. The only exception is the root, since that doesn't 
+    have a parent.
+
+    This means that if you start from the root, and move towards any leaf, then
+    the nodes you encounter will be in a non-decreasing order. It also means 
+    that the minimum key is at the root.
+  \item \textbf{Complete binary tree property}:\\
+    This means that if heap has a depth of $d$, then all levels of the tree from
+    $0$ to $d-1$ must be completely full (i.e. they have $2^{level}$ nodes in),
+    and the last level is filled up from left to right with the remaining
+    elements.
+\end{description}
+
+There are no operations on a heap run that in worse than $O(log(n))$ time. The
+operations are performed in a time proportional to the height of the tree rather
+than the number of its elements.
+
+\subsubsection{Insertion}
+
+To store a new element in the heap, we add a new node to the heap at the next
+availible position (the last position in the tree). If the heap is backed by an
+array, then the index of the array will ne $n+1$, where $n$ is the current heap
+size.
+
+After we've inserted the new element we must check that the heap properties
+aren't violated. The \textit{complete binary tree} property will be fine since
+we added the element at the end of the array (which is always the last element
+in the current level, or the first element in a new level), but the \textit{heap
+order} property may be violated.
+
+To maintain the \textit{heap order} property, we need to `bubble' the newly
+inserted item up the heap until the property is restored. This is achieved by
+comparing the key of the newly inserted node $n$ with its parent $p$. If $k(u)
+\gt k(p)$, then they are swapped around (which is literally caused by indexes
+the two items in the array). In the worst case, you would insert the (new)
+smallest element into the heap, and the element would bubble all the way up to
+the top, taking $log(n)$ time. This is called `up heap bubbling'.
+
+\subsubsection{Removal}
+
+If we want to remove the smallest element from the heap (as is required for a
+priority queue), then that will be the root element of the heap. However, if we
+just removed that element, then we would have two binary trees not one (a left
+and a right tree).
+
+Instead, we move the last element in the array into the first element, and
+return the original first element (the last element is deleted). The
+\textit{complete tree} property is now satisfied again. Now we have the element
+previously at the bottom of the heap at the top, so we need to move it into a
+position that will satisfy the  \textit{heap order} property.
+
+To restore the \textit{heap order} property, we must `down heap bubble' the
+rooot element. If the root element is the only node, then the property is
+already satisfied. If the only child is on the left, then let $s$ be the left
+child, and otherwise, let $s$ be the smallest (direct) child of the root node.
+
+If $k(root) \gt k(s)$ then the heap order property is restored by swapping $r$
+and $s$. You continue down the tree, swapping what was the route node until no
+violation of the heap order property occurs. Since we may have to move all the
+way down the tree from root to leaf, the runtime of this is also $O(log(n))$.
+
+\subsubsection{Heap sort}
+
+Since insertion and removal are both $O(log(n))$, and we're inserting $n$
+elements, and then removing $n$ elements, then the runtime of a heap sort will
+be $n \times n \log(n)$. Since constant factors are removed from the Big-O
+notation, then the runtime is $O(n \log(n))$. This is a large improvement from
+selection and insertion sort that take $n^2$ time. If the sequence was
+implemented as an array, then the sort can be done in place too!
+
+\section{Dictionaries and Hash Tables}
+
+% This section is poorly explained
+
+In a dictionary, the user assigns keys to elements, and the keys can be used to
+look up elements in the datastructure (also known as a map in other languages
+such as \texttt{java}). Dictionaries can be unordered, or ordered. When keys are
+unique, then the dictionary is referred to as an associated store.
+
+If the keys are unique, then a good way to implement the dictionary is a hash
+table. Here, the key is hashed into an integer using a hashing function. The
+result is used as the index of an array of `buckets'.
+
+Each bucket stores a collection of values that have the same hashed key.
+Ideally, each bucket will hold one element. This is easy to ensure for some
+data, for example, if we had a Hash Table of the integers from 0-50, then we
+could use the integer as the index to an array of fifty elements. In general
+though, it is not possible to ensure that no collisions will occur, and one
+bucket will probably end up with multiple elements. In this case, we need a
+collision resolution strategy.
+
+If we have a collision resolution strategy, then we don't need to have an array
+that is as big as the number of items we're going to hold. We could just rely on
+the collision resolution strategy to let us have a smaller array and therefore
+need less contigous memory space. Even if we do have the memory to spare, its
+wasteful to have a massive array if we're only going to store a few items in
+there.
+
+If our hash function produces integers as indexes that are greater than the
+number of buckets, then we can either take the modulus of that number by the
+size of the array, or use the MAD method:
+
+\[
+  hash = |ak + b| mod N
+\]
+
+Where $N$ is a prime, and $a,b$ are random non-negative integers such that $a
+mod N \neq 0$. The MAD (Multiply Add and Divide) method means the chance of a
+collision is $\frac{1}{N}$.
+
+\subsection{Collision handleing}
+
+There are different collision handeling schemes, and each has its own benifits
+and drawbacks. Here are just three:
+
+\begin{description}
+  \item \textbf{Seperate chaining}:\\
+    This is most often implemented using a Linked List for the buckets.
+    Basically, when you want to add an item to the bucket, you just append it to
+    the existing Linked List of items.
+  \item \textbf{Open addressing}:\\
+    In this strategy, if the index of the hash value is already occupied, then
+    the buckets are examined in some sequence (the easiest is linear probing,
+    which just looks at consecutive elements in the array), until a free slot
+    is found.
+  \item \textbf{Double hashing}:\\
+    Here, a second hashing algorithm is used to find an alternative slot when 
+    the first shows a collision. If we did $j$ attempts to find a new slot, the
+    new index would be $hash1 + (j \times h(key))$, where $h$ is the second
+    hashing algorithm.
+\end{description}
+
+Different collision resolution schemes exhibit different performance as the load
+factor changes. The load factor is the number of entries divided by the number
+of buckets.
+
+If the load factor becomes too high, then we could \textit{rehash} the table.
+This involves increaseing the number of buckets, and re-inserting all the
+elements currently in the table so that they are distributed according to the
+new size of the array.
+
+\subsubsection{Probing}
+
+Probing is part of the open addressing collision resolution strategy. Linear
+probing is easiest, you just walk through the array one by one until you find an
+empty slot. Quadratic probing is harder, the next index to try and insert the
+element into is found using an equation such as $|index + j^2| mod N$, where $j$
+is the $j^{th}$ attempt at finding a slot.
+
+Removing elements from a open addressed hash table is slightly more complicated,
+but can be resolved by marking elements as `deactivated' rather than removing
+them.
