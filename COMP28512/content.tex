@@ -622,7 +622,7 @@ remainder, then we know that a bit error has occured.
 
 If the bit errors happened to add or subtract the number that you were dividing
 by, then the remainder would be the same and you would not be able to detect the
-errors.
+errors. If we make the number large, then this is unlikely.
 
 Real CRC checks use \textit{Galois Field Arithmetic}\footnote{
 \url{http://en.wikipedia.org/wiki/Finite_field_arithmetic}} to do the maths,
@@ -632,13 +632,71 @@ since binary numbers can be expressed as polynomials:
   \item \textbf{Summing}:\\
     To calculate the sum of two binary numbers, we can just XOR their bits.
     Subtracting is the same:
-
+N
     \[
       1001 \oplus 0111 = 1110
     \]
   \item \textbf{Long division}:\\
     %TODO: Understand this
 \end{description}
+
+There are three CRC generators used in practice:
+
+\begin{itemize}
+  \item CRC-8-ATM: $x^8 + x^2 + x + 1$
+  \item CRC-16-IBM: $x^{16} + x^{15} + x^2 + 1$
+  \item CRC-32-IEEE: \textbf{Quite long...}
+\end{itemize}
+
+A generator of order $r$ can detect all error bursts of length $\leq r$.
+
+\subsubsection{Convolutional Coders}
+
+If we are processing streams of data, then we could have a `rolling parity
+check'. When we encode, the previous $n$ bits are \texttt{XOR}'d together to
+produce another stream of bits. We can then interleave the new parity stream
+with the normal stream.
+
+At the decoder, the bits are valid if each of the parity bits (i.e. not the
+normal ones) is the \texttt{XOR} of the previous three normal bits. If the bit
+sequence is invalid, then we can select the valid sequence with the minimum
+Hamming distance to the received sequence and therefore have error correction.
+
+With sequences of around 8 bits, that is fine, since there would be 256 valid
+sequences of 16 bits long each, however, for longer sequences (e.g. 1024 bits),
+then this would not be feasible.
+
+\marginpar{Convolutional coders that encode bit streams are called
+\textit{rolling parity} coders.}
+
+A soft decision decoder is where if we're unsure as to what the value of a bit
+is, then we could use previously known probabilities to determine what we could
+pick.
+
+%TODO: Understand convolutional coders a bit better...
+
+\subsubsection{Miscellaneous FEC stuff}
+
+Well thought out use of FEC techniques in mobile systems increases the energy
+efficiency and effectivness of the system. Transmitting at higher power is one
+way of reducing errors in the system, but `loud' signals also cause lots of
+interference over a wider range and, of course, uses lots of battery. FEC lets
+us reduce the transmission power, yet overcome the bit errors that come as a
+result, which allows us to re-use different frequencies and reduce power
+consumption.
+
+We could increase the bit rate by not encoding in binary, but using any $2^n$
+number of states. If we could send the values $\{0,1,2,3\}$, then we could send
+two bits per pulse, effectively doubling our bandwidth. This is limited by the
+noise in the channel.
+
+The \textbf{Shannon-Hartley Law} says that the channel capacity $C$ is equal to:
+
+\[
+  C = B \log_2(1 + \frac{S}{N}) \si{\bit\per\second}
+\]
+
+Where $B$ is the bandwidth in $\si{\hertz}$, and $\frac{S}{N}$ is the signal to noise power ratio
 
 \section{Frequency Domain Processing}
 
