@@ -526,3 +526,103 @@ max of each item.
 
 Vector clocks capture causality which Lamport clocks do not, however, vector
 clocks are more expensive in terms of bandwidth.
+
+\section{Elections, coordination and agreement}
+
+Implementing a semaphore is a common task for computer scientists.
+\marginpar{See my COMP25111 notes for stuff on semaphores.} On a single machine,
+even on one with multiple processors, this is fairly easy to implement, but when
+memory isn't shared (like in a distributed system), then we can't just have a
+semaphore in memory; we need some system to manage access.
+
+The simplest of these systems is a central server, where a client requests a
+token on entry of a critical section, and releases it on exit. Processes are
+held in a queue until there is a free slot for them to enter their critical
+section.
+
+The trouble with this though, is that the server is a single point of failure,
+and if the critical sections are short or the server is slow etc, then the
+server could become a bottleneck.
+
+\subsection{Elections}
+
+If the server `goes down', then no processes would be able to enter their
+critical sections. Obviously this is \textit{slightly} detrimental to the
+running of the system, so ideally we would like a way of replacing the server if
+crashes.
+
+If we have $n$ clients/processes, and we want to select one to be a server, then
+it makes sense to select one that has the lowest load. We could give each server
+an identifier, which is a pair of $\frac{1}{load + 1}$ and $i$, where $i$ is the
+number (or unique ID) of the client.
+
+We also need to make sure that all the clients can learn about and agree on the
+result of the election, and let any client initiate an election at any time (so
+we could have multiple elections concurrently occurring).
+
+\subsubsection{Ring-based election algorithm}
+
+If we arranged the processes in a logical ring, then each process knows which is
+next in the order (this assumes there are no failures in the system).
+
+\begin{enumerate}
+  \item Initially, all processes are non-participants in the election.
+
+  \item The initiating process changes itself to be a participant and sends its
+  identifier (remember, that's $\frac{1}{load + 1}$) to its neighbour).
+
+  \item Each receiver will forward its own identifier if it is higher than the
+  one it received. If it is already a participant (i.e. its forwarded an
+  identifier previously), then the message is discarded. If the received
+  identifier is lower than its own identifier, the node forwards its own 
+  identifier.
+
+  \item If the identifier of the receiving process is the same as the received 
+  identifier, then that process has been elected. It now sends an elected
+  message around informing the other nodes of its ascension to serverhood.
+
+  \item When each node receives an election result, it reset to
+  non-participating and passes the result on.
+\end{enumerate}
+
+The largest number of messages sent is $3n -1$ which isn't too bad. However,
+failure tolerance is limited (you could re-build the ring if one node crashed,
+but that's a lot of effort) and its hard to add new clients to the ring.
+
+\subsubsection{Bully algorithm}
+
+The bully algorithm is designed to be more resilient, since it takes into
+account that processes may crash (although messages are still assumed to be
+reliable). Each process knows about each other process and they can all
+communicate with each other.
+
+Timeouts are used to detect the failure of processes. If a reply has not been
+received in a time $T$, then the replying process is assumed to have crashed. If
+the initiator of an election doesn't learn who has won by $T^1 + T^2$, then it
+assumes some process crashed and it starts another election.
+
+Three types of messages are used to communicate:
+
+\begin{description}
+  \item \textbf{Election messages} are sent to initiate an election
+  \item \textbf{Answer messages} are sent in response to election messages
+  \item \textbf{Coordinator messages} are sent to announce election winners
+\end{description}
+
+This is how the method works:
+
+\begin{enumerate}
+  \item The initiating client will send a message to all the clients with a
+  higher identifier than itself. The initiator now waits for the result.
+
+  \item Any client that receives an election message eventually will send an
+  answer back. It should then start its own election, by sending a message to
+  clients that have a higher identifier than it.
+
+  \item Only when a process gets no replies (within the timeout), does it
+  consider itself elected, at which point, it sends a coordinator message to all
+  lower processes.
+\end{enumerate}
+
+This process if $O(n^2)$ in the worst case, which is where the smallest process
+initiates. Timeouts must be realistic, otherwise the election can be slow.

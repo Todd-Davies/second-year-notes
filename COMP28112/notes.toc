@@ -16,3 +16,7 @@
 \contentsline {subsection}{\numberline {6.1}UTC}{8}{subsection.6.1}
 \contentsline {subsection}{\numberline {6.2}Setting times}{8}{subsection.6.2}
 \contentsline {subsection}{\numberline {6.3}Logical time}{9}{subsection.6.3}
+\contentsline {section}{\numberline {7}Elections, coordination and agreement}{10}{section.7}
+\contentsline {subsection}{\numberline {7.1}Elections}{10}{subsection.7.1}
+\contentsline {subsubsection}{\numberline {7.1.1}Ring-based election algorithm}{10}{subsubsection.7.1.1}
+\contentsline {subsubsection}{\numberline {7.1.2}Bully algorithm}{10}{subsubsection.7.1.2}

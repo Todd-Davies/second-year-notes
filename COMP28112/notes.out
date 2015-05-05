@@ -16,3 +16,7 @@
 \BOOKMARK [2][-]{subsection.6.1}{UTC}{section.6}% 16
 \BOOKMARK [2][-]{subsection.6.2}{Setting times}{section.6}% 17
 \BOOKMARK [2][-]{subsection.6.3}{Logical time}{section.6}% 18
+\BOOKMARK [1][-]{section.7}{Elections, coordination and agreement}{}% 19
+\BOOKMARK [2][-]{subsection.7.1}{Elections}{section.7}% 20
+\BOOKMARK [3][-]{subsubsection.7.1.1}{Ring-based election algorithm}{subsection.7.1}% 21
+\BOOKMARK [3][-]{subsubsection.7.1.2}{Bully algorithm}{subsection.7.1}% 22
