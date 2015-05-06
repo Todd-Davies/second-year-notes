@@ -20,3 +20,8 @@
 \contentsline {subsection}{\numberline {7.1}Elections}{10}{subsection.7.1}
 \contentsline {subsubsection}{\numberline {7.1.1}Ring-based election algorithm}{10}{subsubsection.7.1.1}
 \contentsline {subsubsection}{\numberline {7.1.2}Bully algorithm}{10}{subsubsection.7.1.2}
+\contentsline {subsection}{\numberline {7.2}Transactions}{11}{subsection.7.2}
+\contentsline {subsubsection}{\numberline {7.2.1}The Two Generals' Problem}{12}{subsubsection.7.2.1}
+\contentsline {subsubsection}{\numberline {7.2.2}Redundancy}{12}{subsubsection.7.2.2}
+\contentsline {subsubsection}{\numberline {7.2.3}ACID}{12}{subsubsection.7.2.3}
+\contentsline {subsubsection}{\numberline {7.2.4}Implementing transactions}{13}{subsubsection.7.2.4}

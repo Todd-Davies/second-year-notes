@@ -596,7 +596,7 @@ account that processes may crash (although messages are still assumed to be
 reliable). Each process knows about each other process and they can all
 communicate with each other.
 
-Timeouts are used to detect the failiure of processes. If a reply has not been
+Timeouts are used to detect the failure of processes. If a reply has not been
 received in a time $T$, then the replying process is assumed to have crashed. If
 the initiator of an election doesn't learn who has won by $T^1 + T^2$, then it
 assumes some process crashed and it starts another election.
@@ -625,4 +625,142 @@ This is how the method works:
 \end{enumerate}
 
 This process if $O(n^2)$ in the worst case, which is where the smallest process
-initiates. Timeouts must be realisic, otherwise the election can be slow.
+initiates. Timeouts must be realistic, otherwise the election can be slow.
+
+\subsection{Transactions}
+
+In an ideal distributed system, we must be able to tolerate faults. That is to
+say that if a partial faliure occurs, then we must be able to continue operating
+in an acceptable way. Fault tolerance gives rise to dependability, which is
+defined as:
+
+\begin{aquote}{IFIP 10.4 Working Group on Dependable Computing and Fault Tolerance}
+Dependability is defined as the trustworthiness of a computing system which
+allows reliance to be justifiably placed on the service it delivers.
+\end{aquote}
+
+Dependability has four facets:
+
+\begin{description}
+  \item \textbf{Availability}:\\
+    The probability that the system will be operating correctly at any given
+    moment.
+  \item \textbf{Reliability}:\\
+    The length of time the system can run without failure.
+  \item \textbf{Safety}:\\
+    If a failure occurs, what will the concequences be? How will they affect the 
+    system?
+  \item \textbf{Maintainability}:\\
+    How easily can a failed system be repaired?
+\end{description}
+
+Likewise, there are five types of service failures:
+
+\begin{description}
+  \item \textbf{Crash}:\\
+    The server has crashed, and no longer responds to anything we try to do.
+  \item \textbf{Omission failures}:\\
+    The server fails to do \textit{something}. This could be responding to
+    incoming requests, receiving incoming requests, sending messages etc
+  \item \textbf{Response failures}:\\
+    This is where the server responds, but its response is incorrect.
+  \item \textbf{Timing failures}:\\
+    The server responds too slowly (or within a certain time window).
+  \item \textbf{Arbitrary (byzantime) failures}:\\
+    Output may be produced that never should have been produced, which may seem
+    correct, but isn't actually. These arbitrary responses can happen at
+    arbitrary times.
+\end{description}
+
+\subsubsection{The Two Generals' Problem}
+
+The Two Generals' Problem is a thought experiment that illustrates the design
+challenges of coordinating action through an unreliable medium. Here is a
+description of the problem:
+
+\begin{aquote}{\url{http://en.wikipedia.org/wiki/Two_Generals%27_Problem}}
+
+  Two armies, each led by a general, are preparing to attack a fortified city.
+  The armies are encamped near the city, each on its own hill. A valley
+  separates the two hills, and the only way for the two generals to communicate
+  is by sending messengers through the valley. Unfortunately, the valley is
+  occupied by the city's defenders and there's a chance that any given messenger
+  sent through the valley will be captured.
+
+  While the two generals have agreed that they will attack, they haven't agreed
+  upon a time for attack. It is required that the two generals have their armies
+  attack the city at the same time in order to succeed, else the lone attacker
+  army will die trying. They must thus communicate with each other to decide on
+  a time to attack and to agree to attack at that time, and each general must
+  know that the other general knows that they have agreed to the attack plan.
+  Because acknowledgement of message receipt can be lost as easily as the
+  original message, a potentially infinite series of messages are required to
+  come to consensus.
+
+\end{aquote}
+
+\subsubsection{Redundancy}
+
+\marginpar{See my COMP28512 notes for informatino on Forward Error Encoding}
+
+We can mask failures by building levels of redundancy into the system; say we
+need three servers to process peak load on a website, then maybe we should run
+with four in case one goes down, this would be an example of \textit{physical
+redundancy}. We could also just try actions again if they fail the first time,
+which is called \textit{time redundancy}, or we could utalise
+\textit{information redundancy} by sending more information than we need (for
+example, using Forward Error Encoding) to be able to correct errors in
+transmissions.
+
+The main concern though, is that the failure of one part of the system shouldn't
+leave us in an inconsistent state.
+
+\subsubsection{ACID}
+
+If we can make operations atomic, then if they do not succeed, then we can roll
+back the system to whatever state it was in prior to the operation taking place.
+An example of a good use of atomic operations is when multiple threads are
+updating a variable (since variables can be corrupted if they are updated
+concurrently by multiple threads).
+
+To ensure that different concurrent threads don't interfere, we could ensure
+that they are only sequentially executing on the same resources. This is slow
+though, and not scalable.
+
+However, we also need to make updates \textit{durable}, so that they `stick
+around' after they have been made (i.e. they are \textit{persistent}), and that
+application constraints are not violated (that's called maintaining
+\textit{integrity}).
+
+This brings us to ACID, which describes the four properties we need to implement
+in order to have an effective and safe system:
+
+\begin{itemize}
+  \item Atomicity
+  \item Consistency
+  \item Isolation
+  \item Durability
+\end{itemize}
+
+\subsubsection{Implementing transactions}
+
+Transactions let us have the ACID properties at a relatively low cost. A
+transaction defines a set of operations that either commit, or abort. If it
+commits, then the effects are persistant. This means that we can recover from
+all sorts of failures, make sure the system is highly available and manage high
+levels of concurrency.
+
+Transactions are implemented using locks. We want to make it look like things
+are happening in a serial manner, but we also want to serve clients as fast as
+possible. To do this we have two phase locking:
+
+\begin{description}
+  \item \textbf{Aquire/Expanding phase}:\\
+    Here, we aquire the locks to gain permission to read or write. We need a
+    read lock before reading, and a write lock before writing. Read locks only
+    conflict with write locks, but write locks conflict with read and write
+    locks.
+  \item \textbf{Release/Shrinking phase}:\\
+    We release the locks when the transaction terminates (whether it has
+    committed or aborted).
+\end{description}

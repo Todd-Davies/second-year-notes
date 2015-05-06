@@ -20,3 +20,8 @@
 \BOOKMARK [2][-]{subsection.7.1}{Elections}{section.7}% 20
 \BOOKMARK [3][-]{subsubsection.7.1.1}{Ring-based election algorithm}{subsection.7.1}% 21
 \BOOKMARK [3][-]{subsubsection.7.1.2}{Bully algorithm}{subsection.7.1}% 22
+\BOOKMARK [2][-]{subsection.7.2}{Transactions}{section.7}% 23
+\BOOKMARK [3][-]{subsubsection.7.2.1}{The Two Generals' Problem}{subsection.7.2}% 24
+\BOOKMARK [3][-]{subsubsection.7.2.2}{Redundancy}{subsection.7.2}% 25
+\BOOKMARK [3][-]{subsubsection.7.2.3}{ACID}{subsection.7.2}% 26
+\BOOKMARK [3][-]{subsubsection.7.2.4}{Implementing transactions}{subsection.7.2}% 27
