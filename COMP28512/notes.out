@@ -15,10 +15,16 @@
 \BOOKMARK [3][-]{subsubsection.3.4.1}{LPC-10}{subsection.3.4}% 15
 \BOOKMARK [3][-]{subsubsection.3.4.2}{Codebook Excited LPC}{subsection.3.4}% 16
 \BOOKMARK [2][-]{subsection.3.5}{Comfort noise}{section.3}% 17
-\BOOKMARK [2][-]{subsection.3.6}{Error correction \046 detection}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.6}{Error correction, detection \046 prevention}{section.3}% 18
 \BOOKMARK [3][-]{subsubsection.3.6.1}{Forward Error Correction}{subsection.3.6}% 19
-\BOOKMARK [1][-]{section.4}{Frequency Domain Processing}{}% 20
-\BOOKMARK [2][-]{subsubsection.4.0.2}{Sinusoids}{section.4}% 21
-\BOOKMARK [3][-]{subsubsection.4.0.3}{Fourier Series}{subsubsection.4.0.2}% 22
-\BOOKMARK [3][-]{subsubsection.4.0.4}{Discrete Fourier Transform \(iDFT\)}{subsubsection.4.0.2}% 23
-\BOOKMARK [2][-]{subsection.4.1}{Wav files}{section.4}% 24
+\BOOKMARK [3][-]{subsubsection.3.6.2}{CRC checks}{subsection.3.6}% 20
+\BOOKMARK [3][-]{subsubsection.3.6.3}{Convolutional Coders}{subsection.3.6}% 21
+\BOOKMARK [3][-]{subsubsection.3.6.4}{Miscellaneous FEC stuff}{subsection.3.6}% 22
+\BOOKMARK [1][-]{section.4}{Mobile networks}{}% 23
+\BOOKMARK [2][-]{subsection.4.1}{Cellular networks}{section.4}% 24
+\BOOKMARK [3][-]{subsubsection.4.1.1}{The evolution of cellular}{subsection.4.1}% 25
+\BOOKMARK [1][-]{section.5}{Frequency Domain Processing}{}% 26
+\BOOKMARK [2][-]{subsubsection.5.0.2}{Sinusoids}{section.5}% 27
+\BOOKMARK [3][-]{subsubsection.5.0.3}{Fourier Series}{subsubsection.5.0.2}% 28
+\BOOKMARK [3][-]{subsubsection.5.0.4}{Discrete Fourier Transform \(iDFT\)}{subsubsection.5.0.2}% 29
+\BOOKMARK [2][-]{subsection.5.1}{Wav files}{section.5}% 30

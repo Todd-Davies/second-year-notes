@@ -504,7 +504,7 @@ will determine if its owner is silent, and transmit the characteristics of the
 background noise using very few bits if they are so that the other phone can
 recreate a similar background noise for the other person.
 
-\subsection{Error correction \& detection}
+\subsection{Error correction, detection \& prevention}
 
 Mobile systems are affected by errors in the transmission of data, often in the
 form of noise affecting radio reception. There are many ways of
@@ -529,6 +529,14 @@ stream, whereas block coders deal with data in chunks.
 Here are some examples of the above:
 
 \begin{description}
+  \item \textbf{Repeating bits}:\\
+    We could simply send bits a few times, instead of just once and take the 
+    mode of them at the receiver. If we sent three bits for every bit, then
+    if there was one bit error, then it would be fine since we could take the 
+    majority of the recieved bits, and the one error bit would be ignored.
+
+    The number of repeats must be an odd number, otherwise we could end up with 
+    a half and half split.
   \item \textbf{Parity}\\
     As a simple (and not very effective) way of detecting bit errors, we could
     append a parity bit to the end of blocks. The parity bit would be \texttt{0}
@@ -539,19 +547,209 @@ Here are some examples of the above:
 
     When the receiver gets the bits, the parity of all of them (including the
     parity bit) must be computed. If the parity is \texttt{1}, then some bit
-    error definately occured, whereas if it is \texttt{0}, then the data
+    error definitely occurred, whereas if it is \texttt{0}, then the data
     \textit{may be} correct (but there could be two or more errors as well).
-  \item \textbf{Hamming distance}\\
 
+    Parity checking is a block code, since you need to wait for the whole block
+    to arrive before checking the parity.
+  \item \textbf{Hamming distance}\\
     The Hamming distance between two binary numbers is the number of bits that
     are different. This is obtained by \texttt{XOR}ing the two numbers together
     and counting the number of ones. This is useful if we want to know how many
     bit errors it takes to convert one number to another.
 
-    \lstinputlisting[style=java]{examples/hamming_code/HammingCode.java}
+    You have a set list of code words that you can use, each with a minimum
+    hamming distance from it to any other. Then, you can detect and even errors
+    by comparing your received code to the allowed ones.
 
+    Figure~\ref{HammingCodes} shows an implementation.
+
+    \begin{figure}
+      \lstinputlisting[style=java]{examples/hamming_code/HammingCode.java}
+      \label{HammingCodes}
+      \caption{A Java implementation of HammingCodes}
+    \end{figure}
+
+    Hamming codes are block codes, since you need the whole block to calculate
+    the distance between the received block and the ones in the codebook. It is
+    common practice to introduce check bits onto code words to make the distance
+    larger.
+
+    The notation for Hamming Codes is $(m+r, m)$, where $m$ is the number of
+    message bits, and $r$ is the number of check bits. The $r$ bits are appended
+    to the end of the code words, and are derived from the value of the $m$
+    bits. For example, with a $(7,4)$ hamming code, we could make:
+
+    \begin{itemize}
+      \item $r_0$ = $m_0 \oplus m_1 \oplus m_2$
+      \item $r_1$ = $m_0 \oplus m_1 \oplus m_3$
+      \item $r_2$ = $m_0 \oplus m_2 \oplus m_3$
+    \end{itemize}
+
+    This would give a \textit{syndrome table} (i.e. correction table) of:
+
+    \begin{center}
+      \begin{tabular}{|>{$}l<{$}|>{$}l<{$}|>{$}l<{$}|l|}
+        \hline
+          r_0 & r_1 & r_2 & Correction to\\ \hline
+          0   & 0   & 0   & None\\ \hline
+          0   & 0   & 1   & $r_2$\\ \hline
+          0   & 1   & 0   & $r_1$\\ \hline
+          0   & 1   & 1   & $m_1$\\ \hline
+          1   & 0   & 0   & $r_0$\\ \hline
+          1   & 0   & 1   & $m_2$\\ \hline
+          1   & 1   & 0   & $m_3$\\ \hline
+          1   & 1   & 1   & $m_0$\\ \hline
+      \end{tabular}
+    \end{center}
+
+  \item \textbf{Interleaving}:\\
+    Since bit errors in radio links often occur in bursts (e.g. caused by a car
+    turning on), we could transform one dimensional blocks of data into two
+    dimensional matrices, and transfer them column by column. This way, if there
+    is a `bursty' bit error, then it will affect multiple rows, but the bit
+    error correction (such as) the repeating method, or hamming codes could
+    detect the error since only one or two bits may be wrong, not all of them.
 \end{description}
 
+\subsubsection{CRC checks}
+
+A Cyclic Redundancy Check is a block code for detecting bit errors. If we find
+the value of the number we're transmitting in decimal and divide it by a number
+such as seven, we can append the remainder onto the message. Then at the
+receiver, we can divide the received bits again and if we get a different
+remainder, then we know that a bit error has occured.
+
+If the bit errors happened to add or subtract the number that you were dividing
+by, then the remainder would be the same and you would not be able to detect the
+errors. If we make the number large, then this is unlikely.
+
+Real CRC checks use \textit{Galois Field Arithmetic}\footnote{
+\url{http://en.wikipedia.org/wiki/Finite_field_arithmetic}} to do the maths,
+since binary numbers can be expressed as polynomials:
+
+\begin{description}
+  \item \textbf{Summing}:\\
+    To calculate the sum of two binary numbers, we can just XOR their bits.
+    Subtracting is the same:
+N
+    \[
+      1001 \oplus 0111 = 1110
+    \]
+  \item \textbf{Long division}:\\
+    %TODO: Understand this
+\end{description}
+
+There are three CRC generators used in practice:
+
+\begin{itemize}
+  \item CRC-8-ATM: $x^8 + x^2 + x + 1$
+  \item CRC-16-IBM: $x^{16} + x^{15} + x^2 + 1$
+  \item CRC-32-IEEE: \textbf{Quite long...}
+\end{itemize}
+
+A generator of order $r$ can detect all error bursts of length $\leq r$.
+
+\subsubsection{Convolutional Coders}
+
+If we are processing streams of data, then we could have a `rolling parity
+check'. When we encode, the previous $n$ bits are \texttt{XOR}'d together to
+produce another stream of bits. We can then interleave the new parity stream
+with the normal stream.
+
+At the decoder, the bits are valid if each of the parity bits (i.e. not the
+normal ones) is the \texttt{XOR} of the previous three normal bits. If the bit
+sequence is invalid, then we can select the valid sequence with the minimum
+Hamming distance to the received sequence and therefore have error correction.
+
+With sequences of around 8 bits, that is fine, since there would be 256 valid
+sequences of 16 bits long each, however, for longer sequences (e.g. 1024 bits),
+then this would not be feasible.
+
+\marginpar{Convolutional coders that encode bit streams are called
+\textit{rolling parity} coders.}
+
+A soft decision decoder is where if we're unsure as to what the value of a bit
+is, then we could use previously known probabilities to determine what we could
+pick.
+
+%TODO: Understand convolutional coders a bit better...
+
+\subsubsection{Miscellaneous FEC stuff}
+
+Well thought out use of FEC techniques in mobile systems increases the energy
+efficiency and effectivness of the system. Transmitting at higher power is one
+way of reducing errors in the system, but `loud' signals also cause lots of
+interference over a wider range and, of course, uses lots of battery. FEC lets
+us reduce the transmission power, yet overcome the bit errors that come as a
+result, which allows us to re-use different frequencies and reduce power
+consumption.
+
+We could increase the bit rate by not encoding in binary, but using any $2^n$
+number of states. If we could send the values $\{0,1,2,3\}$, then we could send
+two bits per pulse, effectively doubling our bandwidth. This is limited by the
+noise in the channel.
+
+The \textbf{Shannon-Hartley Law} says that the channel capacity $C$ is equal to:
+
+\[
+  C = B \log_2(1 + \frac{S}{N}) \si{\bit\per\second}
+\]
+
+Where $B$ is the bandwidth in $\si{\hertz}$, and $\frac{S}{N}$ is the signal to
+noise power ratio.
+
+% Lecture 6
+
+\section{Mobile networks}
+
+Since their inception, the desired use of cellular networks has changed from
+being soley about transmitting speech, to transmitting textual data, and now
+arbitraty packets. This has required them to evolve from `circuit switched
+networks', where (at a fundamental level) a physical connection must be made
+between wires to facilitate data transfer, to `packed switched networks'.
+
+This evolution is really interesting, since circuit switching originated from
+landline phones, but packet switching was from digital networking such as
+Ethenet. As the technology has progressed, cellular data has moved towards the
+internet's way of doing things.
+
+However, mobile phones have moved on from being single feature devices, merely
+letting you call other users. Now they are \textit{smart}phones, and this
+requires them to use a plethora of different technologies to be able to fulfil
+user's demand; GPS, bluetooth, radio etc to name a few.
+
+\subsection{Cellular networks}
+
+One reason why mobile phones can work so well is that they take advantage of
+\textit{spatial multiplexing}. This divides an area into small areas called
+cells, each having a frequency band. The cells are different sizes based on
+their expected useage rates (cells will be more dense in areas with more
+demand). Frequency bands are re-used when a cell with the same ferquency band is
+far enough away, and because of this, mobile phones must take care not to
+transmit their signals too loud and pollute the spectrum for nearby cells.
+
+\marginpar{Cells are typically $0.1-35\si{\kilo\meter}$ in diameter. Obviously
+small cells are better since they will handle more users per unit area (assuming
+cell size is independent of user capacity), but users will need to transmit at a
+lower power (so the neighbouring cells using the same frequency aren't
+affected). This is actually a good thing sometimes, since it uses less battery,
+and we can use FEC to mask bit errors.}
+
+Breaking the spectrum up into frequencies, and mapping that onto physical cells
+is a nice concept - and it works very very well in reality, but it does have
+some drawbacks; for example, what happens when a user moves into a different
+cell while on the phone? Thankfully, the system supports transparent and
+seamless handovers as the user moves from cell to cell.
+
+\subsubsection{The evolution of cellular}
+
+Cellular networks have gone through four iterations to date, with a fifth one
+coming in the future:
+
+\begin{description}
+  \item %TODO: Slide 6 from lecture 6
+\end{description}
 
 \section{Frequency Domain Processing}
 
