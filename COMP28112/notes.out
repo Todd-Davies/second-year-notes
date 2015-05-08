@@ -25,3 +25,5 @@
 \BOOKMARK [3][-]{subsubsection.7.2.2}{Redundancy}{subsection.7.2}% 25
 \BOOKMARK [3][-]{subsubsection.7.2.3}{ACID}{subsection.7.2}% 26
 \BOOKMARK [3][-]{subsubsection.7.2.4}{Implementing transactions}{subsection.7.2}% 27
+\BOOKMARK [3][-]{subsubsection.7.2.5}{Transaction recovery}{subsection.7.2}% 28
+\BOOKMARK [3][-]{subsubsection.7.2.6}{Distributed transactions}{subsection.7.2}% 29

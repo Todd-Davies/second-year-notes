@@ -764,3 +764,59 @@ possible. To do this we have two phase locking:
     We release the locks when the transaction terminates (whether it has
     committed or aborted).
 \end{description}
+
+We could try and avoid locks by using \textbf{optimistic concurrency control}.
+This is when multiple transactions are allowed to happen at the same time, and
+then the results are checked a the commit phase, where they are aborted only if
+there is a collision.
+
+We could also use \textbf{timestamp ordering} to detect and resolve collisions
+between transactions. This involves maintaining a time at which objects were
+last accessed, and comparing that to the time of the timestamp. If the
+comparison fails, then the transaction is immediately aborted.
+
+\subsubsection{Transaction recovery}
+
+There are two methods of recovering from an aborted transaction:
+
+\begin{description}
+  \item \textbf{Backward recovery}:\\
+    Here, we roll back from the current state of the system to a previously
+    known and valid state (a checkpoint). This is usually the state of the
+    system at the start of the transaction.
+  \item \textbf{Forward recovery}:\\
+    Here, we try and correct the current state by bringing the system into a new
+    valid state from the one we're in now. We must know in advance what errors
+    have and may occur for this to work.
+\end{description}
+
+\subsubsection{Distributed transactions}
+
+The all or nothing principle states that all the databases must commit the
+transaction, or they all abort; everybody must agree on the single outcome.
+There are many ways of trying to achieve this:
+
+\begin{description}
+  \item \textbf{One-phase atomic commit}:\\
+    A client tells a central coordinator to commit or abort a transaction, and
+    the coordinator will forward this on to all of the other clients.
+
+    Since this is not an interactive protocol, clients cannot tell the
+    coordinator if they are unable to commit.
+
+  \item \textbf{Two-phase commit}:\\
+    The two phase commit is a more interactive protocol. The coordinator first
+    asks the clients if they can commit a transaction. If they can, then they
+    reply with a yes. If all clients can, then a global commit message is sent,
+    and if not, then a global abort message is sent.
+
+    If the coordinator fails, then the protocol must handle choosing another, or
+    let all the individual nodes talk to all the other nodes. Transactions
+    should be short (so that there is minimum wait time for processes), and
+    there is a danger of distributed deadlocks).
+
+    Distributed deadlock can be avoided by each client forward its `\textit{wait
+    for graph}' to the server, and the server can analyse it to find deadlocks.
+    This should be carefully implemented though; you don't want to stop random
+    deadlocks when they are actually normally functioning tasks.
+\end{description}
