@@ -1,6 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYGdefault{k+kd}{public} \PYGdefault{k+kd}{class} \PYGdefault{n+nc}{Tree}\PYGdefault{o}{\PYGdefaultZlt{}}\PYGdefault{n}{T}\PYGdefault{o}{\PYGdefaultZgt{}} \PYGdefault{o}{\PYGdefaultZob{}}
-  \PYGdefault{k+kd}{public} \PYGdefault{n}{Tree}\PYGdefault{o}{\PYGdefaultZlt{}}\PYGdefault{n}{T}\PYGdefault{o}{\PYGdefaultZgt{}} \PYGdefault{n}{left}\PYGdefault{o}{,} \PYGdefault{n}{right}\PYGdefault{o}{;}
-  \PYGdefault{k+kd}{public} \PYGdefault{n}{T} \PYGdefault{n}{value}\PYGdefault{o}{;}
-\PYGdefault{o}{\PYGdefaultZcb{}}
-\end{Verbatim}
