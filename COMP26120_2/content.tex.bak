@@ -427,7 +427,7 @@ notes properly.
 
 You can use a binary tree as an ordered dictionary, since the keys can be stored
 in the tree format, and they can each link to their respective values. The
-runtime of a binary tree lookup is $O(n)$, as is insertion.
+runtime of a binay tree lookup is $O(n)$, as is insertion.
 
 A perfectly balanced binary tree will exhibit a runtime of $O(log(n))$ for
 search and insert, but maintaining a balanced binary tree requires extra effort.
@@ -452,7 +452,7 @@ From this, we can derive the following properties about AVL trees:
 Since the maximum depth of an AVL tree is $log(n)$, searching for an item in the
 tree is also an $O(log(n))$ operation.
 
-\subsubsection{AVL tree insertion}
+\subsubsection{AVL tree Insertion}
 
 If our tree satisfies the height-balance property prior to us inserting a new
 element, then after the element has been inserted, the heights of the nodes from
@@ -464,77 +464,23 @@ repair}:
 
 \begin{itemize}
   \item Let $z$ by the first node on the path from the new node to the root that
-    is unbalanced.
-    \marginpar{See Figure~\ref{avl-tree-stage-1} for a description of where to
-    put $z,y$ and $x$.}
+    is unbalanced. \tikzmark{topbrace}
   \item Denote $y$ to be the child of $z$ that has the larger height.
-    \marginpar{Choose any ancestor of $z$ if there is a tie when choosing $y$
+    \marginpar{Choose any anchestor of $z$ if there is a tie when choosing $y$
     or $x$.}
   \item Denote $x$ to be the child of $y$ that has the larger height.
-  \item Since $z$ is unbalanced, we need to perform \textit{trinode
-  restructuring}, which re-orders the tree but preserves the inorder traversal
-  of the tree and runs in $O(1)$ time. There are four cases to this algorithm:
-  \begin{description}
-    \item \textbf{Left-left case}:\\
-      \begin{verbatim}
-       z                                      y 
-      / \                                   /   \
-     y   T4      Right Rotate (z)          x      z
-    / \          - - - - - - - - ->      /  \    /  \ 
-   x   T3                               T1  T2  T3  T4
-  / \
-T1   T2
-      \end{verbatim}
-    \item \textbf{Left-right case}:\\
-      \begin{verbatim}
-     z                               z                           x
-    / \                            /   \                        /  \ 
-   y   T4  Left Rotate (y)        x    T4  Right Rotate(z)    y      z
-  / \      - - - - - - - - ->    /  \      - - - - - - - ->  / \    / \
-T1   x                          y    T3                    T1  T2 T3  T4
-    / \                        / \
-  T2   T3                    T1   T2
-      \end{verbatim}
-    \item \textbf{Right-right case}:\\
-      \begin{verbatim}
-  z                                y
- /  \                            /   \ 
-T1   y     Left Rotate(z)       z      x
-    /  \   - - - - - - - ->    / \    / \
-   T2   x                     T1  T2 T3  T4
-       / \
-     T3  T4
-      \end{verbatim}
-    \item \textbf{Right-left case}:\\
-      \begin{verbatim}
-   z                            z                            x
-  / \                          / \                          /  \ 
-T1   y   Right Rotate (y)    T1   x      Left Rotate(z)   z      y
-    / \  - - - - - - - - ->     /  \   - - - - - - - ->  / \    / \
-   x   T4                      T2   y                  T1  T2  T3  T4
-  / \                              /  \
-T2   T3                           T3   T4
-      \end{verbatim}
-  \end{description}
+    \tikzmark{topbrace}
 \end{itemize}
 
+\begin{tikzpicture}[overlay, remember picture]
+  \draw [decoration={brace,amplitude=0.5em},decorate,ultra thick,black]
+    let \p1=(topbrace), \p2=(bottombrace) in
+    ({max(\x1,\x2)}, {\y1+0.8em}) -- node[right=0.6em] {I'd like some text here} ({max(\x1,\x2)}, {\y2});
+\end{tikzpicture}
+
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=0.5\textwidth]{images/avl-tree-stage-1}
+  \includegraphics{images/avl-tree-stage-1.png}
   \caption{You can see the correct choices of $z$, $y$ and $x$ when searching an
   AVL tree after an insert}
   \label{avl-tree-stage-1}
 \end{figure}
-
-\subsubsection{AVL tree removal}
-
-If we remove an external node, then the height balance property of the AVL tree
-will remain satisfied, but if we remove an internal node, then it might not be.
-In this case, the node is removed as normal, but we again apply the trinode
-restructuring after its been removed to restore the balance.
-
-Once you have applied the trinode restructuring once, you need to carry on
-moving up the tree and checking the balance, since otherwise there could still
-be unbalanced nodes higher up the tree. Since the maximum number of times we'll
-need to restructure the tree is equal to the depth of the tree, removal is
-$O(log(n))$.

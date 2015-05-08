@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{k+kd}{public} \PYGdefault{k+kd}{static} \PYGdefault{o}{\PYGdefaultZlt{}}\PYGdefault{n}{T} \PYGdefault{k+kd}{extends} \PYGdefault{n}{Comparable}\PYGdefault{o}{\PYGdefaultZlt{}}\PYGdefault{n}{T}\PYGdefault{o}{\PYGdefaultZgt{}\PYGdefaultZgt{}} \PYGdefault{k+kt}{int} \PYGdefault{n}{binarySearch}\PYGdefault{o}{(}\PYGdefault{n}{T}\PYGdefault{o}{[]} \PYGdefault{n}{input}\PYGdefault{o}{,} \PYGdefault{n}{T} \PYGdefault{n}{item}\PYGdefault{o}{,}
+                                                         \PYGdefault{k+kt}{int} \PYGdefault{n}{start}\PYGdefault{o}{,} \PYGdefault{k+kt}{int} \PYGdefault{n}{end}\PYGdefault{o}{)} \PYGdefault{o}{\PYGdefaultZob{}}
+  \PYGdefault{k}{if}\PYGdefault{o}{(}\PYGdefault{n}{start} \PYGdefault{o}{\PYGdefaultZgt{}} \PYGdefault{n}{end}\PYGdefault{o}{)} \PYGdefault{k}{return} \PYGdefault{o}{\PYGdefaultZhy{}}\PYGdefault{l+m+mi}{1}\PYGdefault{o}{;}
+  \PYGdefault{k}{else} \PYGdefault{o}{\PYGdefaultZob{}}
+    \PYGdefault{k+kt}{int} \PYGdefault{n}{middleIndex} \PYGdefault{o}{=} \PYGdefault{n}{start} \PYGdefault{o}{+} \PYGdefault{o}{((}\PYGdefault{n}{end} \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{n}{start}\PYGdefault{o}{)} \PYGdefault{o}{/} \PYGdefault{l+m+mi}{2}\PYGdefault{o}{);}
+    \PYGdefault{k+kt}{int} \PYGdefault{n}{comparison} \PYGdefault{o}{=} \PYGdefault{n}{item}\PYGdefault{o}{.}\PYGdefault{n+na}{compareTo}\PYGdefault{o}{(}\PYGdefault{n}{input}\PYGdefault{o}{[}\PYGdefault{n}{middleIndex}\PYGdefault{o}{]);}
+    \PYGdefault{k}{if}\PYGdefault{o}{(}\PYGdefault{n}{comparison} \PYGdefault{o}{==} \PYGdefault{l+m+mi}{0}\PYGdefault{o}{)} \PYGdefault{o}{\PYGdefaultZob{}}
+      \PYGdefault{k}{return} \PYGdefault{n}{middleIndex}\PYGdefault{o}{;}
+    \PYGdefault{o}{\PYGdefaultZcb{}} \PYGdefault{k}{else} \PYGdefault{k}{if}\PYGdefault{o}{(}\PYGdefault{n}{comparison} \PYGdefault{o}{\PYGdefaultZlt{}} \PYGdefault{l+m+mi}{0}\PYGdefault{o}{)} \PYGdefault{o}{\PYGdefaultZob{}}
+      \PYGdefault{k}{return} \PYGdefault{n+nf}{binarySearch}\PYGdefault{o}{(}\PYGdefault{n}{input}\PYGdefault{o}{,} \PYGdefault{n}{item}\PYGdefault{o}{,} \PYGdefault{n}{start}\PYGdefault{o}{,} \PYGdefault{n}{middleIndex} \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{l+m+mi}{1}\PYGdefault{o}{);}
+    \PYGdefault{o}{\PYGdefaultZcb{}} \PYGdefault{k}{else} \PYGdefault{o}{\PYGdefaultZob{}}
+      \PYGdefault{k}{return} \PYGdefault{n+nf}{binarySearch}\PYGdefault{o}{(}\PYGdefault{n}{input}\PYGdefault{o}{,} \PYGdefault{n}{item}\PYGdefault{o}{,} \PYGdefault{n}{middleIndex} \PYGdefault{o}{+} \PYGdefault{l+m+mi}{1}\PYGdefault{o}{,} \PYGdefault{n}{end}\PYGdefault{o}{);}
+    \PYGdefault{o}{\PYGdefaultZcb{}}
+  \PYGdefault{o}{\PYGdefaultZcb{}}
+\PYGdefault{o}{\PYGdefaultZcb{}}
+\end{Verbatim}

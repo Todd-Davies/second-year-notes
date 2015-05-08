@@ -16,3 +16,10 @@
 \BOOKMARK [1][-]{section.4}{Dictionaries and Hash Tables}{}% 16
 \BOOKMARK [2][-]{subsection.4.1}{Collision handling}{section.4}% 17
 \BOOKMARK [3][-]{subsubsection.4.1.1}{Probing}{subsection.4.1}% 18
+\BOOKMARK [1][-]{section.5}{Ordered Dictionaries}{}% 19
+\BOOKMARK [2][-]{subsection.5.1}{Lookup tables}{section.5}% 20
+\BOOKMARK [3][-]{subsubsection.5.1.1}{Binary Search}{subsection.5.1}% 21
+\BOOKMARK [1][-]{section.6}{Binary Trees}{}% 22
+\BOOKMARK [2][-]{subsection.6.1}{AVL Trees}{section.6}% 23
+\BOOKMARK [3][-]{subsubsection.6.1.1}{AVL tree insertion}{subsection.6.1}% 24
+\BOOKMARK [3][-]{subsubsection.6.1.2}{AVL tree removal}{subsection.6.1}% 25
