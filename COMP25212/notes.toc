@@ -32,5 +32,6 @@
 \contentsline {subsubsection}{\numberline {5.2.5}Other techniques}{15}{subsubsection.5.2.5}
 \contentsline {section}{\numberline {6}Multi-Core}{16}{section.6}
 \contentsline {subsection}{\numberline {6.1}The structure of a multi core processor}{16}{subsection.6.1}
-\contentsline {section}{\numberline {7}Vitalisation}{16}{section.7}
-\contentsline {section}{\numberline {8}Permanent Storage}{16}{section.8}
+\contentsline {subsection}{\numberline {6.2}Data coherency and consistency}{16}{subsection.6.2}
+\contentsline {section}{\numberline {7}Vitalisation}{18}{section.7}
+\contentsline {section}{\numberline {8}Permanent Storage}{18}{section.8}

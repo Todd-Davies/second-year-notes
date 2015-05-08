@@ -825,7 +825,74 @@ cache. You can see a generalisation in Figure~\ref{multicore-arch}.
 
 \subsection{Data coherency and consistency}
 
-% Resume from the slide on page 4 of multicore
+Different CPU cores trying to access the same areas of memory can be an issue,
+since the caches may not be \textit{coherent}. Coherence is a desired property
+of multiple caches all pointing to the same shared resource; each cache should
+provide the same view of the resource at all times (from the point of view of
+the users of the cache).
+
+This shouldn't be a problem, since after all, processes have disjoint memory
+spaces, so each process will be running on one core and accessing different
+areas of memory. However, threads \textit{do} share memory, and they can run on
+multiple cores (and other stuff can update memory, such as DMA etc).
+
+When we talk about CPU cache coherency, the L1 cache is what we mainly focus on.
+Each core will have its own L1 cache, and if a value is updated in one cache
+that the others are also holding, then the other caches will be immediately out
+of date. Even if we wrote back to memory on every cache write, the other cores'
+caches wouldn't be updated. We need to ensure that every core has an up-to-date
+cache at all times.
+
+\marginpar{You can think of consistency as representing the model of the
+machine as presented to the programmer. If one thread updates a value in memory,
+it is expected that all the other threads will also be able to see that update.}
+
+Sometimes, we want to read and update a memory location as a single atomic
+operation, and make sure that no other threads can update the same location at
+the same time.
+
+\textbf{Sequential consistency} is the idea that memory operations should appear
+to execute one at a time, even though they may not do in practice. Leslie
+Lamport describes it as:
+
+\begin{aquote}{Leslie Lamport}
+  The result of any execution is the same as if the operations of all the
+  processors were executed in some sequential order, and the operations of each
+  individual processor appear in this sequence in the order specified by its
+  program.
+\end{aquote}
+
+Since lower down the technology stack of a running program, instructions may be
+executed out of order (for example in Java), the compiler must insert special
+instructions such as the following to ensure that consistency is maintained:
+
+\begin{description}
+  \item \textbf{Fence}:\\
+    A fence will make sure each memory access before the fence completes before
+    new ones are started.
+  \item \textbf{Barrier}:\\
+    All threads in the program must reach the barrier before any of them can
+    continue executing.
+  \item \textbf{Lock}:\\
+    Only one thread can enter a section of the program that is protected by a 
+    lock at any one time. That section may be referred to as atomic.
+
+    Hardware support is usually required to implement locks, since normal memory
+    reads and writes cannot be guaranteed to be atomic without, guess what\dots
+    locks!
+\end{description}
+
+There is some Instruction Set Architecture support for synchronization, such as
+atomic `compare and swap' instructions conditional load and stores (based on if
+the memory location has mutated since it was last accessed), and transactional
+memory.
+
+\textbf{Transactional memory} allows you to read and write to memory with no
+restrictions, however once the operation is completed, the transaction is
+checked to see if it conflicted with any other transaction, and it is rolled
+back if it did (and started again).
+
+% Start from Coherence protocols on page 6
 
 \section{Vitalisation}
 

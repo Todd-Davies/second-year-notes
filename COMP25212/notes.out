@@ -32,5 +32,6 @@
 \BOOKMARK [3][-]{subsubsection.5.2.5}{Other techniques}{subsection.5.2}% 32
 \BOOKMARK [1][-]{section.6}{Multi-Core}{}% 33
 \BOOKMARK [2][-]{subsection.6.1}{The structure of a multi core processor}{section.6}% 34
-\BOOKMARK [1][-]{section.7}{Vitalisation}{}% 35
-\BOOKMARK [1][-]{section.8}{Permanent Storage}{}% 36
+\BOOKMARK [2][-]{subsection.6.2}{Data coherency and consistency}{section.6}% 35
+\BOOKMARK [1][-]{section.7}{Vitalisation}{}% 36
+\BOOKMARK [1][-]{section.8}{Permanent Storage}{}% 37
