@@ -742,13 +742,69 @@ some drawbacks; for example, what happens when a user moves into a different
 cell while on the phone? Thankfully, the system supports transparent and
 seamless handovers as the user moves from cell to cell.
 
-\subsubsection{The evolution of cellular}
+\subsubsection{The evolution of cellular technologies}
 
 Cellular networks have gone through four iterations to date, with a fifth one
 coming in the future:
 
 \begin{description}
-  \item %TODO: Slide 6 from lecture 6
+  \item \textbf{0G}:\\
+  	The zero'th generation of phones were merely radio telephones. They didn't
+  	use cells at all.
+  \item \textbf{1G} (1983):\\
+  	This is when cellular mobile was created, all signals were analogue.
+  \item \textbf{2G} (1991):\\
+  	Data is introduced, though it is very slow. In 1998, GPRS was introduced,
+  	which brought speeds from $56-114\si{\kilo\bit\per\second}$ and in 2003,
+  	EDGE was introduced which has speeds of up to
+  	$384\si{\kilo\bit\per\second}$. These are called 2.5 and 2.75G respectively.
+  \item \textbf{3G} (2001):\\
+  	This introduced better speech and faster data. 3G has multiple revisions; 
+  	3.5G (2007) is HSPDA with speeds of $1.8-7.2\si{\mega\bit\per\second}$
+  	download and $384\si{\kilo\bit\per\second}$ upload, 3.75G (2010) is HSPA+
+  	which has speeds of $56\si{\mega\bit\per\second}$ download and 
+  	$22\si{\mega\bit\per\second}$ upload, and finally 3.9G which is still being
+  	created and launched, and is related to technologies such as WiMax and LTE.
+  \item \textbf{4G} (2011):\\
+  	The specification for 4G is $1\si{\giga\bit\per\second}$ download and 
+  	$100\si{\mega\bit\per\second}$ upload. However, the technology doesn't meet
+  	that yet (even now!). Henceforth, companies marked 3.9G technologies as 4G
+  	since they `aspire' to meet the target speeds.
+  \item \textbf{5G}:\\
+  	Due to be launched around 2021, though we've still not met the 4G speeds
+  	yet...
+\end{description}
+
+This isn't the whole story though. It wasn't just the marketing names and the
+speeds that changed, they also used completely different multiplexing techniques
+to let multiple users share the spectrum:
+
+\marginpar{All of these use spatial multiplexing with cells except 0G.}
+
+\begin{description}
+  \item \textbf{0/1G}:\\
+    Frequency Division Multiplexed Access (FDMA) was used, which is where
+    each transmitter is given a different carrier frequency.
+  \item \textbf{2G} (in europe - GSM):\\
+    Time Division Multiplexed Access (TDMA) was used so that each transmitter
+    is given a regular time slot to send data in.
+  \item \textbf{3G/2G} (america only):\\
+    Code Division Multiplexed Access (CDMA) - each transmitter uses the same
+    frequency band, but different codes are used to send data.
+  \item \textbf{4G}:\\
+    Orthognal Frequency Division Multiplexed Access (OFDMA) is used by 4G, which
+    utalises multi-input/multi-output (MIMO) antennae to transmit on multiple 
+    frequencies at once. Data is sent in packets.
+\end{description}
+
+\subsubsection{Multiplexing in detail}
+
+\begin{description}
+  \item \textbf{TDMA}:\\
+  \item \textbf{CDMA}:\\
+  \item \textbf{OFDMA}:\\
+  \item \textbf{Beam Division Multiple Access (BDMA)}:\\
+  
 \end{description}
 
 \section{Frequency Domain Processing}
