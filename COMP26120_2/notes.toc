@@ -23,3 +23,9 @@
 \contentsline {subsection}{\numberline {6.1}AVL Trees}{9}{subsection.6.1}
 \contentsline {subsubsection}{\numberline {6.1.1}AVL tree insertion}{9}{subsubsection.6.1.1}
 \contentsline {subsubsection}{\numberline {6.1.2}AVL tree removal}{11}{subsubsection.6.1.2}
+\contentsline {section}{\numberline {7}Problem solving}{11}{section.7}
+\contentsline {subsection}{\numberline {7.1}Divide and Conquer}{11}{subsection.7.1}
+\contentsline {subsubsection}{\numberline {7.1.1}D\&C Example}{11}{subsubsection.7.1.1}
+\contentsline {subsection}{\numberline {7.2}Greedy method}{13}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Dynamic programming}{13}{subsection.7.3}
+\contentsline {section}{\numberline {8}Misc figures}{13}{section.8}

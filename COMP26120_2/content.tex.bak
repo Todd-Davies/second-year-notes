@@ -427,7 +427,7 @@ notes properly.
 
 You can use a binary tree as an ordered dictionary, since the keys can be stored
 in the tree format, and they can each link to their respective values. The
-runtime of a binay tree lookup is $O(n)$, as is insertion.
+runtime of a binary tree lookup is $O(n)$, as is insertion.
 
 A perfectly balanced binary tree will exhibit a runtime of $O(log(n))$ for
 search and insert, but maintaining a balanced binary tree requires extra effort.
@@ -452,7 +452,7 @@ From this, we can derive the following properties about AVL trees:
 Since the maximum depth of an AVL tree is $log(n)$, searching for an item in the
 tree is also an $O(log(n))$ operation.
 
-\subsubsection{AVL tree Insertion}
+\subsubsection{AVL tree insertion}
 
 If our tree satisfies the height-balance property prior to us inserting a new
 element, then after the element has been inserted, the heights of the nodes from
@@ -464,23 +464,193 @@ repair}:
 
 \begin{itemize}
   \item Let $z$ by the first node on the path from the new node to the root that
-    is unbalanced. \tikzmark{topbrace}
+    is unbalanced.
+    \marginpar{See Figure~\ref{avl-tree-stage-1} for a description of where to
+    put $z,y$ and $x$.}
   \item Denote $y$ to be the child of $z$ that has the larger height.
-    \marginpar{Choose any anchestor of $z$ if there is a tie when choosing $y$
+    \marginpar{Choose any ancestor of $z$ if there is a tie when choosing $y$
     or $x$.}
   \item Denote $x$ to be the child of $y$ that has the larger height.
-    \tikzmark{topbrace}
+  \item Since $z$ is unbalanced, we need to perform \textit{trinode
+  restructuring}, which re-orders the tree but preserves the inorder traversal
+  of the tree and runs in $O(1)$ time. There are four cases to this algorithm:
+  \begin{description}
+    \item \textbf{Left-left case}:\\
+      \begin{verbatim}
+       z                                      y 
+      / \                                   /   \
+     y   T4      Right Rotate (z)          x      z
+    / \          - - - - - - - - ->      /  \    /  \ 
+   x   T3                               T1  T2  T3  T4
+  / \
+T1   T2
+      \end{verbatim}
+    \item \textbf{Left-right case}:\\
+      \begin{verbatim}
+     z                               z                           x
+    / \                            /   \                        /  \ 
+   y   T4  Left Rotate (y)        x    T4  Right Rotate(z)    y      z
+  / \      - - - - - - - - ->    /  \      - - - - - - - ->  / \    / \
+T1   x                          y    T3                    T1  T2 T3  T4
+    / \                        / \
+  T2   T3                    T1   T2
+      \end{verbatim}
+    \item \textbf{Right-right case}:\\
+      \begin{verbatim}
+  z                                y
+ /  \                            /   \ 
+T1   y     Left Rotate(z)       z      x
+    /  \   - - - - - - - ->    / \    / \
+   T2   x                     T1  T2 T3  T4
+       / \
+     T3  T4
+      \end{verbatim}
+    \item \textbf{Right-left case}:\\
+      \begin{verbatim}
+   z                            z                            x
+  / \                          / \                          /  \ 
+T1   y   Right Rotate (y)    T1   x      Left Rotate(z)   z      y
+    / \  - - - - - - - - ->     /  \   - - - - - - - ->  / \    / \
+   x   T4                      T2   y                  T1  T2  T3  T4
+  / \                              /  \
+T2   T3                           T3   T4
+      \end{verbatim}
+  \end{description}
 \end{itemize}
 
-\begin{tikzpicture}[overlay, remember picture]
-  \draw [decoration={brace,amplitude=0.5em},decorate,ultra thick,black]
-    let \p1=(topbrace), \p2=(bottombrace) in
-    ({max(\x1,\x2)}, {\y1+0.8em}) -- node[right=0.6em] {I'd like some text here} ({max(\x1,\x2)}, {\y2});
-\end{tikzpicture}
-
 \begin{figure}[H]
-  \includegraphics{images/avl-tree-stage-1.png}
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/avl-tree-stage-1}
   \caption{You can see the correct choices of $z$, $y$ and $x$ when searching an
   AVL tree after an insert}
   \label{avl-tree-stage-1}
+\end{figure}
+
+\subsubsection{AVL tree removal}
+
+If we remove an external node, then the height balance property of the AVL tree
+will remain satisfied, but if we remove an internal node, then it might not be.
+In this case, the node is removed as normal, but we again apply the trinode
+restructuring after its been removed to restore the balance.
+
+Once you have applied the trinode restructuring once, you need to carry on
+moving up the tree and checking the balance, since otherwise there could still
+be unbalanced nodes higher up the tree. Since the maximum number of times we'll
+need to restructure the tree is equal to the depth of the tree, removal is
+$O(log(n))$.
+
+\section{Problem solving}
+
+Three techniques for implementing algorithms are looked at in this course;
+divide-and-conquer, greedy strategies and dynamic programming.
+
+\subsection{Divide and Conquer}
+
+Divide and conquer is a design paradigm based on multi-branch recursion. This
+means that at each stage of the problem, we split the problem into parts that
+can be solved by the same algorithm. This has the effect of reducing the problem
+into something smaller every time. Eventually, we will have reduced the input
+set for any one problem into something much smaller, at which point it is
+significantly easier to solve the problem (since the size of the input set is
+small).
+
+The divide and conquer technique is very popular, for example MergeSort, and
+QuickSort are both based on it, you can do integer multiplication with it, and
+even solve nearest neighbour problems (like the ones in \texttt{COMP24111}. You
+can even use it for the last lab in this course (ex13) to split up the input set
+of nodes into chunks and process them individually.
+
+\subsubsection{D\&C Example}
+
+Lets imagine we want to find the largest and smallest numbers in a set of
+integers. We could do this in $O(n)$ very easily (see Figure~\ref{easy-soln}),
+so the divide and conquer algorithm isn't really needed here, however, this
+problem is still a good demonstration of the technique.
+
+\begin{figure}[H]
+  \label{easy-soln}
+  \inputminted{java}{code/MinMax/Easy.java}
+  \caption{Solving the largest/smallest integer problem is easy to do, even in
+  $O(n)$ time.}
+\end{figure}
+
+To solve the problem using the Divide and Conquer strategy, we should split the
+input list into two at the start of the method, and run the algorithm
+recursively on the two sub-lists. Then, when the sublist length is either one or
+two, a pair should be generated of the maximum and the minimum, which is then
+returned. Once the method has two pairs of max/min elements from its sublists,
+then it should combine them by finding the smallest and largest from the two
+pairs. See Figure~\ref{d-and-c-soln} for a simple implementation.
+
+\begin{figure}[H]
+  \label{d-and-c-soln}
+  \inputminted{java}{code/MinMax/DivideAndConquer.java}
+  \caption{We can also solve the largest/smallest integer problem using divide
+  and conquer.}
+\end{figure}
+
+While the run time of the Divide and Conquer solution may not be significantly
+faster than the Easy one, there are other advantages, and disadvantages.
+Obviously, the divide and conquer one uses more memory space, since we're using
+recursion, we add a new frame onto the stack for every recursive call. However,
+we could parallelise the divide and conquer solution much more easily (which can
+bring near-linear performance gains).
+
+\subsection{Greedy method}
+
+The greedy method is a heuristic for making the optimal choice at each stage of
+a problem. For example, if we wanted to give the correct change for $36p$, then
+we would first choose the highest coin that fits into that, which is a $20p$,
+and then choose the highest coin that fits into $36-20=16p$, which is $10p$, and
+then the highest that fits into $16 - 10 = 6$, which is $5p$ and then $1p$,
+since that's what we have left.
+
+Since greedy is a heuristic, it doesn't always work optimally. For example, if
+we had the coin values $10, 6$ and $1$ and were trying to make $12$, then greedy
+would pick $10,1,1$, but the optimal solution is $6,6$.
+
+\marginpar{An implementation of this is at the end of the document,
+Figure~\ref{greedy}.}
+
+For some applications, a greedy strategy is always successful, but for others,
+it will perform poorly, or not find solutions at all. Greedy-applicable problems
+include path finding, job scheduling, knapsack problems etc.
+
+\subsection{Dynamic programming}
+
+In general, the greedy method fails for the coin problem, and many other
+problems too! Dynamic programming can alwaus produce optimal solutions to some
+of the problems that greedy will fail at.
+
+Lets solve the coin problem with dynamic programming. To do this, we build up a
+solution from the bottom and word towards a complete solution.
+
+If we had the coins $9,1,5$ and $6$ and we were trying to make the number $11$,
+then the greedy method would use $9,1,1$ as the coins. With dynamic programming,
+we build up an array of sub-problem solutions and use those results to form
+better solutions:
+
+\begin{tabular}{c | c c c c c c c c c c c}
+  Coins & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\ \hline
+  $1$   & \inf & \inf & \inf & \inf & \inf & \inf & \inf & \inf & 1 & \inf & \inf &\\
+  $1,9$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 1 & 2 & 3\\
+  $1,9,5$ & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4 & 1 & 2 & 3\\
+  $1,9,5,6$ & 1 & 2 & 3 & 4 & 1 & 1 & 2 & 3 & 1 & 2 & 2\\
+\end{tabular}
+
+The efficiency of DP is the number of rows in the table multiplied by the number
+of columns. Sometimes, you can save CPU time by not computing all of the
+subproblems, but that might be problematic, since you could need them later.
+
+Dynamic programming can be applied to path finding, text similarity tests,
+knapsack problems etc.
+
+\section{Misc figures}
+
+These were too big to go in other places, so I shoved them at the end.
+
+\begin{figure}[H]
+  \label{greedy}
+  \inputminted{java}{code/Greedy/Greedy.java}
+  \caption{An implementation of the greedy money counter.}
 \end{figure}
