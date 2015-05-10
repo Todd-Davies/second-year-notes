@@ -29,3 +29,4 @@
 \contentsline {subsection}{\numberline {7.2}Greedy method}{13}{subsection.7.2}
 \contentsline {subsection}{\numberline {7.3}Dynamic programming}{13}{subsection.7.3}
 \contentsline {section}{\numberline {8}Misc figures}{13}{section.8}
+\contentsline {subsection}{\numberline {8.1}Tractable and Intractable Problems}{14}{subsection.8.1}

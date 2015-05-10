@@ -619,7 +619,7 @@ include path finding, job scheduling, knapsack problems etc.
 \subsection{Dynamic programming}
 
 In general, the greedy method fails for the coin problem, and many other
-problems too! Dynamic programming can alwaus produce optimal solutions to some
+problems too! Dynamic programming can always produce optimal solutions to some
 of the problems that greedy will fail at.
 
 Lets solve the coin problem with dynamic programming. To do this, we build up a
@@ -630,13 +630,15 @@ then the greedy method would use $9,1,1$ as the coins. With dynamic programming,
 we build up an array of sub-problem solutions and use those results to form
 better solutions:
 
-\begin{tabular}{c | c c c c c c c c c c c}
-  Coins & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\ \hline
-  $1$   & \inf & \inf & \inf & \inf & \inf & \inf & \inf & \inf & 1 & \inf & \inf &\\
-  $1,9$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 1 & 2 & 3\\
-  $1,9,5$ & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4 & 1 & 2 & 3\\
-  $1,9,5,6$ & 1 & 2 & 3 & 4 & 1 & 1 & 2 & 3 & 1 & 2 & 2\\
-\end{tabular}
+\begin{center}
+  \begin{tabular}{c | c c c c c c c c c c c}
+    Coins & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\ \hline
+    $1$   & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & 1 & $\infty$ & $\infty$ \\
+    $1,9$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 1 & 2 & 3\\
+    $1,9,5$ & 1 & 2 & 3 & 4 & 1 & 2 & 3 & 4 & 1 & 2 & 3\\
+    $1,9,5,6$ & 1 & 2 & 3 & 4 & 1 & 1 & 2 & 3 & 1 & 2 & 2\\
+  \end{tabular}
+\end{center}
 
 The efficiency of DP is the number of rows in the table multiplied by the number
 of columns. Sometimes, you can save CPU time by not computing all of the
@@ -654,3 +656,26 @@ These were too big to go in other places, so I shoved them at the end.
   \inputminted{java}{code/Greedy/Greedy.java}
   \caption{An implementation of the greedy money counter.}
 \end{figure}
+
+\subsection{Tractable and Intractable Problems}
+
+Divide and Conquer and Greedy Strategies give us fast (polynomial time)
+algorithms, and Dynamic Programming gives us fast algorithms, but also
+algorithms that work on intractable problems.
+
+A problem is considered tratable if we can produce a polynomial ($O(1), O(n),
+O(n^x)$) time algorithm to solve it. Algorithms are intractable if they are
+exponential, such as $O(2^n), O(n^n), O(n!)$.
+
+Exponential algorithms often arise from exhaustive enumeration (i.e. checking
+all the possibile solutions), or systematic searches of partial solutions using
+backtracking. If we wanted to colour a graph (that is give each node a colour,
+but make sure that no adjacent nodes had the same colour), we could use both
+techniques.
+
+Exhaustive enumeration is the most simple approach to graph colouring; you start
+with $k$ colours, and enumerate all the allocations of the colours on the nodes,
+and for each, you check to see if its valid. Checking an allocation takes $O(E)$
+time, \marginpar{$E$ is the number of edges, $N$ is the number of nodes.} but
+there are $k^N$ number of allocations, so the algorithm takes $O(E \times k^N)$
+time.
