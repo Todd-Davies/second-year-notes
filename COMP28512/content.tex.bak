@@ -533,7 +533,7 @@ Here are some examples of the above:
     We could simply send bits a few times, instead of just once and take the 
     mode of them at the receiver. If we sent three bits for every bit, then
     if there was one bit error, then it would be fine since we could take the 
-    majority of the recieved bits, and the one error bit would be ignored.
+    majority of the received bits, and the one error bit would be ignored.
 
     The number of repeats must be an odd number, otherwise we could end up with 
     a half and half split.
@@ -618,7 +618,7 @@ A Cyclic Redundancy Check is a block code for detecting bit errors. If we find
 the value of the number we're transmitting in decimal and divide it by a number
 such as seven, we can append the remainder onto the message. Then at the
 receiver, we can divide the received bits again and if we get a different
-remainder, then we know that a bit error has occured.
+remainder, then we know that a bit error has occurred.
 
 If the bit errors happened to add or subtract the number that you were dividing
 by, then the remainder would be the same and you would not be able to detect the
@@ -678,7 +678,7 @@ pick.
 \subsubsection{Miscellaneous FEC stuff}
 
 Well thought out use of FEC techniques in mobile systems increases the energy
-efficiency and effectivness of the system. Transmitting at higher power is one
+efficiency and effectiveness of the system. Transmitting at higher power is one
 way of reducing errors in the system, but `loud' signals also cause lots of
 interference over a wider range and, of course, uses lots of battery. FEC lets
 us reduce the transmission power, yet overcome the bit errors that come as a
@@ -704,15 +704,15 @@ noise power ratio.
 \section{Mobile networks}
 
 Since their inception, the desired use of cellular networks has changed from
-being soley about transmitting speech, to transmitting textual data, and now
-arbitraty packets. This has required them to evolve from `circuit switched
+being solely about transmitting speech, to transmitting textual data, and now
+arbitrary packets. This has required them to evolve from `circuit switched
 networks', where (at a fundamental level) a physical connection must be made
 between wires to facilitate data transfer, to `packed switched networks'.
 
 This evolution is really interesting, since circuit switching originated from
 landline phones, but packet switching was from digital networking such as
-Ethenet. As the technology has progressed, cellular data has moved towards the
-internet's way of doing things.
+Ethernet. As the technology has progressed, cellular data has moved towards the
+Internet's way of doing things.
 
 However, mobile phones have moved on from being single feature devices, merely
 letting you call other users. Now they are \textit{smart}phones, and this
@@ -724,8 +724,8 @@ user's demand; GPS, bluetooth, radio etc to name a few.
 One reason why mobile phones can work so well is that they take advantage of
 \textit{spatial multiplexing}. This divides an area into small areas called
 cells, each having a frequency band. The cells are different sizes based on
-their expected useage rates (cells will be more dense in areas with more
-demand). Frequency bands are re-used when a cell with the same ferquency band is
+their expected usage rates (cells will be more dense in areas with more
+demand). Frequency bands are re-used when a cell with the same frequency band is
 far enough away, and because of this, mobile phones must take care not to
 transmit their signals too loud and pollute the spectrum for nearby cells.
 
@@ -742,14 +742,251 @@ some drawbacks; for example, what happens when a user moves into a different
 cell while on the phone? Thankfully, the system supports transparent and
 seamless handovers as the user moves from cell to cell.
 
-\subsubsection{The evolution of cellular}
+\subsubsection{The evolution of cellular technologies}
 
 Cellular networks have gone through four iterations to date, with a fifth one
 coming in the future:
 
 \begin{description}
-  \item %TODO: Slide 6 from lecture 6
+  \item \textbf{0G}:\\
+  	The zero'th generation of phones were merely radio telephones. They didn't
+  	use cells at all.
+  \item \textbf{1G} (1983):\\
+  	This is when cellular mobile was created, all signals were analogue.
+  \item \textbf{2G} (1991):\\
+  	Data is introduced, though it is very slow. In 1998, GPRS was introduced,
+  	which brought speeds from $56-114\si{\kilo\bit\per\second}$ and in 2003,
+  	EDGE was introduced which has speeds of up to
+  	$384\si{\kilo\bit\per\second}$. These are called 2.5 and 2.75G respectively.
+  \item \textbf{3G} (2001):\\
+  	This introduced better speech and faster data. 3G has multiple revisions; 
+  	3.5G (2007) is HSPDA with speeds of $1.8-7.2\si{\mega\bit\per\second}$
+  	download and $384\si{\kilo\bit\per\second}$ upload, 3.75G (2010) is HSPA+
+  	which has speeds of $56\si{\mega\bit\per\second}$ download and 
+  	$22\si{\mega\bit\per\second}$ upload, and finally 3.9G which is still being
+  	created and launched, and is related to technologies such as WiMax and LTE.
+  \item \textbf{4G} (2011):\\
+  	The specification for 4G is $1\si{\giga\bit\per\second}$ download and 
+  	$100\si{\mega\bit\per\second}$ upload. However, the technology doesn't meet
+  	that yet (even now!). Henceforth, companies marked 3.9G technologies as 4G
+  	since they `aspire' to meet the target speeds.
+  \item \textbf{5G}:\\
+  	Due to be launched around 2021, though we've still not met the 4G speeds
+  	yet...
 \end{description}
+
+This isn't the whole story though. It wasn't just the marketing names and the
+speeds that changed, they also used completely different multiplexing techniques
+to let multiple users share the spectrum:
+
+\marginpar{All of these use spatial multiplexing with cells except 0G.}
+
+\begin{description}
+  \item \textbf{0/1G}:\\
+    Frequency Division Multiplexed Access (FDMA) was used, which is where
+    each transmitter is given a different carrier frequency.
+  \item \textbf{2G} (in Europe - GSM):\\
+    Time Division Multiplexed Access (TDMA) was used so that each transmitter
+    is given a regular time slot to send data in.
+  \item \textbf{3G/2G} (America only):\\
+    Code Division Multiplexed Access (CDMA) - each transmitter uses the same
+    frequency band, but different codes are used to send data.
+  \item \textbf{4G}:\\
+    Orthogonal Frequency Division Multiplexed Access (OFDMA) is used by 4G,
+    which utilises multi-input/multi-output (MIMO) antennae to transmit on
+    multiple frequencies at once. Data is sent in packets.
+\end{description}
+
+\subsubsection{2G in detail}
+
+2G implements the features shown in the next list. They are linked together
+using buffers shown in Figure~\ref{2g-buffers}.
+
+\begin{description}
+  \item \textbf{TDMA}:\\
+    Each TDM frame is $4.615\si{\milli\second}$ long, and each mobile can send
+    $114\si{\bit}$ of data in every frame. Since there are
+    $217\si{~frames\per\second}$, the bit rate is
+    $114 \times 217 = 24.7\si{\kilo\bit\per\second}$. If FEC is used, then the
+    data rate drops to $13\si{\kilo\bit\per\second}$.
+
+    \marginpar{Remember, not all of the capacity of the network is there for the
+    user since some is left for synchronisation and signalling.}
+  \item \textbf{FDMA}:\\
+    There are two $25\si{\mega\hertz}$ channels split into $0.2\si{\mega\hertz}$
+    bands. One channel is for base station to mobile and the other is for mobile
+    to base station.
+  \item \textbf{Speech Transmission}:\\
+    The device captures the analogue voice, runs a low pass filter over it.
+    \marginpar{Remember, a low pass filter keeps low sounds and attenuates
+    (removes) higher frequencies greater than half the sampling frequency.} The
+    analogue wave is then sampled, quantised and packetised into blocks of
+    around $20\si{\milli\second}$. Linear Predictive Coding is then used to
+    reduce the bit rate to around $260\si{~bit\per block}$ (the equivalent of
+    around $1.5\si{~bits\per sample}$), which gives a bit rate of around
+    $13\si{\kilo\bit\per\second}$.
+
+    When the TDMA time slot happens, $114$ bits are red from the buffer,
+    modulated into a sinusoidal carrier wave, and transmitted via the antenna.
+  \item \textbf{Receiving Speech}:\\
+    First of all, the signal is demodulated and $114$ bits are extracted into
+    the receiver buffer. Then, at $20\si{\milli\second}$ intervals, $490$ bits
+    are extracted from the same buffer and are decrypted and the interleaving is
+    removed. Bit error correction is applied and FEC is removed to leave $260$
+    bits, where we can then apply the LPC decoder to get 160 samples that are
+    then converted back to analogue, amplified and sent to the speaker.
+  \item \textbf{Binary Frequency Shift Keying (B-FSK)}:\\
+    Binary FSK is used to transmit data in a sinusoidal wave. A low frequency
+    wave is sent for $1$ and a high frequency one is for $0$. It is simple, not
+    very efficient, but has a constant amplitude. This is shown in
+    Figure~\ref{BFSK}.
+    \begin{figure}[h]
+      \label{BFSK}
+      \includegraphics[width=0.9\textwidth]{images/BFSK}    
+      \caption{How the data \texttt{101010} might be encoded using BFSK}
+    \end{figure}
+\end{description}
+
+\begin{figure}[h]
+  \label{2g-buffers}
+  \includegraphics[width=0.9\textwidth]{images/2g-buffer-send}
+  \includegraphics[width=0.9\textwidth]{images/2g-buffer-rec}
+  \caption{The sending and receiving buffers in a typical 2G implementation.}
+\end{figure}
+
+\subsubsection{3G in detail}
+
+3G uses CDMA instead of TDMA to provide support for multiple users, but in many
+ways, it is similar to 2G. The main difference is the use of \textbf{CDMA}:
+
+  Code Division Multiplexed Access is used to let multiple carriers transmit
+  on the same frequency. Using this technique, each bit is turned into a 
+  sequence of chips that are transmitted instead, maybe:
+
+  \begin{verbatim}
+    1 = 1 0 1 0 1 1 0 0 0 1 0 1 0 1 0 1 0 1 1 1 0 1 0 1 0 1 0 1 0 1
+    0 = 0 1 0 1 0 0 1 1 1 0 1 0 1 0 1 0 1 0 0 0 1 0 1 0 1 0 1 0 1 0
+  \end{verbatim}
+
+  In this manner, every bit becomes a psudo-random sequence of chips, which
+  lets the receiver distinguish different carriers from each other using a
+  cross correlation process. This requires a much larger bit rate than TDMA,
+  but carriers can transmit at any time though. Another advantage of CDMA is
+  that it has a soft capacity limit; the quality merely degrades when more
+  people use it (since the background noise increases as other carriers
+  transmit seemingly random signals).
+
+  Lets say that User A has a code of:
+
+  \begin{verbatim}
+    1 = 1 -1 1 -1 1 1 -1 -1 -1 1
+    0 = -1 1 -1 1 -1 -1 1 1 1 -1
+  \end{verbatim}
+
+  When we receive a signal, we should multiply it by the code for $1$
+  (\texttt{1 -1 1 -1 1 1 -1 -1 -1 1}) and sum the bits, and we get $+10$ for
+  $1$ and $-10$ for $0$.
+
+  User B should use a different code:
+
+  \begin{verbatim}
+    1 = 1 1 1 1 1 -1 -1 1 -1 -1 
+    0 = -1 -1 -1 -1 -1 1 1 -1 1 1
+  \end{verbatim}
+
+  If we multiply a code received by B's code for $1$, then we should get $+10$
+  or $-10$ again if B sent it. If we multiplied and added using A's code, then
+  we would get $0$.
+
+  If A transmitted a $1$ and B transmitted a $0$, then we'd get:
+
+  \begin{verbatim}
+     0 -2 0 -2 0 2 0 -2 0 2
+  \end{verbatim}
+
+  If we multiply and add using A's code, we get $+10$, and if we do it with
+  B's code, we get $-10$.
+
+\subsubsection{The details of 4G}
+
+As previously mentioned, 4G uses Orthogonal Frequency Division Multiplexed
+Access, but it also implements MIMO and packet switching:
+
+\begin{description}
+  \item \textbf{OFDMA}:\\
+    This is when the sender transmits on many sinusoidal carrier waves at the
+    same time (for each receiver). Data is dispersed among them, so that if some
+    waves are not received properly, then it can be obtained from the others.
+
+   \item \textbf{Packet switching}:\\
+     Only at 4G, has mobile telephony moved away from connecting wires to
+     facilitate communication. Now, all speech and data is sent in packets and
+     conveyed using the Internet Protocol (IP).
+
+  \item \textbf{Multiple Input, Multiple Output}:\\
+    The capacity of the channel is doubled by having two transmit and two
+    receive antennas. This is also used by \textbf{WiFi}.
+
+    The idea of MIMO is that if more than one transmitter and receiver is used,
+    then the capacity of the wireless link will be increased. The transmitter
+    will modify the signal of each so that the sender can distinguish which sent
+    what signal, and besides, each signal will reach the transmitter via a
+    slightly different path causing a different frequency loss and delay.
+\end{description}
+
+\subsubsection{5G and the future!}
+
+With 4G still not ready (it doesn't meet the speeds that were expected for 2010
+as of 2015), 5G development is more in the ideas stage rather than the
+implementation stage, however, the ideas are still really cool.
+
+It could use BDMA (we'll come to that in a second), smart radio to use different
+parts of the spectrum based on current usage, IPv6 (as opposed to IPv4 which is
+the currently implemented, but outdated standard), the option of device to
+device communications (bypassing the base station entirely) and more cool stuff.
+
+\marginpar{Smart radio is also known as \textit{cognative radio} and is a form
+of \textit{dymanic spectrum management}.}
+
+\textbf{Beam Division Multiple Access} is when you use multiple (e.g. 7)
+antennas spaced at equal intervals to make amplitude of the signal higher in
+some places than at others. See Figure~\ref{BDMA} for a pictorial explanation
+(you might have to think back to A-level physics to understand why this
+happens).
+
+\begin{figure}[H]
+  \label{BDMA}
+  \includegraphics[width=0.9\textwidth]{images/beam-forming}
+  \includegraphics[width=0.9\textwidth]{images/beam-forming-intensity}
+  \caption{Here, you can see that as we adjust $y$, the intensity changes.}
+\end{figure}
+
+The transmitter can change the amplitude and phase of the transmitted signal
+from each of the antennae to form the signal to be strongest at the receiver.
+Other receivers can be nulled out, or at least sent a reduced signal. This works
+both ways; a receiver that has seven antennae can target a specific transmitter.
+It's seen by many as a better concept than cellular multiplexing, more like
+having actual wires.
+
+\textbf{Group Cooperative Relaying} is a technique where a separate carrier
+between the transmitter and receiver can boost the signal by repeating it and
+acting as a relay. This can be performed in two ways:
+
+\begin{itemize}
+  \item \textit{Amplify and forward} sends the raw signal on again, but also
+  amplifies the noise.
+  \item \textit{Decode and forward} decodes the transmission, re-codes it again
+  and sends it on. This has the benefit of reducing noise since the signal
+  is forwarded on with the noise removed.
+\end{itemize}
+
+5G could also be really \textbf{energy efficient}; it is preposed that as load
+on the network decreases, some cells could be turned off, and the coverage area
+of other cells could be allowed to increase. The network can adapt to the
+current usage pattern in real time. Care must be taken though; since
+transmitting to base stations further away will require more battery power from
+the user's phone which is obviously a bad thing.
+
 
 \section{Frequency Domain Processing}
 

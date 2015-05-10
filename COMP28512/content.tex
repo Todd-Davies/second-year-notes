@@ -785,27 +785,219 @@ to let multiple users share the spectrum:
   \item \textbf{0/1G}:\\
     Frequency Division Multiplexed Access (FDMA) was used, which is where
     each transmitter is given a different carrier frequency.
-  \item \textbf{2G} (in europe - GSM):\\
+  \item \textbf{2G} (in Europe - GSM):\\
     Time Division Multiplexed Access (TDMA) was used so that each transmitter
     is given a regular time slot to send data in.
-  \item \textbf{3G/2G} (america only):\\
+  \item \textbf{3G/2G} (America only):\\
     Code Division Multiplexed Access (CDMA) - each transmitter uses the same
     frequency band, but different codes are used to send data.
   \item \textbf{4G}:\\
-    Orthognal Frequency Division Multiplexed Access (OFDMA) is used by 4G, which
-    utalises multi-input/multi-output (MIMO) antennae to transmit on multiple 
-    frequencies at once. Data is sent in packets.
+    Orthogonal Frequency Division Multiplexed Access (OFDMA) is used by 4G,
+    which utilises multi-input/multi-output (MIMO) antennae to transmit on
+    multiple frequencies at once. Data is sent in packets.
 \end{description}
 
-\subsubsection{Multiplexing in detail}
+\subsubsection{2G in detail}
+
+2G implements the features shown in the next list. They are linked together
+using buffers shown in Figure~\ref{2g-buffers}.
 
 \begin{description}
   \item \textbf{TDMA}:\\
-  \item \textbf{CDMA}:\\
-  \item \textbf{OFDMA}:\\
-  \item \textbf{Beam Division Multiple Access (BDMA)}:\\
-  
+    Each TDM frame is $4.615\si{\milli\second}$ long, and each mobile can send
+    $114\si{\bit}$ of data in every frame. Since there are
+    $217\si{~frames\per\second}$, the bit rate is
+    $114 \times 217 = 24.7\si{\kilo\bit\per\second}$. If FEC is used, then the
+    data rate drops to $13\si{\kilo\bit\per\second}$.
+
+    \marginpar{Remember, not all of the capacity of the network is there for the
+    user since some is left for synchronisation and signalling.}
+  \item \textbf{FDMA}:\\
+    There are two $25\si{\mega\hertz}$ channels split into $0.2\si{\mega\hertz}$
+    bands. One channel is for base station to mobile and the other is for mobile
+    to base station.
+  \item \textbf{Speech Transmission}:\\
+    The device captures the analogue voice, runs a low pass filter over it.
+    \marginpar{Remember, a low pass filter keeps low sounds and attenuates
+    (removes) higher frequencies greater than half the sampling frequency.} The
+    analogue wave is then sampled, quantised and packetised into blocks of
+    around $20\si{\milli\second}$. Linear Predictive Coding is then used to
+    reduce the bit rate to around $260\si{~bit\per block}$ (the equivalent of
+    around $1.5\si{~bits\per sample}$), which gives a bit rate of around
+    $13\si{\kilo\bit\per\second}$.
+
+    When the TDMA time slot happens, $114$ bits are red from the buffer,
+    modulated into a sinusoidal carrier wave, and transmitted via the antenna.
+  \item \textbf{Receiving Speech}:\\
+    First of all, the signal is demodulated and $114$ bits are extracted into
+    the receiver buffer. Then, at $20\si{\milli\second}$ intervals, $490$ bits
+    are extracted from the same buffer and are decrypted and the interleaving is
+    removed. Bit error correction is applied and FEC is removed to leave $260$
+    bits, where we can then apply the LPC decoder to get 160 samples that are
+    then converted back to analogue, amplified and sent to the speaker.
+  \item \textbf{Binary Frequency Shift Keying (B-FSK)}:\\
+    Binary FSK is used to transmit data in a sinusoidal wave. A low frequency
+    wave is sent for $1$ and a high frequency one is for $0$. It is simple, not
+    very efficient, but has a constant amplitude. This is shown in
+    Figure~\ref{BFSK}.
+    \begin{figure}[h]
+      \label{BFSK}
+      \includegraphics[width=0.9\textwidth]{images/BFSK}    
+      \caption{How the data \texttt{101010} might be encoded using BFSK}
+    \end{figure}
 \end{description}
+
+\begin{figure}[h]
+  \label{2g-buffers}
+  \includegraphics[width=0.9\textwidth]{images/2g-buffer-send}
+  \includegraphics[width=0.9\textwidth]{images/2g-buffer-rec}
+  \caption{The sending and receiving buffers in a typical 2G implementation.}
+\end{figure}
+
+\subsubsection{3G in detail}
+
+3G uses CDMA instead of TDMA to provide support for multiple users, but in many
+ways, it is similar to 2G. The main difference is the use of \textbf{CDMA}:
+
+  Code Division Multiplexed Access is used to let multiple carriers transmit
+  on the same frequency. Using this technique, each bit is turned into a 
+  sequence of chips that are transmitted instead, maybe:
+
+  \begin{verbatim}
+    1 = 1 0 1 0 1 1 0 0 0 1 0 1 0 1 0 1 0 1 1 1 0 1 0 1 0 1 0 1 0 1
+    0 = 0 1 0 1 0 0 1 1 1 0 1 0 1 0 1 0 1 0 0 0 1 0 1 0 1 0 1 0 1 0
+  \end{verbatim}
+
+  In this manner, every bit becomes a psudo-random sequence of chips, which
+  lets the receiver distinguish different carriers from each other using a
+  cross correlation process. This requires a much larger bit rate than TDMA,
+  but carriers can transmit at any time though. Another advantage of CDMA is
+  that it has a soft capacity limit; the quality merely degrades when more
+  people use it (since the background noise increases as other carriers
+  transmit seemingly random signals).
+
+  Lets say that User A has a code of:
+
+  \begin{verbatim}
+    1 = 1 -1 1 -1 1 1 -1 -1 -1 1
+    0 = -1 1 -1 1 -1 -1 1 1 1 -1
+  \end{verbatim}
+
+  When we receive a signal, we should multiply it by the code for $1$
+  (\texttt{1 -1 1 -1 1 1 -1 -1 -1 1}) and sum the bits, and we get $+10$ for
+  $1$ and $-10$ for $0$.
+
+  User B should use a different code:
+
+  \begin{verbatim}
+    1 = 1 1 1 1 1 -1 -1 1 -1 -1 
+    0 = -1 -1 -1 -1 -1 1 1 -1 1 1
+  \end{verbatim}
+
+  If we multiply a code received by B's code for $1$, then we should get $+10$
+  or $-10$ again if B sent it. If we multiplied and added using A's code, then
+  we would get $0$.
+
+  If A transmitted a $1$ and B transmitted a $0$, then we'd get:
+
+  \begin{verbatim}
+     0 -2 0 -2 0 2 0 -2 0 2
+  \end{verbatim}
+
+  If we multiply and add using A's code, we get $+10$, and if we do it with
+  B's code, we get $-10$.
+
+\subsubsection{The details of 4G}
+
+As previously mentioned, 4G uses Orthogonal Frequency Division Multiplexed
+Access, but it also implements MIMO and packet switching:
+
+\begin{description}
+  \item \textbf{OFDMA}:\\
+    This is when the sender transmits on many sinusoidal carrier waves at the
+    same time (for each receiver). Data is dispersed among them, so that if some
+    waves are not received properly, then it can be obtained from the others.
+
+   \item \textbf{Packet switching}:\\
+     Only at 4G, has mobile telephony moved away from connecting wires to
+     facilitate communication. Now, all speech and data is sent in packets and
+     conveyed using the Internet Protocol (IP).
+
+  \item \textbf{Multiple Input, Multiple Output}:\\
+    The capacity of the channel is doubled by having two transmit and two
+    receive antennas. This is also used by \textbf{WiFi}.
+
+    The idea of MIMO is that if more than one transmitter and receiver is used,
+    then the capacity of the wireless link will be increased. The transmitter
+    will modify the signal of each so that the sender can distinguish which sent
+    what signal, and besides, each signal will reach the transmitter via a
+    slightly different path causing a different frequency loss and delay.
+\end{description}
+
+\subsubsection{5G and the future!}
+
+With 4G still not ready (it doesn't meet the speeds that were expected for 2010
+as of 2015), 5G development is more in the ideas stage rather than the
+implementation stage, however, the ideas are still really cool.
+
+It could use BDMA (we'll come to that in a second), smart radio to use different
+parts of the spectrum based on current usage, IPv6 (as opposed to IPv4 which is
+the currently implemented, but outdated standard), the option of device to
+device communications (bypassing the base station entirely) and more cool stuff.
+
+\marginpar{Smart radio is also known as \textit{cognitive radio} and is a form
+of \textit{dynamic spectrum management}.}
+
+\textbf{Beam Division Multiple Access} is when you use multiple (e.g. 7)
+antennas spaced at equal intervals to make amplitude of the signal higher in
+some places than at others. See Figure~\ref{BDMA} for a pictorial explanation
+(you might have to think back to A-level physics to understand why this
+happens).
+
+\begin{figure}[H]
+  \label{BDMA}
+  \includegraphics[width=0.9\textwidth]{images/beam-forming}
+  \includegraphics[width=0.9\textwidth]{images/beam-forming-intensity}
+  \caption{Here, you can see that as we adjust $y$, the intensity changes.}
+\end{figure}
+
+The transmitter can change the amplitude and phase of the transmitted signal
+from each of the antennae to form the signal to be strongest at the receiver.
+Other receivers can be nulled out, or at least sent a reduced signal. This works
+both ways; a receiver that has seven antennae can target a specific transmitter.
+It's seen by many as a better concept than cellular multiplexing, more like
+having actual wires.
+
+\textbf{Group Cooperative Relaying} is a technique where a separate carrier
+between the transmitter and receiver can boost the signal by repeating it and
+acting as a relay. This can be performed in two ways:
+
+\begin{itemize}
+  \item \textit{Amplify and forward} sends the raw signal on again, but also
+  amplifies the noise.
+  \item \textit{Decode and forward} decodes the transmission, re-codes it again
+  and sends it on. This has the benefit of reducing noise since the signal
+  is forwarded on with the noise removed.
+\end{itemize}
+
+5G could also be really \textbf{energy efficient}; it is proposed that as load
+on the network decreases, some cells could be turned off, and the coverage area
+of other cells could be allowed to increase. The network can adapt to the
+current usage pattern in real time. Care must be taken though; since
+transmitting to base stations further away will require more battery power from
+the user's phone which is obviously a bad thing.
+
+\subsection{GPS}
+
+GPS stands for Global Positioning System, and it works by having a receiver
+calculate its position from timing signals sent by GPS satellites that are
+circling about $20200\si{\kilo\meter}$ above earth. They send messages that give
+the exact time and the position of the satellite, which allows the receiver to
+determine its distance from the satellite by the offset between the transmission
+time and received time. If at least four satellites can be `heard' by the
+receiver, then its position can be accurately found.
+
+%TODO: From lecture 7 :D
 
 \section{Frequency Domain Processing}
 
