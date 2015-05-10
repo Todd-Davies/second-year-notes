@@ -33,5 +33,6 @@
 \contentsline {section}{\numberline {6}Multi-Core}{16}{section.6}
 \contentsline {subsection}{\numberline {6.1}The structure of a multi core processor}{16}{subsection.6.1}
 \contentsline {subsection}{\numberline {6.2}Data coherency and consistency}{16}{subsection.6.2}
+\contentsline {subsubsection}{\numberline {6.2.1}Coherence protocols}{18}{subsubsection.6.2.1}
 \contentsline {section}{\numberline {7}Vitalisation}{18}{section.7}
 \contentsline {section}{\numberline {8}Permanent Storage}{18}{section.8}

@@ -892,7 +892,54 @@ restrictions, however once the operation is completed, the transaction is
 checked to see if it conflicted with any other transaction, and it is rolled
 back if it did (and started again).
 
-% Start from Coherence protocols on page 6
+\subsubsection{Coherence protocols}
+
+A scheme where each core would what other cores are caching the same data as it
+is would be far too complex. As an alternative to this, each cache
+\textit{snoops} on the other caches for activity related to its own cache. This
+is most simply implemented by routing all data through a bus so every cache can
+see the activity of other caches.
+
+There are two very simple snooping protocols in use:
+
+\begin{description}
+  \item \textbf{Write Update}:\\
+    When a core writes a value to memory, it is updated in its local cache. The
+    cache then broadcasts the address and new data to the bus and all the
+    snooping caches update their own copy.
+  \item \textbf{Write Invalidate}:\\
+    A core that wants to write to an address writes to its own cached copy, but
+    also sends a `write invalidate' message that will tell the other cores
+    to invalidate the cache line that they have stored. Any read to that address
+    will now miss.
+\end{description}
+
+In both schemes, the bus makes sure that only one core can use the bus at one
+time, so that simultaneous writes do not occur. Though the first option (write
+update) might look fastest, it isn't always, since it will update the cache when
+it might not be needed (e.g. two writes to the same cache in a row would require
+two updates to the other caches, but only one invalidate using write
+invalidate). This can also happen when you're writing to different words in the
+same block of a multi word cache.
+
+Unfortunately, this can happen often due to spatial and temporal locality (the
+principles that make CPU caches work), and bus bandwidth is a precious
+commodity, especially in shared memory multi-core chips. Invalidate protocols
+have been modelled to use less bandwidth, and so these are more commonly used.
+
+In both of the above schemes, merely knowing if other CPU caches hold the value
+is enough to know whether to send a message on the bus in the first place.
+
+If we use the invalidation scheme, then if the writes don't also get written
+through to memory, then when other caches read from the memory, they will read
+old values, so we need a protocol to handle this.
+
+\textbf{MESI Protocol}
+
+This is a practical multi-core invalidation protocol which tries to minimise the
+bus usage. It also implements a
+
+% TODO: From MESI on page 7
 
 \section{Vitalisation}
 
