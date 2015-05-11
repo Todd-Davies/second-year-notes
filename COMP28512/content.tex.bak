@@ -176,6 +176,148 @@ equivalent decibels:
   \end{tabular}
 \end{center}
 
+\section{Frequency Domain Processing}
+
+Instead of processing waves, and parts of waves, how about we turn them into
+frequencies and process those instead? Frequencies are a lot easier to deal with
+in many ways since they are easier to understand and smaller to store.
+
+\subsubsection{Sinusoids}
+
+A sinusoid is a sine wave delayed by $D$ seconds, and is given by the formula:
+
+\[
+  y = M \times cos(2\pi F (t - D))
+\]
+
+Figure~\ref{fig-sinusoid} shows two sinusoids; one where $D = 30^{\circ}$ and
+another where $D = 0$.
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[%
+      width=\textwidth,
+      xtick={
+        -360, -270, -180, -90, 0,
+        90, 180, 270, 360
+      },
+      ytick={-1,0,1},
+      yscale=0.4,
+      domain = -360:360,
+      samples = (\samplesScaleFactor * 1000),
+      xlabel={},
+      ylabel={}]
+      \addplot[black,thin] {cos(2 * (x - 30)};
+      \addplot[red,thin, dashed] {cos(2 * (x - 0)};
+    \end{axis}
+  \end{tikzpicture}
+  \label{fig-sinusoid}
+  \caption{1000 samples of a sinusoid where $D = 30^{\circ}$ (black) and where
+  $D = 0$ (dotted red).}
+\end{figure} 
+
+Figure~\ref{fig-sinusoid} is a simple sine wave, but any wave (such as the one
+in Figure~\ref{fig-complex-wave}) that is periodic can be found to have a
+fundamental frequency of $\frac{1}{T}$, where $T$ is the period of the wave. A
+recording of a voice, or musical instrument may be found to have a similar
+waveform to that of Figure~\ref{fig-complex-wave} as long as we `zoom in' to a
+segment short enough that any gradual change in frequency is negligible. This is
+called \textbf{psudo-periodicity}.
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[%
+      width=\textwidth,
+      xtick={
+        -360, -270, -180, -90, 0,
+        90, 180, 270, 360
+      },
+      ytick={-1,0,1},
+      yscale=0.4,
+      domain = -360:360,
+      samples = (\samplesScaleFactor * 1000),
+      xlabel={},
+      ylabel={}]
+      \addplot[black,thin] {(1.0 * cos(2 * (x - 30) * 1)
+                          + (0.2 * cos(2 * (x - 00) * 4)
+                          + (0.2 * cos(2 * (x - 60) * 1.3))};
+    \end{axis}
+  \end{tikzpicture}
+  \label{fig-complex-wave}
+  \caption{A complex wave with a frequency of
+  $\frac{1}{180} = 0.00\overline{5}\si{\hertz}$}
+\end{figure} 
+
+\subsubsection{Fourier Series}
+
+Any periodic wave of frequency $F$ can be written as:
+
+\begin{align*}
+  x(t) = A_0 / 2 &+ A_1 cos(2 \pi Ft) + B_1 sin(2\pi Ft)\\
+                 &+ A_2 cos(2 \pi 2Ft) + B_2 sin(2\pi 2Ft)\\
+                 &+ A_3 cos(2 \pi 3Ft) + B_3 sin(2\pi 3Ft)\\
+                 &+ \dots
+\end{align*}
+
+This is sometimes called its `cos and sin' form, but we could re-write it as:
+
+\[
+  x(t) = \frac{M_0}{2} + \sum\limits^\infty_{k=1}M_k\cos(2\pi (kF)t + \phi_k)
+\]
+
+Here, each time the summation iterates, we are adding the next harmonic of the
+sound. The fundamental frequency $F$ is the first harmonic when $k=1$.
+
+Because the harmonics get higher and higher, we can't sample the whole series
+because otherwise the frequency of the harmonics will start to become higher
+than half the sampling frequency and we will get aliasing (see
+Section~\ref{aliasing}). In that case, we only go up to $k=\frac{N}{2} - 1$,
+where $F(\frac{N}{2} - 1) \le \frac{Fs}{2}$. If we took $Fs$ samples every
+second, then the formula would be:
+
+\[
+  x(n) = \frac{M_0}{2} + \sum\limits^{\frac{N}{2}-1}_{k=1}M_k\cos\left(2\pi (kF)\frac{n}{Fs} + \phi_k\right)
+\]
+\[
+  \text{Where } n = 0,1,\dots,\text{size}(x)
+\]
+
+The more harmonics we compute, the closer we can get to reconstructing the wave
+from them afterwards.
+
+\subsubsection{Discrete Fourier Transform (iDFT)}
+
+The DFT converts samples of length $n$ into $n/2 - 1$ samples and a `dc term'.
+They are arranged in a length $n$ array, but the second half is the same as the
+first half but reversed. The $0^{th}$ element of the array is the DC term, but
+the $i^{th}$ element is the $i^{th}$ harmonic. 
+
+The algorithm to convert from the time domain into the frequency domain is
+\textit{N-point DFT}. To do the opposite, we can use the \textit{N-point inverse
+DFT} algorithm.
+
+DFT is used to:
+
+\begin{itemize}
+  \item Perform spectral analysis on a signal to find out what components are 
+    present.
+  \item Convert into the frequency domain before applying signal processing (and
+    converting back again afterwards). For example, you could filter out noise 
+    from a sine wave, since you could remove all frequencies with an amplitude
+    below a certain level.
+\end{itemize}
+
+\subsection{Wav files}
+
+Signals are stored in many different ways. One `easy' format, is the
+\texttt{.wav} format. It is just a list of binary numbers, each representing a
+single value of the wave at a discrete time.
+
+% TODO: More formats, encoding etc
+
+
 \section{Encoding and storing signals}
 
 There are a variety of different ways to encode sound. The two main types of
@@ -945,8 +1087,8 @@ parts of the spectrum based on current usage, IPv6 (as opposed to IPv4 which is
 the currently implemented, but outdated standard), the option of device to
 device communications (bypassing the base station entirely) and more cool stuff.
 
-\marginpar{Smart radio is also known as \textit{cognative radio} and is a form
-of \textit{dymanic spectrum management}.}
+\marginpar{Smart radio is also known as \textit{cognitive radio} and is a form
+of \textit{dynamic spectrum management}.}
 
 \textbf{Beam Division Multiple Access} is when you use multiple (e.g. 7)
 antennas spaced at equal intervals to make amplitude of the signal higher in
@@ -980,151 +1122,183 @@ acting as a relay. This can be performed in two ways:
   is forwarded on with the noise removed.
 \end{itemize}
 
-5G could also be really \textbf{energy efficient}; it is preposed that as load
+5G could also be really \textbf{energy efficient}; it is proposed that as load
 on the network decreases, some cells could be turned off, and the coverage area
 of other cells could be allowed to increase. The network can adapt to the
 current usage pattern in real time. Care must be taken though; since
 transmitting to base stations further away will require more battery power from
 the user's phone which is obviously a bad thing.
 
+\subsection{GPS}
 
-\section{Frequency Domain Processing}
+GPS stands for Global Positioning System, and it works by having a receiver
+calculate its position from timing signals sent by GPS satellites that are
+circling about $20200\si{\kilo\meter}$ above earth. They send messages that give
+the exact time and the position of the satellite, which allows the receiver to
+determine its distance from the satellite by the offset between the transmission
+time and received time. If at least four satellites can be `heard' by the
+receiver, then its position can be accurately found.
 
-Instead of processing waves, and parts of waves, how about we turn them into
-frequencies and process those instead? Frequencies are a lot easier to deal with
-in many ways since they are easier to understand and smaller to store.
+\section{Medium Access Control}
 
-\subsubsection{Sinusoids}
+If there are $N$ independent stations each generating packets for transmission
+at essentially random times on a single channel, then we may have collisions
+between packets. If we assume that when two packets collide, the contents will
+be garbled, then our goal should be to reduce the rate of collisions so that
+packet loss is minimised.
 
-A sinusoid is a sine wave delayed by $D$ seconds, and is given by the formula:
+We could use slotted or continuous time when deciding when to transmit packets;
+slotted time is when the time is divided into fixed slots that transmitters can
+transmit in. Continuous time means that transmitters can start to transmit
+packets at any time, not just at the start of the slot boundaries.
 
-\[
-  y = M \times cos(2\pi F (t - D))
-\]
+\textbf{Carrier Sense} is the term used to describe when a station can detect
+that the channel is currently busy before it starts to transmit (hence avoid
+having to re-send the packet again later when it was garbled this time).
 
-Figure~\ref{fig-sinusoid} shows two sinusoids; one where $D = 30^{\circ}$ and
-another where $D = 0$.
+We've already looked at the techniques used to allow multiple users to use the
+same network on mobile phones (FDMA, TDMA, CDMA, OFDMA etc), but one rather
+older technique called Pure ALOHA has a different approach entirely.
 
-\begin{figure}
-  \centering
-  \begin{tikzpicture}
-    \begin{axis}[%
-      width=\textwidth,
-      xtick={
-        -360, -270, -180, -90, 0,
-        90, 180, 270, 360
-      },
-      ytick={-1,0,1},
-      yscale=0.4,
-      domain = -360:360,
-      samples = (\samplesScaleFactor * 1000),
-      xlabel={},
-      ylabel={}]
-      \addplot[black,thin] {cos(2 * (x - 30)};
-      \addplot[red,thin, dashed] {cos(2 * (x - 0)};
-    \end{axis}
-  \end{tikzpicture}
-  \label{fig-sinusoid}
-  \caption{1000 samples of a sinusoid where $D = 30^{\circ}$ (black) and where
-  $D = 0$ (dotted red).}
-\end{figure} 
+\subsection{ALOHA}
 
-Figure~\ref{fig-sinusoid} is a simple sine wave, but any wave (such as the one
-in Figure~\ref{fig-complex-wave}) that is periodic can be found to have a
-fundamental frequency of $\frac{1}{T}$, where $T$ is the period of the wave. A
-recording of a voice, or musical instrument may be found to have a similar
-waveform to that of Figure~\ref{fig-complex-wave} as long as we `zoom in' to a
-segment short enough that any gradual change in frequency is negligible. This is
-called \textbf{psudo-periodicity}.
+Pure ALOHA is when stations (this was the 70's) transmit packets whenever they
+have data. Success is detected by listening to the same channel that they
+transmit on, or by the receiver acknowledging the frame. If a frame is
+destroyed, then it is re-transmitted after a random delay. \marginpar{Random
+delays, of course, avoid the repeated collisions that would occur if the
+transmitters just kept transmitting sequentially after one frame had failed.}
+This is known as a \textbf{contention} system.
+
+Since if the frame overlaps with any part of another frame, then the vulnerable
+period for the frame is $3\times$ the length of the frame (see
+Figure~\ref{aloha-vun}).
 
 \begin{figure}
   \centering
-  \begin{tikzpicture}
-    \begin{axis}[%
-      width=\textwidth,
-      xtick={
-        -360, -270, -180, -90, 0,
-        90, 180, 270, 360
-      },
-      ytick={-1,0,1},
-      yscale=0.4,
-      domain = -360:360,
-      samples = (\samplesScaleFactor * 1000),
-      xlabel={},
-      ylabel={}]
-      \addplot[black,thin] {(1.0 * cos(2 * (x - 30) * 1)
-                          + (0.2 * cos(2 * (x - 00) * 4)
-                          + (0.2 * cos(2 * (x - 60) * 1.3))};
-    \end{axis}
-  \end{tikzpicture}
-  \label{fig-complex-wave}
-  \caption{A complex wave with a frequency of
-  $\frac{1}{180} = 0.00\overline{5}\si{\hertz}$}
-\end{figure} 
+  \includegraphics[width=0.5\textwidth]{images/aloha-vun}
+  \label{aloha-vun}
+  \caption{The vulnerable period for the shaded frame is $3\times$ its length.}
+\end{figure}
 
-\subsubsection{Fourier Series}
+\subsubsection{Slotted ALOHA}
 
-Any periodic wave of frequency $F$ can be written as:
+If we divide the time domain into slots, then fewer collisions will occur.
 
-\begin{align*}
-  x(t) = A_0 / 2 &+ A_1 cos(2 \pi Ft) + B_1 sin(2\pi Ft)\\
-                 &+ A_2 cos(2 \pi 2Ft) + B_2 sin(2\pi 2Ft)\\
-                 &+ A_3 cos(2 \pi 3Ft) + B_3 sin(2\pi 3Ft)\\
-                 &+ \dots
-\end{align*}
+%TODO: Slotted ALOHA maths?
 
-This is sometimes called its `cos and sin' form, but we could re-write it as:
+Figure~\ref{aloha-comp} shows the difference in efficiency between pure and
+slotted ALOHA.
 
-\[
-  x(t) = \frac{M_0}{2} + \sum\limits^\infty_{k=1}M_k\cos(2\pi (kF)t + \phi_k)
-\]
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/aloha-comp}
+  \label{aloha-comp}
+  \caption{Pure ALOHA achieves $18\%$ utilisation max, whereas Slotted ALOHA
+  gets to $37\%$.}
+\end{figure}
 
-Here, each time the summation iterates, we are adding the next harmonic of the
-sound. The fundamental frequency $F$ is the first harmonic when $k=1$.
+\subsection{Carrier Sense Multiple Access}
 
-Because the harmonics get higher and higher, we can't sample the whole series
-because otherwise the frequency of the harmonics will start to become higher
-than half the sampling frequency and we will get aliasing (see
-Section~\ref{aliasing}). In that case, we only go up to $k=\frac{N}{2} - 1$,
-where $F(\frac{N}{2} - 1) \le \frac{Fs}{2}$. If we took $Fs$ samples every
-second, then the formula would be:
+This is when a transmitter will check nobody is `talking' on a channel before it
+transmits. It will then either:
 
-\[
-  x(n) = \frac{M_0}{2} + \sum\limits^{\frac{N}{2}-1}_{k=1}M_k\cos\left(2\pi (kF)\frac{n}{Fs} + \phi_k\right)
-\]
-\[
-  \text{Where } n = 0,1,\dots,\text{size}(x)
-\]
+\begin{description}
+  \item \textbf{1-persistent CSMA}:\\
+    This is when the transmitter waits until the current frame ends before
+    trying to send its own frame.
+  \item \textbf{$p$-persistent CSMA}:\\
+    The transmitter might speak at the next slot, the probability that it will
+    do is given by the probability $p$.
+  \item \textbf{Non-persistent CSMA}:\\
+    If another transmitter is sending a frame, wait a random time before trying
+    again.
+\end{description}
 
-The more harmonics we compute, the closer we can get to reconstructing the wave
-from them afterwards.
+Figure~\ref{aloha-rates} shows a comparison between the different types of CSMA.
 
-\subsubsection{Discrete Fourier Transform (iDFT)}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/aloha-rates}
+  \label{aloha-rates}
+  \caption{A comparison of channel utilisation versus load for various random
+  access ALOHA protocols.}
+\end{figure}
 
-The DFT converts samples of length $n$ into $n/2 - 1$ samples and a `dc term'.
-They are arranged in a length $n$ array, but the second half is the same as the
-first half but reversed. The $0^{th}$ element of the array is the DC term, but
-the $i^{th}$ element is the $i^{th}$ harmonic. 
+From the image in Figure~\ref{aloha-rates}, it would seem that low persistence
+is the way to go, since the efficiency is very high. However, if the probability
+of resending a frame is so low, then it might take ages for the frame to be
+sent, and so although the network is efficient overall, for any individual, it
+is very slow.
 
-The algorithm to convert from the time domain into the frequency domain is
-\textit{N-point DFT}. To do the opposite, we can use the \textit{N-point inverse
-DFT} algorithm.
+\subsubsection{CSMA collision detection}
 
-DFT is used to:
+We can save power and transmission capacity by having the transmitter monitor
+its own transmissions, and abort as soon as it detects a collision. This is
+implemented by Ethernet, and is present at the physical layer of the network
+stack. The resuult of the collision detection is used by the Medium Access
+Control (MAC) sub-layer, which is part of the data link layer. This makes the
+decisions about when to transmit and when to back off etc.
 
-\begin{itemize}
-  \item Perform spectral analysis on a signal to find out what components are 
-    present.
-  \item Convert into the frequency domain before applying signal processing (and
-    converting back again afterwards). For example, you could filter out noise 
-    from a sine wave, since you could remove all frequencies with an amplitude
-    below a certain level.
-\end{itemize}
+\subsection{Wireless contension}
 
-\subsection{Wav files}
+A wireless transmitter cannot moniter its own transmissions, because it can be
+either transmitting or receiving, but not both concurrently. Even if a wireless
+transmitter could do that, it wouldn't matter because it only matters what is
+being received at the receiver, which is probably different from what is
+observed at the transmitter.
 
-Signals are stored in many different ways. One `easy' format, is the
-\texttt{.wav} format. It is just a list of binary numbers, each representing a
-single value of the wave at a discrete time.
+Because of this, wireless protocols place an emphasis on avoiding collisions:
 
-% TODO: More formats, encoding etc
+\begin{description}
+  \item \textbf{Real channel sensing}:\\
+    Sense the channel and see if it's free, start transmitting if so. If the
+    receiver sesnses a transmission, then request a re-transmission after a 
+    back-off period.
+  \item \textbf{Virtual channel sensing}:\\
+    If a device wants to transmit, then it sends a short \texttt{RTS} (request
+    to transmit) control frame. If the receiver is ready, it sends a
+    \texttt{CTS} (clear to send) frame. The sending device then transmits the 
+    message and starts an \texttt{ACK} timer. When the receiving device has
+    received the frame, then it will send an \texttt{ACK}, and if the sender
+    doesn't receive the \texttt{ACK} within the timer period, then it will
+    re-transmit. When other devices hear an \texttt{RTS} or \texttt{CTS}, they
+    won't transmit for a period of time.
+    \marinpar{A \texttt{NAV} (Network Allocation Vector) flag is one that tells
+    a device to assume the channel is busy and is set whenever a \texttt{RTS} or
+    \texttt{CTS} frame is heard.}
+\end{description}
+
+\subsubsection{Wireless problems}
+
+Wireless comms have some interesting problems that wired comms don't have,
+mainly to do with the range of the radio:
+
+\begin{description}
+  \item \textbf{Hidden Device Problem}:\\
+    If A wants to transmit to B, but A is too far from C to hear any of C's
+    messages, then it won't be able to hear \texttt{RTS} from C. Luckily, B
+    will ignore A's \texttt{RTS} until it is finished talking to C.
+  \item \textbf{Exposed Device Problem}:\\
+    See the lecture notes for this one (lecture 7, slide 18).
+\end{description}
+
+\subsubsection{Bluetooth}
+
+The base unit of a Bluetooth system is a pico-net. This consists of a master
+node, and up to seven slaves within ten meters. You can connect piconets
+together to form a `scatternet' as shown in Figure~\ref{scatternet}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/scatternet}
+  \label{scatternet}
+  \caption{A bluetooth scatternet.}
+\end{figure}
+
+The bluetooth designers decided to set a list of things that you could do over
+Bluetooth, such as file transfers, fax etc. This is in contrast to other
+protocols such as WiFi, where its up to the user/programmer to think of stuff to
+do. This makes Bluetooth more rigid.
+
+% Lecture 8

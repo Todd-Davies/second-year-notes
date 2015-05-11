@@ -6,30 +6,38 @@
 \contentsline {subsubsection}{\numberline {2.2.1}The Sampling Theorem}{4}{subsubsection.2.2.1}
 \contentsline {subsubsection}{\numberline {2.2.2}Aliasing}{4}{subsubsection.2.2.2}
 \contentsline {subsection}{\numberline {2.3}Decibels}{5}{subsection.2.3}
-\contentsline {section}{\numberline {3}Encoding and storing signals}{5}{section.3}
-\contentsline {subsection}{\numberline {3.1}Bitrates in different settings}{5}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Quantisation}{6}{subsection.3.2}
-\contentsline {subsubsection}{\numberline {3.2.1}Quantisation error}{7}{subsubsection.3.2.1}
-\contentsline {subsection}{\numberline {3.3}Differential encoding}{8}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Linear Predictive Speech Coding}{8}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {3.4.1}LPC-10}{8}{subsubsection.3.4.1}
-\contentsline {subsubsection}{\numberline {3.4.2}Codebook Excited LPC}{8}{subsubsection.3.4.2}
-\contentsline {subsection}{\numberline {3.5}Comfort noise}{9}{subsection.3.5}
-\contentsline {subsection}{\numberline {3.6}Error correction, detection \& prevention}{9}{subsection.3.6}
-\contentsline {subsubsection}{\numberline {3.6.1}Forward Error Correction}{9}{subsubsection.3.6.1}
-\contentsline {subsubsection}{\numberline {3.6.2}CRC checks}{10}{subsubsection.3.6.2}
-\contentsline {subsubsection}{\numberline {3.6.3}Convolutional Coders}{11}{subsubsection.3.6.3}
-\contentsline {subsubsection}{\numberline {3.6.4}Miscellaneous FEC stuff}{11}{subsubsection.3.6.4}
-\contentsline {section}{\numberline {4}Mobile networks}{11}{section.4}
-\contentsline {subsection}{\numberline {4.1}Cellular networks}{12}{subsection.4.1}
-\contentsline {subsubsection}{\numberline {4.1.1}The evolution of cellular technologies}{12}{subsubsection.4.1.1}
-\contentsline {subsubsection}{\numberline {4.1.2}2G in detail}{13}{subsubsection.4.1.2}
-\contentsline {subsubsection}{\numberline {4.1.3}3G in detail}{13}{subsubsection.4.1.3}
-\contentsline {subsubsection}{\numberline {4.1.4}The details of 4G}{14}{subsubsection.4.1.4}
-\contentsline {subsubsection}{\numberline {4.1.5}5G and the future!}{14}{subsubsection.4.1.5}
-\contentsline {subsection}{\numberline {4.2}GPS}{15}{subsection.4.2}
-\contentsline {section}{\numberline {5}Frequency Domain Processing}{15}{section.5}
-\contentsline {subsubsection}{\numberline {5.0.1}Sinusoids}{15}{subsubsection.5.0.1}
-\contentsline {subsubsection}{\numberline {5.0.2}Fourier Series}{15}{subsubsection.5.0.2}
-\contentsline {subsubsection}{\numberline {5.0.3}Discrete Fourier Transform (iDFT)}{16}{subsubsection.5.0.3}
-\contentsline {subsection}{\numberline {5.1}Wav files}{16}{subsection.5.1}
+\contentsline {section}{\numberline {3}Frequency Domain Processing}{5}{section.3}
+\contentsline {subsubsection}{\numberline {3.0.1}Sinusoids}{5}{subsubsection.3.0.1}
+\contentsline {subsubsection}{\numberline {3.0.2}Fourier Series}{5}{subsubsection.3.0.2}
+\contentsline {subsubsection}{\numberline {3.0.3}Discrete Fourier Transform (iDFT)}{6}{subsubsection.3.0.3}
+\contentsline {subsection}{\numberline {3.1}Wav files}{6}{subsection.3.1}
+\contentsline {section}{\numberline {4}Encoding and storing signals}{6}{section.4}
+\contentsline {subsection}{\numberline {4.1}Bitrates in different settings}{7}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Quantisation}{7}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Quantisation error}{8}{subsubsection.4.2.1}
+\contentsline {subsection}{\numberline {4.3}Differential encoding}{9}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Linear Predictive Speech Coding}{9}{subsection.4.4}
+\contentsline {subsubsection}{\numberline {4.4.1}LPC-10}{9}{subsubsection.4.4.1}
+\contentsline {subsubsection}{\numberline {4.4.2}Codebook Excited LPC}{10}{subsubsection.4.4.2}
+\contentsline {subsection}{\numberline {4.5}Comfort noise}{10}{subsection.4.5}
+\contentsline {subsection}{\numberline {4.6}Error correction, detection \& prevention}{10}{subsection.4.6}
+\contentsline {subsubsection}{\numberline {4.6.1}Forward Error Correction}{10}{subsubsection.4.6.1}
+\contentsline {subsubsection}{\numberline {4.6.2}CRC checks}{11}{subsubsection.4.6.2}
+\contentsline {subsubsection}{\numberline {4.6.3}Convolutional Coders}{12}{subsubsection.4.6.3}
+\contentsline {subsubsection}{\numberline {4.6.4}Miscellaneous FEC stuff}{12}{subsubsection.4.6.4}
+\contentsline {section}{\numberline {5}Mobile networks}{13}{section.5}
+\contentsline {subsection}{\numberline {5.1}Cellular networks}{13}{subsection.5.1}
+\contentsline {subsubsection}{\numberline {5.1.1}The evolution of cellular technologies}{13}{subsubsection.5.1.1}
+\contentsline {subsubsection}{\numberline {5.1.2}2G in detail}{14}{subsubsection.5.1.2}
+\contentsline {subsubsection}{\numberline {5.1.3}3G in detail}{14}{subsubsection.5.1.3}
+\contentsline {subsubsection}{\numberline {5.1.4}The details of 4G}{15}{subsubsection.5.1.4}
+\contentsline {subsubsection}{\numberline {5.1.5}5G and the future!}{16}{subsubsection.5.1.5}
+\contentsline {subsection}{\numberline {5.2}GPS}{16}{subsection.5.2}
+\contentsline {section}{\numberline {6}Medium Access Control}{16}{section.6}
+\contentsline {subsection}{\numberline {6.1}ALOHA}{17}{subsection.6.1}
+\contentsline {subsubsection}{\numberline {6.1.1}Slotted ALOHA}{17}{subsubsection.6.1.1}
+\contentsline {subsection}{\numberline {6.2}Carrier Sense Multiple Access}{17}{subsection.6.2}
+\contentsline {subsubsection}{\numberline {6.2.1}CSMA collision detection}{17}{subsubsection.6.2.1}
+\contentsline {subsection}{\numberline {6.3}Wireless contention}{18}{subsection.6.3}
+\contentsline {subsubsection}{\numberline {6.3.1}Wireless problems}{18}{subsubsection.6.3.1}
+\contentsline {subsubsection}{\numberline {6.3.2}Bluetooth}{18}{subsubsection.6.3.2}
