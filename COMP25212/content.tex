@@ -937,7 +937,8 @@ old values, so we need a protocol to handle this.
 \textbf{MESI Protocol}
 
 This is a practical multi-core invalidation protocol which tries to minimise the
-bus usage. It also implements a
+bus usage. It also implements a `copy back' scheme where the main memory or L2
+cache is not updated until a `dirty' cache line is displaced. 
 
 % TODO: From MESI on page 7
 
