@@ -940,7 +940,263 @@ This is a practical multi-core invalidation protocol which tries to minimise the
 bus usage. It also implements a `copy back' scheme where the main memory or L2
 cache is not updated until a `dirty' cache line is displaced. 
 
-% TODO: From MESI on page 7
+As a result of this, cache lines have two state bits, meaning they can be in the
+following states:
+
+\begin{description}
+  \item \textbf{Modified}:\\
+    The cache line has been modified and is different from the main memory (i.e.
+    it's a dirty copy).
+  \item \textbf{Exclusive}:\\
+    The cache line is exactly the same as main memory and it's the only copy.
+  \item \textbf{Shared}:\\
+    It's the same value as the main memory, but other copies may be in other
+    caches which may differ.
+  \item \textbf{Invalid}:\\
+    The cache line data is not valid.
+\end{description} 
+
+Another protocol called \texttt{MOESI} has another state:
+
+\begin{description}
+  \item \textbf{Owned}:\\
+    The cache line has been modified and is different from memory. There are
+    other copies in other caches.
+\end{description}
+
+\marginpar{Owned means that we don't have to copy back to main memory on writes.
+}
+
+The changes of state of the cache line are dependent on the memory access
+events, which can be either from local core activity or snooping from other
+cores. The cache line state will only be effective if its address matches the
+address of the memory event.
+
+The state changes are as follows:
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{images/MESI1}
+  \caption{MESI - local cache view}
+  \label{MESI1}
+\end{figure}
+
+\marginpar{`RWITM' means Read With Intent To Modify.}
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{images/MESI2}
+  \caption{MESI - snooping cache view}
+  \label{MESI2}
+\end{figure}
+
+The consensus is that snooping protocols don't scale well beyond around 16 cores
+max, since the bus connecting the cores becomes saturated. We could have a
+hierarchy of buses, but this is complicated.
+
+Instead, we can create directory based protocols. If we use distributed
+hardware, we can have a directory listing what data other caches have, and
+caches can talk to each other in a point-to-point manner. Since there is more
+traffic required for this between the cores, the bus is often replaced with a
+network on a chip.
+
+The cache lines can be in three states that are like those of MESI:
+
+\begin{itemize}
+  \item \textit{Invalid}
+  \item \textit{Shared} (coherent with the main memory)
+  \item \textit{Modified} (value is changed and no other copies are anywhere)
+\end{itemize}
+
+The directory can have three states too:
+
+\begin{itemize}
+  \item \textit{NC} (Not Cached; the cache line isn't present anywhere)
+  \item \textit{Shared} (the cache line is present in at least one core)
+  \item \textit{Modified} (the cache line is modified and is in one other core)
+\end{itemize}
+
+The directory also stores a \textit{sharing vector} describing what core holds
+the same cache line, which can be seen in Figure~\ref{directory-protocol}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/directory-protocol}
+  \label{directory-protocol}
+  \caption{How data might be organised in a directory protocol}
+\end{figure}
+
+If we have a central directory, then it might become the bottleneck we were
+trying to avoid with a bus. To stop this, we could use a distributed directory,
+where each core has its own directory, this requires an extra flag `home' which
+indicates the data is stored locally.
+
+To sum it up, directory protocols are:
+
+\begin{itemize}
+  \item More scalable (better for CPU's with more cores).
+  \item Use p2p messaging to simplify interconnection and allow parallel
+    communication.
+  \item Each core doesn't have a global view of the caches, we need to store the
+    state separately in the directory.
+  \item Control is more complex, but performance is better overall.
+\end{itemize} 
+
+\subsection{On-chip interconnects}
+
+So far, we've only really considered buses as a way of communicating between
+cores, however we could use a network on a chip (NoC) to communicate. Things we
+need to consider about networks on a chip are:
+
+\begin{mymulticols}
+  \begin{itemize}
+    \item Bandwidth
+    \item Latency
+    \item Congestion
+    \item Fault tolerance
+    \item Area ($mm^2$)
+    \item Power dissipation
+  \end{itemize}
+\end{mymulticols}
+
+There are three important features of a NoC; topology (how the cores and network
+infrastructure is organised), routing (how the traffic moves around) and
+switching (how the traffic moves from once component to another).
+
+The medium through which data is transmitted is a bus. Buses are single usage at
+any one time and are controlled by a clock that divides its use into time slots.
+Transactions are often split, since a message will be sent in one slot, and th
+reply received in another later slot (slots can be used in between these two
+events).
+
+Networks on a chip can take many different forms though:
+
+\begin{center}
+  \begin{tabular}{| m{2cm} | m{5cm} | c |}
+    \hline
+    Crossbar & You can connect $n$ inputs to $n$ outputs & 
+    \begin{minipage}{.3\textwidth}
+      \begin{center}
+        \includegraphics[width=0.5\linewidth]{images/crossbar}
+      \end{center}
+    \end{minipage} \\ \hline
+    Ring & Simple, but low bandwidth and variable latency & 
+    \begin{minipage}{.3\textwidth}
+      \begin{center}
+        \includegraphics[width=0.5\linewidth]{images/ring}
+      \end{center}
+    \end{minipage} \\ \hline
+    Tree & Variable bandwidth and latency (depth etc), may be unreliable & 
+    \begin{minipage}{.3\textwidth}
+      \begin{center}
+        \includegraphics[width=0.5\linewidth]{images/tree}
+      \end{center}
+    \end{minipage} \\ \hline
+    Fat tree & Faster, more reliable, but uses more resources than a tree & 
+    \begin{minipage}{.3\textwidth}
+      \begin{center}
+        \includegraphics[width=0.5\linewidth]{images/fat-tree}
+      \end{center}
+    \end{minipage} \\ \hline
+    Mesh & Okay bandwidth, variable latency, but good for large systems because
+    of the layout & 
+    \begin{minipage}{.3\textwidth}
+      \begin{center}
+        \includegraphics[width=0.5\linewidth]{images/mesh}
+      \end{center}
+    \end{minipage} \\ \hline
+  \end{tabular}
+\end{center}
+
+\subsubsection{Routing}
+
+There are three types of routing we're going to look at:
+
+\begin{center}
+  \begin{tabular}{| m{2cm} | m{5cm} | c |}
+    \hline
+    Minimal &
+    \begin{itemize}
+      \item Always selects the shortest path
+      \item Packets move closer at every step
+      \item But are more likely to be blocked
+    \end{itemize} & 
+    \begin{minipage}{.3\textwidth}
+      \begin{center}
+        \includegraphics[width=0.5\linewidth]{images/minimal}
+      \end{center}
+    \end{minipage} \\ \hline
+    Oblivious &
+    \begin{itemize}
+      \item Unaware of network state
+      \item Packets take a fixed path
+      \item Very simple and deadlock free
+      \item Prone to contention
+    \end{itemize} & 
+    \begin{minipage}{.3\textwidth}
+      \begin{center}
+        \includegraphics[width=0.5\linewidth]{images/oblivious}
+      \end{center}
+    \end{minipage} \\ \hline
+    Adaptive & 
+    \begin{itemize}
+      \item Aware of network state (moves packets to avoid contention)
+      \item Higher performance
+      \item More area and power required
+      \item Deadlock prone (more hardware needed)
+      \item Rarely used in NoC's
+    \end{itemize} & 
+    \begin{minipage}{.3\textwidth}
+      \begin{center}
+        \includegraphics[width=0.5\linewidth]{images/adaptive}
+      \end{center}
+    \end{minipage} \\ \hline
+  \end{tabular}
+\end{center}
+
+\subsubsection{Switching}
+
+There are two types of packet switching we'll look at, store and forward and
+wormhole switching. The premise is that data is split into small packets, some
+extra information is added to enable them to get to their destination and they
+are sent into the network. This allows time-multiplexing of network resources
+and is good for performance (especially in short messages). Packets are also
+split into flits, which are teeny packets (see Figure~\ref{flits}).
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\linewidth]{images/flits}
+  \caption{How a packet is split up into flits.}
+  \label{flits}
+\end{figure}
+
+\begin{center}
+  \begin{tabular}{| m{2cm} | m{5cm} | c |}
+    \hline
+    Store and forward &
+    \begin{itemize}
+      \item A packet is not forwarded until all its phits arrive to each node
+      \item Failure detection happens on the fly
+      \item But performance is low
+      \item And large buffers are required
+    \end{itemize} & 
+    \begin{minipage}{.3\textwidth}
+      \begin{center}
+        \includegraphics[width=0.5\linewidth]{images/store-and-forward}
+      \end{center}
+    \end{minipage} \\ \hline
+    Wormhole &
+    \begin{itemize}
+      \item A packet is forward as soon as its head arrives
+      \item Performance is better than store and forward
+      \item But fault detection is only possible at the destination
+      \item Less hardware
+    \end{itemize} & 
+    \begin{minipage}{.3\textwidth}
+      \begin{center}
+        \includegraphics[width=0.5\linewidth]{images/wormhole}
+      \end{center}
+    \end{minipage} \\ \hline
+  \end{tabular}
+\end{center}
 
 \section{Vitalisation}
 
