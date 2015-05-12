@@ -28,12 +28,10 @@
 \BOOKMARK [3][-]{subsubsection.7.1.1}{D\046C Example}{subsection.7.1}% 28
 \BOOKMARK [2][-]{subsection.7.2}{Greedy method}{section.7}% 29
 \BOOKMARK [2][-]{subsection.7.3}{Dynamic programming}{section.7}% 30
-\BOOKMARK [1][-]{section.8}{Misc figures}{}% 31
-\BOOKMARK [2][-]{subsection.8.1}{Tractable and Intractable Problems}{section.8}% 32
-\BOOKMARK [1][-]{section.9}{Graphs}{}% 33
-\BOOKMARK [2][-]{subsection.9.1}{Representing graphs}{section.9}% 34
-\BOOKMARK [2][-]{subsection.9.2}{Algorithms}{section.9}% 35
-\BOOKMARK [3][-]{subsubsection.9.2.1}{Depth First Search}{subsection.9.2}% 36
-\BOOKMARK [3][-]{subsubsection.9.2.2}{Breadth First Search}{subsection.9.2}% 37
-\BOOKMARK [3][-]{subsubsection.9.2.3}{Dijkstra's}{subsection.9.2}% 38
-\BOOKMARK [3][-]{subsubsection.9.2.4}{Dijkstra's vs Floyd}{subsection.9.2}% 39
+\BOOKMARK [2][-]{subsection.7.4}{Tractable and Intractable Problems}{section.7}% 31
+\BOOKMARK [1][-]{section.8}{Graphs}{}% 32
+\BOOKMARK [2][-]{subsection.8.1}{Representing graphs}{section.8}% 33
+\BOOKMARK [2][-]{subsection.8.2}{Algorithms}{section.8}% 34
+\BOOKMARK [3][-]{subsubsection.8.2.1}{Depth and Breadth First Search and Priority Search}{subsection.8.2}% 35
+\BOOKMARK [3][-]{subsubsection.8.2.2}{Dijkstra's}{subsection.8.2}% 36
+\BOOKMARK [1][-]{section.9}{Misc figures}{}% 37
