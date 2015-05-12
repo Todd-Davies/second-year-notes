@@ -47,7 +47,7 @@ if [ "$remote" = 1 ]; then
   rm content.zip
 else
   if [ "$compileall" = "1" ]; then
-    directories=(diagrams);
+    directories=(diagrams digraphs);
     for dir in "${directories[@]%*/}"; do
       cd $dir;
       for i in `ls *.tex`; do

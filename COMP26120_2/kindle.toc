@@ -29,3 +29,11 @@
 \contentsline {subsection}{\numberline {7.2}Greedy method}{}{subsection.7.2}
 \contentsline {subsection}{\numberline {7.3}Dynamic programming}{}{subsection.7.3}
 \contentsline {section}{\numberline {8}Misc figures}{}{section.8}
+\contentsline {subsection}{\numberline {8.1}Tractable and Intractable Problems}{}{subsection.8.1}
+\contentsline {section}{\numberline {9}Graphs}{}{section.9}
+\contentsline {subsection}{\numberline {9.1}Representing graphs}{}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}Algorithms}{}{subsection.9.2}
+\contentsline {subsubsection}{\numberline {9.2.1}Depth First Search}{}{subsubsection.9.2.1}
+\contentsline {subsubsection}{\numberline {9.2.2}Breadth First Search}{}{subsubsection.9.2.2}
+\contentsline {subsubsection}{\numberline {9.2.3}Dijkstra's}{}{subsubsection.9.2.3}
+\contentsline {subsubsection}{\numberline {9.2.4}Dijkstra's vs Floyd}{}{subsubsection.9.2.4}

@@ -663,12 +663,12 @@ Divide and Conquer and Greedy Strategies give us fast (polynomial time)
 algorithms, and Dynamic Programming gives us fast algorithms, but also
 algorithms that work on intractable problems.
 
-A problem is considered tratable if we can produce a polynomial ($O(1), O(n),
+A problem is considered tractable if we can produce a polynomial ($O(1), O(n),
 O(n^x)$) time algorithm to solve it. Algorithms are intractable if they are
 exponential, such as $O(2^n), O(n^n), O(n!)$.
 
 Exponential algorithms often arise from exhaustive enumeration (i.e. checking
-all the possibile solutions), or systematic searches of partial solutions using
+all the possible solutions), or systematic searches of partial solutions using
 backtracking. If we wanted to colour a graph (that is give each node a colour,
 but make sure that no adjacent nodes had the same colour), we could use both
 techniques.
@@ -679,3 +679,147 @@ and for each, you check to see if its valid. Checking an allocation takes $O(E)$
 time, \marginpar{$E$ is the number of edges, $N$ is the number of nodes.} but
 there are $k^N$ number of allocations, so the algorithm takes $O(E \times k^N)$
 time.
+
+\section{Graphs}
+
+Graphs are a very important datastructure in Computer Science. Thankfully, the
+lecture notes for this course do a fantastic job of defining them, and giving
+all the terminology related to them, so see the slides from Lecture~6 of the
+second semester of the course. I can focus on the fun bits!
+
+\subsection{Representing graphs}
+
+The two datastructures used to represent graphs on the course are adjacency
+lists and adjacency matrices:
+
+\begin{description}
+  \item \textbf{Adjacency List}:\\
+    This is a list of each node in the graph, and the nodes that it connected to
+    via an edge, maybe looking like this:
+
+    \begin{center}
+      \begin{tabular}{l|l}
+        \textbf{Node} & \textbf{Outlist}\\ \hline
+        Bob   & Bill\\
+        Bill  & Bilbo, Ben\\
+        Bilbo & \\
+        Ben   & \\
+      \end{tabular}
+    \end{center}
+
+    For the graph:
+
+    \begin{center}
+      \includegraphics{digraphs/1.pdf}
+    \end{center}
+
+    We could implement the adjacency list as an array of linked lists for fast
+    random access to any one node, and sequential access to the outlist (which
+    is a common access pattern as we might see later in the graph algorithms
+    section).
+  \item \textbf{Adjacency Matrix}:\\
+    This is a two dimensional array, where each dimension is indexed by the
+    nodes, and the values are $1$ for an edge between them, and $0$ for no edge.
+    For the same graph as above:
+
+    \begin{center}
+      \begin{tabular}{|l|l|l|l|l|}
+        \hline
+              & Bob  & Bill  & Bilbo & Ben\\ \hline
+        Bob   & 0    & 1     & 0     & 0  \\ \hline
+        Bill  & 0    & 0     & 1     & 1  \\ \hline
+        Bilbo & 0    & 0     & 0     & 0  \\ \hline
+        Ben   & 0    & 0     & 0     & 0  \\ \hline
+      \end{tabular}
+    \end{center}
+
+    Obviously, an adjacency matrix takes up more memory space than an adjacency
+    list, but it is also probably faster, since there aren't any pointers
+    involved (if the array is in contigous areas of memory).
+    \marginpar{Remember, what is faster almost always depends on your use case!}
+    Adjacency matrices can also be wasteful in terms of memory space, especially
+    if the graph is sparse (i.e. it doesn't have many edges) since most of the
+    array will be zeros! If the graph is undirected, then the matrix will by
+    symmetrical too, which is obviously very wasteful in terms of memory space.
+    One massive advantage of adjacency matrices is that you can do matrix
+    arithmetic on them, so you can effectively add graphs together, multiply
+    them etc.
+\end{description}
+
+\subsection{Algorithms}
+
+Graph algorithms are really important. Not only do they crop up in loads of
+interview questions, but they also can be applied to problems that you might
+never of imagined they would be related to.
+
+\subsubsection{Depth and Breadth First Search and Priority Search}
+
+All three of these searches use the same algorithm, its just the backend
+datastructure that changes. The algorithm is as follows:
+
+\begin{javacode}
+  public void search(Graph graph, Node startNode) {
+    Datastructure dt = new Datastructure();
+    Set<Node> discovered = new HashSet<Node>();
+    dt.push(startNode);
+    while(!dt.isEmpty()) {
+      Node n = dt.pop();
+      // If the node has not been seen before
+      if(!discovered.contains(n)) { 
+        discovered.add(n);
+        for(Node out : n.outlist) {
+          dt.push(out);
+        }
+      }
+    }
+  }
+\end{javacode}
+
+For a \textbf{depth first search}, you use a \textbf{stack}, for a breadth first
+search, you use a \textbf{queue} and for a priority search. you use a
+\textbf{priority queue}.
+
+The complexity of a depth first search is $O(N+E)$ for an adjacency list, and
+$O(N^2)$ for an adjacency matrix. This is because adjacency lists are more
+suited to random access of a iterable list of a nodes outlist than an adjacency
+matrix is.
+
+\subsubsection{Dijkstra's}
+
+Dijkstra's algorithm is a shortest path algorithm for graph structures. It
+performs in $O(E + Vlog(V))$ time (if used with a min priority queue), and is
+implemented as follows (taken from Wikipedia):
+
+\begin{minted}
+function Dijkstra(Graph, source):
+
+  dist[source] ← 0           // Distance from source to source
+  prev[source] ← undefined   // Previous node in optimal path initialization
+
+  for each vertex v in Graph:// Initialization
+    if v ≠ source            // Where v has not yet been removed from Q (unvisited nodes)
+      dist[v] ← infinity     // Unknown distance function from source to v
+      prev[v] ← undefined    // Previous node in optimal path from source
+    end if 
+    add v to Q               // All nodes initially in Q (unvisited nodes)
+  end for
+  
+  while Q is not empty:
+    u ← vertex in Q with min dist[u]  // Source node in first case
+    remove u from Q 
+    
+    for each neighbor v of u:         // where v is still in Q.
+      alt ← dist[u] + length(u, v)
+      if alt < dist[v]:               // A shorter path to v has been found
+        dist[v] ← alt 
+        prev[v] ← u 
+      end if
+    end for
+  end while
+
+  return dist[], prev[]
+
+end function
+\end{minted}
+
+\subsubsection{Dijkstra's vs Floyd}
