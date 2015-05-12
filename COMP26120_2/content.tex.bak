@@ -735,7 +735,7 @@ lists and adjacency matrices:
 
     Obviously, an adjacency matrix takes up more memory space than an adjacency
     list, but it is also probably faster, since there aren't any pointers
-    involved (if the array is in contigous areas of memory).
+    involved (if the array is in contiguous areas of memory).
     \marginpar{Remember, what is faster almost always depends on your use case!}
     Adjacency matrices can also be wasteful in terms of memory space, especially
     if the graph is sparse (i.e. it doesn't have many edges) since most of the
@@ -790,36 +790,37 @@ Dijkstra's algorithm is a shortest path algorithm for graph structures. It
 performs in $O(E + Vlog(V))$ time (if used with a min priority queue), and is
 implemented as follows (taken from Wikipedia):
 
-\begin{minted}
-function Dijkstra(Graph, source):
+\begin{ccode}
+  function Dijkstra(Graph, source):
 
-  dist[source] ← 0           // Distance from source to source
-  prev[source] ← undefined   // Previous node in optimal path initialization
+    dist[source] = 0           // Distance from source to source
+    prev[source] = undefined   // Previous node in optimal path initialisation
 
-  for each vertex v in Graph:// Initialization
-    if v ≠ source            // Where v has not yet been removed from Q (unvisited nodes)
-      dist[v] ← infinity     // Unknown distance function from source to v
-      prev[v] ← undefined    // Previous node in optimal path from source
-    end if 
-    add v to Q               // All nodes initially in Q (unvisited nodes)
-  end for
-  
-  while Q is not empty:
-    u ← vertex in Q with min dist[u]  // Source node in first case
-    remove u from Q 
-    
-    for each neighbor v of u:         // where v is still in Q.
-      alt ← dist[u] + length(u, v)
-      if alt < dist[v]:               // A shorter path to v has been found
-        dist[v] ← alt 
-        prev[v] ← u 
-      end if
+    for each vertex v in Graph:// Initialisation
+      if v ≠ source            // Where v has not yet been removed from Q (unvisited nodes)
+        dist[v] = infinity     // Unknown distance function from source to v
+        prev[v] = undefined    // Previous node in optimal path from source
+      end if 
+      add v to Q               // All nodes initially in Q (unvisited nodes)
     end for
-  end while
+    
+    while Q is not empty:
+      u = vertex in Q with min dist[u]  // Source node in first case
+      remove u from Q 
+      
+      for each neighbour v of u:         // where v is still in Q.
+        alt = dist[u] + length(u, v)
+        if alt < dist[v]:               // A shorter path to v has been found
+          dist[v] = alt 
+          prev[v] = u 
+        end if
+      end for
+    end while
 
-  return dist[], prev[]
+    return dist[], prev[]
 
-end function
-\end{minted}
+  end function
+\end{ccode}
 
-\subsubsection{Dijkstra's vs Floyd}
+% TODO: Decide whether to do this
+% \subsubsection{Dijkstra's vs Floyd}
