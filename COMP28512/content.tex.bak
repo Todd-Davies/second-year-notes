@@ -774,12 +774,14 @@ since binary numbers can be expressed as polynomials:
   \item \textbf{Summing}:\\
     To calculate the sum of two binary numbers, we can just XOR their bits.
     Subtracting is the same:
-N
+
     \[
       1001 \oplus 0111 = 1110
     \]
   \item \textbf{Long division}:\\
-    %TODO: Understand this
+    This isn't explained particurlaly well by the lecture slides (mainly because
+    multiplication isn't explained, which is helpful to understand for division)    
+    and I haven't got time to explain it before the exam, sorry! Ask Barry :)
 \end{description}
 
 There are three CRC generators used in practice:
@@ -1236,13 +1238,13 @@ is very slow.
 We can save power and transmission capacity by having the transmitter monitor
 its own transmissions, and abort as soon as it detects a collision. This is
 implemented by Ethernet, and is present at the physical layer of the network
-stack. The resuult of the collision detection is used by the Medium Access
+stack. The result of the collision detection is used by the Medium Access
 Control (MAC) sub-layer, which is part of the data link layer. This makes the
 decisions about when to transmit and when to back off etc.
 
-\subsection{Wireless contension}
+\subsection{Wireless contention}
 
-A wireless transmitter cannot moniter its own transmissions, because it can be
+A wireless transmitter cannot monitor its own transmissions, because it can be
 either transmitting or receiving, but not both concurrently. Even if a wireless
 transmitter could do that, it wouldn't matter because it only matters what is
 being received at the receiver, which is probably different from what is
@@ -1253,7 +1255,7 @@ Because of this, wireless protocols place an emphasis on avoiding collisions:
 \begin{description}
   \item \textbf{Real channel sensing}:\\
     Sense the channel and see if it's free, start transmitting if so. If the
-    receiver sesnses a transmission, then request a re-transmission after a 
+    receiver senses a transmission, then request a re-transmission after a 
     back-off period.
   \item \textbf{Virtual channel sensing}:\\
     If a device wants to transmit, then it sends a short \texttt{RTS} (request
@@ -1264,7 +1266,7 @@ Because of this, wireless protocols place an emphasis on avoiding collisions:
     doesn't receive the \texttt{ACK} within the timer period, then it will
     re-transmit. When other devices hear an \texttt{RTS} or \texttt{CTS}, they
     won't transmit for a period of time.
-    \marinpar{A \texttt{NAV} (Network Allocation Vector) flag is one that tells
+    \marginpar{A \texttt{NAV} (Network Allocation Vector) flag is one that tells
     a device to assume the channel is busy and is set whenever a \texttt{RTS} or
     \texttt{CTS} frame is heard.}
 \end{description}
