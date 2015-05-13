@@ -1303,4 +1303,140 @@ Bluetooth, such as file transfers, fax etc. This is in contrast to other
 protocols such as WiFi, where its up to the user/programmer to think of stuff to
 do. This makes Bluetooth more rigid.
 
-% Lecture 8
+\section{Real time computation}
+
+Often, we want to compute something quickly, but the definition of `quickly'
+changes depending on the context. Anti-lock breaking, and streaming media
+obviously have different requirements for real time computation; if media isn't
+processed fast enough, then you may have a few milliseconds of fuzzy music, but
+if your anti-lock breaks don't compute fast enough, then you'll probably crash
+you car.
+
+Henceforth, there are two types of real time computation:
+
+\begin{description}
+  \item \textbf{Hard real time}:\\
+    This is when a missed deadline is a \textit{system failure}.
+  \item \textbf{Soft real time}:\\
+    This is when a missed deadline is a \textit{loss of quality}.
+\end{description}
+
+Some requirements of real time include:
+
+\begin{mymulticols}
+  \begin{itemize}
+    \item An event should not occur until a given time has elapsed.
+    \item An event must take place before a given time has elapsed.
+    \item A certain computation must take place within a specified period of
+      time.
+    \item Responding to one event must take priority over responding to another
+      (less important) event.
+  \end{itemize}
+\end{mymulticols}
+
+\subsection{Scheduling}
+
+Scheduling is how you decide what task to execute next given a list of tasks,
+the readiness of them, how long they each take to execute and their respective
+deadlines.
+
+\subsection{External events}
+
+We could respond to external events simply by polling through each input, but
+this wastes a lot of power.
+
+An improvement on this is to use interrupts, which is when an external device
+sends an event flag to the processor so that it switches its attention to
+handling the event, which incurs context-switch overheads.
+
+Better still would be to use Direct Memory Access hardware, which is a separate
+processor that can move data from external sensors directly into memory without
+the need for the CPU to do anything.
+
+\subsection{Buffering}
+
+If the computer needs to process inputs and outputs in real time, then this is
+very hard. One process simply cannot do two things at once very easily (though
+it can do things \textit{psudo} at once, we want real time).
+
+A solution to this is to use input and output buffers so that timing can be met
+precisely, see Figure~\ref{buffers}.
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{images/buffers}
+  \caption{Buffers can allow the CPU to process data in blocks which is more
+  efficient than doing one input at a time.}
+  \label{buffers}
+\end{figure}
+
+If we use buffers between the process and the IO, then we can process data in
+blocks, which is more efficient than doing one input at a time since we can make
+use of things like parallel instructions to speed things up.
+
+In practice, we might give the buffers over to a DMA controller, which will mean
+the CPU can merely read and write to memory, and the DMA will take control of
+all the IO (see Figure~\ref{DMA}).
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{images/DMA}
+  \caption{A DMA device interfacing with IO}
+  \label{DMA}
+\end{figure}
+
+\textbf{Double buffers} allows the CPU to work on one buffer, while the DMA
+reads another to the output device, and for them to swap over once they have
+both exhausted their own buffers.
+
+\subsection{Timing}
+
+\marginpar{If you've done \texttt{COMP22712} then you'll be very familiar with
+timers in this sense, since you will probably have used one for stuff like
+waiting $n$ milliseconds, or to drive the processor to check for keyboard
+presses etc.}
+
+Most processor systems incorporate one (or more) timers or counters, often run
+of a system clock. They can be programmed to interrupt after a certain time, or
+at regular intervals. This can generate output events at precise times and
+provides the processor with a reference to real time.
+
+\textbf{Watchdog timers} can be used to make sure a system hasn't crashed. A
+watchdog timer must be reset regularly after a fixed time before it triggers,
+otherwise it will reset the main CPU. This has the advantage that if the CPU
+does crash, then real-time functionality can be restored after a brief loss of
+performance.
+
+\subsection{Real time communications/Operating Systems}
+
+Sometimes, we need to send real time data streams over unreliable and variable
+delay networks. The Real-time Transport Protocol is often used to facilitate
+this. If a packet is dropped, then by the time it is resent it'll be too late,
+so it is forgotten about. Packets are numbered and timestamped so that out of
+order packets can be detected and dealt with. Because of the real time
+requirement, no flow control, error control, acknowledgement or retransmission
+requesting is implemented, but lost packets can be approximated using
+interpolation. \marginpar{Interpolation is a method of constructing new data
+points within the range of a discrete set of known data points.}
+
+In a real time system, if nothing is going on then there is no point computing
+anything; there are no bonus points for finishing anything early! When there are
+no events to process, the CPU/network controller etc should power down and
+disable the clocks. When an event does happen, the CPU can be woken up. This is
+an event-driven model of computation.
+
+Real Time Operating Systems (RTOS) have event driven priority scheduling, where
+a task is switched to only when an event of higher priority needs to be
+processed. Tasks can either be running, ready or blocked, where most tasks are
+blocked most of the time.
+
+One major issue in real time computing is that context switching (going from one
+process to another) takes time. A context switch requires you to save the state
+(registers, open files etc) and load the state of the new one. This can take
+from tens to hundreds of CPU cycles. Context switches from interrupts are often
+optimised by using dedicated hardware resources (such as special interrupt
+registers), which makes it cheaper.
+
+A RTOS can reduce the cost of context switching by using co-routines. These let
+processes share a stack and other state, and use cooperative multitasking so
+that a task can hand over control to a higher priority task at a mutually
+convenient time. This requires programming restrictions to be stringently
+observed though.

@@ -41,3 +41,9 @@
 \BOOKMARK [2][-]{subsection.6.3}{Wireless contention}{section.6}% 41
 \BOOKMARK [3][-]{subsubsection.6.3.1}{Wireless problems}{subsection.6.3}% 42
 \BOOKMARK [3][-]{subsubsection.6.3.2}{Bluetooth}{subsection.6.3}% 43
+\BOOKMARK [1][-]{section.7}{Real time computation}{}% 44
+\BOOKMARK [2][-]{subsection.7.1}{Scheduling}{section.7}% 45
+\BOOKMARK [2][-]{subsection.7.2}{External events}{section.7}% 46
+\BOOKMARK [2][-]{subsection.7.3}{Buffering}{section.7}% 47
+\BOOKMARK [2][-]{subsection.7.4}{Timing}{section.7}% 48
+\BOOKMARK [2][-]{subsection.7.5}{Real time communications/Operating Systems}{section.7}% 49

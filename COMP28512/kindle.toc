@@ -41,3 +41,9 @@
 \contentsline {subsection}{\numberline {6.3}Wireless contention}{}{subsection.6.3}
 \contentsline {subsubsection}{\numberline {6.3.1}Wireless problems}{}{subsubsection.6.3.1}
 \contentsline {subsubsection}{\numberline {6.3.2}Bluetooth}{}{subsubsection.6.3.2}
+\contentsline {section}{\numberline {7}Real time computation}{}{section.7}
+\contentsline {subsection}{\numberline {7.1}Scheduling}{}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}External events}{}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Buffering}{}{subsection.7.3}
+\contentsline {subsection}{\numberline {7.4}Timing}{}{subsection.7.4}
+\contentsline {subsection}{\numberline {7.5}Real time communications/Operating Systems}{}{subsection.7.5}
