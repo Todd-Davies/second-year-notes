@@ -1198,6 +1198,69 @@ split into flits, which are teeny packets (see Figure~\ref{flits}).
   \end{tabular}
 \end{center}
 
-\section{Vitalisation}
+\section{Virtualization}
+
+\begin{wrapfigure}{R}{0.3\textwidth}
+  \centering
+  \includegraphics[width=0.25\textwidth]{images/types-of-virtualization}
+  \caption{The different types of virtualization. PIN is a tool to annotate
+  binary executables if you hadn't heard of it.}
+  \label{types-of-virtualization}
+\end{wrapfigure}
+
+Virtualization isolates the details of the hardware from the software that uses
+it. You can break virtualization down into two broad categories:
+
+\begin{description}
+  \item \textbf{Process Virtualization}:\\
+    Run a process under the control layer of software. The JVM does this.
+    \marginpar{Here, a ``layer of software'' can mean a lot of things, but
+    generally one or more processes.}
+  \item \textbf{System Virtualization}:\\
+    Run a whole OS under the control of a layer of software, e.g. VMware.
+\end{description}
+
+
+This is useful, since virtualization can translate between technologies
+(different instruction sets, system calls etc), change the level of abstraction
+(providing garbage collection, debugging etc) and even make the system resources
+look different (emulate CD drives, reduce the amount of RAM for a virtual
+machine).
+
+For example, the JVM interprets byte code, and maps it onto the host OS's API.
+Rosetta translates PowerPC binaries to x86 ones on the fly.
+
+\subsection{The details of virtualization}
+
+A virtualised OS runs on top of a Virtual Machine Monitor (VMM) or Hypervisor.
+This often (but not always, since it is sometimes one itself) sits on top of the
+\textit{actual} operating system running on the machine. The VMM will handle
+physical resource access for the guest OS since it runs in a privileged mode,
+and it makes sure the guest OS is isolated from other resources. These resources
+include:
+
+\begin{mymulticols}
+  \begin{itemize}
+    \item Timers
+    \item CPU registers
+    \item CPU flags (e.g. interrupt enable)
+    \item Device control registers (DMA, interrupt IO etc)
+    \item Memory mapping (page table etc)
+  \end{itemize}
+\end{mymulticols}
+
+Often, when a guest OS tries to access resources its not allowed to, it will
+trigger a trap instruction on the VMM, which allows the VMM to check the bounds
+of access for that instruction/OS and proceed accordingly. Since the VMM does
+the privileged operations, the guest OS can be unprivileged.
+
+This can be tricky sometimes though; some instructions behave differently
+according to what mode they are in, so the VMM must learn to handle that.
+
+If the guest OS is virtualization aware, then it is much easier to build a VMM,
+since the guest OS can call the VMM specifically for privileged operations,
+cooperate with the VMM over shared page tables and call the VMM for IO.
+
+%TODO: Carry on from VM lecture 3
 
 \section{Permanent Storage}

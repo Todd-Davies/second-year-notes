@@ -976,16 +976,16 @@ The state changes are as follows:
 
 \begin{figure}[H]
   \includegraphics[width=\textwidth]{images/MESI1}
-  \label{MESI1}
   \caption{MESI - local cache view}
+  \label{MESI1}
 \end{figure}
 
 \marginpar{`RWITM' means Read With Intent To Modify.}
 
 \begin{figure}[H]
   \includegraphics[width=\textwidth]{images/MESI2}
-  \label{MESI2}
   \caption{MESI - snooping cache view}
+  \label{MESI2}
 \end{figure}
 
 The consensus is that snooping protocols don't scale well beyond around 16 cores
@@ -1156,7 +1156,7 @@ There are three types of routing we're going to look at:
 
 There are two types of packet switching we'll look at, store and forward and
 wormhole switching. The premise is that data is split into small packets, some
-extra information is added to enable them to get totheir destination and they
+extra information is added to enable them to get to their destination and they
 are sent into the network. This allows time-multiplexing of network resources
 and is good for performance (especially in short messages). Packets are also
 split into flits, which are teeny packets (see Figure~\ref{flits}).
@@ -1164,8 +1164,8 @@ split into flits, which are teeny packets (see Figure~\ref{flits}).
 \begin{figure}
   \centering
   \includegraphics[width=0.5\linewidth]{images/flits}
-  \label{flits}
   \caption{How a packet is split up into flits.}
+  \label{flits}
 \end{figure}
 
 \begin{center}
@@ -1173,7 +1173,7 @@ split into flits, which are teeny packets (see Figure~\ref{flits}).
     \hline
     Store and forward &
     \begin{itemize}
-      \item A packet is not forwarded until all its phits arive to each node
+      \item A packet is not forwarded until all its phits arrive to each node
       \item Failure detection happens on the fly
       \item But performance is low
       \item And large buffers are required
@@ -1199,5 +1199,34 @@ split into flits, which are teeny packets (see Figure~\ref{flits}).
 \end{center}
 
 \section{Vitalisation}
+
+Virtualization isolates the details of the hardware from the software that uses
+it. You can break virtualization down into two broad categories:
+
+\begin{description}
+  \item \textbf{Process Virtualization}:\\
+    Run a process under the control layer of software. The JVM does this.
+    \marginpar{Here, a ``layer of software'' can mean a lot of things, but
+    generally one or more processes.}
+  \item \textbf{System Virtualization}:\\
+    Run a whole OS under the control of a layer of software, e.g. VMware.
+\end{description}
+
+This is useful, since virtualization can translate between technologies
+(different instruction sets, system calls etc), change the level of abstraction
+(providing garbage collection, debugging etc) and even make the system resources
+look different (emulate CD drives, reduce the amount of RAM for a virtual
+machine).
+
+For example, the JVM interprets byte code, and maps it onto the host OS's API.
+Rosetta translates PowerPC binaries to x86 ones on the fly.
+
+\begin{wrapfigure}{R}{0.3\textwidth}
+  \centering
+  \includegrapics[width=0.25\textwidth]{images/types-of-virtualization}
+  \caption{The different types of virtualization. PIN is a tool to annotate
+  binary executables if you hadn't heard of it.}
+  \label{types-of-virtualization}
+\end{wrapfigure}
 
 \section{Permanent Storage}

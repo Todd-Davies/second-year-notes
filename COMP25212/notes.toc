@@ -37,5 +37,6 @@
 \contentsline {subsection}{\numberline {6.3}On-chip interconnects}{21}{subsection.6.3}
 \contentsline {subsubsection}{\numberline {6.3.1}Routing}{22}{subsubsection.6.3.1}
 \contentsline {subsubsection}{\numberline {6.3.2}Switching}{22}{subsubsection.6.3.2}
-\contentsline {section}{\numberline {7}Vitalisation}{23}{section.7}
-\contentsline {section}{\numberline {8}Permanent Storage}{23}{section.8}
+\contentsline {section}{\numberline {7}Virtualization}{23}{section.7}
+\contentsline {subsection}{\numberline {7.1}The details of virtualization}{23}{subsection.7.1}
+\contentsline {section}{\numberline {8}Permanent Storage}{24}{section.8}
