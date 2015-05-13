@@ -33,17 +33,19 @@
 \BOOKMARK [3][-]{subsubsection.5.1.4}{The details of 4G}{subsection.5.1}% 33
 \BOOKMARK [3][-]{subsubsection.5.1.5}{5G and the future!}{subsection.5.1}% 34
 \BOOKMARK [2][-]{subsection.5.2}{GPS}{section.5}% 35
-\BOOKMARK [1][-]{section.6}{Medium Access Control}{}% 36
-\BOOKMARK [2][-]{subsection.6.1}{ALOHA}{section.6}% 37
-\BOOKMARK [3][-]{subsubsection.6.1.1}{Slotted ALOHA}{subsection.6.1}% 38
-\BOOKMARK [2][-]{subsection.6.2}{Carrier Sense Multiple Access}{section.6}% 39
-\BOOKMARK [3][-]{subsubsection.6.2.1}{CSMA collision detection}{subsection.6.2}% 40
-\BOOKMARK [2][-]{subsection.6.3}{Wireless contention}{section.6}% 41
-\BOOKMARK [3][-]{subsubsection.6.3.1}{Wireless problems}{subsection.6.3}% 42
-\BOOKMARK [3][-]{subsubsection.6.3.2}{Bluetooth}{subsection.6.3}% 43
-\BOOKMARK [1][-]{section.7}{Real time computation}{}% 44
-\BOOKMARK [2][-]{subsection.7.1}{Scheduling}{section.7}% 45
-\BOOKMARK [2][-]{subsection.7.2}{External events}{section.7}% 46
-\BOOKMARK [2][-]{subsection.7.3}{Buffering}{section.7}% 47
-\BOOKMARK [2][-]{subsection.7.4}{Timing}{section.7}% 48
-\BOOKMARK [2][-]{subsection.7.5}{Real time communications/Operating Systems}{section.7}% 49
+\BOOKMARK [2][-]{subsection.5.3}{Multimedia communications}{section.5}% 36
+\BOOKMARK [3][-]{subsubsection.5.3.1}{Streaming protocols}{subsection.5.3}% 37
+\BOOKMARK [1][-]{section.6}{Medium Access Control}{}% 38
+\BOOKMARK [2][-]{subsection.6.1}{ALOHA}{section.6}% 39
+\BOOKMARK [3][-]{subsubsection.6.1.1}{Slotted ALOHA}{subsection.6.1}% 40
+\BOOKMARK [2][-]{subsection.6.2}{Carrier Sense Multiple Access}{section.6}% 41
+\BOOKMARK [3][-]{subsubsection.6.2.1}{CSMA collision detection}{subsection.6.2}% 42
+\BOOKMARK [2][-]{subsection.6.3}{Wireless contention}{section.6}% 43
+\BOOKMARK [3][-]{subsubsection.6.3.1}{Wireless problems}{subsection.6.3}% 44
+\BOOKMARK [3][-]{subsubsection.6.3.2}{Bluetooth}{subsection.6.3}% 45
+\BOOKMARK [1][-]{section.7}{Real time computation}{}% 46
+\BOOKMARK [2][-]{subsection.7.1}{Scheduling}{section.7}% 47
+\BOOKMARK [2][-]{subsection.7.2}{External events}{section.7}% 48
+\BOOKMARK [2][-]{subsection.7.3}{Buffering}{section.7}% 49
+\BOOKMARK [2][-]{subsection.7.4}{Timing}{section.7}% 50
+\BOOKMARK [2][-]{subsection.7.5}{Real time communications/Operating Systems}{section.7}% 51

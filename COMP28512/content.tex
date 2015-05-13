@@ -1141,6 +1141,87 @@ determine its distance from the satellite by the offset between the transmission
 time and received time. If at least four satellites can be `heard' by the
 receiver, then its position can be accurately found.
 
+\subsection{Multimedia communications}
+
+We need to efficiently, reliably and sometimes in real-time, send large amounts
+of data. We can use compression to reduce the volume of data with acceptable
+quality/volume trade-offs, and bit error correction to allow us to reduce the
+transmit power to make this easier. In the end, it's a series of trade-offs
+between power, bandwidth, latency, quality and more factors.
+
+To avoid disappointing the user with a poor quality link, smartphones will often
+download a whole file and then use it. It's not real time, but the user will
+have uninterrupted access to the file when its on the device. However, the file
+could take a (long) while to download, and it could also take up valuable space
+on the device.
+
+One example of this may be if the user wanted to download a video for a train
+journey where their data connection might be patchy for the duration of the
+journey (maybe it's a long tube journey in London).
+
+\marginpar{\textit{In theory}, the bandwidth of the data connection is enough to
+stream the content in real time especially with 3/4G.}
+
+Usually though, two things are true about the situation; firstly, the bandwidth
+of the data connection is higher than or similar that of the file being
+downloaded (e.g. a mp3 file or a movie), and secondly, the data connection may
+not always be available for the duration that its needed (i.e. when you're
+listening to a song).
+
+We can take advantage of a \textit{buffer} to smooth out the jitter of the data
+connection. We can start the media player as soon as we have a sufficient
+reservoir of data. This analogy extends nicely to when we want to get more data,
+and stop downloading it; when the reservoir of data is getting low (maybe we have
+a minute of data left in the buffer), then we should request more from the
+server, but when the buffer is nearly full, we should stop asking for more data,
+otherwise we might have to `bin' some of it since we wouldn't have room on the
+device. See Figure~\ref{fig:buffers} for a depiction.
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{images/buffer}
+  \caption{We start downloading at the low water mark and stop when we reach the
+  high water mark.}
+  \label{fig:buffers}
+\end{figure}
+
+\subsubsection{Streaming protocols}
+
+Protocols such as TCP are a bit overkill for streaming. We generally (well, not
+as much) don't need to resend lost packets, or protect too much against bit
+errors, since both cases are less critical for streamed data.
+
+To protect against lost packets, we can put alternate samples in neighbouring
+packets. If one packet is lost, then we can interpolate the values in the
+received packet to smooth over the loss and get an approximation for the lost
+packet, as shown in Figure~\ref{interpolate}.
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{images/interpolate}
+  \caption{Packet 3 was lost, but we can figure out an approximation for what
+  was in there by interpolating the data from packet 2.}
+  \label{interpolate}
+\end{figure}
+
+\subsubsection{VoIP Telephony}
+
+Since VoIP is interactive, we treat it slightly different to streaming data.
+First of all, we need to make sure the round trip time for packets is less than
+around $0.5\si{\second}$, since otherwise it will make participants talk over
+each other.
+
+Because of this requirement, we can't use TCP since any retransmissions will
+probably be too late, so instead we use RTP. This is a ``fire and forget''
+protocol, since if it is lost, then we don't mind. We can tolerate bit errors
+and packet loss by interpolation.
+
+Since the LTE standard (aspiring to 4G) only supports packet switching, we have
+to use VoIP to talk to people! \marginpar{Though phones using LTE currently move
+down to 2/3G to talk}
+
+\subsubsection{Optimising power}
+
+%TODO: Slide 13 from lecture 9
+
 \section{Medium Access Control}
 
 If there are $N$ independent stations each generating packets for transmission

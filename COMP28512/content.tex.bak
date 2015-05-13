@@ -1141,6 +1141,67 @@ determine its distance from the satellite by the offset between the transmission
 time and received time. If at least four satellites can be `heard' by the
 receiver, then its position can be accurately found.
 
+\subsection{Multimedia communications}
+
+We need to efficiently, reliably and sometimes in real-time, send large amounts
+of data. We can use compression to reduce the volume of data with acceptable
+quality/volume trade-offs, and bit error correction to allow us to reduce the
+transmit power to make this easier. In the end, it's a series of trade-offs
+between power, bandwidth, latency, quality and more factors.
+
+To avoid disapointing the user with a poor quality link, smartphones will often
+download a whole file and then use it. It's not real time, but the user will
+have uninterrupted access to the file when its on the device. However, the file
+could take a (long) while to download, and it could also take up valuble space
+on the device.
+
+One example of this may be if the user wanted to download a video for a train
+journey where their data connection might be patchy for the duration of the
+journey (maybe it's a long tube journey in London).
+
+\marginpar{\textit{In theory}, the bandwidth of the data connection is enough to
+stream the content in real time especially with 3/4G.}
+
+Usually though, two things are true about the situation; firstly, the bandwidth
+of the data connection is higher than or similar that of the file being
+downloaded (e.g. a mp3 file or a movie), and secondly, the data connection may
+not always be available for the duration that its needed (i.e. when you're
+listening to a song).
+
+We can take advantage of a \textit{buffer} to smooth out the jitter of the data
+connection. We can start the media player as soon as we have a sufficient
+reservoir of data. This analogy extends nicely to when we want to get more data,
+and stop downloading it; when the resovoir of data is getting low (maybe we have
+a minute of data left in the buffer), then we should request more from the
+server, but when the buffer is nearly full, we should stop asking for more data,
+otherwise we might have to `bin' some of it since we wouldn't have room on the
+device. See Figure~\ref{fig:buffers} for a depiction.
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{buffer}
+  \caption{We start downloading at the low water mark and stop when we reach the
+  high water mark.}
+  \label{fig:buffers}
+\end{figure}
+
+\subsubsection{Streaming protocols}
+
+Protocols such as TCP are a bit overkill for streaming. We generally (well, not
+as much) don't need to resend lost packets, or protect too much against bit
+errors, since both cases are less critical for streamed data.
+
+To protect against lost packets, we can put alternate samples in neighbouring
+packets. If one packet is lost, then we can interpolate the values in the
+received packet to smooth over the loss and get an approximation for the lost
+packet, as shown in Figure~\ref{interpolate}.
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{interpolate}
+  \caption{Packet 3 was lost, but we can figure out an approximation for what
+  was in there by interpolating the data from packet 2.}
+  \label{interpolate}
+\end{figure}
+
 \section{Medium Access Control}
 
 If there are $N$ independent stations each generating packets for transmission
@@ -1394,7 +1455,7 @@ timers in this sense, since you will probably have used one for stuff like
 waiting $n$ milliseconds, or to drive the processor to check for keyboard
 presses etc.}
 
-Most processor systems incorperate one (or more) timers or counters, often run
+Most processor systems incorporate one (or more) timers or counters, often run
 of a system clock. They can be programmed to interrupt after a certain time, or
 at regular intervals. This can generate output events at precise times and
 provides the processor with a reference to real time.
@@ -1410,7 +1471,7 @@ performance.
 Sometimes, we need to send real time data streams over unreliable and variable
 delay networks. The Real-time Transport Protocol is often used to facilitate
 this. If a packet is dropped, then by the time it is resent it'll be too late,
-so it is frogotten about. Packets are numbered and timestamped so that out of
+so it is forgotten about. Packets are numbered and timestamped so that out of
 order packets can be detected and dealt with. Because of the real time
 requirement, no flow control, error control, acknowledgement or retransmission
 requesting is implemented, but lost packets can be approximated using
@@ -1424,7 +1485,7 @@ disable the clocks. When an event does happen, the CPU can be woken up. This is
 an event-driven model of computation.
 
 Real Time Operating Systems (RTOS) have event driven priority scheduling, where
-a task is switched to only when an event of higher priorit needs to be
+a task is switched to only when an event of higher priority needs to be
 processed. Tasks can either be running, ready or blocked, where most tasks are
 blocked most of the time.
 
@@ -1438,5 +1499,5 @@ registers), which makes it cheaper.
 A RTOS can reduce the cost of context switching by using co-routines. These let
 processes share a stack and other state, and use cooperative multitasking so
 that a task can hand over control to a higher priority task at a mutually
-convenient time. This requires programming restrictions to be stringiently
+convenient time. This requires programming restrictions to be stringently
 observed though.
