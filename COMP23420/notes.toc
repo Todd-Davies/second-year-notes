@@ -1,7 +1,0 @@
-\contentsline {section}{\numberline {1}A history of software engineering}{3}{section.1}
-\contentsline {subsection}{\numberline {1.1}Why do projects fail?}{3}{subsection.1.1}
-\contentsline {section}{\numberline {2}Gathering requirements}{4}{section.2}
-\contentsline {subsection}{\numberline {2.1}Maintaining a glossary}{4}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Formatting a requirements document}{5}{subsection.2.2}
-\contentsline {section}{\numberline {3}UML}{5}{section.3}
-\contentsline {subsection}{\numberline {3.1}Actors and use cases}{5}{subsection.3.1}
