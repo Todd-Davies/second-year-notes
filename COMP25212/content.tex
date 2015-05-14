@@ -241,8 +241,8 @@ There are three types of cache misses, called the three C's
 
 In order to fill a cache from empty, it takes $\frac{\text{Cache
 size}}{\text{Line size}}$ memory accesses. If we multiply this by the time it
-takes for a single memory access (say $10\micro\second$), then we can work out
-how long it will take to fill the cache (assuming each access is to a unique
+takes for a single memory access (say $10\si{\micro\second}$), then we can work
+out how long it will take to fill the cache (assuming each access is to a unique
 memory address). We can derive how many CPU cycles this takes from this.
 
 \subsection{Cache consistency}
@@ -1261,6 +1261,236 @@ If the guest OS is virtualization aware, then it is much easier to build a VMM,
 since the guest OS can call the VMM specifically for privileged operations,
 cooperate with the VMM over shared page tables and call the VMM for IO.
 
-%TODO: Carry on from VM lecture 3
+\subsection{Operations on VM's}
+
+When you start a VM, the hypervisor will save the current registers, load the
+VM's initial registers and jump to the new VM's PC address. Likewise, when a VM
+is stopped, the hypervisor will save its registers into its own memory space. It
+is important to not that VM's are stopped and started all the time so that the
+CPU (and other resources) can be shared.
+
+When the VM is stopped, its memory and IO state is also retained as well as its
+CPU registers. It is best to stop a VM when its IO is \marginpar{Quiescent means
+to be `in a state or period of inactivity or dormancy'}\textit{quiescent}, so
+that we don't have to save loads of IO buffers etc.
+
+Once we've stopped a VM, we can freeze it by saving all this state into a file.
+This file tends to be large, since it contains the whole operating system, its
+installed applications and the state such as the registers etc.
+
+Because virtual machines can be stored as files, there are a number of things we
+could do with them:
+
+\begin{mymulticols}
+  \begin{itemize}
+    \item Move a VM onto a different machine
+    \item Snapshot the state of a VM and roll it back later
+    \item Archive a VM into a database or secondary storage
+    \item Quickly start an archived VM (rapid provisioning)
+    \item Live migration (we'll get on to this)
+    \item Load balancing (and this)
+  \end{itemize}
+\end{mymulticols}
+
+\subsubsection{Live migration}
+
+Wouldn't it be good to be able to move a VM from one machine to another without
+pausing execution of the VM? That means we could change the physical machine a
+VM is running on (maybe to repair or upgrade the old one) with minimal
+interruption for the end user.
+
+I'm going to use Wikipedia's explanation for this, since it's really good:
+
+\begin{aquote}{\url{http://en.wikipedia.org/wiki/Live_migration}}
+  \textbf{Warm-up phase}
+  
+  In pre-copy memory migration, the Hypervisor typically copies all the memory
+  pages from source to destination while the VM is still running on the source.
+  If some memory pages change (become `dirty') during this process, they will be
+  re-copied until the rate of re-copied pages is not less than page dirtying
+  rate.
+
+  \textbf{Stop-and-copy phase}
+
+  After the warm-up phase, the VM will be stopped on the original host, the
+  remaining dirty pages will be copied to the destination, and the VM will be
+  resumed on the destination host. The time between stopping the VM on the
+  original host and resuming it on destination is called `down-time', and ranges
+  from a few milliseconds to seconds according to the size of memory and
+  applications running on the VM. There are some techniques to reduce live
+  migration down-time, such as using probability density function of memory
+  change.
+\end{aquote}
+
+\subsubsection{Load balancing}
+
+Say we had two physical machines and six VM's. The six VM's were distributed
+equally between two people, one of which did parallel text mining, and the other
+ran a twitter bot. Since we wanted to be fair, we assigned them one physical box
+each, with their three VM's on it, however, the text mining guy was always
+running at $100\%$ CPU utilisation, while the other guy barely got over $2\%$.
+
+This is where load balancing can be helpful; we could have the Hypervisor move
+VM's between physical machines based on the relative load on the physical
+machines. This would work independently of the application of the running VMs.
+This way, our text mining guy can (in theory) have $98\%$ of the CPU power of
+the second physical machine as well as near $100\%$ of the first one too!
+
+We can also use a similar technique to keep services highly available, if we
+regularly copy the state of one VM onto another physical machine, that secondary
+one is effectively a standby backup in case the first one crashes.
 
 \section{Permanent Storage}
+
+\subsection{Disks and filesystems}
+
+Broadly, there are three main categories of permanent storage media:
+
+\begin{description}
+  \item \textbf{Write Once, Read Many} (WORM):\\
+    This includes CD-ROM, DVD-ROM, and some Blu-ray Disks. Once you've written,
+    you can't write over it.
+  \item \textbf{Write Many, Read Many}:\\
+    This includes Hard Drives, tape drivers. The writes are fully reversible for
+    the purposes of the computer. \marginpar{Of course, the writes aren't
+    literally fully reversible because of wear etc, but they are near enough.}
+  \item \textbf{Write (not too) Many, Read Many}:\\
+    Rewritable CD/DVD's have hundreds to thousands of write cycles, and flash
+    memory has more, from the thousands to the low millions. These devices will
+    wear slightly on each write, making them less effective.
+\end{description}
+
+\subsubsection{Hard drives}
+
+\begin{wrapfigure}{R}{0.2\textwidth}
+  \centering
+  \includegraphics[width=0.4\textwidth]{images/hard-drive}
+  \caption{The structure of a `traditional' spinning disk Hard Drive}
+  \label{hard-drive}
+\end{wrapfigure}
+
+Hard drives consist of multiple magnetic disks (platters) laid on top of each
+other that spin around and can be written to or read from by a `head'. Each
+platter can store around $2\si{\tera\byte}$ at the moment, and hard drives often
+have around four of them, meaning that the largest hard drives can store about
+$8\si{\tera\byte}$ of data. The platters rotate at one of four speeds, $5400RPM,
+7200RPM, 10000RPM$ or $15000RPM$.
+
+Hard drives are power hungry devices compared to lots of other components in the
+computer since they need power for spinning the platters, moving the heads,
+reading and writing, the chips on the hard drive that control the IO etc.
+
+Hard drives are very slow in terms of data bandwidth and latency compared to
+other forms of memory storage such as RAM. The following terms are used to
+quantify hard drive performance characteristics (refer to Figure~\ref{hd-config}
+if you've not heard of some of the terminology before):
+
+\begin{description}
+  \item \textbf{Seek Time}:\\
+    This is the time it takes for the head to reach the target track on the
+    platter.
+  \item \textbf{Search Time}:\\
+    This is the time for the target sector to arrive under the head.
+  \item \textbf{Transfer Rate}:\\
+    This is the amount of data that can be read per unit time. It depends on
+    a lot of factors such as where data is on the disk and access patterns of
+    the data.
+  \item \textbf{Disk Access Time}:\\
+    The total time it takes to access data on the disk:
+    \[
+     \text{Disk access time} = \text{Seek time} + \text{Search time}
+                                + \text{Transfer time}
+    \]
+\end{description}
+
+It is sometimes important to compute the average access time of a hard drive
+given the seek time, rotation speed, transfer speed and sector size. For
+example, if a sector is $512\si{\byte}$, the seek time is
+$8.5\si{\milli\second}$, the disk rotates at $7200RPM$ and the transfer speed is
+$177\si{\mega\byte\per\second}$, then we can compute the access time to be:
+
+\marginpar{This assumes that the hard drive will have to do $0.5$ rotations to
+reach the correct sector (this is the average number of rotations when you think
+about it).}
+
+\[
+  \begin{split}
+    \text{Search Time (\si{\milli\second})} &= \frac{0.5\text{rotations} \times 60}{7200RPM}\\
+                                            &= 4.16\si{\milli\second}\\
+    \text{Transfer Time (\si{\milli\second})} &= \frac{512\si{\byte}}{177\times10^6\si{\byte\per\second}}\\
+                                              &= 2.89\si{\micro\second}\\
+    \text{Disk access time} &= \text{Seek time} + \text{Search time}
+                                + \text{Transfer time}\\
+                            &= 8.5\si{\milli\second} + 4.16\si{\milli\second} + 2.89\si{\micro\second}\\
+                            &= 12.66\si{\milli\second}
+  \end{split}
+\]
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/hd-schematic}
+  \caption{The internal structure of a hard drive and the layout of its disk.}
+  \label{hd-config}
+\end{figure}
+
+\marginpar{See slides 9-14 on the first of the storage lecture notes for a
+pictorial example.}
+
+Sometimes, when the Operating Systems wants to read a file off the hard disk,
+the file will be split over multiple sectors. In order to read the file, the
+hard drive will need to move to the head to each sector to read the whole file.
+If the sectors are physically distant from each other (say one was on the very
+inner track of the disk, and one was on the outermost track), then the hard
+drive may have to `waste' rotations in order to move the head to the correct
+track. An internal processor in the hard drive will re-order the Operating
+System's sector requests so that they are in the most efficient order for
+retrieval.
+
+\subsubsection{RAID}
+
+RAID stands for a Redundant Array of Independent Disks, which is a type of
+storage virtualization.
+
+Hard disks are often too slow because of a high seek time, a high search time
+and a low sustained transfer rate. We can combat the first two problems by
+having multiple platters on the disk so there are more sectors per cylinder (so
+the head has to move less), and increasing the speed of rotation will decrease
+the search time.
+
+A low sustained transfer rate cannot be easily increased though. One solution is
+to \textit{stripe} a file over multiple disks. This is called \texttt{RAID 0}.
+If a file can be split up into nine sections, we could put it on four disks like
+so, and speed up our sustained transfer rate by around four times:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{images/raid0}
+  \caption{RAID 0 gives higher speed, but lower reliability.}
+  \label{raid0}
+\end{figure}  
+
+If a disk did break in this situation, then it'd be bad since whole swathes of
+the file would disappear.
+
+To avoid this, we could use \texttt{RAID 1}, which mirrors the data onto
+another disk. This means we would have four copies of the same data, but
+\textit{all} of our hard drives would have to fail before we lost any data:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{images/raid1}
+  \caption{RAID 1 doesn't increase speed, but it does increase reliability}
+  \label{raid1}
+\end{figure}
+
+A half-way-house solution between these two, would be \texttt{RAID 10}. This is
+a nested configuration, which still stripes the data, but keeps copies of the
+stripes. It can tolerate disk failure as long as no mirror loses all of its
+drives:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{images/raid10}
+  \caption{RAID 10 gives higher speed, and higher reliability.}
+  \label{raid10}
+\end{figure}  

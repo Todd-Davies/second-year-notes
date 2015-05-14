@@ -39,4 +39,10 @@
 \BOOKMARK [3][-]{subsubsection.6.3.2}{Switching}{subsection.6.3}% 39
 \BOOKMARK [1][-]{section.7}{Virtualization}{}% 40
 \BOOKMARK [2][-]{subsection.7.1}{The details of virtualization}{section.7}% 41
-\BOOKMARK [1][-]{section.8}{Permanent Storage}{}% 42
+\BOOKMARK [2][-]{subsection.7.2}{Operations on VM's}{section.7}% 42
+\BOOKMARK [3][-]{subsubsection.7.2.1}{Live migration}{subsection.7.2}% 43
+\BOOKMARK [3][-]{subsubsection.7.2.2}{Load balancing}{subsection.7.2}% 44
+\BOOKMARK [1][-]{section.8}{Permanent Storage}{}% 45
+\BOOKMARK [2][-]{subsection.8.1}{Disks and filesystems}{section.8}% 46
+\BOOKMARK [3][-]{subsubsection.8.1.1}{Hard drives}{subsection.8.1}% 47
+\BOOKMARK [3][-]{subsubsection.8.1.2}{RAID}{subsection.8.1}% 48

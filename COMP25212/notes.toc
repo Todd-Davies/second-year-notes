@@ -39,4 +39,10 @@
 \contentsline {subsubsection}{\numberline {6.3.2}Switching}{22}{subsubsection.6.3.2}
 \contentsline {section}{\numberline {7}Virtualization}{23}{section.7}
 \contentsline {subsection}{\numberline {7.1}The details of virtualization}{23}{subsection.7.1}
-\contentsline {section}{\numberline {8}Permanent Storage}{24}{section.8}
+\contentsline {subsection}{\numberline {7.2}Operations on VM's}{24}{subsection.7.2}
+\contentsline {subsubsection}{\numberline {7.2.1}Live migration}{24}{subsubsection.7.2.1}
+\contentsline {subsubsection}{\numberline {7.2.2}Load balancing}{25}{subsubsection.7.2.2}
+\contentsline {section}{\numberline {8}Permanent Storage}{25}{section.8}
+\contentsline {subsection}{\numberline {8.1}Disks and filesystems}{25}{subsection.8.1}
+\contentsline {subsubsection}{\numberline {8.1.1}Hard drives}{25}{subsubsection.8.1.1}
+\contentsline {subsubsection}{\numberline {8.1.2}RAID}{26}{subsubsection.8.1.2}
