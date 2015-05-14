@@ -1,4 +1,6 @@
 *.log
 *.pygtex
 *.bak
-
+*.out
+*.aux
+*.toc
