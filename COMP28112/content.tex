@@ -820,3 +820,177 @@ There are many ways of trying to achieve this:
     This should be carefully implemented though; you don't want to stop random
     deadlocks when they are actually normally functioning tasks.
 \end{description}
+
+\section{Byzantine Fault Tolerance}
+
+If there are two generals on a either side of a valley that want to attack a
+city in the valley, but can only win the battle if they both attack at the same
+time, then they need to coordinate their attack so that they do. This is hard,
+since the valley is such that the only way they can communicate is by sending
+runners through the valley, where they might get killed. If the generals do
+manage to coordinate an attack over this `channel' then, great; they'll take the
+city. However, if the last message in the sequence of messages was not sent,
+then the receiving general may decide not to attack (though the sending general
+wouldn't know any different) and the attacking armies would lose.
+
+We could send lots of messages and hope they get through, thereby reducing the
+chance that no messages will get through and disaster will be the result. We can
+never totally eliminate the risk though.
+
+The worst kind of problem is when one general is incompetent or malicious and
+won't co-operate; then we're really done for! Dealing with these problems is
+related to the field of byzantine fault tolerance.
+
+Suppose we have four generals now. If there is one malicious general, then we
+could use majority voting about attacking and retreating to ignore the effects
+of his meddling. However, if there are three generals, then we cannot:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{images/malicious-general}
+  \caption{One malicious general out of three}
+  \label{mal-general}
+\end{figure}
+
+In general, it is possible to counteract the effects of a malicious general if
+$n\leq3f$, where $f$ is the number of malicious generals, and $n$ is the total
+number of generals.
+
+\section{Performance}
+
+Performance is sometimes hard to achieve with distributed systems, especially
+since it is often chosen as the trade off for something else. For example, XML
+may be sent instead of raw binary data because it is human readable, but XML is
+also very expensive compared to binary formats.
+
+It would be bad if we created a system, only to realise it couldn't hope to
+achieve a performance anywhere near to close enough to what we need. As a
+result, performance modelling is often used to estimate how a system will react
+to load by capturing the most relevant characteristics of the system and
+simulating them. Different circumstances can be modelled, and pitfalls observed
+in advance to building the system.
+
+Since the model is obviously not reality, this can introduce some errors into
+our predictions, but in general, it points you in the right direction in terms
+of knowing how a system will perform. Performance tuning can be done in a model
+too, for example, what is the best load balancing strategy and how does it scale
+for different numbers of servers?
+
+There are two main approaches to modelling:
+
+\begin{description}
+  \item \textbf{Analytical solutions}:\\
+    This is where you derive formulas that describe the behaviour of a system.
+    This is apparently more advanced maths than we're expected to know, but the
+    general gist can be found by googling for ``Queuing Theory''.
+
+    An example of this could be Amdahl's Law. This basic model is used to
+    estimate the running time of a program on $p$ CPU's. The premise is that
+    if $95\%$ of the program can be parallelised, then the maximum speed up can 
+    only be $20\times$, since the last five percent cannot be parallelised and
+    must run one one core.
+
+    Another simple example is the time it takes for a http response:
+
+    \[
+      time = RTT + t_{request} + t_{process} + t_{reply}
+    \]
+
+    Where RTT is the round trip time, the $t_{request}$ and $t_{response}$ are
+    the size of the http message divided by the bandwidth, and $t_{process}$ is 
+    how long it takes to process the request.
+
+    \textbf{Queuing Theory} is based on applied probability theory, and studies
+    the behaviour of systems with queues of `work' waiting to be done. If we
+    are interested for example, in the average queue length, we can work that
+    out using \textbf{Little's Law}.  This states:
+
+    \[
+      \text{Average number of customers} = \text{arrival time} \times \text{service time}
+    \]
+
+  \item \textbf{Simulations}:\\
+    Monte-Carlo simulations or Discrete-Event simulations can be used to model
+    the behaviour of a system.
+
+    Monte-Carlo methods generate random inputs and simulate what follows from
+    those inputs, while Discrete Event simulation proceeds as a chronological
+    sequence of events (though the events are still randomly generated). The
+    main differentiator is that Discrete Event simulation has the notion of
+    time.
+\end{description} 
+
+\section{Redundancy}
+
+Redundancy is a technique to increase availability. If a server crashes, then we
+can have a replica of that server that we can use instead, and henceforth
+failures can be tolerated by the use of redundant components. For example, in
+the internet, there is usually more than one route between two machines, so if
+one route fails, then the other might succeed. The trade off with replicating
+services, is that there is a cost associated with the maintenance of the
+replicas (ensuring they're always available etc).
+
+An example of redundancy in practice is the primary flight computer in Boeing
+777 aircraft. The probability that all the computers will fail, is the
+probability of the first one failing, multiplied by the probability of the
+second, multiplied by the probability of the third. If one fails every 500
+flights (which would be extremely poor), then the probability of them all
+failing is $\frac{1}{500}^3 = 8\times10^-9$.
+
+If we replicate services, then we don't just get redundancy as a benefit, we
+also get performance! Caches are a good example of this; by replicating the data
+and putting it `close' to the user of the data, then the time to access the data
+decreases.
+
+\subsection{Problems with replication}
+
+If you're taking \texttt{COMP25212} then you're probably quite familiar with the
+joys of consistency between caches. However, for those of you that aren't, let
+it be known, that this can be a sticky problem sometimes.
+
+If a copy of data is modified, then the copy is obviously different from all the
+other copies. If we want to ensure that the data is consistent over all of the
+copies, then we need to copy the data from the updated copy to all the other
+copies. This could increase our bandwidth and CPU time requirements
+significantly, the cure may be worse than the disease!
+
+If it takes time to copy the updated cache value to all other caches, then we
+may need to stop processing on other nodes while the update takes place in case
+the other nodes use the old value and end up using the wrong data. This has the
+potential to be very slow, especially if we're working over the internet.
+
+The solution is to loosen the consistency constraints. This is easier in some
+settings than in others, for example, web browsers can cache web pages
+harmlessly, and if the user wants to see the most up to date content, they an
+manually refresh the cache. However, a CPU couldn't do that with its L1 cache,
+since multiple cores may end up working with completely distinct data.
+
+We can use \textit{consistency models} to agree a contract between processes and
+caches. If the processes agree to obeying certain rules, then the cache will
+agree to respond correctly. For example, if we are reading a cached value, then
+we would normally want the most up to date version of that value. However, the
+consistency model might dictate that the most up to date value might not be
+returned, but it will specify what value would be returned.
+
+Strict consistency is often required in some systems, which makes sense on local
+machines (e.g. between processor cores), since communication time is low, but on
+distributed systems, this could be a massive bottleneck. Consequently, we need a
+solution that has an absolute global time to dictate which events happened after
+which other events.
+
+\textit{Sequential Consistency} is when the result of any execution is the same
+as if operations of all the processes were executed in some sequential order and
+the operations of each process appear in the order specified by the program.
+This include reads and write. \textit{Casual Consistency} is when the reads can
+appear out of order, but the potentially causal writes (i.e. writes that could
+affect each other) must still be in the same order. \textit{Eventual
+consistency} gives a time limit for the updates to propagate to all the clients.
+This is a weak consistency guarantee.
+
+Choosing the correct locations on the network for replica (cache) servers is
+important since we want the minimum amount of travel time for each packet to
+reach one. We can use a greedy heuristic to do this, you just find the total
+cost of accessing each site from the other sites and choose the one with the
+minimum total cost. The heuristic bit, is that when you want to replace another
+replica, for each node, calculate its new shortest distance with the new cache
+in place.
