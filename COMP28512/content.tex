@@ -74,7 +74,7 @@ example, if a wave has ten cycles from $1000$ samples at $30,000Hz$, then its
 frequency will by $\frac{10}{1000} \times 30,000 = 300Hz$. This is visible in
 Figure~\ref{discrete-signal}.
 
-\begin{figure}
+\begin{figure}[ht]
   \centering
   \begin{tikzpicture}
     \begin{axis}[%
@@ -136,7 +136,7 @@ It may be hard to work out exactly why aliasing occurs, but
 Figure~\ref{aliasing}, showing a $6\si{\kilo\hertz}$ wave sampled at $8\si{\kilo\hertz}$ makes it easier
 to see:
 
-\begin{figure}[H]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=\textwidth]{images/aliasing}
   \caption{A $6\si{\kilo\hertz}$ wave sampled at $8\si{\kilo\hertz}$ has a post-sampling frequency of 
@@ -182,7 +182,7 @@ Instead of processing waves, and parts of waves, how about we turn them into
 frequencies and process those instead? Frequencies are a lot easier to deal with
 in many ways since they are easier to understand and smaller to store.
 
-\subsubsection{Sinusoids}
+\subsection{Sinusoids}
 
 A sinusoid is a sine wave delayed by $D$ seconds, and is given by the formula:
 
@@ -250,7 +250,7 @@ called \textbf{psudo-periodicity}.
   \label{fig-complex-wave}
 \end{figure} 
 
-\subsubsection{Fourier Series}
+\subsection{Fourier Series}
 
 Any periodic wave of frequency $F$ can be written as:
 
@@ -287,7 +287,7 @@ second, then the formula would be:
 The more harmonics we compute, the closer we can get to reconstructing the wave
 from them afterwards.
 
-\subsubsection{Discrete Fourier Transform (iDFT)}
+\subsection{Discrete Fourier Transform (iDFT)}
 
 The DFT converts samples of length $n$ into $n/2 - 1$ samples and a `dc term'.
 They are arranged in a length $n$ array, but the second half is the same as the
@@ -407,7 +407,7 @@ possible, they might have had either one less value (so that the numbers could
 be represented in three bits), or made full use of the four bits for the value,
 and used values from $0-7$.
 
-\begin{figure}[H]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=\textwidth]{images/quantised-wave}
   \caption{An analogue wave (a), after its sampled (b), and once it's been quantised (c)}
@@ -619,6 +619,10 @@ understand and implement, and requires little processing power (according to
 Wikipedia\footnote{\url{http://en.wikipedia.org/wiki/FS-1015}}, it requires
 $20$MIPS and $2\si{\kilo\byte}$ of RAM).
 
+When the speech is unvoiced, then a consonant is being transmitted; vocal chords
+are not active when this happens and so a random signal can be used in place of
+the fundamental frequency.
+
 \subsubsection{Codebook Excited LPC}
 
 Codebook Excited LPC (CELP) is a way of further reducing the bandwidth used by
@@ -630,6 +634,8 @@ produce.
 It finds the most similar sample using `analysis by synthesis', which involves
 trying all the entries in the codebook one by one, and sending whichever is the
 closest to the one we want. 
+
+\label{amr}
 
 CELP is used in commercial mobile telephones, and is utilised by the
 \textbf{Adaptive MultiRate} (AMR) coder for rates at
@@ -984,14 +990,14 @@ using buffers shown in Figure~\ref{2g-buffers}.
     wave is sent for $1$ and a high frequency one is for $0$. It is simple, not
     very efficient, but has a constant amplitude. This is shown in
     Figure~\ref{BFSK}.
-    \begin{figure}[h]
+    \begin{figure}[ht]
       \includegraphics[width=0.9\textwidth]{images/BFSK}    
       \caption{How the data \texttt{101010} might be encoded using BFSK}
       \label{BFSK}
     \end{figure}
 \end{description}
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \includegraphics[width=0.9\textwidth]{images/2g-buffer-send}
   \includegraphics[width=0.9\textwidth]{images/2g-buffer-rec}
   \caption{The sending and receiving buffers in a typical 2G implementation.}
@@ -1003,53 +1009,74 @@ using buffers shown in Figure~\ref{2g-buffers}.
 3G uses CDMA instead of TDMA to provide support for multiple users, but in many
 ways, it is similar to 2G. The main difference is the use of \textbf{CDMA}:
 
-  Code Division Multiplexed Access is used to let multiple carriers transmit
-  on the same frequency. Using this technique, each bit is turned into a 
-  sequence of chips that are transmitted instead, maybe:
+Code Division Multiplexed Access is used to let multiple carriers transmit
+on the same frequency. Using this technique, each bit is turned into a 
+sequence of chips that are transmitted instead, maybe:
 
-  \begin{verbatim}
-    1 = 1 0 1 0 1 1 0 0 0 1 0 1 0 1 0 1 0 1 1 1 0 1 0 1 0 1 0 1 0 1
-    0 = 0 1 0 1 0 0 1 1 1 0 1 0 1 0 1 0 1 0 0 0 1 0 1 0 1 0 1 0 1 0
-  \end{verbatim}
+\begin{verbatim}
+  1 = 1 0 1 0 1 1 0 0 0 1 0 1 0 1 0 1 0 1 1 1 0 1 0 1 0 1 0 1 0 1
+  0 = 0 1 0 1 0 0 1 1 1 0 1 0 1 0 1 0 1 0 0 0 1 0 1 0 1 0 1 0 1 0
+\end{verbatim}
 
-  In this manner, every bit becomes a psudo-random sequence of chips, which
-  lets the receiver distinguish different carriers from each other using a
-  cross correlation process. This requires a much larger bit rate than TDMA,
-  but carriers can transmit at any time though. Another advantage of CDMA is
-  that it has a soft capacity limit; the quality merely degrades when more
-  people use it (since the background noise increases as other carriers
-  transmit seemingly random signals).
+In this manner, every bit becomes a psudo-random sequence of chips, which
+lets the receiver distinguish different carriers from each other using a
+cross correlation process. This requires a much larger bit rate than TDMA,
+but carriers can transmit at any time though. Another advantage of CDMA is
+that it has a soft capacity limit; the quality merely degrades when more
+people use it (since the background noise increases as other carriers
+transmit seemingly random signals).
 
-  Lets say that User A has a code of:
+Lets say that User A has a code of:
 
-  \begin{verbatim}
-    1 = 1 -1 1 -1 1 1 -1 -1 -1 1
-    0 = -1 1 -1 1 -1 -1 1 1 1 -1
-  \end{verbatim}
+\begin{verbatim}
+  1 = 1 -1 1 -1 1 1 -1 -1 -1 1
+  0 = -1 1 -1 1 -1 -1 1 1 1 -1
+\end{verbatim}
 
-  When we receive a signal, we should multiply it by the code for $1$
-  (\texttt{1 -1 1 -1 1 1 -1 -1 -1 1}) and sum the bits, and we get $+10$ for
-  $1$ and $-10$ for $0$.
+When we receive a signal, we should multiply it by the code for $1$
+(\texttt{1 -1 1 -1 1 1 -1 -1 -1 1}) and sum the bits, and we get $+10$ for
+$1$ and $-10$ for $0$.
 
-  User B should use a different code:
+User B should use a different code:
 
-  \begin{verbatim}
-    1 = 1 1 1 1 1 -1 -1 1 -1 -1 
-    0 = -1 -1 -1 -1 -1 1 1 -1 1 1
-  \end{verbatim}
+\begin{verbatim}
+  1 = 1 1 1 1 1 -1 -1 1 -1 -1 
+  0 = -1 -1 -1 -1 -1 1 1 -1 1 1
+\end{verbatim}
 
-  If we multiply a code received by B's code for $1$, then we should get $+10$
-  or $-10$ again if B sent it. If we multiplied and added using A's code, then
-  we would get $0$.
+If we multiply a code received by B's code for $1$, then we should get $+10$
+or $-10$ again if B sent it. If we multiplied and added using A's code, then
+we would get $0$.
 
-  If A transmitted a $1$ and B transmitted a $0$, then we'd get:
+If A transmitted a $1$ and B transmitted a $0$, then we'd get:
 
-  \begin{verbatim}
-     0 -2 0 -2 0 2 0 -2 0 2
-  \end{verbatim}
+\begin{verbatim}
+   0 -2 0 -2 0 2 0 -2 0 2
+\end{verbatim}
 
-  If we multiply and add using A's code, we get $+10$, and if we do it with
-  B's code, we get $-10$.
+If we multiply and add using A's code, we get $+10$, and if we do it with
+B's code, we get $-10$.
+
+Here are some reasons why 3G's CDMA is better than 2G's TDMA:
+
+\begin{mymulticols}
+  \begin{itemize}
+    \item TDMA requires you to strictly synchronize transmission times of all
+      users to ensure that they're in the correct time slot. \textit{Guard
+      times} are used between slots to ensure there is no overlap, but this 
+      decreases spectral efficiency.
+    \item CDMA allows for a flexible allocation of resources; there's only a
+      soft limit on the amount of users you can have.
+    \item Channels that aren't being used on 2G are wasted (they're just empty
+      slots aren't they). Less capacity on CDMA just means less interference for
+      users and fewer bit errors.
+  \end{itemize}
+\end{mymulticols}
+
+Really, the only place where CDMA might loose out to TDMA is power control. This
+is difficult to achieve with CDMA, especially since signals near to a receiver
+might drown out a signal far away that you're trying to listen to. This is
+called the \textit{near-far} problem.
 
 \subsubsection{The details of 4G}
 
@@ -1098,7 +1125,7 @@ some places than at others. See Figure~\ref{BDMA} for a pictorial explanation
 (you might have to think back to A-level physics to understand why this
 happens).
 
-\begin{figure}[H]
+\begin{figure}[ht]
   \includegraphics[width=0.9\textwidth]{images/beam-forming}
   \includegraphics[width=0.9\textwidth]{images/beam-forming-intensity}
   \caption{Here, you can see that as we adjust $y$, the intensity changes.}
@@ -1177,7 +1204,7 @@ server, but when the buffer is nearly full, we should stop asking for more data,
 otherwise we might have to `bin' some of it since we wouldn't have room on the
 device. See Figure~\ref{fig:buffers} for a depiction.
 
-\begin{figure}[H]
+\begin{figure}[ht]
   \includegraphics[width=\textwidth]{images/buffer}
   \caption{We start downloading at the low water mark and stop when we reach the
   high water mark.}
@@ -1195,7 +1222,7 @@ packets. If one packet is lost, then we can interpolate the values in the
 received packet to smooth over the loss and get an approximation for the lost
 packet, as shown in Figure~\ref{interpolate}.
 
-\begin{figure}[H]
+\begin{figure}[ht]
   \includegraphics[width=\textwidth]{images/interpolate}
   \caption{Packet 3 was lost, but we can figure out an approximation for what
   was in there by interpolating the data from packet 2.}
@@ -1220,7 +1247,43 @@ down to 2/3G to talk}
 
 \subsubsection{Optimising power}
 
-%TODO: Slide 13 from lecture 9
+As you've probably now worked out, there are a lot of trade offs when building
+mobile systems. For example:
+
+\begin{mymulticols}
+  \begin{itemize}
+    \item Better quality media (audio/images/video etc) requires more data.
+    \item Power is required to compress data
+    \item Power is also required to transmit data (so does compressing data save
+      power overall?)
+    \item Transmit power can be saved by error correction, which lets us lower
+      the energy per bit
+    \item Additional data is required for error correction since it requires
+      redundancy
+    \item Power is again required for error correction
+    \item With error correction and data compression, more effective algorithms
+      are usually more complex and power intensive.
+  \end{itemize}
+\end{mymulticols}
+
+To sum up these factors then, we want to increase the capacity of radio channels
+and use data compression (which reduces the bit rate, obviously) so that we can
+use Error Correction Coding (ECC, which increases the bit rate) to reduce the
+amount of transmission power we need and therefore use less power and cause less
+interference with neighbouring cells.
+
+Furthermore, ECC lets us recover from errors, and we can interleave blocks of
+data so that bursty errors from radio interference can be mapped onto single
+errors distributed throughout the blocks. We can gracefully handle un-
+correctable errors by interpolating between values to minimise the loss of
+quality.
+
+We can adjust the power of the transmitter based on feedback from the receiver.
+We must do this constantly, since the user may move around or the environment
+may change which will affect the quality of the received signal (e.g. from
+reflections off buildings, doppler shift if you're moving, antenna orientation
+etc). The goal is to maintain a correctable error rate at the receiver.
+
 
 \section{Medium Access Control}
 
@@ -1257,7 +1320,7 @@ Since if the frame overlaps with any part of another frame, then the vulnerable
 period for the frame is $3\times$ the length of the frame (see
 Figure~\ref{aloha-vun}).
 
-\begin{figure}
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.5\textwidth]{images/aloha-vun}
   \caption{The vulnerable period for the shaded frame is $3\times$ its length.}
@@ -1300,7 +1363,7 @@ transmits. It will then either:
 
 Figure~\ref{aloha-rates} shows a comparison between the different types of CSMA.
 
-\begin{figure}
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.8\textwidth]{images/aloha-rates}
   \caption{A comparison of channel utilisation versus load for various random
@@ -1443,7 +1506,7 @@ it can do things \textit{psudo} at once, we want real time).
 A solution to this is to use input and output buffers so that timing can be met
 precisely, see Figure~\ref{buffers}.
 
-\begin{figure}[H]
+\begin{figure}[ht]
   \includegraphics[width=\textwidth]{images/buffers}
   \caption{Buffers can allow the CPU to process data in blocks which is more
   efficient than doing one input at a time.}
@@ -1458,7 +1521,7 @@ In practice, we might give the buffers over to a DMA controller, which will mean
 the CPU can merely read and write to memory, and the DMA will take control of
 all the IO (see Figure~\ref{DMA}).
 
-\begin{figure}[H]
+\begin{figure}[ht]
   \includegraphics[width=\textwidth]{images/DMA}
   \caption{A DMA device interfacing with IO}
   \label{DMA}
