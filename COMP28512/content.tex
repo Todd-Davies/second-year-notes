@@ -1584,3 +1584,118 @@ processes share a stack and other state, and use cooperative multitasking so
 that a task can hand over control to a higher priority task at a mutually
 convenient time. This requires programming restrictions to be stringently
 observed though.
+
+\section{Chip Design}
+
+In 1948, the Baby was created; a computer that could process $700$ instructions
+per second, using $3.5\si{\kilo\watt}$ of power. In 2011, the SpiNNaker chip,
+using an ARM CPU can calculate $200,000,000$, but draws just
+$40\si{\milli\watt}$ of power. This is:
+
+\[
+  \frac{3500}{700} \div \frac{0.04}{200000000} = 25,000,000,000 \text{~times better!}
+\]
+
+\subsection{Jevon's paradox}
+
+In 1865, James Watt created a new coal fired steam engine that was much more
+\textit{efficient} than the current best competitor, and coal consumption
+\textit{rose} as a result.
+
+It turns out that when technological progress increases the efficiency with
+which a resource is used, the rate of consumption of the resource usually
+increases rather than decreases. This is because the efficiency gains usually
+increase the amount of work done, since people will be spend the same money on
+the resource as they did before, just get more out of their investment. This in
+turn, means that the investment makes more sense (since the resource goes
+further) and demand rises for the resource.
+
+\subsection{Low power design}
+
+So, why are we still trying to create chips that will operate on lower and lower
+power in the face of Jevon's paradox? First of all, we want mobile devices to
+have the maximum battery life we can give them. Furthermore, in the high
+performance computing industry, we are currently limited by the power required
+to run the supercomputers. We want lower powered chips that will let us perform
+more computation for the same (or lower) power cost.
+
+As always with this course, the mobile phone analogy is the best one to use when
+highlighting the some of the reasons for a trade off. In this case, having a
+lower power processor means:
+
+\begin{mymulticols}
+  \begin{itemize}
+    \item More performance and functionality if we have a faster chip with the 
+      same power.
+    \item Using the same amount of power, we could use more CPU cycles for 
+      error correction coding.
+    \item If we have more ECC, we can reduce the radio power and save battery
+      life!
+    \item This gives us a market advantage.
+  \end{itemize}
+\end{mymulticols}
+
+\subsubsection{CMOS}
+
+\marginpar{
+  \vspace{2em}
+  \includegraphics[width=0.2\textwidth]{images/CMOS}
+  A CMOS inverter, (NOT gate).
+}
+
+CMOS stands for Complementary Metal Oxide Semiconductor. This was a revolution
+in the 60's, since it allowed chip designers to drastically reduce the amount of
+power used by chips. The reason for this, is that CMOS chips only require power
+when the voltage on a gate is changing, i.e. when it's switching states. If your
+CMOS chip isn't doing much, and its gates aren't changing, then it won't use
+much power at all!
+
+The power consumed by a chip is equal to:
+
+\marginpar{Note that $P$ is given in Watts.}
+
+\[
+  P = \frac{1}{2} \times f_{clock} \times V_{DD}^2 \times \sum \alpha_g C_g
+\]
+
+Where:
+
+\begin{tabular}{>{$}c<{$} l}
+  f_{clock} & = Frequency of the clock\\
+  V_{DD}    & = Supply voltage to processor\\
+  C_g       & = Capacitance on a gate $g$\\
+  \alpha_g  & = The activity on a gate $g$, which is the mean number of state
+                changes per clock cycle
+\end{tabular}
+
+We can simplify this a bit more by removing the sum, and instead using the total
+capacitance and average activity:
+
+\[
+  P = \frac{1}{2} \times C_{total} \times f_{clock} \times V_{DD}^2 \times \alpha
+\]
+
+Since the energy used by the chip is equivalent to the power multiplied by the
+time in seconds that it is used for, we have to worry about that too. If we use
+too much energy, the battery won't last long, and if we use too much power, then
+the circuit will heat up and possibly cause damage.
+
+If we want to reduce the power consumption, we can look at optimising the
+`large' terms first, in our case $V_{DD}^2$. If we decrease that, then we will
+also decrease $P$. However, if we do this, then each gate will have a lower
+voltage (of course), which will cause it to switch more slowly, and our critical
+paths will take longer to execute. This means we will need to reduce $f_{clock}$
+and programs will take longer to run. However, we can use parallelism to offset
+the increases in circuit delay.
+
+Note that reducing the power consumption of a chip by decreasing $f_{clock}$
+doesn't make it more efficient; it still takes the same amount of energy to per
+instruction. We can also reduce $C_{total}$, by using simpler circuits (such as
+ARM instead of x86), and using on chip rather than on chip memory.
+
+Finally, another obvious optimisation is to reduce $\alpha$. We can do this by
+turning parts of the circuit off when not in use (for example, don't sit in a
+wait loop, use interrupts to wake up a processor when its needed), and avoiding
+distributing the clock signal more than is necessary. `Event driven' styles of
+design are good, since they only require something to happen (and thus switching
+to occur) when there is an event.
