@@ -1494,3 +1494,112 @@ drives:
   \caption{RAID 10 gives higher speed, and higher reliability.}
   \label{raid10}
 \end{figure}  
+
+\marginpar{See my \texttt{COMP28512} notes for more information on hamming codes
+and parity bits.}
+
+We can use error correction (e.g. hamming codes and parity bits) to provide
+redundancy \textit{and} striping as done using \texttt{RAID 2,3} and \texttt{4}.
+\texttt{RAID 5} and \texttt{6} both use distributed their parity bits over other
+drives.
+
+\begin{figure}[H]
+  \begin{tabular}{cc}
+    \includegraphics[width=0.5\textwidth]{images/raid2} &
+    \includegraphics[width=0.5\textwidth]{images/raid3}\\
+    \includegraphics[width=0.5\textwidth]{images/raid4} &
+    \includegraphics[width=0.5\textwidth]{images/raid5}\\
+    \multicolumn{2}{c}{\includegraphics[width=0.6\textwidth]{images/raid6}}
+  \end{tabular}
+  \caption{RAID 2-6}
+  \label{raid2-6}
+\end{figure}
+
+Popular other combinations of \texttt{RAID} include \texttt{RAID 50} and
+\texttt{RAID 160}. Remember that \texttt{RAID 160} is \texttt{RAID 1} inside
+\texttt{RAID 6} inside \texttt{RAID 0}.
+
+What happens if a disk fails in the following situations:
+
+\begin{description}
+  \item \textbf{RAID 0} You lose all your data (and hope there's another RAID
+    layer).
+  \item \textbf{RAID 1} You just hot-swap the failed disk.
+  \item \textbf{RAID 2-6} Operate in a degraded mode:
+    \begin{itemize}
+      \item If a data drive failed, then every read must be reconstructed.
+      \item If a parity drive failed, then there is a low performance impact
+        (while the system recomputes the parity bits with a new drive).
+    \end{itemize}
+\end{description}
+
+Most operating systems support some kind of \texttt{RAID}, or you can buy a
+dedicated hardware controller.
+
+\subsubsection{Solid State Drive}
+
+Solid State Drives (SSD) are made of flash memory. They have a Floating Gate
+Field Effect Transistor that can store 0's and 1's. It is possible that they
+will become multi level (i.e. store two bits) in the future.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{images/fgfet}
+  \caption{A Floating Gate Field Effect Transistor}
+  \label{fgfet}
+\end{figure}
+
+Solid state storage has a data retention time of around ten years, but will also
+wear out with write cycles (and so the performance decreases too). X-rays can
+affect the data on the drive (so don't take it through airport security).
+
+Error correcting codes, block remapping and wear-levelling are all used to
+mitigate these flaws though. Wear levelling is when logical block addresses are
+mapped to physical addresses differently over time so that specific blocks
+aren't worn out.
+
+SSD's are much faster than hard drives though, they don't have seek or search
+times, so the data access is much faster. Their sustained read and write rates
+are much faster too. You pay more per gigabyte though, around 14 times more.
+
+\subsubsection{Storage Virtualization}
+
+Classically, we have a file system that maps from our logical thinking of how
+files are ordered onto the disk. File systems do not naturally span onto
+multiple drives though. RAID enables us to break this mapping by striping and
+mirroring. It's kind of similar to virtual memory in the sense that the file
+path doesn't have much of a relation to where the data is actually stored.
+
+A \textit{volume group} is a set of drives in a pool, and storage space in such
+a group is divided into \textit{physical extents}, which are usually of the same
+size. A \textit{logical volume} will be made of some of the physical extents.
+
+These abstractions let us add more drives, extend partitions within drives, take
+a snapshot of a file system etc. This greater control can be used to great
+advantage. For example, with Linux:
+
+\begin{description}
+  \item \texttt{/} Mostly read, we want fast read seeks and transfer rates.
+  \item \texttt{swap} Reads and writes, but we want a high bandwidth. This can
+  tolerate data loss better than any other part of the hard drive (since its
+  only RAM).
+  \item \texttt{/opt} Infrequent access
+  \item \texttt{/var} Infrequent access
+\end{description}
+
+This means we could mirror \texttt{/}, stripe the \texttt{swap} and allocate the
+spare space to \texttt{/opt} and \texttt{/var}.
+
+\subsubsection{Storage Area Networks (SAN)}
+
+Storage Area Networks are used to decouple compute servers from storage. They
+allow for storage specific functions to be localised to and optimised for them.
+This means we can share disk resources across servers, rapidly migrate disk
+images, share common subsets of file systems (e.g. virtual machine images) and
+more. One downside is the decreased bandwidth and increased latency, but with
+modern network protocols, this isn't as much of an issue.
+
+ZFS is a volume aware file system. It protects against losing files, running out
+of space, corruption of data etc by being very flexible and having lots of ECC.
+These are implemented by copy-on-write, simple rollback and recovery, wear
+leveling, self checking and healing, sumchecking and more.
