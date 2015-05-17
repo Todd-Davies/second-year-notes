@@ -74,6 +74,9 @@ example, if a wave has ten cycles from $1000$ samples at $30,000Hz$, then its
 frequency will by $\frac{10}{1000} \times 30,000 = 300Hz$. This is visible in
 Figure~\ref{discrete-signal}.
 
+\marginpar{Wav files are merely just lists of binary numbers that have been
+sampled and possibly quantised; it's a really simple format.}
+
 \begin{figure}[ht]
   \centering
   \begin{tikzpicture}
@@ -125,16 +128,17 @@ To be precise, if a wave of frequency $f$ is sampled at a frequency of below
 $2f$ (lets call this $F$, then the sampled output will be a wave of frequency $F
 - f$.
 
-For example, if we sample a $6\si{\kilo\hertz}$ wave at a frequency of $10\si{\kilo\hertz}$, when we will
-get a wave of frequency $10-6 = 4\si{\kilo\hertz}$.
+For example, if we sample a $6\si{\kilo\hertz}$ wave at a frequency of
+$10\si{\kilo\hertz}$, when we will get a wave of frequency $10-6 =
+4\si{\kilo\hertz}$.
 
 This is bad, because if you have harmonics in a musical note that are higher
 than half the sampling frequency, then these harmonics will be out of tune post
 sampling, and will go down when it's supposed to go up.
 
 It may be hard to work out exactly why aliasing occurs, but
-Figure~\ref{aliasing}, showing a $6\si{\kilo\hertz}$ wave sampled at $8\si{\kilo\hertz}$ makes it easier
-to see:
+Figure~\ref{aliasing}, showing a $6\si{\kilo\hertz}$ wave sampled at
+$8\si{\kilo\hertz}$ makes it easier to see:
 
 \begin{figure}[ht]
   \centering
@@ -246,7 +250,8 @@ called \textbf{psudo-periodicity}.
     \end{axis}
   \end{tikzpicture}
   \caption{A complex wave with a frequency of
-  $\frac{1}{180} = 0.00\overline{5}\si{\hertz}$}
+  $\frac{1}{180} = 0.00\overline{5}\si{\hertz}$ (if the $x$ axis is in
+  seconds).}
   \label{fig-complex-wave}
 \end{figure} 
 
@@ -308,14 +313,6 @@ DFT is used to:
     from a sine wave, since you could remove all frequencies with an amplitude
     below a certain level.
 \end{itemize}
-
-\subsection{Wav files}
-
-Signals are stored in many different ways. One `easy' format, is the
-\texttt{.wav} format. It is just a list of binary numbers, each representing a
-single value of the wave at a discrete time.
-
-% TODO: More formats, encoding etc
 
 
 \section{Encoding and storing signals}
@@ -849,9 +846,197 @@ The \textbf{Shannon-Hartley Law} says that the channel capacity $C$ is equal to:
 Where $B$ is the bandwidth in $\si{\hertz}$, and $\frac{S}{N}$ is the signal to
 noise power ratio.
 
-% Lecture 6
+\subsection{Image Coding}
 
-\section{Mobile networks}
+Images are really big. A 10"x8" colour photo at 300dpi has 10
+$10\times300\times8\times300 = 7.2\text{Mpixels}$. Since each pixel requires
+three bytes; one for each of Red, Green and Blue (RGB), we need
+$21.6\si{\mega\byte}$ to store the image.
+
+If images are so big, think how big movies must be! TV quality video is at
+$25\si{\hertz}$, where each frame is $640\times480$. This means we need $640
+\times 480 \times 3 \times 25=23.04\si{\mega\byte\per\second}$ for a (low
+quality) movie. If a movie lasts two hours, this is about $160\si{\giga\byte}$.
+
+Thankfully, we can exploit deficiencies in human vision to reduce these numbers
+a lot. For example, we can either represent a pixel by using a separate value
+for red, green and blue, or we can use luminance (monochrome) and two
+chrominance (colour) components.
+
+Our eyes are less sensitive to chrominance than luminance, and are also less
+sensitive to rapidly changing fine-detailed aspects of movies.
+
+\subsubsection{Frequency domain processing of images}
+
+Just like sound, we can convert images into the frequency domain and process
+them there. Using this, we can efficiently encode only the features that will be
+perceived by the eye. We need to use a two dimensional Discrete Cosine Transform
+instead of just a one dimensional DCT like we do with sound (for obvious
+reasons).
+
+It's best to process images using luminance and chrominance instead of RGB. To
+convert between RGB and YIQ (Y is for the luminance, I is for in-phase and Q is
+for quadrature), you do:
+
+\marginpar{The numbers might differ slightly, but the idea is the same.}
+
+\[
+  \begin{split}
+    Y &= 0.30R + 0.59G + 0.11B\\
+    I &= 0.60R - 0.28G - 0.32B\\
+    Q &= 0.21R - 0.52G + 0.31B\\
+  \end{split} 
+\]
+
+When we've converted an image into YIQ and ran it through DCT, we can plot a
+graph of the values to get something like in Figure~\ref{lum}. It is easy to see
+that there is a lot of energy at the low frequencies and not much at the high
+ones. If we zero the low values, then we get something from Figure~\ref{lum-
+zero}.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/lum}
+  \caption{DCT Luminance Spectrum}
+  \label{lum}
+\end{figure}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/lum-zero}
+  \caption{DCT Luminance Spectrum after the small amplitudes have been set to
+  zero}
+  \label{lum-zero}
+\end{figure}
+
+For this data set, the number of non-zero coefficients for Y was reduced from
+$262000$ to $8692$, meaning that only $3\%$ remained! If its similar for I and
+Q, then we've got a very large compression ratio. Unfortunately, the quality
+isn't satisfactory when you do this (though it's not \textit{bad})
+
+\subsubsection{The JPEG standard}
+
+JPEG divides images into $8 \times 8$ coloured tiles. For each tile, the values
+are converted into YIQ from RGB and the chrominance is reduced to a $4 \times 4$
+resolution by averaging the values (since our eyes are less sensitive to
+chrominance).
+
+Each tile is then run through a 2D DCT that is then quantised into an integers,
+with different frequencies being quantised by different amounts according the
+eye's sensitivity to them, as shown in Figure~\ref{jpeg-quantization}.
+
+\marginpar{Quantization is one of the things that makes JPEG (and therefore
+MPEG) a lossy compression algorithm. The loss of quality is small, but not
+zero. You can however change the quality/compression trade off by adjusting the
+quantization matrix.}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/jpeg-quantization}
+  \caption{JPEG images are quantised into integers of differing accuracies (i.e.
+  bits) for different frequencies}
+  \label{jpeg-quantization}
+\end{figure}
+
+The algorithm then takes the average value for the tile and encodes it as a
+difference from tile to tile. This usually changes very slowly, but is noticeable
+in the image. We can then encode these coefficients in a zig zag pattern and use
+run length encoding, as in Figure~\ref{zig-zag}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/zig-zag}
+  \caption{JPEG encodes coefficients in a zip zag pattern to optimise for run
+  length coding}
+  \label{zig-zag}
+\end{figure}
+
+We can then apply Huffman coding to the remaining bits (after they've been run
+length encoded) to save more space.
+
+\subsubsection{Huffman Coding}
+
+A Huffman code is a variable length, self terminating code. Basically, if you
+know the probability of a specific word coming up in some data is high, then you
+can agree to replace that word with some smaller word and you'll save bits. You
+do this by creating a \textit{Huffman Tree}. Given words and their
+probabilities, a Huffman tree generates a binary tree, where a $1$ takes you
+right, and a $0$ takes you left. When you reach a leaf, it will contain the
+value of the word, and the series of $1$'s and $0$'s you used to get there is
+the shorter replacement.
+
+To generate the tree, the algorithm ranks the words in descending order of their
+probability, and links the two with the lowest. It keeps doing this (ordering
+the changes when necessary) until all the words are in the tree.
+Figure~\ref{huffman} shows this.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/huffman}
+  \caption{A generated Huffman tree.}
+  \label{huffman}
+\end{figure}
+
+The trees generated by a Huffman coder are sometimes perfectly balanced binary
+trees, in which case the code length is not variable and all the codewords have
+the same length.
+
+Huffman coding is highly efficient and lossless, but is very sensitive to bit
+errors because of its variable length and the fact that its words are self
+terminating. If there is a bit error in one code word, then it could result in
+us terminating it at the wrong moment, and starting the next code word at the
+wrong place, which will lead to the whole message becoming corrupted!
+
+\subsubsection{Encoding Movies}
+
+If we were to encode each frame in a movie as a separate JPEG, then it wouldn't
+be efficient at all since most frames are very similar to those before and after
+them. Maybe we could just send the differences between consecutive frames, but
+this wouldn't work for when a scene is panning across a landscape or zooming in
+for example.
+
+A better approach is to use `motion compensation' which is where you find
+similarities between parts of images in successive frames and send motion
+information when the similarity is strong. The differences are then encoded as
+normal using JPEG. An ideal candidate for this would be something like in
+Figure~\ref{move-man}.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/move-man}
+  \caption{You could save bits encoding these three frames by encoding that
+  the man is moving, rather than encoding the whole frame again for the second
+  and third frames.}
+  \label{move-man}
+\end{figure}
+
+MPEG videos have three types of frames:
+
+\begin{description}
+  \item \textbf{I-frame}:\\
+    This is an image frame encoded as a JPEG
+  \item \textbf{P-frame}:\\
+    These frames encode the positions of moving blocks from previous P and I
+    frames and the remaining differences between the frames.
+  \item \textbf{B-frame}:\\
+    The positions of moving blocks from previous \textbf{and} next P and I
+    frames and the remaining differences are encoded by B-frames.
+\end{description}
+
+Figure~\ref{frames} shows how these fit together.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/frames}
+  \caption{How I,P and B frames work together to save data!}
+  \label{frames}
+\end{figure}
+
+MPEG also uses a clock to synchronize the audio with the video. A multiplexer
+encodes the audio and video together into one MPEG output stream.
+
+
+\section{Mobile Networks}
 
 Since their inception, the desired use of cellular networks has changed from
 being solely about transmitting speech, to transmitting textual data, and now
