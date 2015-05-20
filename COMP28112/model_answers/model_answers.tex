@@ -47,7 +47,10 @@
 \usepackage[parfill]{parskip}
 % Make LaTeX pretty with better kerning etc
 \usepackage{microtype}
-
+% A command to format a question (including question and how many marks)
+% e.g. \answer{What is 2+2?}{2}{2011.1.a}
+% Just realised, answer is a bad name for this macro, you put the question in it
+% doh
 \newcommand{\answer}[3]{
   \vspace{1em}
   \begin{minipage}[t]{0.85\textwidth}
