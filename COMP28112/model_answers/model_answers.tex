@@ -1,0 +1,79 @@
+\documentclass{article}
+
+% Tell me about my LaTeX bad practices
+\usepackage[l2tabu, orthodox]{nag}
+% For \hypersetup
+\usepackage[pdftex]{hyperref}
+% Gives us bigger margins on the right (and smaller on the left) for the margin
+% paragraphs
+\usepackage[left=2cm,
+      top=2cm,
+      right=2cm,
+      bottom=1.5cm,
+      marginparwidth=2cm,
+      marginparsep=3mm]{geometry}
+% For line brakes in tables
+\usepackage{tabularx}
+% For the split environment
+\usepackage{amsmath}
+% For scientific units
+\usepackage{siunitx}
+% For tabs in verbatim
+\usepackage{moreverb}
+% For fancy verbatim (use this one in mymulticol)
+\usepackage{alltt}
+% For wrapping figures in text
+\usepackage{wrapfig}
+% For a nice header
+\usepackage{fancyhdr}
+% For graphics
+\usepackage{graphicx}
+% For code listings
+\usepackage{listings}
+% For splitting long lists into columns
+\usepackage{multicol}
+% For no multicol on the kindle
+\usepackage{environ}
+\newif\ifmulticols
+\NewEnviron{mymulticols}{
+\ifmulticols
+  \begin{multicols}{2}
+    \BODY
+  \end{multicols}
+\else
+  \BODY
+\fi}
+% Means you don't have to put \\ to start a new line.
+\usepackage[parfill]{parskip}
+% Make LaTeX pretty with better kerning etc
+\usepackage{microtype}
+
+\newcommand{\answer}[3]{
+  \vspace{1em}
+  \begin{minipage}[t]{0.85\textwidth}
+    \textbf{#1}
+  \end{minipage}
+  \begin{minipage}[t]{0.15\textwidth}
+    \begin{flushright}
+      #3\\
+      (#2 marks)
+    \end{flushright}
+  \end{minipage}
+}
+
+\pagestyle{fancyplain}
+
+\author{Todd Davies}
+\title{COMP28112 Model Answers}
+\date{\today}
+
+\begin{document}
+
+\rhead{COMP28112 Model Answers}
+\lhead{\today}
+
+\maketitle
+
+\input{answers.tex}
+
+\end{document}

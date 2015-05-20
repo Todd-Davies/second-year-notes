@@ -1,0 +1,52 @@
+\answer{What is a Java servlet?}{2}{2012.1.a}
+
+A Java Servlet is a Java program with the capabilities of a server. It could
+host web pages, provide an API endpoint or other services and is most commonly
+used to serve content via the \texttt{HTTP} protocol.
+
+\answer{What is the main assumption on which Cristian’s clock synchronisation
+algorithm is based?}{2}{2012.1.b}
+
+The time for a message to go from machine A to machine B is (roughly) the same
+as the time it would take for a message to go from machine B to machine A. This
+is most often accurate for routes with small round trip times.
+
+\answer{Explain the difference between a name server and a directory
+server.}{2}{2012.1.c}
+
+A name server takes a name, matches it to an object and returns attributes about
+the object. A directory server takes attributes, matches them to an object and
+returns more attributes about the object.
+
+\answer{Explain briefly what is meant by the term middleware.}{2}{2012.1.d}
+
+Middleware is software that sits between a client application and the operating
+system. It provides services to the client application that the operating system
+does not, such as RPC stubs.
+
+It can also provide an abstraction from the OS to mask the heterogeneity of
+platforms used in distributed systems (some apps will run on Windows, others on
+Linux, some on x64, some on ARM architectures etc).
+
+\answer{Why is it practically impossible to achieve strict consistency in a
+distributed  system?}{2}{2012.1.e}
+
+Strict consistency is when any read to a shared data item returns the most
+recent write operation on that data item. This means there must be an absolute
+time ordering of all accesses. Unfortunately, since (as we know from the eight
+fallacies of Distributed Computing), the latency of any network is not zero and
+messages are not reliable. This means that any message we send to update other
+machines about a change of state may not be sent. Since there is no way of
+getting an absolute global clock or getting any global state, then we cannot
+achieve real time memory consistency across all nodes, and therefore cannot
+achieve strict consistency in the system.
+
+\answer{Traditional RPC mechanisms cannot handle pointers. What is the
+problem?}{2}{2012.1.f}
+
+In order to handle pointers with RPC, you must serialise the datastructure into
+a message so that it can be constructed from the same message at the other
+machine. When the reply is received back at the sender, it can be deserialised
+again and the values in the datastructure that were changed on the remote
+machine can be updated in local memory. Traditional RPC mechanisms didn't have
+this facility.
