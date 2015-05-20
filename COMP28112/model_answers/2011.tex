@@ -245,8 +245,8 @@ will be sent (in addition to the 15 initial message). Then, the winner of the
 election (6) will send a message out to say that it is elected, which is another
 $5$ messages, bringing the total to 35.
 
-\answer{}{6}{2011.3.c.ii}
+\answer{Repeat (i) with the computer rebooted and needing to discover the leader
+being that with identifier 5 instead.}{2}{2011.3.c.ii}
 
-If 5 wanted to find the leader, it would send a message to 6 and get a reply
-that 6 is online, and another one saying 6 is the coordinator, which is three
-messages.
+If 6 wasn't online anymore, then the number of messages sent would be $(5 + 4 +
+3 + 2 + 1) + (4 + 3 + 2 + 1) + 4 = 29$,
