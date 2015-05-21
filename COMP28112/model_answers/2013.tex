@@ -1,0 +1,87 @@
+\answer{Explain briefly what is meant by the term middleware.}{2}{2013.1.a}
+
+Software that sits in between client applications and the operating system that
+abstracts the details of implementing programming tasks and masks the
+heterogeneity of the underlying platforms from the client application.
+
+\answer{Explain briefly what failures are known as Byzantine
+failures.}{2}{2013.1.b}
+
+When a remote system either:
+
+\begin{itemize}
+  \item Does not reply to messages
+  \item Sends faulty replies to message with miscellaneous data
+  \item Sends maliciously crafted messages
+  \item Acts inconsistently when interacting with different components
+\end{itemize}
+
+\answer{Describe briefly the two-phase commit protocol.}{2}{2013.1.c}
+
+When a client wants to commit, it sends a message to a server. The server then
+asks every client whether they are ready for a commit. Each client replies with
+a yes/no. If there is a no, then a \texttt{global\_abort} message is sent,
+otherwise a \texttt{global\_commit} message is sent. Upon receiving a global
+commit or abort message, each client does exactly that, which ensures that only
+one operation is done for all clients.
+
+\answer{What is meant when a service is provided with at least once
+semantics?}{2}{2013.1.d}
+
+The application may send the RPC call multiple times before it receives word
+from the server that the RPC call has taken place and was successful. This may
+result in the RPC call being executed multiple times.
+
+\answer{Why is it practically impossible to achieve exact synchronisation of
+clocks in a distributed system?}{2}{2013.1.d}
+
+The latency in a network is variable, so you can never know exactly how long a
+message took to reach a server. Because of this, if one server sends its current
+clock to another server, the latter one won't know how long it took for the
+message to reach it and therefore it won't know how much to increment the clock
+by.
+
+Methods such as Cristian's algorithm and the Berkeley algorithm attempt to solve
+this problem, but can only do so with some assumptions and to a limited
+accuracy.
+
+\answer{When using Java RMI, what is the purpose of the RMI
+registry?}{2}{2013.1.f}
+
+To act as a centeral repository for computers to access remote objects. Clients
+can interrogate the registry using a string and get an object back. This allows
+RMI methods to have parameters that are strings that point to objects in the
+repository so you can pass arbitrary data structures and objects easily.
+
+\answer{What is meant by parameter marshalling?}{2}{2013.1.g}
+
+When an RPC call is made, the parameters cannot be sent directly (since they may
+be pointers etc), so they must be serialized into a blob of text or binary data
+before they are sent (marshalled) and deserialised at the other end by the
+server (unmarshalled).
+
+\answer{What is the key difference between caching and
+replication?}{2}{2013.1.h}
+
+Replication is keeping two fully fledged entities up to date with each other in
+order to provide redundancy or distribute the load of a service over more
+machines.
+
+Caching is merely a small piece of hardware or a small program that remembers
+the results of expensive computations after they've been done once and returns
+the result without doing any computation if the same request comes again. Rarely
+is there any business logic in a cache.
+
+\answer{Explain briefly what Little’s Law is.}{2}{2013.1.i}
+
+Little's law dictates that the average number of elements in a queue is:
+
+\[
+  \text{av. number} = \text{av. time between arrivals} \times \text{time to process one}
+\]
+
+This allows us to estimate how a system will handle load and what its queue size
+will be (and if its appropriate).
+
+\answer{In the context of lab exercise 2, what would you do to launch a denial
+of service attack against the server?}{2}{2013.1.j}

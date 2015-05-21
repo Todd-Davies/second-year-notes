@@ -22,8 +22,24 @@ the message changed.
 
 \answer{Describe briefly the two-phase commit protocol.}{2}{2011.1.c}
 
+When a client wants to commit, it sends a message to a server. The server then
+asks every client whether they are ready for a commit. Each client replies with
+a yes/no. If there is a no, then a \texttt{global\_abort} message is sent,
+otherwise a \texttt{global\_commit} message is sent. Upon receiving a global
+commit or abort message, each client does exactly that, which ensures that only
+one operation is done for all clients.
+
 \answer{Explain briefly why somebody would choose to use Cloud
 Computing.}{2}{2011.1.d}
+
+\begin{itemize}
+\item You don’t have to buy and own hardware, you can just rent time from other
+  people’s hardware to do computing.
+\item Clouds are large and therefore provide capacity for horizontal scaling.
+\item Clouds make it easier to have the computing resources to apply techniques
+  such as load balancing, replication and parallelization. This can make it
+  easier to cope with variable demand.
+\end{itemize}
 
 \answer{Why is it practically impossible to achieve strict consistency in a
 distributed system?}{2}{2011.1.e}
