@@ -58,9 +58,9 @@ else
     wait;
   fi
   # TODO: Make this take arguments
-  pdflatex "$fastArgs\input{notes.tex}" &
+  pdflatex -shell-escape "$fastArgs\input{notes.tex}" &
   if [ "$compileall" = "1" ]; then
-    pdflatex "$fastArgs\input{kindle.tex}" &
+    pdflatex -shell-escape "$fastArgs\input{kindle.tex}" &
   fi
   wait;
   # In case the Author field isn't set

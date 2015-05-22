@@ -707,13 +707,7 @@ Here are some examples of the above:
     hamming distance from it to any other. Then, you can detect and even errors
     by comparing your received code to the allowed ones.
 
-    Figure~\ref{HammingCodes} shows an implementation.
-
-    \begin{figure}
-      \lstinputlisting[style=java]{examples/hamming_code/HammingCode.java}
-      \caption{A Java implementation of HammingCodes}
-      \label{HammingCodes}
-    \end{figure}
+    Page~\pageref{HammingCodes} shows an implementation.
 
     Hamming codes are block codes, since you need the whole block to calculate
     the distance between the received block and the ones in the codebook. It is
@@ -1884,3 +1878,10 @@ wait loop, use interrupts to wake up a processor when its needed), and avoiding
 distributing the clock signal more than is necessary. `Event driven' styles of
 design are good, since they only require something to happen (and thus switching
 to occur) when there is an event.
+
+\newpage
+
+\section{Code}
+
+\inputminted{java}{examples/hamming_code/HammingCode.java}
+\label{HammingCodes}
