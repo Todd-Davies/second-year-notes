@@ -1,0 +1,59 @@
+\card{
+  What are the two types of virtualisation?
+}{
+  System virtualisation (run whole OS inside software e.g. VMware) and process
+  virtualisation (run a process under a control layer of software, e.g. JVM).
+}
+
+\card{
+  What are the three main advantages of virtualisation?
+}{
+  Translation (between instruction sets, system API's etc), abstraction
+  (providing garbage collection, debugging etc), or multiplexing (e.g. RAID or
+  emulating CD drives).
+}
+
+\flashcard{
+  A hypervisor runs in \blank{privileged} mode, and can run virtual machines in
+  a \blank{unprivileged} mode, having \blank{traps} for when the guest OS does
+  something that requires \blank{system privileges}.
+}
+
+\card{
+  What happens when you start a VM?
+}{
+  \begin{tabular}{lr}
+    $\cdot$ & Save the current registers\\
+    $\cdot$ & Load the VM registers\\
+    $\cdot$ & Move the PC to the start address of the VM
+  \end{tabular}
+}
+
+\card{
+  When is it best to stop a VM?
+}{
+  When the VM's IO is quiescent (i.e. not doing anything).
+}
+
+\card{
+  What is retained when a VM is stopped/paused?
+}{
+  Memory, IO state, CPU registers, open files, network connections etc
+}
+
+\card{
+  What operations can we do on a VM?
+}{
+  \begin{tabular}{lr}
+    $\cdot$ & Move VM's between machines (live migration)\\
+    $\cdot$ & Take a snapshot of a VM\\
+    $\cdot$ & Restore a VM from a snapshot (quickly)\\
+    $\cdot$ & Load balancing using live migration
+  \end{tabular}
+}
+
+\card{
+  What are the two phases in live migration?
+}{
+  The warm up phase and the stop and copy phase.
+}

@@ -1,0 +1,218 @@
+\card{
+  Name some stuff that the operating system must load and store on a context
+  switch.
+}{
+  \begin{tabular}{rl}
+    $\cdot$ & Process ID\\
+    $\cdot$ & Program Counter\\
+    $\cdot$ & Stack Pointer\\
+    $\cdot$ & General registers\\
+    $\cdot$ & Memory management information\\
+    $\cdot$ & Open file list (and positions)\\
+    $\cdot$ & Network connections
+  \end{tabular}
+}
+
+\card{
+  How is a multi-threaded processor most commonly presented to the operating
+  system?
+}{
+  As a processor with multiple cores (even though only one multithreaded core
+  may be in the processor).
+}
+
+\card{
+  What are the three types of hardware multithreading?
+}{
+  \begin{tabular}{rl}
+    $\cdot$ & Coarse grain\\
+    $\cdot$ & Fine grain\\
+    $\cdot$ & Simultaneous MultiThreading (SMT)
+  \end{tabular}
+}
+
+\card{
+  Briefly describe coarse grain multithreading.
+}{
+  The processor switches threads (a context switch) whenever an expensive
+  operation is started (such as a memory load).
+}
+
+\card{
+  What extras does coarse grain multithreading require from the processor?
+}{
+  You don't need to change much in the processor, just make it abort
+  instructions after a cache miss and have it store (and later load) the state
+  of the thread.
+}
+
+\card{
+  What can a context switch do to the cache?
+}{
+  A context switch can trash the cache since the new thread may access
+  different regions of memory and therefore all the memory reads will be misses.
+  New values will be loaded into the cache which will destroy its previous data.
+}
+
+\card{
+  Briefly describe fine grained multithreading.
+}{
+  This involves interleaving the instructions of several threads. When memory is
+  accessed, instructions from other threads will be executed to ensure stalls
+  are brief. The aim is to reduce the cost of switching CPU threads to almost
+  nothing.
+}
+
+\card{
+  Briefly describe SMT.
+}{
+  We have instructions from multiple threads in the pipeline at the same time.
+  This requires significant hardware overhead, but gives you more freedom for 
+  instruction scheduling (since instructions in different threads are rarely
+  interdependent so you can interleave them).
+}
+
+\card{
+  What are the motivations that are driving us towards multi core systems?
+}{
+  \begin{tabular}{rl}
+    $\cdot$ & So many transistors per unit area, cooling is a massive issue\\
+    $\cdot$ & Small transistors have unpredictable characteristics\\
+    $\cdot$ & Architecture of processors is becoming too complex to reason
+    about\\
+    $\cdot$ & Exponentially more complex hardware gives sublinear performance
+    gains\\
+    $\cdot$ & Have multiple but more simple cores instead
+  \end{tabular}
+}
+
+\card{
+  What do different cores on a processor \textbf{not} share?
+}{
+  An L1 cache (split into data and instruction caches) and sometimes an L2
+  cache. They also have their own registers obviously
+}
+
+\card{
+  What is (my definition$^{TM}$ of) consistency?
+}{
+  The programmer's view of the system. For example, they expect that if a memory
+  location is updated in one thread, then the change will be visible across all
+  threads, not just the threads that are running on the core that has the new
+  value in its L1D cache.
+}
+
+\card{
+  What are the three special instructions used to guarantee out of order
+  processors maintain consistency?
+}{
+  \begin{tabular}{rl}
+    $\cdot$ & A \textbf{fence} makes sure each memory access before the fence is
+    complete before a new one is started.\\
+    $\cdot$ & A \textbf{barrier} makes threads wait until they have all reached
+    the barrier.\\
+    $\cdot$ & A \textbf{lock} makes sure that only one thread enters a critical
+    section of the program at a time (atomic access). Requires hardware support.
+  \end{tabular}
+}
+
+\card{
+  What is transactional memory?
+}{
+  Memory that supports transactions (yeah, duh). You can read and write to it
+  however you like, but when you're finished, you have to commit, when your
+  transaction is checked for conflicts and rolled back if it does conflict.
+}
+
+\card{
+  What are the two most simple snooping protocols?
+}{
+  Write update and write invalidate.
+}
+
+\card{
+  Describe `Write update' (the snooping protocol).
+}{
+  When a core writes a value to memory, the value is updated in its L1 cache,
+  the cache then broadcasts the address on the bus, and the snooping caches
+  update their copy.
+}
+
+\card{
+  Describe `Write invalidate' (the snooping protocol).
+}{
+  When a core writes a value to memory, the value is updated in its L1 cache,
+  but sends a write invalidate message to the other caches which then invalidate
+  the updated cache line in their copies.
+}
+
+\card{
+  Why is write invalidate better than write update for things like loops or
+  writes to different words of the same cache line?
+}{
+  If a value is being frequently updated, then write invalidate needs to happen
+  once, but write update needs to happen on every update, which wastes power and
+  can saturate the bus.
+}
+
+\card{
+  What does MESI stand for?
+}{
+  Modified, Exclusive, Shared, Invalid.
+}
+
+\card{
+  What is a directory based protocol with reference to multi core systems?
+}{
+  A protocol where there is a directory that holds information on what each
+  L1 cache holds. This lets cores talk on a P2P basis rather than all using one
+  bus.
+}
+
+\card{
+  What are the concerns about a NoC (Network on a Chip)?
+}{
+  \begin{tabular}{rl}
+    $\cdot$ & Bandwidth\\
+    $\cdot$ & Latency\\
+    $\cdot$ & Fault tolerance\\
+    $\cdot$ & Area\\
+    $\cdot$ & Power dissipation\\
+  \end{tabular}
+}
+
+\flashcard{
+  Buses are \blank{single usage} at any one time and are controlled by a
+  \blank{clock} that divides its use into \blank{time slots}. You can
+  \blank{send} in one \blank{slot} and \blank{receive} in a future one.
+}
+
+\card{
+  Name five NoC architectures.
+}{
+  \begin{tabular}{rl}
+    $\cdot$ & Crossbar\\
+    $\cdot$ & Ring\\
+    $\cdot$ & Tree\\
+    $\cdot$ & Fat Tree\\
+    $\cdot$ & Mesh\\
+  \end{tabular}
+}
+
+\card{
+  Describe the three types of NoC routing.
+}{
+  \begin{tabularx}{0.4\textwidth}{lX}
+    Minimal & Always select the shortest path towards the destination\\
+    Oblivious & Take a fixed path every time (really simple!)\\
+    Adaptive & Take the least congested route, complex though and uses lots of
+    power so its rarely used.
+  \end{tabularx}
+}
+
+\card{
+  What are the two types of packet switching in NoC's?
+}{
+  Store and forward (wait for all flits before sending) and wormhole (send flits
+  as soon as the head flit arrives).
+}
