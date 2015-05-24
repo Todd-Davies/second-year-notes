@@ -75,7 +75,7 @@
 \card{
   What are the motivations that are driving us towards multi core systems?
 }{
-  \begin{tabular}{rl}
+  \begin{tabularx}{0.4\textwidth}{rX}
     $\cdot$ & So many transistors per unit area, cooling is a massive issue\\
     $\cdot$ & Small transistors have unpredictable characteristics\\
     $\cdot$ & Architecture of processors is becoming too complex to reason
@@ -83,7 +83,7 @@
     $\cdot$ & Exponentially more complex hardware gives sublinear performance
     gains\\
     $\cdot$ & Have multiple but more simple cores instead
-  \end{tabular}
+  \end{tabularx}
 }
 
 \card{
@@ -106,14 +106,14 @@
   What are the three special instructions used to guarantee out of order
   processors maintain consistency?
 }{
-  \begin{tabular}{rl}
+  \begin{tabularx}{0.4\textwidth}{rX}
     $\cdot$ & A \textbf{fence} makes sure each memory access before the fence is
     complete before a new one is started.\\
     $\cdot$ & A \textbf{barrier} makes threads wait until they have all reached
     the barrier.\\
     $\cdot$ & A \textbf{lock} makes sure that only one thread enters a critical
     section of the program at a time (atomic access). Requires hardware support.
-  \end{tabular}
+  \end{tabularx}
 }
 
 \card{
