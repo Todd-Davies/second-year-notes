@@ -347,7 +347,7 @@ However, if we make the cache store virtual addresses, and have the TLB sit
 inbetween the cache and memory, this makes snooping hard to implement along with
 other functional difficulties. This is illustrated in Figure~\ref{tlb-pos}
 
-\begin{figure}
+\begin{figure}[h]
   \centering
   \includegraphics[width=0.45\textwidth]{images/tlb-pos-before}
   \includegraphics[width=0.45\textwidth]{images/tlb-pos-after}
@@ -361,7 +361,7 @@ are the offset which remains the same). The cache index is selected from the low
 order offset bits, and only the tag is changed by address translation. This is 
 shown in Figure~\ref{tlb-parallel}.
 
-\begin{figure}
+\begin{figure}[h]
   \centering
   \includegraphics[width=0.6\textwidth]{images/tlb-parallel}
   \caption{The TLB operating in parallel with the CPU cache}
@@ -1324,7 +1324,8 @@ it. You can break virtualization down into two broad categories:
 
 \begin{description}
   \item \textbf{Process Virtualization}:\\
-    Run a process under the control layer of software. The JVM does this.
+    Run a process under the control layer of software, e.g. the JVM running Java
+    bytecode.
     \marginpar{Here, a ``layer of software'' can mean a lot of things, but
     generally one or more processes.}
   \item \textbf{System Virtualization}:\\
@@ -1337,6 +1338,15 @@ This is useful, since virtualization can translate between technologies
 (providing garbage collection, debugging etc) and even make the system resources
 look different (emulate CD drives, reduce the amount of RAM for a virtual
 machine).
+
+\marginpar{There's a really cool debugging technique called Reverse Debugging
+that is made possible my virtualization. When you hit a breakpoint, the debugger
+lets you step \textit{back} through the code. This is often implemented by
+having the VM keep track of what each instruction did and reversing the
+operation each time you step back. Different granularities can be implemented;
+the debugger could save resources by just implementing a function reset feature
+that discards the current stack frame and lets you run the function again while
+looking at exactly what's happening.}
 
 For example, the JVM interprets byte code, and maps it onto the host OS's API.
 Rosetta translates PowerPC binaries to x86 ones on the fly.
@@ -1366,7 +1376,7 @@ of access for that instruction/OS and proceed accordingly. Since the VMM does
 the privileged operations, the guest OS can be unprivileged.
 
 This can be tricky sometimes though; some instructions behave differently
-according to what mode they are in, so the VMM must learn to handle that.
+according to what mode they are in, so the VMM must be able to handle that.
 
 If the guest OS is virtualization aware, then it is much easier to build a VMM,
 since the guest OS can call the VMM specifically for privileged operations,
@@ -1377,7 +1387,7 @@ cooperate with the VMM over shared page tables and call the VMM for IO.
 When you start a VM, the hypervisor will save the current registers, load the
 VM's initial registers and jump to the new VM's PC address. Likewise, when a VM
 is stopped, the hypervisor will save its registers into its own memory space. It
-is important to not that VM's are stopped and started all the time so that the
+is important to note that VM's are stopped and started all the time so that the
 CPU (and other resources) can be shared.
 
 When the VM is stopped, its memory and IO state is also retained as well as its
@@ -1385,7 +1395,7 @@ CPU registers. It is best to stop a VM when its IO is \marginpar{Quiescent means
 to be `in a state or period of inactivity or dormancy'}\textit{quiescent}, so
 that we don't have to save loads of IO buffers etc.
 
-Once we've stopped a VM, we can freeze it by saving all this state into a file.
+Once we've stopped a VM, we can freeze it by saving all its state into a file.
 This file tends to be large, since it contains the whole operating system, its
 installed applications and the state such as the registers etc.
 
@@ -1448,8 +1458,8 @@ This way, our text mining guy can (in theory) have $98\%$ of the CPU power of
 the second physical machine as well as near $100\%$ of the first one too!
 
 We can also use a similar technique to keep services highly available, if we
-regularly copy the state of one VM onto another physical machine, that secondary
-one is effectively a standby backup in case the first one crashes.
+regularly copy the state of one VM onto another physical machine, then the
+secondary one is effectively a standby backup in case the first one crashes.
 
 \section{Permanent Storage}
 
@@ -1462,8 +1472,8 @@ Broadly, there are three main categories of permanent storage media:
     This includes CD-ROM, DVD-ROM, and some Blu-ray Disks. Once you've written,
     you can't write over it.
   \item \textbf{Write Many, Read Many}:\\
-    This includes Hard Drives, tape drivers. The writes are fully reversible for
-    the purposes of the computer. \marginpar{Of course, the writes aren't
+    This includes hard drives, tape drives etc. The writes are fully reversible
+    for the purposes of the computer. \marginpar{Of course, the writes aren't
     literally fully reversible because of wear etc, but they are near enough.}
   \item \textbf{Write (not too) Many, Read Many}:\\
     Rewritable CD/DVD's have hundreds to thousands of write cycles, and flash
@@ -1473,7 +1483,7 @@ Broadly, there are three main categories of permanent storage media:
 
 \subsubsection{Hard drives}
 
-\begin{wrapfigure}{R}{0.2\textwidth}
+\begin{wrapfigure}{o}{0.2\textwidth}
   \centering
   \includegraphics[width=0.4\textwidth]{images/hard-drive}
   \caption{The structure of a `traditional' spinning disk Hard Drive}
@@ -1505,7 +1515,8 @@ if you've not heard of some of the terminology before):
   \item \textbf{Transfer Rate}:\\
     This is the amount of data that can be read per unit time. It depends on
     a lot of factors such as where data is on the disk and access patterns of
-    the data.
+    the data, though the transfer rate is usually given as a `sustained transfer
+    rate' in $\si{\mega\byte\per\second}$.
   \item \textbf{Disk Access Time}:\\
     The total time it takes to access data on the disk:
     \[
@@ -1526,7 +1537,7 @@ about it).}
 
 \[
   \begin{split}
-    \text{Search Time (\si{\milli\second})} &= \frac{0.5\text{rotations} \times 60}{7200RPM}\\
+    \text{Search Time (\si{\milli\second})} &= \frac{0.5\text{ rotations} \times 60}{7200RPM}\\
                                             &= 4.16\si{\milli\second}\\
     \text{Transfer Time (\si{\milli\second})} &= \frac{512\si{\byte}}{177\times10^6\si{\byte\per\second}}\\
                                               &= 2.89\si{\micro\second}\\
@@ -1537,7 +1548,7 @@ about it).}
   \end{split}
 \]
 
-\begin{figure}
+\begin{figure}[h]
   \centering
   \includegraphics[width=0.5\textwidth]{images/hd-schematic}
   \caption{The internal structure of a hard drive and the layout of its disk.}
@@ -1553,8 +1564,8 @@ hard drive will need to move to the head to each sector to read the whole file.
 If the sectors are physically distant from each other (say one was on the very
 inner track of the disk, and one was on the outermost track), then the hard
 drive may have to `waste' rotations in order to move the head to the correct
-track. An internal processor in the hard drive will re-order the Operating
-System's sector requests so that they are in the most efficient order for
+track. An internal processor in the hard drive will re-order the operating
+system's sector requests so that they are in the most efficient order for
 retrieval.
 
 \subsubsection{RAID}
@@ -1596,8 +1607,8 @@ another disk. This means we would have four copies of the same data, but
 
 A half-way-house solution between these two, would be \texttt{RAID 10}. This is
 a nested configuration, which still stripes the data, but keeps copies of the
-stripes. It can tolerate disk failure as long as no mirror loses all of its
-drives:
+stripes. It can tolerate disk failure as long as no \texttt{RAID 1} mirror loses
+all of its drives:
 
 \begin{figure}[H]
   \centering
@@ -1611,7 +1622,7 @@ and parity bits.}
 
 We can use error correction (e.g. hamming codes and parity bits) to provide
 redundancy \textit{and} striping as done using \texttt{RAID 2,3} and \texttt{4}.
-\texttt{RAID 5} and \texttt{6} both use distributed their parity bits over other
+\texttt{RAID 5} and \texttt{6} both distribute their parity bits over other
 drives.
 
 \begin{figure}[H]
@@ -1619,9 +1630,12 @@ drives.
   \begin{tabular}{cc}
     \includegraphics[width=0.5\textwidth]{images/raid2} &
     \includegraphics[width=0.5\textwidth]{images/raid3}\\
+    Bit Striping and Hamming Codes & Byte Striping and Parity Bits\\
     \includegraphics[width=0.5\textwidth]{images/raid4} &
     \includegraphics[width=0.5\textwidth]{images/raid5}\\
-    \multicolumn{2}{c}{\includegraphics[width=0.6\textwidth]{images/raid6}}
+    Block Striping and Parity & Block Striping and Distributed Parity\\
+    \multicolumn{2}{c}{\includegraphics[width=0.6\textwidth]{images/raid6}}\\
+    \multicolumn{2}{c}{Double Distributed Parity}
   \end{tabular}
   \caption{RAID 2-6}
   \label{raid2-6}
@@ -1648,7 +1662,7 @@ What happens if a disk fails in the following situations:
 Most operating systems support some kind of \texttt{RAID}, or you can buy a
 dedicated hardware controller.
 
-\subsubsection{Solid State Drive}
+\subsubsection{Solid State Drives}
 
 Solid State Drives (SSD) are made of flash memory. They have a Floating Gate
 Field Effect Transistor that can store 0's and 1's. It is possible that they
@@ -1670,9 +1684,11 @@ mitigate these flaws though. Wear levelling is when logical block addresses are
 mapped to physical addresses differently over time so that specific blocks
 aren't worn out.
 
-SSD's are much faster than hard drives though, they don't have seek or search
-times, so the data access is much faster. Their sustained read and write rates
-are much faster too. You pay more per gigabyte though, around 14 times more.
+SSD's are much faster than hard drives though, since they don't have moving
+parts, so the data access is much faster (the latency is around
+$0.1\si{\milli\second}$ or less. Their sustained read and write rates are much
+faster too. You pay more per gigabyte though, around 14 times more at current
+rates.
 
 \subsubsection{Storage Virtualization}
 
