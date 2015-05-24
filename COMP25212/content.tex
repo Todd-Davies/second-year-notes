@@ -7,7 +7,7 @@
 \section{Introduction}
 
 Performance is always an attribute in high demand in computer systems. Even
-though processors have become so much more powerful over the last half century,
+though processors have become much more powerful over the last half century,
 there's still loads of stuff that we cannot do with current technology, such as
 synthesising HD video in realtime, or computing realistic game physics.
 
@@ -77,10 +77,10 @@ want), and henceforth requires specialised structures to implement this.
 
 \subsection{Types of cache}
 
-The cpu will give the cache a full address of a word in memory that it wants to
+The CPU will give the cache a full address of a word in memory that it wants to
 read. The cache will contain a small selection of values from memory that it has
 locally, but will ask the main memory for values that it does not have. This is
-called a cache miss and is expensive in comparison to a cache hit.
+called a \textit{cache miss} and is expensive in comparison to a cache hit.
 
 \subsubsection{Fully associative}
 
@@ -99,26 +99,31 @@ use an address once, you are also likely to use addresses nearby (e.g. arrays).
 \marginpar{Spatial locality is exploited better by having a bigger data area in
 the cache (returning say 512 bits for every address instead of just one word)}
 
-The cache hit rate is the ratio of cache hits to misses. We need a hit rate of
-$98\%$ to hide the speed of memory from the CPU. Instruction hit rates are
-usually better than data hit rates (although they are in the same cache
-remember). The reason for this is that instructions are accessed in a more
+The cache hit rate is the ratio of cache hits to misses. We usually need a hit
+rate of around $98\%$ to hide the speed of memory from the CPU. Instruction hit
+rates are usually better than data hit rates (although they are in the same
+cache remember). The reason for this is that instructions are accessed in a more
 regular pattern, incrementing by one word every time, or looping around etc
 (have higher locality).
 
-When we do a cache miss (read), we should add the missed value to the cache. In
-order to do this, we need a cache replacement policy to find room in the cache
-to put the new value:
+When we do a cache miss (on a read), we should add the missed value to the
+cache. In order to do this, we need a cache replacement policy to find room in
+the cache to put the new value. Common cache replacement algorithms include:
 
-\begin{itemize}
-	\item LRU - slow, good for hit rates
-	\item Round Robin - not as good, easier to implement
-	\item Random - Easy to implement, works better than expected.
-\end{itemize}
+\marginpar{See my \texttt{COMP25112} notes for in depth stuff about LRU, Round
+Robin and more cache replacement algorithms (though they'll be under
+\textit{page} replacement algorithms or scheduling algorithms there).}
+
+\begin{description}
+	\item \textbf{Last Recently Used} (LRU) - slow, good for hit rates
+	\item \textbf{Round Robin} - not as good, easier to implement
+	\item \textbf{Random} - Easy to implement, works better than expected.
+\end{description}
 
 Memory writes are more complicated than reads. If we've already got the value in
 the cache, then we change the value in the cache. We can use three write
-strategies for cache writes (on hits):
+strategies for cache writes (on hits) to ensure that the changes are propagated
+to memory:
 
 \begin{itemize}
 	\item Write through (slow)
@@ -126,19 +131,25 @@ strategies for cache writes (on hits):
 	\item Copy back on cache replacement.
 \end{itemize}
 
-On misses:
+If however, we have a miss, then:
 
 \begin{itemize}
-	\item We can find a location in the cache, and write to that, then rely on
+	\item We can find a location in the cache and write to that, then rely on
 	copy back later, or write back straight away.
-	\item we can skip the cache, and write directly to RAM. Subsequent read will
-	add to the cache if necessary (good if you're initialising datastructures
-	with zeroes).
+	\item We can skip the cache, and write directly to RAM. Subsequent reads to
+  this memory location will	put it in the cache again (this is good if you're
+  initialising datastructures	with zeroes).
 \end{itemize}
 
-Fastest one is write allocate or copy back. Main memory and the cache aren't
-coherent, which can be a problem for stuff like multiprocessors, autonomous IO
-devices etc. This may need cleaning up later.
+\marginpar{A cache is coherent with memory if the values stored in the cache
+are the same as those in memory. This is always desirable (since otherwise
+you could have `old' data somewhere in the system), but sometimes hard to
+achieve.}
+
+The fastest strategy of these two is write allocate or copy back (the first
+one). However, the main memory and the cache aren't coherent, which can be a
+problem for stuff like multiprocessors, autonomous IO devices etc. This can
+cause problems, which we will deal with later.
 
 Each cache line is at least half address and half data, but often, we store more
 data per address, so will have 64 bytes of data per 32 bit address.
@@ -151,36 +162,59 @@ and power).
 We can use standard RAM to create a directly mapped cache, which mimics the
 functionality of an ideal cache. Usually, this uses static RAM, which is more
 expensive than dynamic RAM, but is faster. The address is divided into two
-parts, %TODO: Directly mapepd cache 2,3,4 + direct mapped replacement?
+parts, the tag and the index. The tag is the higher order bits of the address
+and the index is the lower order bits. The index is used to address the slot in
+the cache, and is made of the number of bits required to do this (so 15 bits for
+a $32\si{\kilo\bit}$ cache for example). The tag is used to check that the data
+stored for this index value is the correct address, this is probably described
+better by looking at Figure~\ref{fig:direct-mapped-cache}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/direct-mapped-cache}
+  \caption{A direct mapped cache has one slot for multiple different memory
+  addresses, the index determines what slot the value goes in, and the tag
+  checks that the correct value is being read.}
+  \label{fig:direct-mapped-cache}
+\end{figure}
+
+A direct mapped cache is really just a hash table implemented in hardware, but
+the collision policy is eviction (so if two addresses have the same index, then
+the one currently in the cache will be evicted to make room for the new one).
+
+This is a very cheap replacement policy (since no algorithm is implemented to
+decide what cache line to evict next), and it exploits spatial locality to
+minimise displacing recently used data. However, it does have a lower hit rate
+than more complex algorithms since the replacement strategy is so inflexible.
 
 \subsubsection{Set associative}
 
 Set associative caches are a compromise. They comprise of a number of directly
 mapped caches operating in parallel. If one matches, we have a hit and select
 the appropriate data. This is good because we can have more flexible cache
-replacement strategies. In a 4 way, we could choose any one of the four caches
-for example. The hit rate of set associative caches improves with the number of
-caches, but increasing the number increase the cost.
-
-% Lecture three
+replacement strategies. In a 4 way set associative cache, we could choose any
+one of the four caches for example. The hit rate of set associative caches
+improves with the number of caches, but increasing the number increase the cost.
 
 \section{Practical caches}
 
 \subsection{Cache control bits}
 
 When the system is started, the cache is empty. We need a bit for each cache
-entry to indicate that the data is meaningful (i.e. it isn't just an uninitialised
-zero or something). We also need a dirty bit if we're using the `write back'
-caching strategy (see above), rather than the `write through' strategy.
+entry to indicate that the data is meaningful (i.e. it isn't just an
+uninitialised zero or something), which we do by having a valid bit. We also
+need a dirty bit if we're using the `write back' caching strategy (see above),
+rather than the `write through' strategy.
 
 \subsection{Exploiting spatial locality}
 
-In order to exploit spatial locality, we need to have a wider `cache line', where
-each entry will give you more data than just one word. Each entry tag could
-correspond to two, four, eight etc words. Spatial locality says that if we get
-one byte, we'll probably want one from close by too.
+In order to exploit spatial locality, we need to have a wider `cache line',
+where each entry will give you more data than just one word. Each entry tag
+could correspond to two, four, eight etc words. The principle of spatial
+locality says that if we access memory at one location, we'll probably want to
+access nearby locations in the near future too.
 
-% TODO: Make image
+\marginpar{The 16/32 byte figure might be outdated now!}
 
 The lowest bits are used to select the word in the cache line. Most cache lines
 are 16 or 32 bytes, which is 4 or 8 32bit words. The data is transferred from
@@ -197,10 +231,14 @@ words, and then the number of misses will increase.
 
 \subsection{Separate instruction and data caches}
 
-Since instructions and data have different access patterns in memory (but they
-are stored in the same memory), we could use different caches for each type of
-word, so that the different caches can use different strategies to minimise
-misses according to their different access patterns.
+Studies have shown that programs typically do one access to memory for data per
+three access for an instruction. The data accesses are usually (except in the
+rare case of self modifying programs) in separate address ranges, and therefore
+these different access patterns can be exploited by having separate instruction
+and data caches. This is called a Harvard architecture.
+
+To cater for this, the L1 CPU cache is usually split up into the L1I cache for 
+instructions and the L1D cache for data.
 
 \subsection{Multi level caches}
 
@@ -209,9 +247,9 @@ However, big caches are slow, and the L1 cache needs to run at processor speed.
 We can instead put another cache between the RAM and the L1 cache, and keep the
 L1 cache the same size.
 
-The L2 cache is typically sixteen times bigger than the L1 cache, but also four
-times slower. It's still ten times faster than RAM though. The L1D and L1I
-caches both share the L2 cache.
+The L2 cache is typically around sixteen times bigger than the L1 cache, but
+also four times slower. It's still ten times faster than RAM though. The L1D and
+L1I caches both share the L2 cache.
 
 If a chip has an L3 cache, then it is usually quite large (maybe around 8Mb),
 but its performance is only about twice as good as that of RAM.
@@ -235,6 +273,33 @@ There are three types of cache misses, called the three C's
     associative, then misses due to this wouldn't occur.
 \end{description}
 
+We can calculate the impact of cache misses, predicting on average, how long the
+CPU will wait for a reply from memory. If the L1 cache has a hit rate of $98\%$
+and takes one cycle to return a value, the L2 cache has a hit rate of $90\%$
+and takes four cycles to return, the L3 cache has a hit rate of $70\%$ and takes
+ten cycles, while the main memory takes 100 cycles, what is the average access 
+time?
+
+First, we can calculate how many accesses (as a percentage) each level will get:
+
+\begin{tabular}{l >{$}l<{$}}
+  L1 & 98\%\\
+  L2 & ((100-98)*0.9) = 1.8\%\\
+  L3 & ((2-1.8)*0.7) = 0.14\%\\
+  Main Memory & ((0.2-0.14)*1) = 0.06\%
+\end{tabular}
+
+We can then use those as decimals to calculate how many clock cycles the CPU
+will have to wait on average:
+
+\[
+  \begin{split}
+    \text{Average} &= 0.98(1) + 0.018(1 + 4) + 0.0014(1 + 4 + 10) + 0.0006(1+4+10+100)\\
+                   &= 0.98 + 0.09 + 0.021 + 0.069\\
+                   &= 1.16
+  \end{split}
+\]
+
 \subsection{More cache performance}
 
 %TODO: What happens when IO is memory mapped, does this go through the cache? :o
@@ -252,18 +317,21 @@ those in main memory. There are situations when they can disagree, for example
 if IO reads or writes directly to memory (perhaps using DMA), then that value
 could be different from whatever is in the cache.
 
-Solutions:
+There are a number of solutions to this:
+
 \begin{description}
   \item \textbf{Non-cacheable}\\
     One solution is to make areas of memory that IO can access non-cachable, or
     clear the cache before and after the IO takes place.
   \item \textbf{IO use data cache}\\
-    Another is to have the IO go directly through the CPU's L1d (data) cache
-    before accessing memory, but this is slow.
+    Another is to have the IO go directly through the CPU's L1D (data) cache
+    before accessing memory, but this tends to slow down the cache (which is
+    obviously bad for the speed of the system, but we'll look why in
+    Section~\ref{pipelines}).
   \item \textbf{Snoop on IO activity}\\
-    We could have hardware logic that will look at the reads and writes to
-    memory from IO and make sure the cache is consistent with memory for those
-    addresses.
+    We could have hardware logic in the cache that will look at the reads and
+    writes to memory from IO and make sure the cache is consistent with memory
+    for those addresses. This will be covered more in Section~\ref{snooping}.
 \end{description}
 
 \subsection{Virtual Addresses}
@@ -277,16 +345,31 @@ If we make addresses go through the TLB before they reach the cache, then this
 is slow, since they must pass through extra logic etc before hitting the cache.
 However, if we make the cache store virtual addresses, and have the TLB sit
 inbetween the cache and memory, this makes snooping hard to implement along with
-more functional difficulties.
+other functional difficulties. This is illustrated in Figure~\ref{tlb-pos}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.45\textwidth]{images/tlb-pos-before}
+  \includegraphics[width=0.45\textwidth]{images/tlb-pos-after}
+  \caption{Two possible placements of the Translation Lookaside Buffer}
+  \label{tlb-pos}
+\end{figure}
 
 The answer is to have the TLB operate in parallel to the cache. Since address
 translation only affects the high order bits of the cache (the low order bits
 are the offset which remains the same). The cache index is selected from the low
-order offset bits, and only the tag is changed by address translation.
+order offset bits, and only the tag is changed by address translation. This is 
+shown in Figure~\ref{tlb-parallel}.
 
-%TODO: Image goes here (something like in the lecture slide of lecture 4, S15)
+\begin{figure}
+  \centering
+  \includegraphics[width=0.6\textwidth]{images/tlb-parallel}
+  \caption{The TLB operating in parallel with the CPU cache}
+  \label{tlb-parallel}
+\end{figure}
 
 \section{Pipelines}
+\label{pipelines}
 
 The fetch execution cycle is very repetitive, if we can optimise it, then we can
 potentially improve the performance of the system a lot! In very simple systems,
@@ -314,7 +397,7 @@ $80\%$ of its time doing nothing!
 If we can get all of those components of the CPU working at the same time, then
 we can speed up the clock speed by five times! In order to do this, we can use a
 pipeline, with buffers that are flushed every clock cycle inbetween each stage
-of the pipeline:
+of the pipeline, as shown in Figure~\ref{basic-pipeline}.
 
 \marginpar{Although we have divided our processor into five stages, you can
 split it up into more or less than that (the most simple of which is just to
@@ -330,7 +413,8 @@ year. Modern processors use a lot of stages, maybe around thirty.)}
 
 Now, we can still only execute one instruction per cycle, but we can also
 increase our clock speed by five times, since each stage of the pipeline is
-isolated by a buffer from the next!
+isolated by a buffer from the next, and only does $\frac{1}{5}$ of the work of a
+`normal' CPU cycle.
 
 \subsection{Control Transfer Problem}
 
@@ -345,12 +429,16 @@ the pipeline, so we would waste one clock cycle (or more specifically, we would
 waste $\frac{1}{5}$ of the work of five clock cycles!). The ignored instruction
 is said to be a \textit{bubble} in the pipeline.
 
-So far, we've assumed that our branch instruction has relies on no conditional
+So far, we've assumed that our branch instruction has relied on no conditional
 flags. If it did however, we would need to wait until the \texttt{EX} stage of
 the pipeline before we knew what the outcome of the conditional evaluation would
 be. This has the potential to create two bubbles, since if the branch was to
 occur, the instructions at both the \texttt{IF} and \texttt{ID} stages of the
 pipeline would have to be ignored.
+
+\marginpar{Other control hazards are possible, it's not just branching that's
+the issue. Conditional instructions (e.g. \texttt{MOVGE}) can also be cause
+control hazards.}
 
 These bubbles are called \textbf{control hazards}, and they occur when it takes
 one or more pipeline stages to detect a branch. Longer pipelines are more likely
@@ -361,9 +449,9 @@ processed by the time an instruction is detected to be a branch.
 
 The main technique used to mitigate control hazards is \textbf{branch
 prediction}. If we can remember what address a branch directed us to fetch next
-from what it did when we executed that branch previously, then we could pre-
-emptively load that instruction in the \texttt{IF} stage instead of fetching the
-instruction at the PC.
+from what it did when we executed that branch previously, then we could
+pre-emptively load that instruction in the \texttt{IF} stage instead of fetching
+the instruction at the PC.
 
 In order to do this, we use a \textbf{branch target buffer}. This maps the
 virtual address of one branch instruction onto the virtual address of the
@@ -385,14 +473,15 @@ instruction that is branched to, for example:
 
 Now, we will always get unconditional branches right (after we've done it for
 the first time), and we will get branches that are part of loops (such as a
-\texttt{for} or \texttt{while} loop) right most of the time. If we predict a
+\texttt{for} or a \texttt{while} loop) right most of the time. If we predict a
 branch incorrectly, we just get a bubble like we would if we had no branch
-prediction, so it's a win-win situation.
+prediction, since the steps after the incorrectly predicted branch will just
+be aborted. For efficiency, branch prediction is a win-win situation.
 
 Branch prediction is easy to understand, but implementing it is expensive. In
-practice branch predictors use history of each branch (maybe taking the mode of
-the last five branches), and the context of the branch (i.e. how did we get to
-this point) in order to make a more accurate prediction.
+practice branch predictors use the history of each branch (maybe taking the mode
+of the last five branches), and the context of the branch (i.e. how did we get
+to this point) in order to make a more accurate prediction.
 
 \begin{figure}[ht]
   \centering
@@ -442,9 +531,10 @@ Two easy solutions to this problem are to:
 Since these are unsatisfactory, we could add extra paths to the pipeline between
 the ALU output and the ALU input. They could be activated if there is an
 interdependency so that the incorrect result of the \texttt{ID} stage could be
-modified before being processed by the ALU.
+modified before being processed by the ALU, as shown in
+Figure~\ref{extra-paths}.
 
-\begin{figure}[ht]
+\begin{figure}
   \centering
   \includegraphics[width=\textwidth]{images/extra-paths}
   \caption{Here, we insert extra paths into the processor so that it can
@@ -461,9 +551,12 @@ does:
   MUL   R0, R1, R1
 \end{verbatim}
 
-Our path would have to look like this:
+Our path would have to look like in Figure~\ref{more-extra-paths}.
 
-\begin{figure}[ht]
+\marginpar{Adding extra paths to the architecture to pass updated register
+values back to previous stages of the pipeline is called \textbf{forwarding}.}
+
+\begin{figure}[h!]
   \centering
   \includegraphics[width=\textwidth]{images/more-extra-paths}
   \caption{In order to cater for the worst case, where we're waiting on a memory
@@ -500,19 +593,23 @@ example:
 \end{verbatim}
 
 We can draw a data flow graph to visualise these dependencies, and easily see
-which instructions can be run in parallel:
+which instructions can be run in parallel, as in Figure~\ref{data-flow}.
 
-\begin{figure}[ht]
+\begin{wrapfigure}{o}{0.4\textwidth}
   \centering
-  \includegraphics{diagrams/data-flow.pdf}
+  \vspace{-2em}
+  \includegraphics[width=0.4\textwidth]{diagrams/data-flow.pdf}
+  \vspace{-2em}
   \caption{A sample data flow graph.}
+  \vspace{-2em}
   \label{data-flow}
-\end{figure}
+\end{wrapfigure}
 
 Though this is a simple example, analysis has shown that it is not uncommon for
 real programs to have up to four instructions that can be parallelised at some
 point in the program's running time. Obviously, the amount of times when two or
-three instructions could be parallelised will be greater than that of four.
+three instructions could be parallelised will be greater than that of four,
+which increases the argument for ILP.
 
 In order to exploit this parallelism, we can:
 
@@ -523,7 +620,8 @@ In order to exploit this parallelism, we can:
   on the same data.
 \end{itemize}
 
-Now we could have an architecture looking like that in Figure~\ref{superscalar}.
+This could require an architecture looking like that in
+Figure~\ref{superscalar}.
 
 \begin{figure}[ht]
   \centering
@@ -545,7 +643,7 @@ simultaneously.
 
 In order to implement ILP, we also need a `dispatch unit' in hardware which is
 part of the fetch stage (\texttt{IF}). This will fetch multiple instructions if
-they are independent and be executed in parallel.
+they are independent and can be executed in parallel.
 
 \subsubsection{Out of Order Execution}
 
@@ -553,7 +651,11 @@ In order to get the maximum number of ILP compatible instruction sequences in a
 program, the compiler may be able to re-order instructions so that they have a
 reduced number of interdependencies. One technique that is based on this is the
 Very Long Instruction Word, where each word will be longer than a normal word
-(maybe 48, 64 or more bits), and will contain more than one instruction.
+(maybe 48, 64 or more bits), and will contain more than one instruction. Since
+the compiler decides what instructions to execute in parallel by putting them in
+a VLIW, the processor doesn't need to do so at runtime, therefore the complexity
+of the instruction scheduling is taken away from the CPU and its complexity can
+be reduced.
 
 Having the compiler re-order instructions means that it will sometimes add
 \texttt{NOP}'s into the code, which can increase the binary size, and bloat the
@@ -564,8 +666,8 @@ To implement an out of order processor, you need to have a buffer that
 instructions are fetched into, a scheduler to choose which (non-conflicting)
 instructions to execute at what times, and a cache to store memory and register
 accesses until all the instructions have finished so that the application can
-execute normally as though all instructions executed in serial. Figure~\ref{out-
-of-order} shows how this could all be implemented.
+execute normally as though all instructions executed in serial.
+Figure~\ref{out-of-order} shows how this could all be implemented.
 
 \begin{figure}[H]
   \centering
@@ -589,7 +691,7 @@ R1, R2} will do:
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{images/UADD8}
+  \includegraphics[width=0.5\textwidth]{images/UADD8}
   \caption{A 4 way 8-bit integer add operation.}
   \label{UADD8}
 \end{figure}
@@ -602,11 +704,12 @@ performance:
 \begin{itemize}
   \item Increasing the clock frequency
   \item Increasing the \textit{ips} (instructions per clock)
-  \item Minimising the impact of accessing memory with a cache
-  \item Minimising bubbles (branch prediction)
-  \item Minimising bubbles (out of order execution)
-  \item Parallelising instructions (with an superscalar architecture)
-  \item[ ] \hspace{-2.2em}And, up to a point
+  \item Minimising the impact of accessing memory using a cache
+  \item Minimising bubbles with branch prediction
+  \item Minimising bubbles using out of order execution
+  \item Parallelising instructions (with a superscalar architecture)
+  % Weird but it works - look a the compiled version ;) 
+  \item[ ] \hspace{-2.3em}And, up to a point
   \item Lengthening the pipeline
 \end{itemize}
 
@@ -621,11 +724,12 @@ once. There are multiple ways to do this too:
 
   \item After a cache miss, we need to wait for a certain amount of time for the
   data we want to come from the memory, over the bus and into the CPU. While
-  we're waiting, can we carry on issuing other instructions?
+  we're waiting, can we carry on issuing other instructions.
 
   \item Process instructions in parallel (e.g. with a superscalar architecture).
 
-  \item Write to registers while the previous write is pending?
+  \item Write to registers while the previous write is pending using a register
+  cache.
 \end{itemize}
 
 These ways of increasing parallelism are good, but assume we have only one source
@@ -633,10 +737,10 @@ of instructions. However in reality, a CPU will be executing code from multiple
 processes at once. What about if we run out of instructions to execute in one
 program, we could just context switch to another!
 
-\subsection{Context switch}
+\subsection{Context switches}
 
-In a context switch, the Operating System must load/store a lot of data about
-the switching processes:
+In a context switch, the Operating System must load and store a lot of data
+about the switching processes:
 
 \begin{mymulticols}
   \begin{itemize}
@@ -653,19 +757,22 @@ the switching processes:
   \end{itemize}
 \end{mymulticols}
 
+All of this takes time for the processor, and power too, which is a concern on
+low power processors.
+
 \subsection{Hardware multithreading}
 
 We could have two PC's, two sets of registers (GPR's on the diagram), two
-virtual address mappings etc, and have the CPU support multi threading naively.
+virtual address mappings etc, and have the CPU support multi threading natively.
 This would require the OS to be able to handle multiple processors, since the
 easiest way of making it work is to make the one processor core look like two
 processor cores (since the inputs and outputs are effectively doubled). See
-Figure~\ref{hardware-multithreading-comparison} for a comparison of the three
-types.
+Figure~\ref{hardware-multithreading-comparison} for examples of the three types
+of hardware multithreading.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{images/hyperthreading}
+  \includegraphics[width=0.6\textwidth]{images/hyperthreading}
   \caption{The architecture of a multithreaded CPU}
   \label{hyperthreading}
 \end{figure}
@@ -686,7 +793,7 @@ for example, or whenever the CPU has to wait to execute more instructions.
 
 This type of multithreading has benefits. If the CPU can execute one instruction
 per nanosecond ($1GHz$), a cache miss takes $20$ nano seconds, and one cache
-miss occurs on average, every hundred instructions, then the time number of
+miss occurs on average, every hundred instructions, then the number of
 instructions per clock cycle is:
 
 \begin{description}
@@ -704,19 +811,21 @@ Coarse grain multithreading is good, because it requires a minimal change in the
 pipeline; only to abort instructions in the `shadow' of a cache miss and the
 ability to resume the instruction stream at the correct point afterwards.
 
-%Unfortunately, when you do a context switch, a new program runs on the
-%processor. This is bad, since both the instruction and data caches will suddenly
-%contain an awful lot of entries that are obselete, and so most of the cache
-%requests will be misses.
+Unfortunately, when you do a context switch, a new program runs on the
+processor. This is bad, since both the instruction and data caches will suddenly
+contain an awful lot of entries that are obsolete, and so most of the cache
+requests will be misses. The term `trashing the cache' is used to describe
+another thread (or maybe a procedure in the current thread) ruining the cache
+hit rate by polluting it with non-relevant data.
 
 \subsubsection{Fine grain multithreading}
 
 The aim of fine grain multithreading is to be able to switch between CPU threads
 with as little overhead as possible. This involves interleaving the instructions
 of several threads. This results in better overall performance, since the impact
-of short stalls such as accessing memory or the cache is alleviated by executing
-instructions from other threads. Each individual thread perceives it is being
-executed slower, but the overall performance is better.
+of short stalls such as accessing memory is reduced by executing instructions
+from other threads. Each individual thread perceives itself as being executed
+slower, but the overall performance is better.
 
 \subsubsection{Simultaneous multithreading (SMT)}
 
@@ -738,15 +847,18 @@ disjoint areas of memory) unless a process has multiple threads processing.
 
 Furthermore, there is a significant increase in the complexity of the hardware
 required. The thread state, priorities, OS-level information etc must all be
-maintained by the processor in hardware.
+maintained by the processor in hardware to facilitate (fast) context switches.
 
 \subsubsection{Other techniques}
+
+There are more techniques we can apply to thread aware processors in order to
+eke out the very best performance from our precious silicon. Here are a few:
 
 \begin{description}
   \item \textbf{Slipstreaming}:\\
     This is when an application is split into two parts; the critical path, and
-    all the rest. The critical path will run ahead, and pass the result of the
-    operations back to the `main thread'
+    all the rest. The critical path will run ahead, and pass the result of
+    expensive operations back to the `main thread'
   \item \textbf{Memory prefetching}:\\
     We could compile the application into two parts here too, except one will
     get all the memory accesses, and the other will do everything else. This
@@ -755,8 +867,8 @@ maintained by the processor in hardware.
   \item \textbf{Speculative execution}:\\
     When we get to a conditional branch in the program, we could spawn two
     threads; one for each path. When we know which is the correct path, we can 
-    kill the thread that wasn't executing that path. In this way, we could avoid
-    control hazards.
+    kill the thread that wasn't executing that path. In this way, we can reduce
+    the impact of control hazards.
 \end{description}
 
 \section{Multi-Core}
@@ -814,11 +926,12 @@ another could run a web browser.
 \subsection{The structure of a multi core processor}
 
 In a multicore processor, some components will be shared between processors, and
-some won't. Usually, each processor shares an L1 cache, and sometimes an L2
-cache. You can see a generalisation in Figure~\ref{multicore-arch}.
+some won't. Usually, each processor has its own an L1 cache, and sometimes an L2
+cache too. You can see a generalisation in Figure~\ref{multicore-arch}.
 
 \begin{figure}
-  \includegraphics[width=\textwidth]{images/multicore-arch}
+  \centering
+  \includegraphics[width=0.7\textwidth]{images/multicore-arch}
   \caption{A simplified multicore architecture}
   \label{multicore-arch}
 \end{figure}
@@ -828,13 +941,14 @@ cache. You can see a generalisation in Figure~\ref{multicore-arch}.
 Different CPU cores trying to access the same areas of memory can be an issue,
 since the caches may not be \textit{coherent}. Coherence is a desired property
 of multiple caches all pointing to the same shared resource; each cache should
-provide the same view of the resource at all times (from the point of view of
-the users of the cache).
+provide the same view of the resource at all times (at least from the point of
+view of the users of the cache).
 
 This shouldn't be a problem, since after all, processes have disjoint memory
 spaces, so each process will be running on one core and accessing different
 areas of memory. However, threads \textit{do} share memory, and they can run on
-multiple cores (and other stuff can update memory, such as DMA etc).
+multiple cores (and other stuff can update memory, such as DMA etc) so assuming
+disjoint memory access across cores is a bad idea.
 
 When we talk about CPU cache coherency, the L1 cache is what we mainly focus on.
 Each core will have its own L1 cache, and if a value is updated in one cache
@@ -893,12 +1007,13 @@ checked to see if it conflicted with any other transaction, and it is rolled
 back if it did (and started again).
 
 \subsubsection{Coherence protocols}
+\label{snooping}
 
-A scheme where each core would what other cores are caching the same data as it
-is would be far too complex. As an alternative to this, each cache
-\textit{snoops} on the other caches for activity related to its own cache. This
-is most simply implemented by routing all data through a bus so every cache can
-see the activity of other caches.
+A scheme where each core would know exactly when other cores are caching the
+same data is infeasible as it is would be far too complex (and probably slow).
+As an alternative to this, each cache \textit{snoops} on the other caches for
+activity related to its own cache. This is most simply implemented by routing
+all data through a bus so every cache can see the activity of other caches.
 
 There are two very simple snooping protocols in use:
 
@@ -920,7 +1035,7 @@ update) might look fastest, it isn't always, since it will update the cache when
 it might not be needed (e.g. two writes to the same cache in a row would require
 two updates to the other caches, but only one invalidate using write
 invalidate). This can also happen when you're writing to different words in the
-same block of a multi word cache.
+same block of a multi word cache (most caches are multi word remember!).
 
 Unfortunately, this can happen often due to spatial and temporal locality (the
 principles that make CPU caches work), and bus bandwidth is a precious
@@ -932,7 +1047,7 @@ is enough to know whether to send a message on the bus in the first place.
 
 If we use the invalidation scheme, then if the writes don't also get written
 through to memory, then when other caches read from the memory, they will read
-old values, so we need a protocol to handle this.
+old values, so we need a protocol to handle this\dots
 
 \textbf{MESI Protocol}
 
@@ -972,24 +1087,19 @@ events, which can be either from local core activity or snooping from other
 cores. The cache line state will only be effective if its address matches the
 address of the memory event.
 
-The state changes are as follows:
-
-\begin{figure}[H]
-  \includegraphics[width=\textwidth]{images/MESI1}
-  \caption{MESI - local cache view}
-  \label{MESI1}
-\end{figure}
+The state changes are as shown in Figure~\ref{MESI}.
 
 \marginpar{`RWITM' means Read With Intent To Modify.}
 
 \begin{figure}[H]
-  \includegraphics[width=\textwidth]{images/MESI2}
-  \caption{MESI - snooping cache view}
-  \label{MESI2}
+  \includegraphics[width=0.45\textwidth]{images/MESI1}
+  \includegraphics[width=0.45\textwidth]{images/MESI2}
+  \caption{MESI - local cache view (left) and snooping cache view (right)}
+  \label{MESI}
 \end{figure}
 
-The consensus is that snooping protocols don't scale well beyond around 16 cores
-max, since the bus connecting the cores becomes saturated. We could have a
+The consensus is that snooping protocols don't scale well beyond around 16
+cores, since the bus connecting the cores becomes saturated. We could have a
 hierarchy of buses, but this is complicated.
 
 Instead, we can create directory based protocols. If we use distributed
@@ -1017,12 +1127,13 @@ The directory can have three states too:
 The directory also stores a \textit{sharing vector} describing what core holds
 the same cache line, which can be seen in Figure~\ref{directory-protocol}.
 
-\begin{figure}[H]
+\begin{wrapfigure}{o}{0.4\textwidth}
   \centering
-  \includegraphics[width=0.5\textwidth]{images/directory-protocol}
-  \label{directory-protocol}
+  \vspace{-2em}
+  \includegraphics[width=0.35\textwidth]{images/directory-protocol}
   \caption{How data might be organised in a directory protocol}
-\end{figure}
+  \label{directory-protocol}
+\end{wrapfigure}
 
 If we have a central directory, then it might become the bottleneck we were
 trying to avoid with a bus. To stop this, we could use a distributed directory,
@@ -1161,7 +1272,7 @@ are sent into the network. This allows time-multiplexing of network resources
 and is good for performance (especially in short messages). Packets are also
 split into flits, which are teeny packets (see Figure~\ref{flits}).
 
-\begin{figure}
+\begin{figure}[h]
   \centering
   \includegraphics[width=0.5\linewidth]{images/flits}
   \caption{How a packet is split up into flits.}
@@ -1504,6 +1615,7 @@ redundancy \textit{and} striping as done using \texttt{RAID 2,3} and \texttt{4}.
 drives.
 
 \begin{figure}[H]
+  \centering
   \begin{tabular}{cc}
     \includegraphics[width=0.5\textwidth]{images/raid2} &
     \includegraphics[width=0.5\textwidth]{images/raid3}\\
