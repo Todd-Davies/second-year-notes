@@ -1,0 +1,50 @@
+\card{
+	What does a fully associative cache store?
+}{
+	Addresses and their corresponding data
+}
+
+\card{How does the CPU locate an item in a fully associative cache?}
+{Hardware compares the input address with all stored addresses (in parallel)\\
+If we get a match we have a hit\\
+If no match we must go to main memory}
+
+\card{What is temporal locality?}
+{The principle that if you use an address once, you may use it again soon e.g. loops}
+
+\card{What is spatial locality?}
+{The principle that if you use an address once, you are also likely to use addresses nearby e.e. arrays}
+
+\card{What are the three common cache replacement algorithms?}
+{Least Recently Used (LRU)\\
+Round Robin\\
+Random}
+
+\card{Explain the write-through cache write strategy.}
+{Whenever a write is done to the cache, the write is also done to main memory}
+
+\card{Explain the copy-back cache write strategy.}
+{When a cach line is replaced, if the dirty bit is set, the modified value is written to main memory}
+
+\card{Why does a direct mapped cache usually use static RAM?}
+{It is a lot faster than dynamic RAM}
+
+\card{Briefly explain what a set associative cache consists of.}
+{A number of directly mapped caches operating in parallel}
+
+\card{What is the advantage of using a set associative cache?}
+{We have more flexible cache replacement strategies as we could choose any one of the caches to replace from}
+
+\card{What two control bits are usually used in cache entries?}
+{Valid bit and dirty bit}
+
+\card{Explain what a compulsory cache miss is?}
+{When we first start the computer, the cache is empty, so until the cache is populated, we're going to have a lot of misses}
+
+\card{Explain what a capacity cache miss is?}
+{Since the cache is limited in size, we can’t contain all of the pages for a program, so some misses
+will occur.}
+
+\card{Explain what a conflict cache miss is?}
+{In a direct mapped or set associative cache, there is competition between memory locations for
+places in the cache. If the cache was fully associative, then misses due to this wouldn’t occur.}
