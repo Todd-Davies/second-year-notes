@@ -1,0 +1,122 @@
+\card{
+  What are the three main categories of permanent storage media?
+}{
+  Write Once Read Many, Write Many Read Many, Write (not too) Many Read Many
+}
+
+\card{
+  What are the three terms used to quantify hard drive performance
+  characteristics?
+}{
+  Seek time, search time and transfer rate.
+}
+
+\card{
+  What is the seek time?
+}{
+  The time it takes for the head to reach the target track on the platter.
+}
+
+\card{
+  What is the search time?
+}{
+  The time it takes for the target sector to arrive under the head.
+}
+
+\card{
+  What is the transfer rate?
+}{
+  The amount of data that can be read/written per unit time.
+}
+
+\card{
+  Give the equation for disk access time.
+}{
+  \[
+    \text{Disk access time} = \text{Seek time} + \text{Search time}
+                                + \text{Transfer time}
+  \]
+}
+
+\card{
+  How can we work out the search time from the RPM?
+}{
+  \[
+    \text{Search time (seconds)} = \frac{0.5\text{ rotations} \times 60}{RPM}
+  \]
+}
+
+\card{
+  What happens if the OS wants to read a file that is split over multiple
+  sectors on the hard drive?
+}{
+  The processor in the hard drive changes the read order to the most efficient
+  order of sectors for the head to minimise wasted rotations.
+}
+
+\card{
+  What does RAID stand for?
+}{
+  Redundant Array of Independent Disks
+}
+
+\flashcard{
+  RAID0 has a \blank{high} transfer rate and a \blank{low} redundancy because
+  data is \blank{striped} over multiple disks.
+}
+
+\flashcard{
+  RAID1 has a \blank{low} transfer rate and a \blank{high} redundancy since data
+  is \blank{mirrored} over multiple disks.
+}
+
+\flashcard{
+  We can use \blank{error correction} such as \blank{hamming codes} and
+  \blank{parity bits} to provide redundancy using RAID.
+}
+
+\card{
+  Define RAID{2,3,4,5,6}.
+}{
+  \begin{tabularx}{0.4\textwidth}{lX}
+    2 & Bit striping and hamming codes\\
+    3 & Byte striping and parity bits\\
+    4 & Block striping and parity\\
+    5 & Block striping and distributed parity\\
+    6 & Double distributed parity
+  \end{tabularx}
+}
+
+\card{
+  What is the transistor used in SSD's?
+}{
+  A Floating Gate Field Effect Transistor.
+}
+
+\card{
+  What is wear-levelling?
+}{
+  When a SSD maps different logical addresses to different physical blocks so
+  that all blocks are worn out at the same rate.
+}
+
+\flashcard{
+  RAID lets us break the concept of \blank{file systems} by mapping them
+  onto \blank{multiple drives} using \blank{striping and mirroring}. The actual
+  details of storage are \blank{abstracted away}.
+}
+
+\card{
+  What is a SAN?
+}{
+  A Storage Area Network.
+}
+
+\flashcard{
+  \blank{ZFS} is a volume aware filesystem. It protects against losing files,
+  running out of space, corruption of data etc by being very flexible and
+  having lots of \blank{ECC} and implementing
+  \blank{copy}-\blank{on}-\blank{write}, simple \blank{rollback and recovery},
+  \blank{wear leveling}, self \blank{checking} and \blank{healing}, sumchecking
+  and more.
+}
