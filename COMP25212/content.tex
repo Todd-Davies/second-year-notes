@@ -1463,8 +1463,6 @@ secondary one is effectively a standby backup in case the first one crashes.
 
 \section{Permanent Storage}
 
-\subsection{Disks and filesystems}
-
 Broadly, there are three main categories of permanent storage media:
 
 \begin{description}
@@ -1481,7 +1479,7 @@ Broadly, there are three main categories of permanent storage media:
     wear slightly on each write, making them less effective.
 \end{description}
 
-\subsubsection{Hard drives}
+\subsection{Hard drives}
 
 \begin{wrapfigure}{o}{0.2\textwidth}
   \centering
@@ -1568,7 +1566,7 @@ track. An internal processor in the hard drive will re-order the operating
 system's sector requests so that they are in the most efficient order for
 retrieval.
 
-\subsubsection{RAID}
+\subsection{RAID}
 
 RAID stands for a Redundant Array of Independent Disks, which is a type of
 storage virtualization.
@@ -1662,7 +1660,7 @@ What happens if a disk fails in the following situations:
 Most operating systems support some kind of \texttt{RAID}, or you can buy a
 dedicated hardware controller.
 
-\subsubsection{Solid State Drives}
+\subsection{Solid State Drives}
 
 Solid State Drives (SSD) are made of flash memory. They have a Floating Gate
 Field Effect Transistor that can store 0's and 1's. It is possible that they
@@ -1690,7 +1688,7 @@ $0.1\si{\milli\second}$ or less. Their sustained read and write rates are much
 faster too. You pay more per gigabyte though, around 14 times more at current
 rates.
 
-\subsubsection{Storage Virtualization}
+\subsection{Storage Virtualization}
 
 Classically, we have a file system that maps from our logical thinking of how
 files are ordered onto the disk. File systems do not naturally span onto
