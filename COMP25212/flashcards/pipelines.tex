@@ -1,41 +1,78 @@
 \card{Explain each stage of a 5 stage pipeline}
-{IF - Fetch instruction from memory\\
-ID - Decode instruction; select registers\\
-EX - Perform an operation or calculate an address\\
-MEM - Access an operand in memory\\
-WB - Write to registers}
+{
+  IF - Fetch instruction from memory\\
+  ID - Decode instruction; select registers\\
+  EX - Perform an operation or calculate an address\\
+  MEM - Access an operand in memory\\
+  WB - Write to registers
+}
 
 \card{Briefly explain what pipelining is}
-{Where we get all the components of the CPU working at the same time, with buffers that are flushed every clock cycle inbetween each stage, so that we can overlap the execution of instructions to increase overall clock speed.}
+{
+  Where we get all the components of the CPU working at the same time, with
+  buffers that are flushed every clock cycle inbetween each stage, so that we
+  can overlap the execution of instructions to increase overall clock speed.
+}
 
 \card{What is a control hazard?}
-{If we have a branch at the ID stage, then the fetched instruction at the IF stage will have to be ignored all the way down the pipeline, wasting one full cycle and causing a \textit{bubble}.}
+{
+  If we have a branch at the ID stage, then the fetched instruction at the
+  IF stage will have to be ignored all the way down the pipeline, wasting one
+  full cycle and causing a \textit{bubble}.
+}
 
-\card{What are two ways of preventing control hazards?}
-{Pipeline bubbling and branch prediction}
+\card{What are two ways of dealing with control hazards?}
+{
+  Pipeline bubbling (abort instructions that are incorrect) and branch
+  prediction (guess what way to branch).
+}
 
 \card{Briefly explain what branch prediction is}
-{If we can remember what address a branch directed us to fetch next from what it did when we executed that branch previously, then we can pre-emptively load that instruction in the IF stage instead of fetching the instruction at the PC.}
+{
+  If we can remember what address a branch directed us to fetch next from what
+  it did when we executed that branch previously, then we can pre-emptively
+  load that instruction in the IF stage instead of fetching the instruction at
+  the PC.
+}
 
 \card{What is used to implement branch prediction and what does it do?}
-{A branch target buffer which maps the virtual address of one branch instruction onto the virtual address of the instruction that is branched to}
+{
+  A branch target buffer which maps the virtual address of one branch
+  instruction onto the virtual address of the instruction that is branched to
+}
 
 \card{What is a data hazard?}
-{This is where we execute instructions in parallel that depend on each other}
+{
+  This is where we execute instructions that depend on each other in parallel or
+  close together and the correct data might not be in the right place (e.g.
+  registers).
+}
 
 \card{What is forwarding?}
-{Where we add extra paths to the architecture to pass updated register values back to previous stages of the pipeline}
+{
+  Where we add extra paths to the architecture to pass updated register values
+  back to previous stages of the pipeline to avoid data hazards.
+}
 
 \card{How can we exploit instruction level parallelism?}
-{Fetch multiple instructions per cycle\\
-Have multiple ALU's to execute instructions in parallel\\
-Have common registers and caches, since the instructions are operating on the same data}
+{
+  Fetch multiple instructions per cycle\\
+  Have multiple ALU's to execute instructions in parallel (superscalar)\\
+  Have common registers and caches, since the instructions are operating on the
+  same data
+}
 
 \card{What does VLIW stand for?}
-{Very Long Instruction Word}
+{
+  Very Long Instruction Word
+}
 
 \card{How can we implement an out of order processor?}
-{Have a buffer that instructions are fetched into\\
-A scheduler to choose which instructions to execute at what times\\
-A cache to store memory and register accesses until all instructions have finished so that the application can execute normally as though instructions were executed in parallel}
+{
+  Have a buffer that instructions are fetched into\\
+  A scheduler to choose which instructions to execute at what times\\
+  A cache to store memory and register accesses until all instructions have
+  finished so that the application can execute normally as though instructions
+  were executed in parallel
+}
 
