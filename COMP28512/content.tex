@@ -22,11 +22,8 @@ There are three main mobile operating systems in use today:
   	first iOS phones were very groundbreaking in terms of their technology, and
   	were the first to feature touch screens, which are now ubiquitous in the
   	market.
-
-\marginpar{Blackberry, Symbian, Palm OS etc could be listed here too.}
-
-  \item \textbf{Windows Phone}\\
-    Version seven was released in 2010, previous versions were terrible (imho).
+\marginpar{Windows Phone, Blackberry, Symbian, Palm OS etc could be listed here
+too.}
 \end{description}
 
 \subsection{What's in a smartphone?}
@@ -38,12 +35,12 @@ networks (2G, 3G, 4G etc), and access data using the same methods.
 
 Of course, the millions of apps available for them is also a massive attraction.
 
-Smartphones Operating Systems need to be very advanced in order to step up to
-the tasks required of them by users. They need to be multitasking, to run lots
-of different apps, and interface with the typical hardware a normal computer
-might use (DMA, standard (ish) input devices etc). However, they also need to
-have real-time elements in, since they must be able to drive sound, IO, radio
-communications, digital signal processing etc
+Smartphone Operating Systems need to be very advanced in order to step up to the
+tasks required of them by users. They need to be multitasking, to run lots of
+different apps, and interface with the typical hardware a normal computer might
+use (DMA, input devices etc). However, they also need to have real-time elements
+in, since they must be able to drive sound, IO, radio communications, digital
+signal processing etc
 
 % Lecture two
 \section{Signals in mobile systems}
@@ -53,7 +50,7 @@ quantities that vary in a continuous manner over time. If we plot a graph of
 voltage over time, then we get a waveform for that signal. We can convert
 analogue signals to \textit{discrete time signals} by sampling them at set
 intervals (discrete points in time). This produces a list of numbers from
-$-\inf$ to $\inf$.
+$-\infty$ to $\infty$.
 
 \subsection{Generating waves}
 
@@ -107,22 +104,22 @@ The Sampling Theorem states that if a signal has all of its spectral energy
 below $B$Hz, and is sampled at $F$Hz, where $F \geq 2B$, then it can be
 reconstructed \textit{exactly} from the samples and nothing is lost.
 
-In other words, if you are sampling a signal at \textit{less than half} of the
+In other words, if you are sampling a signal at \textit{less than double} of the
 maximum frequency of the signal, then you won't be able to fully reconstruct the
 signal from the samples, and you will get distortion.
 
 Since music is usually sampled at $44.1$\si{\kilo\hertz}, we can accurately
-sample music with frequencies up to around $22$\si{\kilo\hertz}. Speech rarely
-has frequencies above $3.4$\si{\kilo\hertz}, so the sample rate for it can be
-much lower, as we will see later on in the course.
+sample music with frequencies up to around $22$\si{\kilo\hertz}. Since humans
+can only hear up to around $20\si{\kilo\hertz}$, and speech rarely has
+frequencies above $3.4$\si{\kilo\hertz}, so the sample rate for it can be much
+lower, as we will see later on in the course.
 
 \subsubsection{Aliasing}
 
 If we sample at less than twice the frequency of the wave, then we will get
-distortion, known as aliasing. The first lab on this course relates to aliasing.
-Even if we don't want frequencies higher than half our sample rate, we need to
-filter them out anyway, since otherwise, we will get aliasing when we sample
-them.
+distortion, known as aliasing. Even if we don't want frequencies higher than
+half our sample rate, we need to filter them out anyway, since otherwise, we'll
+get aliasing when we sample them.
 
 To be precise, if a wave of frequency $f$ is sampled at a frequency of below
 $2f$ (lets call this $F$, then the sampled output will be a wave of frequency $F
@@ -273,7 +270,8 @@ This is sometimes called its `cos and sin' form, but we could re-write it as:
 \]
 
 Here, each time the summation iterates, we are adding the next harmonic of the
-sound. The fundamental frequency $F$ is the first harmonic when $k=1$.
+sound. The fundamental frequency $F$ is the first harmonic when $k=1$. $M_k$ is
+the magnitude, and $\phi_k$ is the frequency of the $k^{th}$ harmonic.
 
 Because the harmonics get higher and higher, we can't sample the whole series
 because otherwise the frequency of the harmonics will start to become higher
@@ -295,13 +293,16 @@ from them afterwards.
 \subsection{Discrete Fourier Transform (iDFT)}
 
 The DFT converts samples of length $n$ into $n/2 - 1$ samples and a `dc term'.
-They are arranged in a length $n$ array, but the second half is the same as the
-first half but reversed. The $0^{th}$ element of the array is the DC term, but
-the $i^{th}$ element is the $i^{th}$ harmonic. 
+They are arranged in a length $n$ array, where the second half is the same as
+the first half but reversed. The $0^{th}$ element of the array is the DC term,
+but the $i^{th}$ element is the $i^{th}$ harmonic.
 
 The algorithm to convert from the time domain into the frequency domain is
 \textit{N-point DFT}. To do the opposite, we can use the \textit{N-point inverse
 DFT} algorithm.
+
+\marginpar{iDFT is the abbreviation for the inverse cosine transform, and no,
+you can't find it in the Apple store.}
 
 DFT is used to:
 
@@ -343,8 +344,9 @@ hear, and the most quiet sound we can hear.}
 
 Humans can hear frequencies between $20\si{\hertz}$ and $20\si{\kilo\hertz}$,
 and have a dynamic range of $120\si{\decibel}$. We can represent six decibels
-per bit of information using uniform quantisation (see section~\ref{uniform-quantisation}),
-so we need about $\frac{120}{6}$ bits to properly represent the sample.
+per bit of information using uniform quantisation (see
+section~\ref{uniform-quantisation}), so we need about $\frac{120}{6}=20$ bits to
+properly represent the sample.
 
 \subsection{Bitrates in different settings}
 
@@ -355,30 +357,32 @@ different applications:
 
   \item \textbf{CD's}\\
   Unfortunately, 20 bits per sample was too much for CD's (you wouldn't be able
-  to fit enough songs on each CD), so instead, 16 bits item per sample was
-  adopted as the standard. In order to `lose' these four bits, we make the quiet
-  bits of the songs louder (since we probably wouldn't be able to hear them
-  anyway).
+  to fit enough songs on each CD), so instead, 16 bits per sample was adopted
+  as the standard. In order to `lose' these four bits, we make the quiet bits
+  of the songs louder (since we probably wouldn't be able to hear them anyway).
 
   As a consequence of this, a song on a CD plays at a rate of $16 \times 44100
-  \times 2 = 1411\si{\kilo\bit\per\second}$.
+  \times 2 = 1411\si{\kilo\bit\per\second}$. The `$2$' comes from the fact that
+  CD's store stereo music, and therefore have two channels; one for left and
+  one for right.
 
   \item \textbf{Landlines}\\
   \marginpar{In practice, sometimes, vowel sounds like `f' and `s' can be mixed
   up.}
   Landlines are band-limited to a range of frequencies from $50\si{\hertz}$ to
-  $3.4\si{\kilo\hertz}$. Obviously, this is much, much less than the dynamic
+  $3.4\si{\kilo\hertz}$. Obviously this is much, much less than the dynamic
   range that humans can hear, but we only usually talk in frequencies covered by
   the range provided. This means that the sound will lose its `naturalness' but
   not intelligibility (supposedly).
 
   \marginpar{\textbf{Band limiting} is when a sound is Fourier transformed, and
-  frequencies above or below a certain frequency are stripped.}
+  frequencies above or below a certain frequency are stripped out.}
 
   The sample rate for telephone quality speech is $8\si{\kilo\hertz}$, with
-  $8\si{\bit\per}s$. This gives a bitrate of $64\si{\kilo\bit\per\second}$. In
-  order to use just $8\si{\bit}$ per sample, we need to use non-uniform
-  quantisation (like in the (second?) lab), such as $\mu$-law quantisation.
+  $8\si{\bit\per\sample}$. This gives a bitrate of
+  $64\si{\kilo\bit\per\second}$. In order to use just $8\si{\bit\per\sample}$,
+  we need to use non-uniform quantisation (like in the lab), such as $\mu$-law
+  quantisation.
 
   \item \textbf{Mobile Telephones}\\
   Mobile phones use a bit rate that changes based on factors such as the signal
@@ -398,11 +402,8 @@ integers spans a power of two (so you can use as few bits as possible).
 
 You can see that the third wave in Figure~\ref{quantised-wave} has been
 quantised into five integers, since there are five discrete values in the
-waveform ($0,1,2,3,4$) (requiring four bits), and there will be an extra bit to
-indicate the sign. If whoever made the diagram was trying to be as efficient as
-possible, they might have had either one less value (so that the numbers could
-be represented in three bits), or made full use of the four bits for the value,
-and used values from $0-7$.
+waveform ($0,1,2,3,4$) (requiring three bits), and there will be an extra bit to
+indicate the sign.
 
 \begin{figure}[ht]
   \centering
@@ -417,7 +418,7 @@ this error will be small, but if you only used say, five bits, then the error
 would be noticeable. As a consequence of this, we have to work a trade-off
 between storage capacity or bandwidth and quality.
 
-There are two types of quantisation, uniform and non-uniform:
+There are two types of quantisation; uniform and non-uniform:
 
 \begin{description}
   \item \textbf{Uniform quantisation}\\
@@ -446,6 +447,10 @@ There are two types of quantisation, uniform and non-uniform:
   between different quantised values, as evidenced in
   Figure~\ref{fig-non-uniform-quantisation}.
 
+  \marginpar{You probably know that $\mu$-law and A-law are companding
+  algorithms that serve to make the gaps between the lower quantised values
+  smaller, and those between the larger ones bigger.}
+
   \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{images/non-uniform-quantisation}
@@ -457,7 +462,7 @@ There are two types of quantisation, uniform and non-uniform:
 
   \begin{enumerate}
     \item Apply accurate uniform quantisation.
-    \item Apply a `compranding' formula, such as $\mu$-law.
+    \item Apply a `companding' formula, such as $\mu$-law.
     \item Uniformly quantise again using fewer bits.
     \item Transmit.
     \item Reverse the process of steps three and two with an `expander'.
@@ -467,9 +472,9 @@ There are two types of quantisation, uniform and non-uniform:
   doesn't increase the quality of the sound or anything (though it might do if
   the alternative was to use the same number of bits with uniform quantisation.)}
 
-  A `comprander' will increase the value of small samples, and decrease the
+  A `compander' will increase the value of small samples, and decrease the
   value of large samples, and an `expander' just does the reverse. Even though
-  we only apply two uniform quantisations, the comprander and expander mean the
+  we only apply two uniform quantisations, the compander and expander mean the
   overall effect is one of non-uniform quantisation.
 
   % TODO: Mu law and A-law
@@ -499,8 +504,8 @@ telephone data (speech, text etc):
   \text{SQNR} = 10\log_{10}\left(\frac{A^2 / 2}{\Delta^2 / 12}\right)
 \]
 
-The maximum amplitude of a sine wave that has been quantised with a step size
-of $\Delta$ is $\frac{2^{bits}}{2}\Delta$
+The maximum amplitude ($A$) of a sine wave that has been quantised with a step
+size of $\Delta$ is $\frac{2^{bits}}{2}\Delta$
 
 \allowdisplaybreaks
 \begin{align*}
@@ -523,8 +528,8 @@ fairly well for speech and music.
 
 If an 8 bit uniform quantisation scheme is designed for loud talkers (so they
 will use all eight bits), then it will have a SQNR of $(6\times 8) + 1.8 =
-49.8$. If another talker is much quieter, and talks $30\si{\decibel}$ quieter,
-then the samples will be encoded using only $3$ bits:
+49.8\si{\decibel}$. If another talker is $30\si{\decibel}$ quieter, then the
+samples will be encoded using only $3$ bits:
 
 \begin{align*}
   6 \times bits - 1.8 &= 49.8 - 30\\
@@ -541,6 +546,10 @@ decreases.}
 Since the quantisation noise for three bits is much lower ($19.8\si{\decibel}$)
 for the quietly talking person, they will probably be able to hear the noise
 over the phone.
+
+\marginpar{Dynamic Range Compression is where you reduce the volume of loud
+sounds, and/or increase the volume of quiet sounds which has the effect of
+reducing the dynamic range of the audio signal.}
 
 For the loudest CD quality (16 bit) music, the maximum SQNR value is
 $97.8\si{\decibel}$, whereas for the most quiet sounds, it is
@@ -614,7 +623,7 @@ following components:
 This made for a total of $56\si{\bit}$ per frame. Although it's easy to
 understand and implement, and requires little processing power (according to
 Wikipedia\footnote{\url{http://en.wikipedia.org/wiki/FS-1015}}, it requires
-$20$MIPS and $2\si{\kilo\byte}$ of RAM).
+$20$MIPS and $2\si{\kilo\byte}$ of RAM), it sounds horrid.
 
 When the speech is unvoiced, then a consonant is being transmitted; vocal chords
 are not active when this happens and so a random signal can be used in place of
@@ -655,7 +664,7 @@ Mobile systems are affected by errors in the transmission of data, often in the
 form of noise affecting radio reception. There are many ways of
 avoiding/mitigating errors, the most important ones looked at in this course
 are; Forward Error Correction (FEC) and error detection and retransmission
-(Automatic ReQuest).
+(Automatic ReQuest - ARQ).
 
 \subsubsection{Forward Error Correction}
 
@@ -707,7 +716,7 @@ Here are some examples of the above:
     hamming distance from it to any other. Then, you can detect and even errors
     by comparing your received code to the allowed ones.
 
-    Page~\pageref{HammingCodes} shows an implementation.
+    There is an implementation on page~\pageref{HammingCodes}.
 
     Hamming codes are block codes, since you need the whole block to calculate
     the distance between the received block and the ones in the codebook. It is
@@ -747,7 +756,7 @@ Here are some examples of the above:
     turning on), we could transform one dimensional blocks of data into two
     dimensional matrices, and transfer them column by column. This way, if there
     is a `bursty' bit error, then it will affect multiple rows, but the bit
-    error correction (such as) the repeating method, or hamming codes could
+    error correction such as the repeating method, or hamming codes could
     detect the error since only one or two bits may be wrong, not all of them.
 \end{description}
 
@@ -834,15 +843,15 @@ noise in the channel.
 The \textbf{Shannon-Hartley Law} says that the channel capacity $C$ is equal to:
 
 \[
-  C = B \log_2(1 + \frac{S}{N}) \si{\bit\per\second}
+  C = B \log_2(1 + \frac{S}{N})
 \]
 
 Where $B$ is the bandwidth in $\si{\hertz}$, and $\frac{S}{N}$ is the signal to
-noise power ratio.
+noise power ratio. $C$ is given in bits per second.
 
 \subsection{Image Coding}
 
-Images are really big. A 10"x8" colour photo at 300dpi has 10
+Images are really big. A 10"x8" colour photo at 300dpi has
 $10\times300\times8\times300 = 7.2\text{Mpixels}$. Since each pixel requires
 three bytes; one for each of Red, Green and Blue (RGB), we need
 $21.6\si{\mega\byte}$ to store the image.
@@ -858,7 +867,8 @@ for red, green and blue, or we can use luminance (monochrome) and two
 chrominance (colour) components.
 
 Our eyes are less sensitive to chrominance than luminance, and are also less
-sensitive to rapidly changing fine-detailed aspects of movies.
+sensitive to rapidly changing fine-detailed aspects of movies. We will exploit
+this to save bits later.
 
 \subsubsection{Frequency domain processing of images}
 
@@ -883,16 +893,16 @@ for quadrature), you do:
 \]
 
 When we've converted an image into YIQ and ran it through DCT, we can plot a
-graph of the values to get something like in Figure~\ref{lum}. It is easy to see
-that there is a lot of energy at the low frequencies and not much at the high
-ones. If we zero the low values, then we get something from Figure~\ref{lum-
-zero}.
+graph of the values to get something like in Figure~\ref{fig:lum}. It is easy to
+see that there is a lot of energy at the low frequencies and not much at the
+high ones. If we zero the low values, then we get something from
+Figure~\ref{lum-zero}.
 
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.5\textwidth]{images/lum}
   \caption{DCT Luminance Spectrum}
-  \label{lum}
+  \label{fig:lum}
 \end{figure}
 
 \begin{figure}[ht]
@@ -995,7 +1005,7 @@ information when the similarity is strong. The differences are then encoded as
 normal using JPEG. An ideal candidate for this would be something like in
 Figure~\ref{move-man}.
 
-\begin{figure}[ht]
+\begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{images/move-man}
   \caption{You could save bits encoding these three frames by encoding that
@@ -1019,9 +1029,9 @@ MPEG videos have three types of frames:
 
 Figure~\ref{frames} shows how these fit together.
 
-\begin{figure}[ht]
+\begin{figure}
   \centering
-  \includegraphics[width=0.8\textwidth]{images/frames}
+  \includegraphics[width=0.5\textwidth]{images/frames}
   \caption{How I,P and B frames work together to save data!}
   \label{frames}
 \end{figure}
@@ -1053,10 +1063,11 @@ user's demand; GPS, bluetooth, radio etc to name a few.
 One reason why mobile phones can work so well is that they take advantage of
 \textit{spatial multiplexing}. This divides an area into small areas called
 cells, each having a frequency band. The cells are different sizes based on
-their expected usage rates (cells will be more dense in areas with more
-demand). Frequency bands are re-used when a cell with the same frequency band is
-far enough away, and because of this, mobile phones must take care not to
-transmit their signals too loud and pollute the spectrum for nearby cells.
+their expected usage rates (cells will be more dense in areas with more demand).
+Frequency bands are re-used when a cell with the same frequency band is far
+enough away, and because of this, mobile phones must take care not to transmit
+their signals too loud and pollute the airwaves for nearby cells of the same
+frequency.
 
 \marginpar{Cells are typically $0.1-35\si{\kilo\meter}$ in diameter. Obviously
 small cells are better since they will handle more users per unit area (assuming
@@ -1066,10 +1077,10 @@ affected). This is actually a good thing sometimes, since it uses less battery,
 and we can use FEC to mask bit errors.}
 
 Breaking the spectrum up into frequencies, and mapping that onto physical cells
-is a nice concept - and it works very very well in reality, but it does have
-some drawbacks; for example, what happens when a user moves into a different
-cell while on the phone? Thankfully, the system supports transparent and
-seamless handovers as the user moves from cell to cell.
+is a nice concept - and it works very well in reality, but it does have some
+drawbacks; for example, what happens when a user moves into a different cell
+while on the phone? Thankfully, the system supports transparent and seamless
+handovers as the user moves from cell to cell.
 
 \subsubsection{The evolution of cellular technologies}
 
@@ -1117,7 +1128,7 @@ to let multiple users share the spectrum:
   \item \textbf{2G} (in Europe - GSM):\\
     Time Division Multiplexed Access (TDMA) was used so that each transmitter
     is given a regular time slot to send data in.
-  \item \textbf{3G/2G} (America only):\\
+  \item \textbf{2G} (America only)/\textbf{3G}:\\
     Code Division Multiplexed Access (CDMA) - each transmitter uses the same
     frequency band, but different codes are used to send data.
   \item \textbf{4G}:\\
@@ -1155,12 +1166,12 @@ using buffers shown in Figure~\ref{2g-buffers}.
     around $1.5\si{~bits\per sample}$), which gives a bit rate of around
     $13\si{\kilo\bit\per\second}$.
 
-    When the TDMA time slot happens, $114$ bits are red from the buffer,
+    When the TDMA time slot happens, $114$ bits are read from the buffer,
     modulated into a sinusoidal carrier wave, and transmitted via the antenna.
   \item \textbf{Receiving Speech}:\\
     First of all, the signal is demodulated and $114$ bits are extracted into
     the receiver buffer. Then, at $20\si{\milli\second}$ intervals, $490$ bits
-    are extracted from the same buffer and are decrypted and the interleaving is
+    are extracted from the same buffer, are decrypted and the interleaving is
     removed. Bit error correction is applied and FEC is removed to leave $260$
     bits, where we can then apply the LPC decoder to get 160 samples that are
     then converted back to analogue, amplified and sent to the speaker.
@@ -1171,7 +1182,8 @@ using buffers shown in Figure~\ref{2g-buffers}.
     Figure~\ref{BFSK}.
     \begin{figure}[ht]
       \includegraphics[width=0.9\textwidth]{images/BFSK}    
-      \caption{How the data \texttt{101010} might be encoded using BFSK}
+      \caption{How the data \texttt{101010} might be encoded using BFSK. If you
+      try and sing this wave, then you sound like Tarzan.}
       \label{BFSK}
     \end{figure}
 \end{description}
@@ -1341,7 +1353,7 @@ the user's phone which is obviously a bad thing.
 
 GPS stands for Global Positioning System, and it works by having a receiver
 calculate its position from timing signals sent by GPS satellites that are
-circling about $20200\si{\kilo\meter}$ above earth. They send messages that give
+circling about $20000\si{\kilo\meter}$ above earth. They send messages that give
 the exact time and the position of the satellite, which allows the receiver to
 determine its distance from the satellite by the offset between the transmission
 time and received time. If at least four satellites can be `heard' by the
@@ -1377,8 +1389,8 @@ listening to a song).
 We can take advantage of a \textit{buffer} to smooth out the jitter of the data
 connection. We can start the media player as soon as we have a sufficient
 reservoir of data. This analogy extends nicely to when we want to get more data,
-and stop downloading it; when the reservoir of data is getting low (maybe we have
-a minute of data left in the buffer), then we should request more from the
+and when we don't need it; when the reservoir of data is getting low (maybe we
+have a minute of data left in the buffer), then we should request more from the
 server, but when the buffer is nearly full, we should stop asking for more data,
 otherwise we might have to `bin' some of it since we wouldn't have room on the
 device. See Figure~\ref{fig:buffers} for a depiction.
@@ -1453,8 +1465,8 @@ interference with neighbouring cells.
 
 Furthermore, ECC lets us recover from errors, and we can interleave blocks of
 data so that bursty errors from radio interference can be mapped onto single
-errors distributed throughout the blocks. We can gracefully handle un-
-correctable errors by interpolating between values to minimise the loss of
+errors distributed throughout the blocks. We can gracefully handle
+un-correctable errors by interpolating between values to minimise the loss of
 quality.
 
 We can adjust the power of the transmitter based on feedback from the receiver.
@@ -1483,7 +1495,7 @@ having to re-send the packet again later when it was garbled this time).
 
 We've already looked at the techniques used to allow multiple users to use the
 same network on mobile phones (FDMA, TDMA, CDMA, OFDMA etc), but one rather
-older technique called Pure ALOHA has a different approach entirely.
+older technique called ALOHA has a different approach entirely.
 
 \subsection{ALOHA}
 
@@ -1557,6 +1569,12 @@ sent, and so although the network is efficient overall, for any individual, it
 is very slow.
 
 \subsubsection{CSMA collision detection}
+
+\marginpar{The network stack is a series of protocols for transmitting data
+with different levels of abstraction at each layer. The physical layer is
+the lowest level, and is often what we're dealing with on this course. The data
+link layer is the next one up, after which there are the internet layer,
+transport layer and the application layer.}
 
 We can save power and transmission capacity by having the transmitter monitor
 its own transmissions, and abort as soon as it detects a collision. This is
@@ -1672,9 +1690,9 @@ An improvement on this is to use interrupts, which is when an external device
 sends an event flag to the processor so that it switches its attention to
 handling the event, which incurs context-switch overheads.
 
-Better still would be to use Direct Memory Access hardware, which is a separate
-processor that can move data from external sensors directly into memory without
-the need for the CPU to do anything.
+Better still would be to use Direct Memory Access (DMA) hardware, which is a
+separate processor that can move data from external sensors directly into memory
+without the need for the CPU to do anything.
 
 \subsection{Buffering}
 
@@ -1732,7 +1750,7 @@ performance.
 
 Sometimes, we need to send real time data streams over unreliable and variable
 delay networks. The Real-time Transport Protocol is often used to facilitate
-this. If a packet is dropped, then by the time it is resent it'll be too late,
+this. If a packet is dropped, then by the time it is resent, it'll be too late,
 so it is forgotten about. Packets are numbered and timestamped so that out of
 order packets can be detected and dealt with. Because of the real time
 requirement, no flow control, error control, acknowledgement or retransmission
@@ -1768,7 +1786,7 @@ observed though.
 
 In 1948, the Baby was created; a computer that could process $700$ instructions
 per second, using $3.5\si{\kilo\watt}$ of power. In 2011, the SpiNNaker chip,
-using an ARM CPU can calculate $200,000,000$, but draws just
+using an ARM CPU can calculate $200,000,000$ per second, but draws just
 $40\si{\milli\watt}$ of power. This is:
 
 \[
@@ -1829,7 +1847,7 @@ when the voltage on a gate is changing, i.e. when it's switching states. If your
 CMOS chip isn't doing much, and its gates aren't changing, then it won't use
 much power at all!
 
-The power consumed by a chip is equal to:
+The power consumed by a gate is equal to:
 
 \marginpar{Note that $P$ is given in Watts.}
 
@@ -1848,7 +1866,7 @@ Where:
 \end{tabular}
 
 We can simplify this a bit more by removing the sum, and instead using the total
-capacitance and average activity:
+capacitance and average activity. This gives us the power consumed by the chip:
 
 \[
   P = \frac{1}{2} \times C_{total} \times f_{clock} \times V_{DD}^2 \times \alpha
