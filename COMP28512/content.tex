@@ -496,6 +496,8 @@ see Section~\ref{decibels}). To do this, we use the formula:
   \text{SQNR} = 10\log_{10}\left(\frac{\text{MSV of signal power}}{\text{MSV of noise}}\right)
 \]
 
+\newpage
+
 We can use this formula to calculate the $\si{\decibel\per\bit}$ for sending
 telephone data (speech, text etc):
 
@@ -566,9 +568,9 @@ and the next. If the differences are easier to transmit than the raw data, then
 we could save resources such as bandwidth. Such an encoder is shown in
 Figure~\ref{differential-encoder}.
 
-\begin{figure}
+\begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{images/differential-encoder}
+  \includegraphics[width=0.8\textwidth]{images/differential-encoder}
   \caption{An example of how a differential encoder might both encode and decode
   audio samples.}
   \label{differential-encoder}
@@ -896,22 +898,23 @@ When we've converted an image into YIQ and ran it through DCT, we can plot a
 graph of the values to get something like in Figure~\ref{fig:lum}. It is easy to
 see that there is a lot of energy at the low frequencies and not much at the
 high ones. If we zero the low values, then we get something from
-Figure~\ref{lum-zero}.
+the right of Figure~\ref{fig:lum}.
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.5\textwidth]{images/lum}
-  \caption{DCT Luminance Spectrum}
+  \includegraphics[width=0.45\textwidth]{images/lum}
+  \includegraphics[width=0.45\textwidth]{images/lum-zero}
+  \caption{DCT Luminance Spectrum (left) and the DCT Luminance Spectrum after
+  the small amplitudes have been set to zero (right).}
   \label{fig:lum}
 \end{figure}
 
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.5\textwidth]{images/lum-zero}
-  \caption{DCT Luminance Spectrum after the small amplitudes have been set to
-  zero}
-  \label{lum-zero}
-\end{figure}
+%\begin{figure}[ht]
+%  \centering
+%  \caption{DCT Luminance Spectrum after the small amplitudes have been set to
+%  zero}
+%  \label{lum-zero}
+%\end{figure}
 
 For this data set, the number of non-zero coefficients for Y was reduced from
 $262000$ to $8692$, meaning that only $3\%$ remained! If its similar for I and
@@ -1592,6 +1595,9 @@ being received at the receiver, which is probably different from what is
 observed at the transmitter.
 
 Because of this, wireless protocols place an emphasis on avoiding collisions:
+
+\marginpar{The whole \texttt{RTS/CTS/ACK} thing is called MACA - Multiple Access
+with Collision Avoidance.}
 
 \begin{description}
   \item \textbf{Real channel sensing}:\\
