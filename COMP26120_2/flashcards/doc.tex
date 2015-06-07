@@ -88,7 +88,12 @@
 }
 
 \card{
-  
+  How do we remove the smallest element from a (min) heap?
+}{
+  We move the last element from the heap to the first element (we can override
+  the first element since we've removed it). Now we `down heap' by swapping
+  the moved node with its smallest child until it is smaller than both its
+  children or it has no children.
 }
 
 \end{document} 
