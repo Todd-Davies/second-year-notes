@@ -253,9 +253,9 @@ new array of double the length and copy the current one across.
 
 If we set a cost of $3$ for every array write, then this should cover the cost
 of copying when the size limit is reached. Note, that on `normal' writes (i.e.
-where we don't have to resize the array), we will only add $3$ to the bank since
-\textsterling $1$ is taken up for the write operation. We start with an empty
-array of size 0:
+where we don't have to resize the array), we will only add \textsterling$2$ to
+the bank since \textsterling $1$ is taken up for the write operation. We start
+with an empty array of size 0:
 
 \begin{figure}[H]
   \centering
@@ -311,6 +311,11 @@ But to add 5, we need another resize, costing $4 + 1 = \text{\textsterling} 5$
 Lets whizz forward to inserting 9. By this point, we'll have \textsterling 8.
 We need to expand \textsterling 8 doing copying, and another adding 9, but we
 get an income of \textsterling 3, so we're left with \textsterling 2 again:
+
+\marginpar{If you didn't quite understand this, then take a look at section
+1.5.2 in the course reading (Algorithm Design by Goodrich and Tamassia). The
+same example is in there, and they have editors who's job it is to make sure
+there's not any mistakes... }
 
 \begin{figure}[H]
   \centering
