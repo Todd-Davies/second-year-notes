@@ -876,7 +876,7 @@ The page table contains one row for each page. The columns will include:
 After a while (or not a while if you've not got much RAM), all of the page
 frames will be occupied in memory. This means we need to swap one page for
 another in the main memory next time we have a page fault. We need an algorithm
-to determine which page to swap. The LRU (Last Recently Used) and FIFO (First In
+to determine which page to swap. The LRU (Least Recently Used) and FIFO (First In
 First Out) algorithms are good for this.
 
 If we make bad choices about which pages to reject from memory, then our
@@ -898,7 +898,7 @@ to use (programs are dynamic), we can't do this.
     It's implemented by keeping a count of page accesses, that is reset on every
     pass of the algorithm.
 
-  \item \textbf{Last Recently Used (LRU)}\\
+  \item \textbf{Least Recently Used (LRU)}\\
     The LRU algorithm works on the principle that if a page has been used
     recently, then it's probably going to be used again soon. The easiest
     implementation is to have a timestamp for every page (32/64 bit counter)
