@@ -305,7 +305,7 @@ too, but they're not as important)} but we've not been over how a process is
 created. In order to do this, an existing process must create new child process.
 
 Processes can be killed by themselves (with a variety of different exit codes),
-by other processes (using something like the \texttt{kill}) command, or in some
+by other processes (using something like the \texttt{kill} command), or in some
 systems, by the parent process terminating.
 
 The lifecycle of a process, and the states it occupies can be represented in a
@@ -475,7 +475,7 @@ time).
 \subsubsection{Context switching}
 
 A context switch occurs whenever the CPU pauses execution for one process and
-resumes it for another. It's sometimes and expensive operation, and depending on
+resumes it for another. It's sometimes an expensive operation, and depending on
 the processor, can take anywhere from one micro-second to one nano-second.
 
 \marginpar{It is important to remember that there are plenty of things that do
@@ -1229,7 +1229,7 @@ The OS keeps a table of open files in memory, indexed by the UFID. Each entry
 contains the file attributes and the number of processes reading and writing to
 it. \texttt{open} creates a new entry in the table, while \texttt{close} removes
 one (and writes the attributes to the disk if they've changed). Some operating
-systems will very this slightly, maybe having a separate table per process.
+systems will vary this slightly, maybe having a separate table per process.
 
 A buffer cache will often be utilised to improve the speed of reading and
 writing to files that are being frequently accessed.
@@ -1425,7 +1425,7 @@ are all exposed to the programmer.
     normal two; Job, Process, Thread, Fiber. Processes own resources such as
     threads and locks on objects, while threads are scheduled by the OS and
     fibres are scheduled by libraries run inside threads (so a Fiber is like a
-    psudo thread).
+    pseudo thread).
 
     As well as scheduling, the kernel deals with pipes, networking sockets,
     remote procedure calls, semaphores, multicore CPU's etc.
@@ -1490,7 +1490,7 @@ are all exposed to the programmer.
 \section{Unix}
 
 Conceived in 1969 as a single-user system, and expanded in 1973 to be a multi-
-user system, UNIX is a system written by programmers for programmers. It's
+user system, UNIX is a system written by programmers for programmers. Its
 source is freely distributed, and it has a modular design.
 
 The philosophy behind unix is that there should be lots of very simple programs
