@@ -121,8 +121,11 @@ achieve is $\frac{1}{x}$.
 The running time of a program executing on $n$ CPU's, when it runs in $t$
 seconds on one cpu is:
 
+\marginpar{Instead of $n$ (for number), $p$ (for parallelism) is used in the
+lecture notes.}
+
 \[
-  \text{Running time} = overhead + t\left(1 - x + \frac{x}{p}\right)
+  \text{Running time} = overhead + t\left(1 - x + \frac{x}{n}\right)
 \]
 
 Where $overhead$ is the time it takes to setup, synchronise and communicate
